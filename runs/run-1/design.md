@@ -115,6 +115,16 @@ Common to every screen: plain risk language (no "model", "LLM", "eval"); the dat
 | Sent-back draft: present-day ratings, stale export, no scenario | 3 failed checks; can't be approved without a comment |
 | Out of scope: "loss to the bank" | Refused with the reason; offers damage to properties |
 
+## Feedback round 1 (from Kevin's candidate review of the demo, 2026-11-01)
+1. **Ask is free text.** The question box is free text; the example questions only pre-fill it. Same for the audience: a list of options plus free text ("Other: …")
+2. **Confirm can add dimensions.** Besides editing the detected choices, the analyst can add one the AI didn't pick up (e.g. region, property type, origination year, balance band)
+3. **Back keeps state.** Going back to an earlier step keeps everything entered; nothing resets
+4. **Button placement.** Back at the bottom left, the forward action at the bottom right, on every step
+5. **Modern B2B SaaS look and feel:** cleaner layout, clear hierarchy, consistent components (the style of top B2B SaaS products)
+6. **Climate X's colour scheme and fonts** in the app. *Blocked: climate-x.com is outside this session's allowed network, and web search didn't return their brand values. Needs the palette and font names (e.g. from their site's CSS or a screenshot), or climate-x.com allowed in the environment's network settings*
+
+Status: recorded; not yet implemented.
+
 ## Open items
 - Confirm the scenario mapping: central = `ssp245`, severe = `ssp585` (inferred)
 - Confirm with Sarah that she'd accept fast-track review for follow-ups
