@@ -42,6 +42,7 @@ At the start of every session, before any analysis, run `pip install -q -r requi
 ## Files
 - `data/spectra_portfolio_export.csv`: vendor export, 2,000 loans on 1,880 properties, 81 columns
 - `docs/climate-x-brief.md`: company and product research with sources
+- `docs/role-brief.md`: the Principal PM role, the two seats, process, and how my experience maps to it
 - `notebooks/spectra_profile.ipynb`: Profile-mode analysis (trust checks, judgment calls, discovery questions)
 
 ## Data notes
