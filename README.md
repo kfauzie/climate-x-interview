@@ -22,6 +22,7 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 | What | Where | Purpose |
 |---|---|---|
 | Toolkit | [`tools/cxlens.py`](tools/cxlens.py) | Fast, deterministic analysis for wide climate-risk exports: trust checks, one-at-a-time swings, verdicts computed from the numbers |
+| Prototype | [`prototype/`](prototype/) | Run 1's "answer with its method" web app: four screens, deterministic engine, tests |
 | Runs | [`runs/`](runs/) | One folder per run: dataset, interview notes, analysis, solution and `RUN.md`. Run 1 is a practice run on synthetic Spectra-style data |
 | Context for Claude | [`CLAUDE.md`](CLAUDE.md) | Active run, run-isolation rules, workflow |
 

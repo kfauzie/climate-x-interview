@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Answer with its method</title>
+<style>
+  :root { --bg:#f6f7f9; --card:#fff; --ink:#1d2433; --muted:#5b6475; --line:#e2e6ec; --accent:#2f5d9a; --ok:#1f7a4d; --bad:#b3261e; --warn:#8a5a00; --soft:#eef3fa; }
+  * { box-sizing:border-box } body { margin:0; font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--ink) }
+  header { background:var(--card); border-bottom:1px solid var(--line); padding:12px 24px; display:flex; gap:16px; align-items:center; flex-wrap:wrap }
+  header h1 { font-size:17px; margin:0 } .dates { color:var(--muted); font-size:13px } .grow { flex:1 }
+  .role button { border:1px solid var(--line); background:var(--card); padding:6px 12px; cursor:pointer } .role button.on { background:var(--accent); color:#fff; border-color:var(--accent) }
+  main { max-width:960px; margin:24px auto; padding:0 16px }
+  .steps { display:flex; gap:8px; margin-bottom:16px; color:var(--muted); font-size:13px } .steps span.on { color:var(--accent); font-weight:600 }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:20px; margin-bottom:16px }
+  h2 { font-size:16px; margin:0 0 12px } h3 { font-size:14px; margin:16px 0 8px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em }
+  textarea, input[type=text], input[type=number], select { width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; font:inherit }
+  textarea { min-height:70px } label { font-weight:600; display:block; margin:12px 0 4px }
+  .row { display:grid; grid-template-columns:200px 1fr 120px; gap:12px; align-items:start; padding:10px 0; border-top:1px solid var(--line) }
+  .row .name { font-weight:600 } .tag { font-size:12px; padding:2px 8px; border-radius:10px; background:var(--soft); color:var(--accent); justify-self:start }
+  .tag.analyst { background:#fff4e0; color:var(--warn) } .tag.default { background:#eef0f3; color:var(--muted) }
+  .flag { padding:8px 12px; border-radius:6px; margin:6px 0; background:#fff8e6; border-left:3px solid var(--warn); font-size:14px }
+  .flag.out_of_scope, .flag.not_in_data { background:#fdecea; border-color:var(--bad) } .flag.suggestion { background:var(--soft); border-color:var(--accent) }
+  .dep { background:#fff4e0; padding:8px; border-radius:6px; margin-top:6px; font-size:13px }
+  .btn { background:var(--accent); color:#fff; border:0; padding:9px 16px; border-radius:6px; cursor:pointer; font:inherit } .btn.ghost { background:none; color:var(--accent); border:1px solid var(--accent) }
+  .btn.bad { background:var(--bad) } .btn:disabled { opacity:.5; cursor:default } .actions { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap }
+  .headline { font-size:20px; font-weight:600; margin:4px 0 8px } .muted { color:var(--muted); font-size:13px }
+  .check { display:flex; gap:8px; padding:4px 0; font-size:14px } .check b { min-width:46px } .ok { color:var(--ok) } .fail { color:var(--bad) }
+  .versions li, .note li { margin:4px 0 } .verdict { font-size:13px; color:var(--accent); margin:2px 0 }
+  .queue div { padding:10px; border:1px solid var(--line); border-radius:6px; margin-bottom:8px; cursor:pointer } .queue div:hover { border-color:var(--accent) }
+  .err { color:var(--bad); margin-top:8px } .chips label { display:inline-flex; gap:4px; font-weight:400; margin:0 12px 0 0 }
+  .banner { background:var(--soft); border:1px solid var(--accent); padding:12px; border-radius:6px; margin-bottom:12px }
+  @media (max-width:640px) { .row { grid-template-columns:1fr } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Answer with its method</h1><span class="dates" id="dates"></span><span class="grow"></span>
+  <span class="role"><button id="r-analyst" class="on" onclick="setRole('analyst')">Analyst</button><button id="r-sarah" onclick="setRole('sarah')">Sarah (review)</button></span>
+</header>
+<main>
+  <div class="steps" id="steps"><span data-s="ask">1 Ask</span>›<span data-s="confirm">2 Confirm</span>›<span data-s="answer">3 Answer</span>›<span data-s="review">4 Review</span></div>
+  <div id="view"></div>
+</main>
+<script>
+let META = null, S = {};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function api(path, body) {
+  const r = await fetch(path, body ? {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)} : {});
+  const j = await r.json(); if (!r.ok) throw new Error(j.detail || r.statusText); return j;
+}
+function step(s) { document.querySelectorAll('#steps span').forEach(e => e.classList.toggle('on', e.dataset.s === s)); }
+const SCEN = {central:'Central', severe:'Severe', low:'Low emissions'};
+function fmt(v) { if (Array.isArray(v)) return v.map(x => SCEN[x] || x).join(', ') || 'none';
+  if (v && typeof v === 'object') return Object.entries(v).filter(([k,x]) => x).map(([k,x]) => k.replace(/_/g,' ') + (x===true?'':' ' + x)).join(', ') || 'none';
+  return SCEN[v] || String(v ?? 'none'); }
+const AUD = {committee:'Committee', pra:'PRA / stress', other:'Other'};
+
+async function init() {
+  META = await api('/api/meta');
+  $('#dates').textContent = `Spectra export as at ${META.export_as_at} · Loan book as at ${META.book_as_at} · ${META.run_dir} (practice data)`;
+  renderAsk();
+}
+function setRole(r) { $('#r-analyst').classList.toggle('on', r==='analyst'); $('#r-sarah').classList.toggle('on', r==='sarah'); r==='sarah' ? renderQueue() : renderAsk(); }
+
+// ---------- Screen 1: Ask ----------
+function renderAsk(prefill) {
+  step('ask'); S = {};
+  $('#view').innerHTML = `<div class="card"><h2>What was asked?</h2>
+    <label>The question, as the asker wrote it</label><textarea id="q">${esc(prefill||'')}</textarea>
+    <label>Who asked</label><input type="text" id="asker" placeholder="e.g. Credit committee">
+    <label>Audience (sets the default scenario and years)</label>
+    <select id="aud"><option value="">Pick one…</option>${Object.entries(AUD).map(([k,v]) => `<option value="${k}">${v}</option>`).join('')}</select>
+    <p class="muted" id="audhint"></p>
+    <div class="actions"><button class="btn" onclick="doInterpret()">Continue</button></div><div class="err" id="err"></div></div>
+    ${answersList()}`;
+  $('#aud').onchange = e => { const d = META.audiences[e.target.value]; $('#audhint').textContent = d ? `Defaults: ${d.scenarios.map(s=>SCEN[s]).join(' and ')} at ${d.years.join(' and ')}` : ''; };
+}
+function answersList() {
+  return `<div class="card"><h2>My answers</h2><div id="mine" class="queue muted">Loading…</div></div>`;
+}
+async function loadMine() {
+  const el = $('#mine'); if (!el) return; const all = await api('/api/answers');
+  el.innerHTML = all.length ? all.slice().reverse().map(a => `<div onclick="openMine('${a.id}')"><b>${esc(a.status.replace('_',' '))}</b> · ${esc(a.question)}<div class="muted">${esc(a.result.headline)}</div></div>`).join('') : 'None yet';
+}
+async function openMine(id) {
+  const a = await api('/api/answers/' + id); S = {rec:a};
+  if (a.status === 'approved') {
+    $('#view').innerHTML = `<div class="card"><h2>Approved answer</h2><div class="headline">${esc(a.result.headline)}</div>
+      <a class="btn ghost" href="/api/answers/${a.id}/export.xlsx">Download Excel to send</a>
+      <label>Follow-up from the asker</label><input type="text" id="fu" placeholder="e.g. What about the severe scenario?">
+      <div class="actions"><button class="btn" onclick="doFollow('${a.id}')">Answer the follow-up</button><button class="btn ghost" onclick="renderAsk()">Back</button></div><div class="err" id="err"></div></div>`;
+  } else if (a.status === 'sent_back') {
+    S = {question:a.question, audience:a.audience, asker:a.asker, choices:a.choices, sources:a.sources, question_years:a.question_years, flags:[], sentBack:a.comments.at(-1).text};
+    renderConfirm();
+  } else { renderAnswer(a); }
+}
+setInterval(loadMine, 4000);
+
+async function doInterpret() {
+  const q = $('#q').value, aud = $('#aud').value, asker = $('#asker').value;
+  try { const r = await api('/api/interpret', {question:q, audience:aud, asker});
+    S = {question:q, audience:aud, asker, ...r}; renderConfirm(); } catch (e) { $('#err').textContent = e.message; }
+}
+async function doFollow(id) {
+  try { const r = await api(`/api/answers/${id}/followup`, {question:$('#fu').value});
+    const p = S.rec; S = {question:r.question, audience:p.audience, asker:p.asker, choices:r.choices, sources:r.sources, question_years:r.question_years, flags:r.flags, parent_id:id};
+    renderConfirm(); } catch (e) { $('#err').textContent = e.message; }
+}
+
+// ---------- Screen 2: Confirm ----------
+const DEFAULTED = ['scenarios','years','exclusions','unit','origination_source'];
+function isDeparture(f) { return DEFAULTED.includes(f) && S.sources[f]==='analyst' && JSON.stringify(S.choices[f]) !== JSON.stringify(S.defaults?.[f] ?? defaultsLocal()[f]); }
+function defaultsLocal() { const d = META.audiences[S.audience] || META.audiences.other; return {scenarios:d.scenarios, years:d.years, exclusions:{in_default:true, redeemed:true, maturing_before:null}, unit:'loans', origination_source:'loan_book'}; }
+function tag(f) { const s = S.sources[f] || 'default'; return `<span class="tag ${s}">${{question:'from the question', default:'default', analyst:'changed by analyst'}[s]}</span>`; }
+function set(f, v) { S.choices[f] = v; S.sources[f] = 'analyst'; renderConfirm(); }
+function chips(f, opts, labels) { const cur = S.choices[f] || [];
+  return `<span class="chips">${opts.map(o => `<label><input type="checkbox" ${cur.includes(o)?'checked':''} onchange="toggle('${f}','${o}',this.checked)">${esc(labels?labels[o]:o)}</label>`).join('')}</span>`; }
+function toggle(f, o, on) { let cur = [...(S.choices[f]||[])]; cur = on ? [...new Set([...cur,o])] : cur.filter(x=>x!==o);
+  if (f==='years' || f==='scenarios') cur.sort(); set(f, cur); }
+function row(name, f, control) {
+  const flags = (S.flags||[]).filter(x => x.field===f || (f==='rating' && x.field==='rating'));
+  const dep = isDeparture(f) ? `<div class="dep">Changes Sarah's default: <b>needs her approval</b>. Reason:<input type="text" value="${esc(S.reasons?.[f]||'')}" oninput="(S.reasons=S.reasons||{})['${f}']=this.value"></div>` : '';
+  return `<div class="row"><div class="name">${name}</div><div>${control}${flags.map(x=>`<div class="flag ${x.kind}">${esc(x.text)}</div>`).join('')}${dep}</div>${tag(f)}</div>`;
+}
+function renderConfirm() {
+  step('confirm'); const c = S.choices; const R = ['','A','B','C','D','E','F','G'];
+  const general = (S.flags||[]).filter(x => !x.field);
+  $('#view').innerHTML = `<div class="card"><h2>Confirm how to answer it</h2>
+    ${S.sentBack ? `<div class="banner"><b>Sent back by Sarah:</b> ${esc(S.sentBack)}</div>` : ''}
+    <p class="muted">“${esc(S.question)}” · ${esc(AUD[S.audience])}${S.asker ? ' · asked by ' + esc(S.asker) : ''}</p>
+    ${general.map(x=>`<div class="flag ${x.kind}">${esc(x.text)}</div>`).join('')}
+    ${row('What to measure','measure', `<select onchange="set('measure',this.value)">${[['count','Count of loans (with their balance)'],['loss','£ expected damage'],['rise','Rise between two years'],['share','Share of lending']].map(([k,v])=>`<option value="${k}" ${c.measure===k?'selected':''}>${v}</option>`).join('')}</select>`)}
+    ${row('Which loans','loan_type', `<select onchange="set('loan_type',this.value||null)"><option value="">All loans</option>${META.loan_types.map(t=>`<option ${c.loan_type===t?'selected':''}>${t}</option>`).join('')}</select>`)}
+    ${c.measure==='share' ? row('Originated in','originated', `<input type="text" value="${esc((c.originated||[]).join(', '))}" onchange="set('originated', this.value.split(',').map(x=>parseInt(x)).filter(Boolean))">`) : ''}
+    ${row('Hazards','hazards', chips('hazards', META.hazards) + '<div class="muted">None ticked = all hazards</div>')}
+    ${c.measure==='count'||c.measure==='share' ? row('Rating band','rating', `from <select style="width:70px" onchange="S.choices.rating_min=this.value||null;S.sources.rating='analyst';renderConfirm()">${R.map(r=>`<option ${c.rating_min===r?'selected':''}>${r}</option>`).join('')}</select> to <select style="width:70px" onchange="S.choices.rating_max=this.value||null;S.sources.rating='analyst';renderConfirm()">${R.map(r=>`<option ${c.rating_max===r?'selected':''}>${r}</option>`).join('')}</select> <span class="muted">(blank “to” = or worse)</span>`) : ''}
+    ${row('Scenario','scenarios', chips('scenarios', Object.keys(META.scenarios), SCEN))}
+    ${row('Years','years', chips('years', META.years))}
+    ${c.measure==='count' ? row('Count per','unit', `<select onchange="set('unit',this.value)"><option value="loans" ${c.unit==='loans'?'selected':''}>Loan</option><option value="properties" ${c.unit==='properties'?'selected':''}>Property</option></select>`) : ''}
+    ${row('Exclusions','exclusions', `<span class="chips"><label><input type="checkbox" ${c.exclusions.in_default?'checked':''} onchange="ex('in_default',this.checked)">In default</label><label><input type="checkbox" ${c.exclusions.redeemed?'checked':''} onchange="ex('redeemed',this.checked)">Redeemed since the export</label><label><input type="checkbox" ${c.exclusions.maturing_before?'checked':''} onchange="ex('maturing_before',this.checked?2030:null)">Maturing before 2030</label></span>`)}
+    ${c.originated ? row('Origination date from','origination_source', `<select onchange="set('origination_source',this.value)"><option value="loan_book" ${c.origination_source==='loan_book'?'selected':''}>Loan system</option><option value="spectra" ${c.origination_source==='spectra'?'selected':''}>Spectra export</option></select>`) : ''}
+    <div class="actions"><button class="btn" onclick="doCompute()">Confirm and calculate</button><button class="btn ghost" onclick="renderAsk()">Start again</button></div><div class="err" id="err"></div></div>`;
+}
+function ex(k, v) { const e = {...S.choices.exclusions, [k]:v}; set('exclusions', e); }
+async function doCompute() {
+  try { const rec = await api('/api/compute', {question:S.question, audience:S.audience, asker:S.asker, choices:S.choices, sources:S.sources,
+          question_years:S.question_years||[], reasons:S.reasons||{}, parent_id:S.parent_id||null});
+    renderAnswer(rec); } catch (e) { $('#err').textContent = e.message; }
+}
+
+// ---------- Screen 3: Answer ----------
+function resultBlock(a) {
+  const r = a.result; const v = r.verdicts || {}; if (r.versions_verdict) v.scenario = r.versions_verdict;
+  const drivers = Object.entries(r.drivers||{}).map(([k,d]) => { const t = Object.values(d).reduce((x,y)=>x+y,0);
+    return `<li>${k.replace('by_','By ')}: ${Object.entries(d).slice(0,3).map(([n,x])=>`${esc(n)} ${(100*x/t).toFixed(1)}%`).join(', ')}</li>`; }).join('');
+  return `<div class="headline">${esc(r.headline)}</div>
+    ${r.grid.length>1 ? `<ul class="versions">${r.grid.slice(1).map(g=>`<li>${esc(g.text)}</li>`).join('')}</ul>` : ''}
+    ${drivers ? `<h3>What drives it</h3><ul class="versions">${drivers}</ul>` : ''}
+    <h3>If one choice changed</h3><ul class="versions">${r.versions.map(x=>`<li><b>${esc(x.change)}:</b> ${esc(x.text)}</li>`).join('')}</ul>
+    ${Object.entries(v).map(([k,t])=>`<div class="verdict">${esc(k)}: ${esc(t)}</div>`).join('')}
+    <h3>Method note</h3><ol class="note">${r.method_note.map(l=>`<li>${esc(l)}</li>`).join('')}</ol>
+    <h3>Checks</h3>${r.checks.map(c=>`<div class="check"><b class="${c.ok?'ok':'fail'}">${c.ok?'PASS':'FAIL'}</b><span><b>${esc(c.name)}</b>: ${esc(c.detail)}</span></div>`).join('')}
+    <p class="muted">Loans included ${r.counts.included} · excluded ${r.counts.excluded} · unmatched ${r.counts.unmatched} · unscored ${r.counts.unscored}. Every number was calculated from the loaded files.</p>
+    <a class="btn ghost" href="/api/answers/${a.id}/export.xlsx">Download source rows (Excel)</a>`;
+}
+function renderAnswer(a) {
+  step('answer'); const failed = a.result.checks.filter(c=>!c.ok);
+  $('#view').innerHTML = `<div class="card"><h2>Answer</h2><p class="muted">“${esc(a.question)}” · status: ${esc(a.status)}</p>${resultBlock(a)}
+    ${a.status==='draft' ? `<label>Note for Sarah ${failed.length ? '(required: ' + failed.length + ' failed check' + (failed.length>1?'s':'') + ')' : '(optional)'}</label><textarea id="cm"></textarea>
+    <div class="actions"><button class="btn" onclick="doSubmit('${a.id}')">Submit to Sarah</button><button class="btn ghost" onclick="backToChoices('${a.id}')">Back to choices</button></div>` : ''}
+    <div class="err" id="err"></div></div>`;
+}
+async function backToChoices(id) {
+  const a = await api('/api/answers/' + id);
+  S = {question:a.question, audience:a.audience, asker:a.asker, choices:a.choices, sources:a.sources, question_years:a.question_years, reasons:a.reasons, flags:[], parent_id:a.parent_id};
+  renderConfirm();
+}
+async function doSubmit(id) {
+  try { await api(`/api/answers/${id}/submit`, {comment:$('#cm').value}); renderAsk(); loadMine(); } catch (e) { $('#err').textContent = e.message; }
+}
+
+// ---------- Screen 4: Sarah's review ----------
+async function renderQueue() {
+  step('review'); const all = await api('/api/answers'); const q = all.filter(a=>a.status==='submitted');
+  $('#view').innerHTML = `<div class="card"><h2>Waiting for your review (${q.length})</h2><div class="queue">${q.map(a=>`<div onclick="renderReview('${a.id}')">
+    ${a.fast_track?'<span class="tag">fast-track</span> ':''}${a.result.checks.some(c=>!c.ok)?'<span class="tag analyst">failed checks</span> ':''}${a.departures.length?'<span class="tag analyst">changes your defaults</span> ':''}
+    <b>${esc(a.question)}</b><div class="muted">${esc(a.asker)} · ${esc(a.result.headline)}</div></div>`).join('') || '<p class="muted">Nothing waiting.</p>'}</div></div>`;
+}
+async function renderReview(id) {
+  const a = await api('/api/answers/' + id); const failed = a.result.checks.filter(c=>!c.ok);
+  const top = (failed.length || a.departures.length) ? `<div class="card" style="border-color:var(--bad)"><h2>Look at these first</h2>
+      ${failed.map(c=>`<div class="check"><b class="fail">FAIL</b><span><b>${esc(c.name)}</b>: ${esc(c.detail)}</span></div>`).join('')}
+      ${a.departures.map(d=>`<div class="dep">Changed your default <b>${esc(d.field)}</b> from ${esc(fmt(d.default))} to ${esc(fmt(d.chosen))}. Reason: ${esc(a.reasons[d.field])}</div>`).join('')}
+      ${a.comments.filter(x=>x.by==='analyst'&&x.text).map(x=>`<p><b>Analyst:</b> ${esc(x.text)}</p>`).join('')}</div>` : '';
+  const fast = a.fast_track ? `<div class="banner"><b>Fast-track follow-up.</b> Only one thing changed from the answer you approved:
+      ${a.diff.map(d=>`<b>${esc(d.field)}</b>: ${esc(fmt(d.from))} → ${esc(fmt(d.to))}`).join('')}.<br>
+      Before: ${esc(a.parent_headline)}<br>Now: <b>${esc(a.result.headline)}</b><br>All checks pass and nothing departs from your defaults.</div>` : '';
+  $('#view').innerHTML = `${fast}${top}<div class="card"><h2>${a.fast_track?'Full answer (for reference)':'Answer'}</h2><p class="muted">“${esc(a.question)}” · asked by ${esc(a.asker)}</p>${resultBlock(a)}
+    <label>Comment</label><textarea id="rc"></textarea>
+    <div class="actions"><button class="btn" onclick="doReview('${a.id}','approve')">Approve</button><button class="btn bad" onclick="doReview('${a.id}','send_back')">Send back</button><button class="btn ghost" onclick="renderQueue()">Back to queue</button></div>
+    <div class="err" id="err"></div></div>`;
+}
+async function doReview(id, decision) {
+  try { await api(`/api/answers/${id}/review`, {decision, comment:$('#rc').value}); renderQueue(); } catch (e) { $('#err').textContent = e.message; }
+}
+init().then(loadMine);
+</script>
+</body>
+</html>

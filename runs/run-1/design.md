@@ -1,6 +1,6 @@
 # Run 1: design for option A, "answer with its method"
 
-From `solution.md`, `notes/interview.md` and `notes/sarah-followup.md`. Status: **user flow agreed; screens drafted** (to review).
+From `solution.md`, `notes/interview.md` and `notes/sarah-followup.md`. Status: **flow and screens agreed; prototype built** (`prototype/`, see its README).
 
 ## Who does what
 - **Askers** (CRO, committees, pricing, treasury, IR): stay on email and Teams; never use the tool
