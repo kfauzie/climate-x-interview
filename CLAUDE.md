@@ -11,6 +11,7 @@ The skills are the single source of truth and are kept up to date. Do not answer
 - `climate-x-role`: the Principal PM role, positioning, round-1 learnings. Its `live-session.md` covers the live build session
 - `climate-x-products`: Spectra, Adapt and Carta (one file each): customers, value proposition, strengths, weaknesses, opportunities, discovery questions
 - `discovery-interview`: principles for interview questions and the base template. Customise it per run into `runs/run-N/discovery-questions.md`
+- `problem-to-solution`: turns the run's notes and Test results into a problem summary and a recommended solution, saved as `runs/run-N/solution.md`
 - `pm-data-lens`: the analysis method. `/pm-data-lens` = Profile, `/pm-data-lens <notes>` = Test, `/pm-data-lens <question>` = Answer
 
 ## Runs: keep them isolated
@@ -21,6 +22,7 @@ runs/run-N/
   data/         # this run's dataset(s)
   notes/        # this run's interview notes, saved from Notion
   discovery-questions.md  # template customised for this run's data and customer
+  solution.md   # problem summary and recommended solution
   notebooks/    # this run's analysis
 ```
 Rules:
@@ -34,7 +36,7 @@ Rules:
 At the start of every session, before any analysis, run `pip install -q -r requirements.txt && python3 -m ipykernel install --user`
 
 ## Workflow for each run
-The process is always the same five steps. Keep each step quick: about 15 minutes of the session is interview time, and the rest is synthesis, design and the prototype.
+The process is always the same six steps. Keep each step quick: about 15 minutes of the session is interview time, and the rest is synthesis, design and the prototype.
 
 1. **Set up** (session start): run the session setup above
 2. **Data and context arrive** (uploaded data, plus the customer profile and any problem or ask):
@@ -49,10 +51,11 @@ The process is always the same five steps. Keep each step quick: about 15 minute
    - **One fetch:** fetch the meeting-notes block inside the run's Notion page directly, with `include_transcript: true` (it already contains the summary). Save the summary and transcript as they are, without rewriting, to `notes/interview.md` with the page link
    - Run `/pm-data-lens <notes>` (Test): contradictions first, then the problem statement (narrow and broad), updated product implications and the top 3 follow-up questions
    - Use `cx` functions for every test, with verdicts from `cx.swing` / `cx.verdict`. Show the result in chat first
-   - Record the problem statement in `RUN.md` and commit once, then move on to design and the prototype (a reviewable PR)
+   - Record the problem statement in `RUN.md` and commit once
+6. **Problem to solution:** run the `problem-to-solution` skill (options with evidence-based trade-offs, one pick, narrowest version, success criteria, riskiest assumption), saved as `solution.md`. Then design and the prototype (a reviewable PR)
 
 ## Files
-- `.claude/skills/`: `pm-data-lens` (method; this repo copy is the one to edit), `discovery-interview` (question principles and template), `climate-x-company`, `climate-x-role`, `climate-x-products`
+- `.claude/skills/`: `pm-data-lens` (method; this repo copy is the one to edit), `discovery-interview` (question principles and template), `problem-to-solution` (problem and recommended solution), `climate-x-company`, `climate-x-role`, `climate-x-products`
 - `tools/cxlens.py`: fast analysis toolkit for wide climate-risk exports (general code, no run data); self-test `tools/test_cxlens.py`
 - `runs/`: one folder per run
 - `README.md`: tour of the repo
