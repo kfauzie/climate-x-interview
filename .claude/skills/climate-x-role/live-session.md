@@ -1,4 +1,4 @@
-# Interview context (private, do not screen-share)
+# Live build session
 
 ## Why this repo exists
 Preparation for a live prototyping interview for a Principal PM role (senior IC) at Climate X. Confidential: keep this repo private.
@@ -14,6 +14,3 @@ Preparation for a live prototyping interview for a Principal PM role (senior IC)
   - take the work as far as something an engineer can review (a PR, not a spec)
   - make AI output trustworthy for regulated, decision-grade use (evals, golden datasets, human in the loop, thresholds, failure modes, the line between deterministic and AI)
   - keep the commercial thread: customer value, adoption, conservative enterprise buyers
-
-## Personal files
-- `prep/role-brief.md`: the Principal PM role, the two seats, process, and how my experience maps to it

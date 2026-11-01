@@ -22,4 +22,4 @@ One skill, one file per product. Read only the file the task needs.
 - Every point is tagged **[public]** (Climate X marketing, unverified), **[prep]** (interview preparation notes) or **[analysis]** (my inference)
 - Present [analysis] items, especially opportunities, as hypotheses to test with the customer, never as facts
 - Frame value commercially: time saved, consultant cost avoided, better lending and investment decisions
-- Company and competitor background with sources: `docs/climate-x-brief.md` at the repo root
+- Company and competitor background with sources: the `climate-x-company` skill

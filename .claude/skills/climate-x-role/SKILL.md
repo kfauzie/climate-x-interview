@@ -1,3 +1,8 @@
+---
+name: climate-x-role
+description: The Principal Product Manager role at Climate X: what the seat is, the two seats (Customer & UX / Discovery vs Agentic AI), interview process, what was learned in round 1, how my experience maps to the bar, gaps and positioning. Use when preparing for or running the Climate X interview, framing answers about my experience, or deciding what to emphasise. For the live build session itself, also read live-session.md.
+---
+
 # Role brief: Principal Product Manager (AI-native B2B), Climate X
 
 Sources: the recruiter's role description and interview prep pages, plus my first-round **prep** notes, written before the interview (Notion, Q4 2026 goals → Interview prep → ClimateX). Confidential, shared under NDA.
@@ -33,6 +38,8 @@ A senior hands-on IC seat: own a core product surface end to end, from customer 
 - Comp: base to £150k+, with room to stretch, plus options and benefits
 
 ## Process
+Live build session details, workflow and what lands: `live-session.md` in this skill.
+
 1. 45 min with Kevin Luo (VP / head of product). ✅ Done
 2. **90 min live working session.** Kevin role-plays an enterprise customer and hands over real Climate X data to build on. Assessed on reasoning and outcome, not volume
 3. Kamil Kluza (co-founder) if it goes well. ⚠️ The role page puts the co-founder inside the live session; the candidate's latest information is that the Kamil conversation follows only if it goes well

@@ -1,4 +1,9 @@
-# Climate X: company and product brief (for the live session)
+---
+name: climate-x-company
+description: Background on Climate X the company: funding, founders, stage, products at a glance, methodology, banking use cases, partnerships, go-to-market and competitors (Moody's RMS, Jupiter, S&P), with sources. Use for company context, market and competitive positioning, commercial or strategy questions, or to check which claims are verified.
+---
+
+# Climate X: company brief
 
 Compiled 2026-11-01 from web search results and my preparation notes. Most product claims come from Climate X's own marketing and are **unverified**. Points where sources conflict are marked ⚠️.
 

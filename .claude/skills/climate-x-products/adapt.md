@@ -43,4 +43,4 @@ Confidence tags: **[public]** from Climate X marketing or press (unverified), **
 - Who do you need to convince, and what evidence do they trust?
 
 ## Related
-- `spectra.md` (where the risk comes from), `docs/climate-x-brief.md` (repo root)
+- `spectra.md` (where the risk comes from), the `climate-x-company` skill

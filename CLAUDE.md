@@ -3,8 +3,7 @@
 Discovery workspace for a customer's climate physical-risk portfolio data. Use the `pm-data-lens` skill:
 `/pm-data-lens` = Profile, `/pm-data-lens <notes>` = Test, `/pm-data-lens <question>` = Answer.
 
-Private interview context (not for screen-sharing) is imported here:
-@prep/interview-context.md
+Interview context lives in the `climate-x-role` skill. Load it (and its `live-session.md`) for anything about the interview or the live build session.
 
 ## About Climate X
 - B2B physical climate-risk data and analytics ("Google Maps for climate change"). Search any asset to see its physical-risk profile and quantified financial loss
@@ -12,7 +11,7 @@ Private interview context (not for screen-sharing) is imported here:
 - Customers: banks, asset managers, real estate, private equity. Growing in data centres and renewables
 - Stage: between Series A and B, about 85 people, approaching profitability. Lean, flat, AI-native
 
-More detail (products, methodology, banking use cases, competitors, sources): `docs/climate-x-brief.md`
+More detail: the `climate-x-company` skill (company, competitors, sources) and the `climate-x-products` skill (Spectra, Adapt, Carta)
 
 ## Customer context (for analysis)
 - Customer: an enterprise customer. For this dataset, inferred to be a UK lender (residential mortgages plus CRE)
@@ -30,10 +29,9 @@ At the start of every session, before any analysis, run `pip install -q -r requi
 
 ## Files
 - `data/spectra_portfolio_export.csv`: vendor export, 2,000 loans on 1,880 properties, 81 columns
-- `docs/climate-x-brief.md`: company and product research with sources
+- `.claude/skills/`: three skills: `climate-x-company` (company, competitors, sources), `climate-x-role` (role, positioning, live session), `climate-x-products` (one file per product)
 - `.claude/skills/climate-x-products/`: one product skill with a file per product (`spectra.md`, `adapt.md`, `carta.md`): customers, value proposition, strengths, weaknesses, opportunities, discovery questions
 - `README.md`: tour of the repo
-- `prep/`: private interview prep, not for screen-sharing
 - `notebooks/spectra_profile.ipynb`: Profile-mode analysis (trust checks, judgment calls, discovery questions)
 
 ## Data notes

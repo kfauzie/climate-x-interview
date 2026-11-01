@@ -52,5 +52,6 @@ Confidence tags: **[public]** from Climate X marketing or press (unverified), **
 - What do you do with the export after downloading it?
 
 ## Related
-- Company and competitor research: `docs/climate-x-brief.md` (repo root)
+- Company and competitor research: the `climate-x-company` skill
+- Role and positioning: the `climate-x-role` skill
 - Data analysis method: the `pm-data-lens` skill

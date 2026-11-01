@@ -42,4 +42,4 @@ Confidence tags: **[prep]** from my preparation notes, **[analysis]** my inferen
 - Which counterparties matter most, and why those?
 
 ## Related
-- `spectra.md` (risk engine), `docs/climate-x-brief.md` (repo root)
+- `spectra.md` (risk engine), the `climate-x-company` skill
