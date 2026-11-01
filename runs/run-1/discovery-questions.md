@@ -42,3 +42,4 @@ Customised from the `discovery-interview` skill's template, using this run's `RU
 - Have you joined this data to anything else, like valuations, EPC or insurance? (from: 159 malformed postcodes)
 - How do you compare this quarter with last quarter? What happens when a number moves? (from: quarterly cadence)
 - Of your audiences (CRO, committees, pricing, treasury, sustainability, IR, the PRA), whose questions take the most work?
+- When you set appetite or pricing for new mortgage lending, how does physical risk come into it today? (from: 2021–25 originations have a higher loss rate than 2010–15)

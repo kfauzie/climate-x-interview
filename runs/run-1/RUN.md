@@ -5,7 +5,7 @@
 **Interview notes:** none yet. Save Notion notes for this run in `notes/`
 **Discovery questions:** `discovery-questions.md` (customised for Sarah and this dataset, 15-min version)
 **Notion questions:** https://app.notion.com/p/40b8f31ef05f8114908bd8ada551932c (take call notes here)
-**Analysis:** `notebooks/spectra_profile.ipynb` (Profile mode) and `notebooks/region_abs_vs_rate.png`
+**Analysis:** `notebooks/spectra_profile.ipynb` (Profile mode, built by `notebooks/build_profile.py`) and `notebooks/region_abs_vs_rate.png`
 
 Everything below applies to **run 1 only**. Do not carry it into any other run.
 
@@ -40,6 +40,15 @@ Everything below applies to **run 1 only**. Do not carry it into any other run.
 - INFERRED (unconfirmed): damage_pct is percent of property value, and loss is an annual expected loss to the property, not to the lender. Valuation date unknown
 - Missing: 45 loans each lack one hazard × year in all 3 scenarios
 - Postcodes: 159 badly formatted. Normalise (trim, uppercase, inner space) before any join
+
+## Profile findings (run 1, from the notebook)
+- Baseline (defaults below): £3,313,709 annual expected loss to properties
+- One-at-a-time swings vs baseline: SSP126 0.72×, SSP585 1.84×; 2030 0.64×; per-loan counting 1.021×; LTV-weighted "bank view" 0.47× (assumption)
+- Missing scores: 45 loans (£19.3m balance); 39 mortgages, 6 CRE
+- Concentration: top property P51627 (Retail, South East) is 12.77% of loss; top 1% of properties 31.78%; top 10 loans 15.41% of balance
+- CRE is 72.99% of loss but loss rates are close (17.54 vs 16.21bp) under every scenario
+- Residential lending from 2021–25 has a higher loss rate (17.55bp) than 2010–15 (14.66bp), with mix not controlled
+- Subsidence is 53.6% of loss and the most scenario-sensitive (SSP585/SSP245 = 2.33×)
 
 ## Default analysis choices (state them in every answer)
 - Scenario SSP245, year 2050, all 4 hazards summed
