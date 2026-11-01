@@ -13,6 +13,7 @@ The skills are the single source of truth and are kept up to date. Do not answer
 - `pm-discovery-interview`: principles for interview questions and the base template. Customise it per run into `runs/run-N/discovery-questions.md`
 - `pm-problem-to-solution`: turns the run's notes and Test results into a problem summary and a recommended solution, saved as `runs/run-N/solution.md`
 - `pm-design`: user flow first, then screens, test set and prototype; interaction and visual principles from feedback rounds. Output: `runs/run-N/design.md`
+- `pm-prototype-review`: script and questions for reviewing the prototype with the customer and their gatekeepers, saved as `runs/run-N/prototype-review.md` and published to Notion
 - `pm-data-discovery`: the analysis method. `/pm-data-discovery` = Profile, `/pm-data-discovery <notes>` = Test, `/pm-data-discovery <question>` = Answer
 
 ## Runs: keep them isolated
@@ -25,6 +26,7 @@ runs/run-N/
   discovery-questions.md  # template customised for this run's data and customer
   solution.md   # problem summary and recommended solution
   design.md     # user flow, screens, test set, feedback rounds
+  prototype-review.md  # review script and questions (also in Notion)
   notebooks/    # this run's analysis
 ```
 Rules:
@@ -38,7 +40,7 @@ Rules:
 At the start of every session, before any analysis, run `pip install -q -r requirements.txt && python3 -m ipykernel install --user`
 
 ## Workflow for each run
-The process is always the same six steps. Keep each step quick: about 15 minutes of the session is interview time, and the rest is synthesis, design and the prototype.
+The process is always the same seven steps. Keep each step quick: about 15 minutes of the session is interview time, and the rest is synthesis, design and the prototype.
 
 1. **Set up** (session start): run the session setup above
 2. **Data and context arrive** (uploaded data, plus the customer profile and any problem or ask):
@@ -55,9 +57,10 @@ The process is always the same six steps. Keep each step quick: about 15 minutes
    - Use `cx` functions for every test, with verdicts from `cx.swing` / `cx.verdict`. Show the result in chat first
    - Record the problem statement in `RUN.md` and commit once
 6. **Problem to solution:** run the `pm-problem-to-solution` skill (options with evidence-based trade-offs, one pick, narrowest version, success criteria, riskiest assumption), saved as `solution.md`. Then design with `pm-design` (flow first, then screens) and the prototype (a reviewable PR)
+7. **Prototype review:** run `pm-prototype-review` to write the script and questions (`prototype-review.md`), publish it to a new Notion page under 2nd round prep, and record the link in `RUN.md`. After the review, save the notes, add a feedback round to `design.md` and update the riskiest assumption in `solution.md`
 
 ## Files
-- `.claude/skills/`: `pm-data-discovery` (method; this repo copy is the one to edit), `pm-discovery-interview` (question principles and template), `pm-problem-to-solution` (problem and recommended solution), `pm-design` (flow, screens, prototype principles), `climate-x-company`, `climate-x-role`, `climate-x-products`
+- `.claude/skills/`: `pm-data-discovery` (method; this repo copy is the one to edit), `pm-discovery-interview` (question principles and template), `pm-problem-to-solution` (problem and recommended solution), `pm-design` (flow, screens, prototype principles), `pm-prototype-review` (review script and questions), `climate-x-company`, `climate-x-role`, `climate-x-products`
 - `tools/cxlens.py`: fast analysis toolkit for wide climate-risk exports (general code, no run data); self-test `tools/test_cxlens.py`
 - `runs/`: one folder per run
 - `README.md`: tour of the repo
