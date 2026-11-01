@@ -1,4 +1,4 @@
-"""Build and execute the run 1 Test notebook (pm-data-lens, Test mode).
+"""Build and execute the run 1 Test notebook (data-discovery, Test mode).
 
 Run from the repo root:  python3 runs/run-1/notebooks/build_test.py
 """
@@ -11,7 +11,7 @@ nb = nbf.v4.new_notebook(); C = []
 md = lambda s: C.append(nbf.v4.new_markdown_cell(s))
 code = lambda s: C.append(nbf.v4.new_code_cell(s))
 
-md("""# Run 1 · Test (pm-data-lens)
+md("""# Run 1 · Test (data-discovery)
 Tests what Sarah Okafor said in discovery (`../notes/interview.md`) against this run's data. Every number comes from a code cell.
 **Defaults unless stated** (from `RUN.md`): SSP245, 2050, all four hazards, each property counted once for £ loss. Only one choice is changed at a time.""")
 

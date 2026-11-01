@@ -1,9 +1,9 @@
 ---
-name: "pm-data-lens"
+name: "data-discovery"
 description: "Use when a PM analyses a dataset around customer discovery: surfaces judgment calls, product implications and discovery questions, not premature conclusions."
 ---
 
-# PM data lens
+# Data discovery
 
 Analyse data the way a product manager needs it: in service of a customer's decision and of what a product must do to support it. The goal is not the most interesting finding. It is knowing what to ask, what to trust, and what any product built on this data has to handle.
 

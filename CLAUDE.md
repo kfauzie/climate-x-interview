@@ -12,7 +12,7 @@ The skills are the single source of truth and are kept up to date. Do not answer
 - `climate-x-products`: Spectra, Adapt and Carta (one file each): customers, value proposition, strengths, weaknesses, opportunities, discovery questions
 - `discovery-interview`: principles for interview questions and the base template. Customise it per run into `runs/run-N/discovery-questions.md`
 - `problem-to-solution`: turns the run's notes and Test results into a problem summary and a recommended solution, saved as `runs/run-N/solution.md`
-- `pm-data-lens`: the analysis method. `/pm-data-lens` = Profile, `/pm-data-lens <notes>` = Test, `/pm-data-lens <question>` = Answer
+- `data-discovery`: the analysis method. `/data-discovery` = Profile, `/data-discovery <notes>` = Test, `/data-discovery <question>` = Answer
 
 ## Runs: keep them isolated
 Each run lives in `runs/run-N/`:
@@ -42,20 +42,20 @@ The process is always the same six steps. Keep each step quick: about 15 minutes
 2. **Data and context arrive** (uploaded data, plus the customer profile and any problem or ask):
    - Create `runs/run-N/` (next number) and set **Active run** above. If unsure whether this is a new run, ask
    - Save the dataset to `data/`. Write the customer profile and the problem or ask, word for word, into `RUN.md`
-   - Run `/pm-data-lens` (Profile), starting with `python3 tools/cxlens.py profile runs/run-N/data/<file>.csv`. Show the result in chat, then save the notebook to `notebooks/`
+   - Run `/data-discovery` (Profile), starting with `python3 tools/cxlens.py profile runs/run-N/data/<file>.csv`. Show the result in chat, then save the notebook to `notebooks/`
 3. **Generate discovery questions in a new Notion page:**
    - Customise the `discovery-interview` template for this run's customer, ask and Profile findings (15-minute budget, 7 live questions), saved as `discovery-questions.md`
    - Create a **new** Notion page for this run under 2nd round prep, titled `Run N: discovery questions (<customer>)`, with an empty `## Notes` section at the end. Record its link in `RUN.md`
 4. **Interview** (done by me, not Claude): I interview the customer, and the Notion note-taking assistant writes notes into that same page
 5. **Summarise the problem:**
    - **One fetch:** fetch the meeting-notes block inside the run's Notion page directly, with `include_transcript: true` (it already contains the summary). Save the summary and transcript as they are, without rewriting, to `notes/interview.md` with the page link
-   - Run `/pm-data-lens <notes>` (Test): contradictions first, then the problem statement (narrow and broad), updated product implications and the top 3 follow-up questions
+   - Run `/data-discovery <notes>` (Test): contradictions first, then the problem statement (narrow and broad), updated product implications and the top 3 follow-up questions
    - Use `cx` functions for every test, with verdicts from `cx.swing` / `cx.verdict`. Show the result in chat first
    - Record the problem statement in `RUN.md` and commit once
 6. **Problem to solution:** run the `problem-to-solution` skill (options with evidence-based trade-offs, one pick, narrowest version, success criteria, riskiest assumption), saved as `solution.md`. Then design and the prototype (a reviewable PR)
 
 ## Files
-- `.claude/skills/`: `pm-data-lens` (method; this repo copy is the one to edit), `discovery-interview` (question principles and template), `problem-to-solution` (problem and recommended solution), `climate-x-company`, `climate-x-role`, `climate-x-products`
+- `.claude/skills/`: `data-discovery` (method; this repo copy is the one to edit), `discovery-interview` (question principles and template), `problem-to-solution` (problem and recommended solution), `climate-x-company`, `climate-x-role`, `climate-x-products`
 - `tools/cxlens.py`: fast analysis toolkit for wide climate-risk exports (general code, no run data); self-test `tools/test_cxlens.py`
 - `runs/`: one folder per run
 - `README.md`: tour of the repo

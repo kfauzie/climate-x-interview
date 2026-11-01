@@ -5,7 +5,7 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 ## Tour
 | What | Where | Purpose |
 |---|---|---|
-| Method skill | [`.claude/skills/pm-data-lens/`](.claude/skills/pm-data-lens/) | How I analyse a dataset for discovery: Profile, Test and Answer modes, trust checks, judgment calls, product implications |
+| Method skill | [`.claude/skills/data-discovery/`](.claude/skills/data-discovery/) | How I analyse a dataset for discovery: Profile, Test and Answer modes, trust checks, judgment calls, product implications |
 | Discovery skill | [`.claude/skills/discovery-interview/`](.claude/skills/discovery-interview/) | Principles for discovery questions and a base template, customised per run |
 | Solution skill | [`.claude/skills/problem-to-solution/`](.claude/skills/problem-to-solution/) | Turns interview notes and data into a problem summary, options with trade-offs, and a recommended solution |
 | Company skill | [`.claude/skills/climate-x-company/`](.claude/skills/climate-x-company/) | Funding, stage, methodology, banking use cases, partners, competitors, with sources |

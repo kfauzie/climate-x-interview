@@ -1,4 +1,4 @@
-"""Build and execute the run 1 Profile notebook (pm-data-lens, Profile mode).
+"""Build and execute the run 1 Profile notebook (data-discovery, Profile mode).
 
 Run from the repo root:  python3 runs/run-1/notebooks/build_profile.py
 """
@@ -12,7 +12,7 @@ C = []
 md = lambda s: C.append(nbf.v4.new_markdown_cell(s))
 code = lambda s: C.append(nbf.v4.new_code_cell(s))
 
-md("""# Run 1 · Profile (pm-data-lens)
+md("""# Run 1 · Profile (data-discovery)
 **Customer (from `RUN.md`):** Sarah Okafor, Head of Climate Risk at a large PRA-regulated UK bank (mortgages plus commercial lending including CRE). Three analysts; reports to the CRO; receives Spectra outputs quarterly for about 18 months.
 **Mode:** Profile, before discovery. Patterns are framed as questions, not conclusions. Every number below comes from a code cell.""")
 

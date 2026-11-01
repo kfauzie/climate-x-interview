@@ -1,6 +1,6 @@
 ---
 name: problem-to-solution
-description: "Turns a run's interview notes and data analysis into a summarised problem and a recommended solution: problem statement, 2–3 options with evidence-based trade-offs (customer value, adoption, revenue, how a conservative buyer gets comfortable), one pick, its narrowest version, success criteria and the riskiest assumption. Use after discovery and the pm-data-lens Test, before design or prototyping, or when asked what to build and why."
+description: "Turns a run's interview notes and data analysis into a summarised problem and a recommended solution: problem statement, 2–3 options with evidence-based trade-offs (customer value, adoption, revenue, how a conservative buyer gets comfortable), one pick, its narrowest version, success criteria and the riskiest assumption. Use after discovery and the data-discovery Test, before design or prototyping, or when asked what to build and why."
 ---
 
 # Problem to solution
@@ -8,7 +8,7 @@ description: "Turns a run's interview notes and data analysis into a summarised 
 Inputs, all from the **active run only** (see CLAUDE.md run rules):
 - `runs/run-N/RUN.md`: customer profile, the ask (word for word), defaults, Profile findings
 - `runs/run-N/notes/interview.md`: summary and transcript
-- The pm-data-lens **Test** results (claims tested, contradictions, problem statement). If Test hasn't been run, run it first
+- The data-discovery **Test** results (claims tested, contradictions, problem statement). If Test hasn't been run, run it first
 
 Background, general knowledge only: `climate-x-products` (fit with Spectra, Adapt, Carta), `climate-x-company` (competitors, go-to-market), `climate-x-role` (what the session rewards).
 
