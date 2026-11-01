@@ -1,6 +1,6 @@
 # Role brief: Principal Product Manager (AI-native B2B), Climate X
 
-Sources: the recruiter's role description and interview prep pages, plus my first-round notes (Notion, Q4 2026 goals → Interview prep → ClimateX). Confidential, shared under NDA.
+Sources: the recruiter's role description and interview prep pages, plus my first-round **prep** notes, written before the interview (Notion, Q4 2026 goals → Interview prep → ClimateX). Confidential, shared under NDA.
 
 ## The role in one line
 A senior hands-on IC seat: own a core product surface end to end, from customer discovery to shipped, validated, revenue-generating product, in a two-person pod (1 PM + 1 engineer), shipping monthly.
@@ -38,8 +38,18 @@ A senior hands-on IC seat: own a core product surface end to end, from customer 
 3. Kamil Kluza (co-founder) if it goes well. ⚠️ The role page puts the co-founder inside the live session; the candidate's latest information is that the Kamil conversation follows only if it goes well
 4. Final conversation with Lukky (CEO)
 
+## What I learned in the first round (from Kevin)
+- **I'm being considered for Seat 1** (Customer & UX / Discovery). It still requires LLM familiarity
+- **Very discovery-centric, working closely with customers.** Kevin asked about UI/UX and customer discovery, as well as my agentic workflow and the ExaCare eval / AI product experience
+- **Working with the science team:** the PM sets direction for the climate and data scientists, based on discovery, on which models would actually be useful to customers. Example, hail:
+  - At what point do customers start to care about hail?
+  - Why?
+  - Does that change from customer to customer?
+- **How ROI is framed:** time saved, consultant costs avoided, and better business decisions
+- **Lead with commercial use cases** (investment, lending and similar decisions), not safety. Life-saving is not the selling angle
+
 ## How my experience maps to the bar
-| What they want | My evidence (from first-round notes) |
+| What they want | My evidence (from first-round prep notes) |
 |---|---|
 | Startup builder | Savvy (co-founded): own the work end to end, from customer problem to prototype agent to building and testing |
 | Zero-to-one → revenue | Savvy: tested upskilling vs agent development, chose agent development, reached 12 contracts and $252k. Signs of fit: expansion within customers, faster closes, larger contracts |
@@ -50,21 +60,21 @@ A senior hands-on IC seat: own a core product surface end to end, from customer 
 | Enterprise stakeholders | Pilot-first rollout, AE/CSM enablement, closing the loop with customers |
 | Regulated, decision-grade setting | ExaCare (healthcare admissions), a close analogue to lending and investment decisions |
 
-**Positioning:** strongest on Seat 2, with Seat 1 credibility. Lead with ExaCare-style trust (evals, staged rollout, explainability), and show discovery live in the session.
+**Positioning (updated after round 1):** Seat 1. Lead with discovery and UX: get from what Kevin says to the real workflow, then shape a product people actually use. Use the LLM and eval experience (ExaCare) as supporting proof that what I build can be trusted, not as the headline.
 
 **Possible gaps to address up front:**
-- No climate or finance domain experience yet. Counter: the first-round "what I'd do differently" (would have focused on finance), plus fast domain ramp-up shown in this repo
+- No climate or finance domain experience yet. Counter: the "what I'd do differently" answer (would have focused on finance), plus the fast domain ramp-up shown in this repo
+- "Why Climate X" in my prep led with saving lives. Kevin's steer is commercial use cases, so reframe around better investment and lending decisions
 - Revenue scale: Savvy's $252k is modest. Counter: Multiverse's ~$9.5M revenue contribution
 
 ## What the live session is really testing (inferred from the role)
-- Can I get from Kevin's stated ask to the real workflow problem before building? (Seat 1)
-- Is the thing I build trustworthy enough for a bank to act on: evals, the deterministic/AI split, human review, an audit trail? (Seat 2)
+- **Main test (Seat 1):** can I get from Kevin's stated ask to the real workflow problem before building, and turn it into a clear, usable UX?
+- Can I ask the hail-style questions: when does a risk start to matter to *this* customer's decision, why, and does it differ by customer? That is the same skill as directing the science team
+- Is what I build trustworthy enough for a bank to act on (evals, the deterministic/AI split, human review, an audit trail)? This is LLM familiarity as support, not the headline
 - Do I reach a PR, not a spec?
-- Do I keep tying choices to customer value, adoption and revenue, and to how a conservative buyer gets comfortable?
+- Do I keep tying choices to the ROI framing (time saved, consultant cost avoided, better commercial decisions), to adoption, and to how a conservative buyer gets comfortable?
 
-## Questions still open (from first-round notes)
-- How close is the PM to customers: direct, or mostly through the AEs?
+## Questions still open (not answered in round 1, as far as I know)
 - How is time split between discovery, data analysis and hands-on building?
-- How much does the PM work with the science team?
 - What does success and failure look like for the PM in a pod?
-- How does Climate X measure ROI when much of the value is preventative?
+- How is the "better business decisions" part of ROI quantified for customers today?
