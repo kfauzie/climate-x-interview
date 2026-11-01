@@ -1,30 +1,33 @@
 # Discovery question template (base)
 
-Source: Notion, Interview prep → ClimateX → 2nd round prep → Discovery Question template. Generic: customise per run and do not edit for a single run.
+Source: Notion, Interview prep → ClimateX → 2nd round prep → Discovery Question template, updated with lessons from mock runs. Generic: customise per run and do not edit for a single run.
 
 ### Opening
-- Could you tell me where the need for X is coming from?
-  - If not obvious: who would actually use X?
+- Could you tell me where the need for X is coming from? Tell me about the most recent requests or questions that led to it
+- **Always ask:** Who would actually use X day to day? Would the people asking for the answers use it themselves?
+  - Separates the person asking from the person using. An answer here can kill the ask, so never skip it
 
 ### Detailed walkthrough <What>
-- Could you walk me through the last time you needed to do X?
+- Could you walk me through the last time you needed to do X? Each step: who, which tool, how long
+  - Do these come up again and again, or are they mostly new?
   - Where does most of the time go?
   - What data goes into <the process>, and where does it come from?
-  - What makes it painful?
+  - What's the most painful part? → What do you check, and why?
+  - **After any pain or bottleneck:** What does that mean for you and your team?
   - At what point does <the climate risk> start to matter to you?
 - Follow up if hearing:
-  - General answers ("usually", "it depends")
-  - Hedges ("roughly", "sort of")
-  - A seemingly simple process that takes a suspiciously long time
+  - General answers ("usually", "it depends") → "Tell me about the last time"
+  - Hedges ("roughly", "sort of") → "What's the part I'm missing?" Don't relabel the answer and move on
+  - A seemingly simple process that takes a suspiciously long time → "Walk me through that step"
 
 ### Metrics & approval
-- **Baseline:** How much does this cost you today, in time or anything else?
-- **Target:** If we produce a solution, how would you know it works?
-- **Guardrail:** If you got <the answer> without <the painful step>, what would you need to see to trust it?
-- **Process:** Besides you, is there anyone else who has to sign it off?
+- **Baseline:** How much does this cost you today in time? **Besides time, what else does it cost you?** (reputation, being seen as a blocker, the risk of a wrong figure reaching a regulator or the board, people leaving)
+- **Target:** If this got better, how would you know it's working?
+- **Guardrail:** What would need to be true for you to trust <the answer> without <the painful step>?
+- **Process:** Besides you, who has to sign it off? Who could block it?
 
 ### Closing
-- <Recap, from the biggest problem> Anything I missed?
-- I'll get back to you with potential solutions for further discussion. Suggest other people to involve in that call
-- Ask whether I can contact you by email with any questions
-- Mention sample data that would be helpful for evals
+- Recap in three points at most, **leading with the biggest pain** (often a person or a bottleneck), not with volume or stats. "Anything I missed?"
+- I'll come back with something for you to review. Who else should be in that review?
+- Could I email you short questions in between?
+- Could you share some real examples (past requests and the answers your team gave)? We'd use them to check our answers against yours

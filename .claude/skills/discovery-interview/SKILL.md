@@ -12,16 +12,18 @@ The base template is `template.md` in this skill (source: the Discovery Question
 2. **Go specific and map the workflow.** Anchor on the *last real time* they did the task. Get each step: who does it, with what tool, how long it takes, and what is handed to whom. Write the workflow down as you go
 3. **Find the data.** For each step: what data goes in, where it comes from (system, vendor, spreadsheet, person), what format, how often, and what they do to it before use
 4. **Find the most painful problems.** Listen for where the time goes, where errors and rework happen, and emotion ("I dread…", "every quarter we…"). Rank pains by frequency × severity × who feels it
+   - After any pain or bottleneck, ask **how it lands on them**: "What does that mean for you and your team?" This surfaces stress, morale and people at risk of leaving, which time alone misses
 5. **Push further on:**
    - general answers ("usually", "it depends") → "Tell me about the last time"
-   - hedges ("roughly", "sort of", "should be fine") → "What makes it roughly?"
+   - hedges ("roughly", "sort of", "should be fine") → "What's the part I'm missing?" Never relabel the answer in your own words and move on; the hidden step is usually behind the hedge
    - seemingly simple steps that take suspiciously long → "Walk me through that step. Where does the time go?"
    - the why behind the why: keep asking until you reach the root cause
-6. **Measure potential ROI.** Baseline cost today: hours per cycle × people × cycles per year, consultant spend, delays, and decisions made worse or later. Frame commercially: time saved, consultant cost avoided, better lending and investment decisions
+6. **Measure potential ROI.** Baseline cost today: hours per cycle × people × cycles per year, consultant spend, delays, and decisions made worse or later. Always follow with **"Besides time, what else does it cost you?"** to get reputation, being seen as a blocker, and the risk of a wrong figure reaching a regulator or the board. Frame commercially: time saved, consultant cost avoided, better lending and investment decisions
 7. **Have ideas on success criteria.** What would "this works" look like to them: a target metric, and what they would need to see to trust the output (the guardrail)
 8. **Map who else is involved.** Who prepares, reviews, signs off, consumes and challenges the output. Who could block adoption. Who to bring into the next conversation
+   - **Always ask "Who would actually use it?"** Separate the people asking the questions from the people who would use the thing asked for. If the askers wouldn't use it, the ask may not hold
 9. **Close with clear next steps:**
-   - Recap the biggest problems, biggest first, and ask what was missed
+   - Recap in **three points at most, leading with the biggest pain** (often a person or bottleneck), not with volume or stats. Then ask what was missed
    - Agree a prototype review with them and the other key stakeholders and users named in the call
    - Ask permission to send short ad-hoc questions in between, and how (email, Teams)
    - Ask for any data useful for evals and testing (sample outputs, past reports, real cases where they were challenged), and send it over
@@ -29,7 +31,8 @@ The base template is `template.md` in this skill (source: the Discovery Question
 ## Rules when writing questions
 - **Non-leading.** Never reveal a data finding or hint at the answer. Turn a finding into a question about how they handle that situation ("How do you treat a property that secures more than one loan?", not "You're double counting properties")
 - **Tag each data-informed question** with `(from: <finding>)` so the link to the analysis stays visible to me, not to the customer
-- **Speak their language.** Use the customer's terms from the profile (e.g. ICAAP, risk appetite, LTV for a bank) and avoid ours (model, LLM, API) unless they use them first
+- **Speak their language.** Use the customer's terms from the profile (e.g. ICAAP, risk appetite, LTV for a bank) and avoid ours (model, LLM, API, training, eval) unless they use them first. Say "check our answers against yours", not "eval"
+- **Ask once.** Keep track of what has been answered and don't ask it again (e.g. volume). If an answer covered a later question, skip it
 - **Time budget: about 15 minutes of live Q&A by default** (the rest of the session goes on synthesis, design and the prototype). Plan **7 questions at most**: Opening 2 min (1 question), Workflow 8 min (3), Value and trust 3 min (2), Close 2 min (1). Use sub-probes only when an answer is vague
 - **Merge, don't add.** Fold baseline, guardrail and sign-off into combined questions. Pick the 1–2 data-informed questions with the biggest effect on the answer for the live list
 - **Everything else goes under "Later"**: asked only if time is left, otherwise sent by email after the call, using the permission asked for in the close
