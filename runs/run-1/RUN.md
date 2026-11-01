@@ -2,7 +2,7 @@
 
 **Status:** practice run. The data is synthetic, not real Climate X data
 **Dataset:** `data/spectra_portfolio_export.csv` (Spectra-style UK loan portfolio export)
-**Interview notes:** `notes/interview.md` (from Notion), `notes/mock-feedback.md`
+**Interview notes:** `notes/interview.md` (from Notion), `notes/sarah-followup.md` (her example questions, a sent-back case, defaults), `notes/mock-feedback.md`
 **Solution:** `solution.md` (recommended: answer with its method)
 **Test:** `notebooks/spectra_test.ipynb` (built by `notebooks/build_test.py`), chart `notebooks/test_cre_flood_by_scenario.png`
 **Discovery questions:** `discovery-questions.md` (customised for Sarah and this dataset, 15-min version)
@@ -65,6 +65,12 @@ Success (proposed): one agreed set of defaults; every figure traceable to source
 - CRE is 72.99% of loss but loss rates are close (17.54 vs 16.21bp) under every scenario
 - Residential lending from 2021–25 has a higher loss rate (17.55bp) than 2010–15 (14.66bp), with mix not controlled
 - Subsidence is 53.6% of loss and the most scenario-sensitive (SSP585/SSP245 = 2.33×)
+
+## Sarah's defaults (from her follow-up; her methodology paper, approved yearly by risk committee)
+- Committee work: **central at 2050**, plus 2030 if asked about the near term
+- PRA and stress work: **severe alongside central, at 2030 and 2050**
+- Deviations need Sarah's approval
+- INFERRED mapping to this file, to confirm: central = `ssp245`, severe = `ssp585`
 
 ## Default analysis choices (state them in every answer)
 - Scenario SSP245, year 2050, all 4 hazards summed
