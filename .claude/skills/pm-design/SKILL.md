@@ -5,7 +5,7 @@ description: "Principles for designing and prototyping a product from a recommen
 
 # PM design
 
-Input: the run's `solution.md` (the pick, its narrowest version, success criteria). Output: the run's `design.md` (flow, decisions, screens, test set, feedback rounds), then the prototype.
+Input: the run's `solution.md` (the pick, its narrowest version, success criteria). Output: the run's `design.md`, started from **`template.md` in this skill** (who does what, flow, decisions, screens, test set, brand, feedback rounds), then the prototype. Never edit `template.md` for a single run, and never reuse another run's design.
 
 ## Process
 1. **Align on the user flow before screens.** Who does what (asker vs user vs approver vs gatekeeper), the steps in order, and the decisions to agree, each with a recommendation. Record the agreed flow and decisions in `design.md`
@@ -28,3 +28,13 @@ Input: the run's `solution.md` (the pick, its narrowest version, success criteri
 - **Use the customer's or company's brand** (colour palette and fonts) when the prototype is for them. Get the real values from the brand source (site CSS, brand guide, or the person); never guess them. If they can't be fetched, say so and ask
 - **Brand use and publishing:** a company's branding belongs in the prototype code. A page published for others to view should not impersonate the company (no logo, no brand name as the product's name) unless the person confirms it's for that company's internal use
 - **Both light and dark, and phone width,** for anything published as a page
+
+## Building the prototype (what worked in practice)
+- **Branch and PR:** build on a branch (`prototype/<name>`) and open a PR with what, why, how it works, data used, tests and what's not built. If `gh pr create` is blocked, open it through the REST API (`gh api repos/<owner>/<repo>/pulls`)
+- **Structure:** a deterministic engine (every number, checks, method note, source rows), a separate interpreter (input → structured choices, never a number), a thin API, and a static front end. Reuse `tools/cxlens.py` where the data fits
+- **Synthetic supporting data:** if the customer won't share real data yet, generate it with a seeded script inside the run (e.g. `runs/run-N/data/make_<thing>.py`) and label it SYNTHETIC everywhere it appears. Check that defaults don't wipe out most of it
+- **Tests come from the design's test set,** plus the flow rules (reasons for departures, comments on failed checks, approvals, fast-tracks, reproducibility). Run them after every change
+- **Walk it in a real browser** (Playwright) end to end, then at phone width and in dark mode, and look at screenshots before showing anyone. This catches what API tests miss: misleading verdicts, raw JSON in the UI, wrong plurals, broken back navigation
+- **Verdicts and labels come from the numbers** (e.g. "same count, different loans"), never typed by hand
+- **A clickable demo for people who can't run it:** build it from the real UI with an in-page mock API that replays precomputed answers, so the demo and the app never drift apart. Say clearly on the page what it can't do
+- **Record each feedback round** in the run's `design.md`, and add any general lesson to this skill
