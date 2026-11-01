@@ -11,6 +11,7 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 | [`pm-discovery-interview`](.claude/skills/pm-discovery-interview/) | Principles for discovery questions and a base template, customised per run |
 | [`pm-problem-to-solution`](.claude/skills/pm-problem-to-solution/) | Turn interview notes and data into a problem summary, options with trade-offs, and a recommended solution |
 | [`pm-design`](.claude/skills/pm-design/) | Flow first, then screens, test set and prototype; interaction and visual principles |
+| [`pm-prototype-review`](.claude/skills/pm-prototype-review/) | Review the prototype with the customer: a script built on their example, questions on fit, trust and adoption |
 
 ### Climate X context
 | Skill | Purpose |
@@ -34,6 +35,7 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 4. Interview the customer, with notes taken in the same Notion page
 5. Pull the notes back → **Test** what the customer said against the data → problem statement
 6. **Problem to solution:** options with evidence-based trade-offs, one pick, its narrowest version → design and prototype (a reviewable PR). Deterministic code computes the numbers; AI interprets and explains
+7. **Prototype review** with the customer and their gatekeepers, using a script built on their own example; feedback goes into the next design round
 
 ## Setup
 ```bash
