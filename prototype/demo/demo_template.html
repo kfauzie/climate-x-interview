@@ -1,0 +1,244 @@
+<title>Answer With Its Method</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single working column like a risk team's review tool; status lives in chips and stripes, numbers in mono. */
+:root {
+  --bg:#f3f5f4; --surface:#ffffff; --fg:#17211f; --muted:#5a6966; --line:#d9e0de; --soft:#e8efed;
+  --accent:#1f5f57; --accent-ink:#ffffff; --ok:#1d7246; --bad:#b4372b; --warn:#8a5a00; --warn-bg:#fbf3e2; --bad-bg:#fbeceA; --info-bg:#e6f0ee;
+  --sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#111816; --surface:#18211f; --fg:#e4ecea; --muted:#9aaba7; --line:#2c3a37; --soft:#20302c;
+  --accent:#5fb3a6; --accent-ink:#0e1513; --ok:#5cc28b; --bad:#ef8476; --warn:#e3b45c; --warn-bg:#2b2416; --bad-bg:#33201d; --info-bg:#1b2e2a; color-scheme:dark } }
+:root[data-theme="dark"] {
+  --bg:#111816; --surface:#18211f; --fg:#e4ecea; --muted:#9aaba7; --line:#2c3a37; --soft:#20302c;
+  --accent:#5fb3a6; --accent-ink:#0e1513; --ok:#5cc28b; --bad:#ef8476; --warn:#e3b45c; --warn-bg:#2b2416; --bad-bg:#33201d; --info-bg:#1b2e2a; color-scheme:dark }
+* { box-sizing:border-box }
+body { background:var(--bg); color:var(--fg); font:15px/1.55 var(--sans); padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:0 32px }
+.wrap { max-width:940px; margin:0 auto }
+header { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; padding-block:18px 12px; border-bottom:1px solid var(--line) }
+header h1 { font-size:18px; font-weight:600; margin:0; text-wrap:balance } .data { color:var(--muted); font:12px var(--mono) } .grow { flex:1 }
+.seg { display:inline-flex; border:1px solid var(--line); border-radius:6px; overflow:hidden }
+.seg button { border:0; background:var(--surface); color:var(--fg); padding:7px 12px; font:inherit; cursor:pointer } .seg button[aria-pressed="true"] { background:var(--accent); color:var(--accent-ink) }
+.note { margin:12px 0 0; padding:10px 12px; background:var(--info-bg); border-radius:6px; font-size:13px; color:var(--fg) }
+.steps { display:flex; gap:6px; flex-wrap:wrap; margin:18px 0 12px; font-size:13px; color:var(--muted) } .steps span[aria-current="step"] { color:var(--accent); font-weight:600 }
+.panel { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px; display:grid; gap:14px; margin-bottom:16px; min-width:0 }
+h2 { font-size:16px; margin:0; text-wrap:balance } h3 { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:6px 0 0 }
+.muted { color:var(--muted); font-size:13px } .q { font-style:italic }
+.presets { display:grid; gap:8px }
+.preset { text-align:left; border:1px solid var(--line); background:var(--surface); color:var(--fg); border-radius:6px; padding:10px 12px; font:inherit; cursor:pointer }
+.preset[aria-pressed="true"] { border-color:var(--accent); background:var(--soft) } .preset small { display:block; color:var(--muted) }
+label.f { font-weight:600; display:grid; gap:6px } select, textarea, input[type=text] { font:inherit; padding:8px; border:1px solid var(--line); border-radius:6px; background:var(--surface); color:var(--fg); width:100% }
+textarea { min-height:64px }
+.rows { display:grid } .row { display:grid; grid-template-columns:170px minmax(0,1fr) auto; gap:12px; padding:10px 0; border-top:1px solid var(--line); align-items:start }
+.row .k { font-weight:600 } .row .v { min-width:0 } .fixed { color:var(--muted) }
+.tag { font-size:12px; padding:2px 8px; border-radius:999px; background:var(--soft); color:var(--accent); white-space:nowrap } .tag.default { color:var(--muted) } .tag.analyst { background:var(--warn-bg); color:var(--warn) }
+.chips { display:flex; flex-wrap:wrap; gap:6px 14px } .chips label { display:inline-flex; gap:6px; align-items:center }
+.flag { padding:8px 10px; border-left:3px solid var(--warn); background:var(--warn-bg); border-radius:4px; font-size:14px; margin-top:6px }
+.flag.out_of_scope, .flag.not_in_data { border-color:var(--bad); background:var(--bad-bg) } .flag.suggestion { border-color:var(--accent); background:var(--info-bg) }
+.dep { margin-top:6px; padding:8px 10px; border-radius:4px; background:var(--warn-bg); font-size:13px; display:grid; gap:6px }
+.btns { display:flex; flex-wrap:wrap; gap:8px }
+.btn { border:1px solid var(--accent); background:var(--accent); color:var(--accent-ink); padding:9px 16px; border-radius:6px; font:inherit; cursor:pointer }
+.btn.ghost { background:transparent; color:var(--accent) } .btn.bad { background:var(--bad); border-color:var(--bad); color:var(--accent-ink) }
+.btn:focus-visible, .preset:focus-visible, .seg button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid var(--accent); outline-offset:2px }
+.headline { font-size:20px; font-weight:600; line-height:1.35; font-variant-numeric:tabular-nums; text-wrap:balance }
+ul.plain { margin:0; padding-left:18px; display:grid; gap:4px; font-variant-numeric:tabular-nums } ol.method { margin:0; padding-left:20px; display:grid; gap:4px }
+.verdict { font:13px var(--mono); color:var(--accent) }
+.check { display:grid; grid-template-columns:52px minmax(0,1fr); gap:8px; font-size:14px } .check b.ok { color:var(--ok) } .check b.fail { color:var(--bad) }
+.counts { font:12px var(--mono); color:var(--muted) }
+.queue { display:grid; gap:8px } .item { text-align:left; border:1px solid var(--line); background:var(--surface); color:var(--fg); border-radius:6px; padding:10px 12px; font:inherit; cursor:pointer; display:grid; gap:4px }
+.item:hover { border-color:var(--accent) } .badges { display:flex; flex-wrap:wrap; gap:6px }
+.stripe { border-left:4px solid var(--bad) } .banner { border:1px solid var(--accent); background:var(--info-bg); border-radius:8px; padding:14px 16px; display:grid; gap:6px }
+.err { color:var(--bad); font-size:14px }
+@media (max-width:640px) { .row { grid-template-columns:1fr } .headline { font-size:18px } }
+@media (prefers-reduced-motion: reduce) { * { transition:none !important } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Answer with its method</h1>
+    <span class="data" id="dates"></span><span class="grow"></span>
+    <span class="seg" role="group" aria-label="Who is using it"><button id="role-analyst" aria-pressed="true">Analyst</button><button id="role-sarah" aria-pressed="false">Sarah (review)</button></span>
+  </header>
+  <p class="note">Clickable demo on practice data and a made-up loan book. Every answer here was calculated in advance by the prototype's code, so you can pick the example questions and change scenario, years, counting and exclusions, but not type new questions.</p>
+  <div class="steps" id="steps"><span data-s="ask">1 Ask</span>›<span data-s="confirm">2 Confirm</span>›<span data-s="answer">3 Answer</span>›<span data-s="review">4 Review</span></div>
+  <main id="view"></main>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const SCEN = {central:'Central', severe:'Severe', low:'Low emissions'};
+const AUD = {committee:'Committee', pra:'PRA / stress'};
+const SRC = {question:'from the question', default:'default', analyst:'changed by analyst'};
+const DEFAULTED = ['scenarios','years','exclusions','unit'];
+let role = 'analyst', R = null, store = [], seq = 1;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const clone = o => JSON.parse(JSON.stringify(o));
+function step(s) { document.querySelectorAll('#steps span').forEach(e => e.dataset.s === s ? e.setAttribute('aria-current','step') : e.removeAttribute('aria-current')); }
+function fmt(v) {
+  if (Array.isArray(v)) return v.map(x => SCEN[x] || x).join(', ') || 'none';
+  if (v && typeof v === 'object') return Object.entries(v).filter(([,x]) => x).map(([k,x]) => k.replace(/_/g,' ') + (x === true ? '' : ' ' + x)).join(', ') || 'none';
+  return SCEN[v] || String(v ?? 'none');
+}
+function key(pid, c) {
+  const ex = c.exclusions || {};
+  return [pid, [...c.scenarios].sort().join(','), [...c.years].sort().join(','), c.unit || 'loans',
+          ['in_default','redeemed','maturing_before'].map(k => ex[k] ? '1' : '0').join('')].join('|');
+}
+function setRole(r) {
+  role = r; $('#role-analyst').setAttribute('aria-pressed', r === 'analyst'); $('#role-sarah').setAttribute('aria-pressed', r === 'sarah');
+  r === 'sarah' ? renderQueue() : renderAsk();
+}
+$('#role-analyst').onclick = () => setRole('analyst'); $('#role-sarah').onclick = () => setRole('sarah');
+$('#dates').textContent = `Spectra export ${D.meta.export_as_at} · loan book ${D.meta.book_as_at}`;
+
+// ---------- 1 Ask ----------
+let pick = 'cre';
+function renderAsk() {
+  step('ask');
+  const mine = store.slice().reverse();
+  $('#view').innerHTML = `<section class="panel"><h2>What was asked?</h2>
+    <div class="presets">${Object.entries(D.presets).map(([id,p]) => `<button class="preset" data-id="${id}" aria-pressed="${id===pick}">${esc(p.question)}<small>${esc(p.asker)}</small></button>`).join('')}</div>
+    <label class="f">Audience (sets Sarah's default scenario and years)<select id="aud"><option value="committee">Committee: central at 2050</option><option value="pra">PRA / stress: central and severe, 2030 and 2050</option></select></label>
+    <div class="btns"><button class="btn" id="go">Continue</button><button class="btn ghost" id="draft">Replay the draft Sarah sent back</button></div></section>
+    <section class="panel"><h2>My answers</h2><div class="queue">${mine.length ? mine.map(a => `<button class="item" data-open="${a.id}"><span class="badges"><span class="tag">${esc(a.status.replace('_',' '))}</span>${a.fast_track ? '<span class="tag">fast-track</span>' : ''}</span><span>${esc(a.question)}</span><span class="muted">${esc(a.result.headline)}</span></button>`).join('') : '<p class="muted">None yet. Pick a question above.</p>'}</div></section>`;
+  document.querySelectorAll('.preset').forEach(b => b.onclick = () => { pick = b.dataset.id; renderAsk(); });
+  $('#go').onclick = () => { const aud = $('#aud').value, p = D.presets[pick], i = clone(p.by_audience[aud]);
+    R = {pid:pick, question:p.question, asker:p.asker, audience:aud, ...i, reasons:{}, parent:null}; renderConfirm(); };
+  $('#draft').onclick = () => { const p = D.presets.cre;
+    const rec = {id:'a' + seq++, pid:'cre', question:p.question, asker:p.asker, audience:'committee', choices:D.draft.choices, sources:{}, reasons:{}, departures:[], result:D.draft.result, status:'draft', comments:[], parent:null, diff:[], fast_track:false, isDraft:true};
+    store.push(rec); renderAnswer(rec); };
+  document.querySelectorAll('[data-open]').forEach(b => b.onclick = () => openMine(b.dataset.open));
+}
+function openMine(id) {
+  const a = store.find(x => x.id === id);
+  if (a.status === 'approved') return renderApproved(a);
+  if (a.status === 'sent_back') { R = {pid:a.pid, question:a.question, asker:a.asker, audience:a.audience, choices:clone(a.choices), sources:clone(a.sources), flags:[], question_years:[], defaults:D.presets[a.pid].by_audience[a.audience].defaults, reasons:clone(a.reasons), parent:a.parent, sentBack:a.comments.at(-1)?.text};
+    if (a.isDraft) { R.choices = clone(D.presets.cre.by_audience.committee.choices); R.sources = clone(D.presets.cre.by_audience.committee.sources); R.question_years = ['2050']; }
+    return renderConfirm(); }
+  renderAnswer(a);
+}
+
+// ---------- 2 Confirm ----------
+function isDeparture(f) { return DEFAULTED.includes(f) && R.sources[f] === 'analyst' && JSON.stringify(R.choices[f]) !== JSON.stringify(R.defaults[f]); }
+function set(f, v) { R.choices[f] = v; R.sources[f] = 'analyst'; renderConfirm(); }
+function row(name, f, control, editable = true) {
+  const flags = (R.flags || []).filter(x => x.field === f);
+  const dep = isDeparture(f) ? `<div class="dep"><span>Changes Sarah's default, so it <b>needs her approval</b>.</span><input type="text" id="reason-${f}" placeholder="Reason" value="${esc(R.reasons[f] || '')}"></div>` : '';
+  return `<div class="row"><div class="k">${name}</div><div class="v ${editable ? '' : 'fixed'}">${control}${flags.map(x => `<div class="flag ${x.kind}">${esc(x.text)}</div>`).join('')}${dep}</div><span class="tag ${R.sources[f] || 'default'}">${SRC[R.sources[f] || 'default']}</span></div>`;
+}
+function chips(f, opts, labels) { const cur = R.choices[f] || [];
+  return `<span class="chips">${opts.map(o => `<label><input type="checkbox" data-f="${f}" value="${o}" ${cur.includes(o) ? 'checked' : ''}>${esc(labels ? labels[o] : o)}</label>`).join('')}</span>`; }
+function renderConfirm() {
+  step('confirm'); const c = R.choices, gen = (R.flags || []).filter(x => !x.field);
+  const meas = {count:'Count of loans, with their balance', loss:'£ expected damage to properties', rise:'Rise between two years', share:'Share of lending'}[c.measure];
+  const band = c.rating_min ? `${c.rating_min}${c.rating_max ? ' to ' + c.rating_max : ' or worse'}` : 'any';
+  const ex = c.exclusions || {};
+  $('#view').innerHTML = `<section class="panel"><h2>Confirm how to answer it</h2>
+    ${R.sentBack ? `<div class="banner"><b>Sent back by Sarah</b><span>${esc(R.sentBack)}</span></div>` : ''}
+    <p class="muted"><span class="q">“${esc(R.question)}”</span> · ${AUD[R.audience]} · asked by ${esc(R.asker)}</p>
+    ${gen.map(x => `<div class="flag ${x.kind}">${esc(x.text)}</div>`).join('')}
+    <div class="rows">
+      ${row('What to measure', 'measure', meas, false)}
+      ${row('Which loans', 'loan_type', esc(c.loan_type || 'All loans'), false)}
+      ${c.originated ? row('Originated in', 'originated', c.originated.join(' and ') + ' (origination date from the loan system)', false) : ''}
+      ${row('Hazards', 'hazards', esc(c.hazards.length ? c.hazards.join(', ') : 'All four hazards'), false)}
+      ${c.measure === 'count' || c.measure === 'share' ? row('Rating band', 'rating', band, false) : ''}
+      ${row('Scenario', 'scenarios', chips('scenarios', ['central','severe','low'], SCEN))}
+      ${row('Years', 'years', c.measure === 'rise' ? '2030 → 2050' : chips('years', D.meta.years), c.measure !== 'rise')}
+      ${c.measure === 'count' ? row('Count per', 'unit', `<select id="unit"><option value="loans" ${c.unit==='loans'?'selected':''}>Loan</option><option value="properties" ${c.unit==='properties'?'selected':''}>Property</option></select>`) : ''}
+      ${row('Exclusions', 'exclusions', `<span class="chips"><label><input type="checkbox" data-ex="in_default" ${ex.in_default?'checked':''}>In default</label><label><input type="checkbox" data-ex="redeemed" ${ex.redeemed?'checked':''}>Redeemed since the export</label><label><input type="checkbox" data-ex="maturing_before" ${ex.maturing_before?'checked':''}>Maturing before 2030</label></span>`)}
+    </div>
+    <p class="muted">Greyed rows are fixed in this demo. In the app the analyst can change them too.</p>
+    <div class="btns"><button class="btn" id="calc">Confirm and calculate</button><button class="btn ghost" id="back">Start again</button></div><div class="err" id="err" role="alert"></div></section>`;
+  document.querySelectorAll('input[data-f]').forEach(i => i.onchange = () => { const f = i.dataset.f; let cur = [...(R.choices[f] || [])];
+    cur = i.checked ? [...new Set([...cur, i.value])] : cur.filter(x => x !== i.value); cur.sort(); set(f, cur); });
+  document.querySelectorAll('input[data-ex]').forEach(i => i.onchange = () => set('exclusions', {...R.choices.exclusions, [i.dataset.ex]: i.dataset.ex === 'maturing_before' ? (i.checked ? 2030 : null) : i.checked}));
+  if ($('#unit')) $('#unit').onchange = e => set('unit', e.target.value);
+  document.querySelectorAll('[id^="reason-"]').forEach(i => i.oninput = () => R.reasons[i.id.slice(7)] = i.value);
+  $('#back').onclick = renderAsk; $('#calc').onclick = calculate;
+}
+function calculate() {
+  const c = R.choices;
+  if (!c.scenarios.length) return $('#err').textContent = 'Pick at least one scenario.';
+  if (!c.years.length) return $('#err').textContent = 'Pick at least one year.';
+  const deps = DEFAULTED.filter(isDeparture).map(f => ({field:f, default:R.defaults[f], chosen:c[f]}));
+  const missing = deps.filter(d => !(R.reasons[d.field] || '').trim()).map(d => d.field);
+  if (missing.length) return $('#err').textContent = `Give a reason for each change from Sarah's defaults: ${missing.join(', ')}.`;
+  const res = D.answers[key(R.pid, c)];
+  if (!res) return $('#err').textContent = 'That combination wasn’t calculated for this demo.';
+  const rec = {id:'a' + seq++, pid:R.pid, question:R.question, asker:R.asker, audience:R.audience, choices:clone(c), sources:clone(R.sources), reasons:clone(R.reasons), departures:deps, result:res, status:'draft', comments:[], parent:R.parent, diff:[], fast_track:false};
+  const p = R.parent && store.find(x => x.id === R.parent);
+  if (p) {
+    rec.diff = Object.keys(c).filter(k => JSON.stringify(p.choices[k]) !== JSON.stringify(c[k])).map(k => ({field:k, from:p.choices[k], to:c[k]}));
+    rec.fast_track = p.status === 'approved' && rec.diff.length === 1 && R.sources[rec.diff[0].field] === 'question' && !deps.length && res.checks.every(x => x.ok);
+    rec.parent_headline = p.result.headline;
+  }
+  store.push(rec); renderAnswer(rec);
+}
+
+// ---------- 3 Answer ----------
+function resultBlock(a) {
+  const r = a.result, v = Object.entries(r.verdicts || {}).filter(([,t]) => t);
+  const drivers = Object.entries(r.drivers || {}).map(([k,d]) => { const t = Object.values(d).reduce((x,y) => x + y, 0);
+    return `<li>${k === 'by_hazard' ? 'By hazard' : 'By region'}: ${Object.entries(d).slice(0,3).map(([n,x]) => `${esc(n)} ${(100*x/t).toFixed(1)}%`).join(', ')}</li>`; }).join('');
+  return `<div class="headline">${esc(r.headline)}</div>
+    ${r.grid.length > 1 ? `<ul class="plain">${r.grid.slice(1).map(g => `<li>${esc(g.text)}</li>`).join('')}</ul>` : ''}
+    ${drivers ? `<h3>What drives it</h3><ul class="plain">${drivers}</ul>` : ''}
+    <h3>If one choice changed</h3><ul class="plain">${r.versions.map(x => `<li><b>${esc(x.change)}:</b> ${esc(x.text)}</li>`).join('')}</ul>
+    ${v.map(([k,t]) => `<div class="verdict">${esc(k)}: ${esc(t)}</div>`).join('')}
+    <h3>Method note</h3><ol class="method">${r.method_note.map(l => `<li>${esc(l)}</li>`).join('')}</ol>
+    <h3>Checks</h3>${r.checks.map(c => `<div class="check"><b class="${c.ok ? 'ok' : 'fail'}">${c.ok ? 'PASS' : 'FAIL'}</b><span><b>${esc(c.name)}</b>: ${esc(c.detail)}</span></div>`).join('')}
+    <p class="counts">included ${r.counts.included} · excluded ${r.counts.excluded} · unmatched ${r.counts.unmatched} · unscored ${r.counts.unscored} · every number calculated by code</p>
+    <p class="muted">In the app, “Download source rows” gives an Excel file with the counted, excluded, unmatched and unscored loans.</p>`;
+}
+function renderAnswer(a) {
+  step('answer'); const failed = a.result.checks.filter(c => !c.ok);
+  $('#view').innerHTML = `<section class="panel"><h2>Answer</h2><p class="muted"><span class="q">“${esc(a.question)}”</span> · ${esc(a.status.replace('_',' '))}</p>${resultBlock(a)}
+    ${a.status === 'draft' ? `<label class="f">Note for Sarah ${failed.length ? `(required: ${failed.length} failed check${failed.length > 1 ? 's' : ''})` : '(optional)'}<textarea id="cm"></textarea></label>
+    <div class="btns"><button class="btn" id="submit">Submit to Sarah</button><button class="btn ghost" id="home">Back</button></div><div class="err" id="err" role="alert"></div>` : '<div class="btns"><button class="btn ghost" id="home">Back</button></div>'}</section>`;
+  $('#home').onclick = renderAsk;
+  if ($('#submit')) $('#submit').onclick = () => { const t = $('#cm').value.trim();
+    if (failed.length && !t) return $('#err').textContent = `Add a note for the failed checks: ${failed.map(c => c.name).join(', ')}.`;
+    a.status = 'submitted'; a.comments.push({by:'analyst', text:t}); renderAsk(); };
+}
+function renderApproved(a) {
+  step('answer');
+  $('#view').innerHTML = `<section class="panel"><h2>Approved, ready to send</h2><div class="headline">${esc(a.result.headline)}</div>
+    <p class="muted">The asker replies with a follow-up. Pick one:</p>
+    <div class="btns"><button class="btn" data-fu="severe">“What about the severe scenario?”</button><button class="btn" data-fu="2030">“And by 2030?”</button><button class="btn ghost" id="home">Back</button></div></section>`;
+  $('#home').onclick = renderAsk;
+  document.querySelectorAll('[data-fu]').forEach(b => b.onclick = () => {
+    const pre = D.presets[a.pid].by_audience[a.audience]; const c = clone(a.choices), s = clone(a.sources);
+    if (b.dataset.fu === 'severe') { c.scenarios = ['severe']; s.scenarios = 'question'; } else { c.years = ['2030']; s.years = 'question'; }
+    R = {pid:a.pid, question:`${a.question} → follow-up: ${b.textContent.replace(/[“”]/g, '')}`, asker:a.asker, audience:a.audience, choices:c, sources:s, flags:[], question_years:[], defaults:pre.defaults, reasons:{}, parent:a.id};
+    renderConfirm(); });
+}
+
+// ---------- 4 Review ----------
+function renderQueue() {
+  step('review'); const q = store.filter(a => a.status === 'submitted');
+  $('#view').innerHTML = `<section class="panel"><h2>Waiting for your review (${q.length})</h2><div class="queue">${q.map(a => {
+      const f = a.result.checks.some(c => !c.ok);
+      return `<button class="item ${f || a.departures.length ? 'stripe' : ''}" data-r="${a.id}"><span class="badges">${a.fast_track ? '<span class="tag">fast-track</span>' : ''}${f ? '<span class="tag analyst">failed checks</span>' : ''}${a.departures.length ? '<span class="tag analyst">changes your defaults</span>' : ''}</span><span><b>${esc(a.question)}</b></span><span class="muted">${esc(a.asker)} · ${esc(a.result.headline)}</span></button>`; }).join('') || '<p class="muted">Nothing waiting. Switch to Analyst and submit an answer.</p>'}</div></section>`;
+  document.querySelectorAll('[data-r]').forEach(b => b.onclick = () => renderReview(store.find(x => x.id === b.dataset.r)));
+}
+function renderReview(a) {
+  const failed = a.result.checks.filter(c => !c.ok);
+  const top = failed.length || a.departures.length ? `<section class="panel stripe"><h2>Look at these first</h2>
+      ${failed.map(c => `<div class="check"><b class="fail">FAIL</b><span><b>${esc(c.name)}</b>: ${esc(c.detail)}</span></div>`).join('')}
+      ${a.departures.map(d => `<div class="dep">Changed your default <b>${esc(d.field)}</b> from ${esc(fmt(d.default))} to ${esc(fmt(d.chosen))}. Reason: ${esc(a.reasons[d.field])}</div>`).join('')}
+      ${a.comments.filter(x => x.by === 'analyst' && x.text).map(x => `<p><b>Analyst:</b> ${esc(x.text)}</p>`).join('')}</section>` : '';
+  const fast = a.fast_track ? `<div class="banner"><b>Fast-track follow-up</b><span>Only one thing changed from the answer you approved: <b>${esc(a.diff[0].field)}</b> ${esc(fmt(a.diff[0].from))} → ${esc(fmt(a.diff[0].to))}.</span><span>Before: ${esc(a.parent_headline)}</span><span>Now: <b>${esc(a.result.headline)}</b></span><span class="muted">All checks pass and nothing departs from your defaults.</span></div>` : '';
+  $('#view').innerHTML = `${fast}${top}<section class="panel"><h2>${a.fast_track ? 'Full answer, for reference' : 'Answer'}</h2><p class="muted"><span class="q">“${esc(a.question)}”</span> · asked by ${esc(a.asker)}</p>${resultBlock(a)}
+    <label class="f">Comment<textarea id="rc"></textarea></label>
+    <div class="btns"><button class="btn" id="ok">Approve</button><button class="btn bad" id="no">Send back</button><button class="btn ghost" id="q">Back to queue</button></div><div class="err" id="err" role="alert"></div></section>`;
+  $('#q').onclick = renderQueue;
+  $('#ok').onclick = () => { a.status = 'approved'; a.comments.push({by:'Sarah', text:$('#rc').value}); renderQueue(); };
+  $('#no').onclick = () => { const t = $('#rc').value.trim(); if (!t) return $('#err').textContent = 'Say what needs changing.';
+    a.status = 'sent_back'; a.comments.push({by:'Sarah', text:t}); renderQueue(); };
+}
+renderAsk();
+</script>

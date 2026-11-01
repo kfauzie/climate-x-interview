@@ -9,6 +9,12 @@ python3 -m uvicorn prototype.app:app --port 8000      # then open http://localho
 ```
 Uses `runs/run-1` by default; set `RUN_DIR=runs/run-N` for another run. Data in run 1 is practice data, and the loan book is synthetic (`runs/run-1/data/make_loan_book.py`).
 
+## Clickable demo (no install)
+A static page that replays answers precomputed by `engine.py` (728 combinations of the preset questions and the choices you can toggle):
+```bash
+python3 prototype/demo/build_demo.py demo.html
+```
+
 ## Test it
 ```bash
 python3 -m pytest prototype/tests -q
