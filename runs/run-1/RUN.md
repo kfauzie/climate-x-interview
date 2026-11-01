@@ -6,6 +6,8 @@
 **Solution:** `solution.md` (recommended: answer with its method)
 **Design:** `design.md` (flow and screens agreed)
 **Prototype:** `prototype/` at the repo root; synthetic loan book from `data/make_loan_book.py`
+**Prototype review:** `prototype-review.md` (script and questions, made with `pm-prototype-review`)
+**Notion review:** https://app.notion.com/p/40b8f31ef05f814e815fc95807769b0b (take review notes here)
 **Test:** `notebooks/spectra_test.ipynb` (built by `notebooks/build_test.py`), chart `notebooks/test_cre_flood_by_scenario.png`
 **Discovery questions:** `discovery-questions.md` (customised for Sarah and this dataset, 15-min version)
 **Notion questions:** https://app.notion.com/p/40b8f31ef05f8114908bd8ada551932c (take call notes here)
