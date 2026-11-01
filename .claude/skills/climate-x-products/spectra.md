@@ -30,9 +30,9 @@ Confidence tags: **[public]** from Climate X marketing or press (unverified), **
 
 ## Weaknesses and risks [analysis]
 - **Black-box concern:** regulators and auditors want model transparency, which is Jupiter's selling point. Every number needs its assumptions, version and source visible
-- **Property loss ≠ lender loss:** exports give damage to the asset. Banks need impact on the loan (LTV, LGD, insurance, default). Shown in the practice data: weighting by LTV alone gave 0.47× the property-level total
-- **Judgment calls move the headline:** scenario, horizon, hazard set, per-loan vs per-property counting, missing data. In the practice data the SSP585 total was 1.84× the SSP245 total, and 2030 was 0.64× 2050. Two analysts can report different numbers from the same export
-- **Wide exports are hard to use:** 72 columns of hazard × scenario × year × metric need reshaping before anyone can answer a question
+- **Property loss ≠ lender loss:** exports give damage to the asset. Banks need impact on the loan (LTV, LGD, insurance, default).
+- **Judgment calls move the headline:** scenario, horizon, hazard set, per-loan vs per-property counting, missing data. Each choice can shift a portfolio total by a large multiple. Two analysts can report different numbers from the same export
+- **Wide exports are hard to use:** dozens of hazard × scenario × year × metric columns need reshaping before anyone can answer a question
 - **Incumbents bundle:** Moody's and S&P attach climate data to credit data they already sell; S&P buys smaller players. Climate X has to win on depth, usability and trust
 
 ## Opportunities (hypotheses to test in discovery) [analysis]
