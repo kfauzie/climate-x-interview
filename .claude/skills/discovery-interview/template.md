@@ -21,7 +21,10 @@ Source: Notion, Interview prep → ClimateX → 2nd round prep → Discovery Que
   - A seemingly simple process that takes a suspiciously long time → "Walk me through that step"
 
 ### Metrics & approval
-- **Baseline:** How much does this cost you today in time? **Besides time, what else does it cost you?** (reputation, being seen as a blocker, the risk of a wrong figure reaching a regulator or the board, people leaving)
+- **Baseline (ROI has three parts; never stop at time):**
+  - Efficiency: How much does this cost you today in time, people or consultants?
+  - Decision value: When an answer was late or wrong, what decision did it hold up or change?
+  - Risk: **Besides time, what else does it cost you?** (reputation, being seen as a blocker, a wrong figure reaching a regulator or the board)
 - **Target:** If this got better, how would you know it's working?
 - **Guardrail:** What would need to be true for you to trust <the answer> without <the painful step>?
 - **Process:** Besides you, who has to sign it off? Who could block it?

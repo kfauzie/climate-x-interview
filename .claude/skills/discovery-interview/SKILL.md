@@ -21,7 +21,11 @@ The base template is `template.md` in this skill (source: the Discovery Question
    - hedges ("roughly", "sort of", "should be fine") → "What's the part I'm missing?" Never relabel the answer in your own words and move on; the hidden step is usually behind the hedge
    - seemingly simple steps that take suspiciously long → "Walk me through that step. Where does the time go?"
    - the why behind the why: keep asking until you reach the root cause
-6. **Measure potential ROI.** Baseline cost today: hours per cycle × people × cycles per year, consultant spend, delays, and decisions made worse or later. Always follow with **"Besides time, what else does it cost you?"** to get reputation, being seen as a blocker, and the risk of a wrong figure reaching a regulator or the board. Frame commercially: time saved, consultant cost avoided, better lending and investment decisions
+6. **Measure potential ROI, always beyond time and cost.** Time saved alone undersells it. Cover all three parts, and get a number or a real example for each:
+   - **Efficiency:** hours per cycle × people × cycles per year, consultant spend avoided
+   - **Decision value:** which decisions the answer feeds (lending, pricing, risk appetite, investment) and what a late or wrong answer did to one. "When an answer was late or wrong, what decision did it hold up or change?"
+   - **Risk and reputation:** a wrong figure reaching the regulator or the board, capital or provisioning impact, being seen as a blocker. "Besides time, what else does it cost you?"
+   This matches how Climate X frames value: time saved, consultant cost avoided, better business decisions
 7. **Have ideas on success criteria.** What would "this works" look like to them: a target metric, and what they would need to see to trust the output (the guardrail)
 8. **Map who else is involved.** Who prepares, reviews, signs off, consumes and challenges the output. Who could block adoption. Who to bring into the next conversation
    - **Always ask "Who would actually use it?"** Separate the people asking the questions from the people who would use the thing asked for. If the askers wouldn't use it, the ask may not hold
@@ -37,7 +41,7 @@ The base template is `template.md` in this skill (source: the Discovery Question
 - **Speak their language.** Use the customer's terms from the profile (e.g. ICAAP, risk appetite, LTV for a bank) and avoid ours (model, LLM, API, training, eval) unless they use them first. Say "check our answers against yours", not "eval"
 - **Ask once.** Keep track of what has been answered and don't ask it again (e.g. volume). If an answer covered a later question, skip it
 - **Time budget: about 15 minutes of live Q&A by default** (the rest of the session goes on synthesis, design and the prototype). Plan **7 questions at most**: Opening 2 min (1 question), Workflow 8 min (3), Value and trust 3 min (2), Close 2 min (1). Use sub-probes only when an answer is vague
-- **Merge, don't add.** Fold baseline, guardrail and sign-off into combined questions. Pick the 1–2 data-informed questions with the biggest effect on the answer for the live list
+- **Merge, don't add.** Fold baseline, guardrail and sign-off into combined questions. The baseline question must still reach beyond time: combine efficiency with decision value or risk in one question. Pick the 1–2 data-informed questions with the biggest effect on the answer for the live list
 - **Everything else goes under "Later"**: asked only if time is left, otherwise sent by email after the call, using the permission asked for in the close
 
 ## How to customise for a run
