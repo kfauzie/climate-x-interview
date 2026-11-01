@@ -34,7 +34,7 @@ Rules:
 At the start of every session, before any analysis, run `pip install -q -r requirements.txt && python3 -m ipykernel install --user`
 
 ## Workflow for each run
-1. When the dataset arrives: `/pm-data-lens` (Profile) for a fast decode, trust checks and judgment calls → customise the `discovery-interview` template into `discovery-questions.md`
+1. When the dataset arrives: `/pm-data-lens` (Profile) for a fast decode, trust checks and judgment calls → customise the `discovery-interview` template into `discovery-questions.md` (15-min budget) and publish it to Notion under 2nd round prep, recording the link in `RUN.md`
 2. Save the customer's answers (Notion notes) to `notes/`, then `/pm-data-lens <notes>` (Test) → contradictions first, problem statement
 3. Turn product implications into requirements for the feature, then build it to a reviewable PR
 4. Record the run's data notes and analysis defaults in its `RUN.md`

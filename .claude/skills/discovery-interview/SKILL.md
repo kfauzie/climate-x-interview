@@ -30,12 +30,22 @@ The base template is `template.md` in this skill (source: the Discovery Question
 - **Non-leading.** Never reveal a data finding or hint at the answer. Turn a finding into a question about how they handle that situation ("How do you treat a property that secures more than one loan?", not "You're double counting properties")
 - **Tag each data-informed question** with `(from: <finding>)` so the link to the analysis stays visible to me, not to the customer
 - **Speak their language.** Use the customer's terms from the profile (e.g. ICAAP, risk appetite, LTV for a bank) and avoid ours (model, LLM, API) unless they use them first
-- **Prioritise.** Mark the 5–7 must-ask questions. A live session has limited time; the rest are follow-ups
+- **Time budget: about 15 minutes of live Q&A by default** (the rest of the session goes on synthesis, design and the prototype). Plan **7 questions at most**: Opening 2 min (1 question), Workflow 8 min (3), Value and trust 3 min (2), Close 2 min (1). Use sub-probes only when an answer is vague
+- **Merge, don't add.** Fold baseline, guardrail and sign-off into combined questions. Pick the 1–2 data-informed questions with the biggest effect on the answer for the live list
+- **Everything else goes under "Later"**: asked only if time is left, otherwise sent by email after the call, using the permission asked for in the close
 
 ## How to customise for a run
 1. Read the run's `RUN.md` (customer profile, data notes) and its Profile findings
 2. Fill the template placeholders: `X` = the task the data feeds, `<the process>`, `<the climate risk>`, `<the answer>`, `<the painful step>`
 3. Add role-specific angles from the profile: their audiences, cadence, tools, team, regulator
 4. Add data-informed questions under the matching section, tagged `(from: finding)`
-5. Mark the must-asks, and write a one-line hypothesis per section for what you expect to hear (so you notice surprises)
+5. Fit the 15-minute budget: 7 live questions with minutes per section, the rest under "Later". Write a one-line hypothesis per section for what you expect to hear (so you notice surprises)
 6. Save to `runs/run-N/discovery-questions.md`
+7. **Publish to Notion**, where the note-taking assistant runs (see below)
+
+## Publishing to Notion (every run)
+- Create a new page under **2nd round prep** (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled `Run N: discovery questions (<customer name>)`
+- Content: the run's `discovery-questions.md`, plus an empty `## Notes` section at the end for the call
+- Record the page link in the run's `RUN.md` (**Notion questions:** line)
+- If the questions change, update that run's page. Never edit the master Discovery Question template page, and never reuse another run's page
+- After the call, save the notes back to the run's `notes/` folder as markdown, with the page link

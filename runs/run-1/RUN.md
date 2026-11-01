@@ -3,7 +3,8 @@
 **Status:** practice run. The data is synthetic, not real Climate X data
 **Dataset:** `data/spectra_portfolio_export.csv` (Spectra-style UK loan portfolio export)
 **Interview notes:** none yet. Save Notion notes for this run in `notes/`
-**Discovery questions:** `discovery-questions.md` (customised for Sarah and this dataset)
+**Discovery questions:** `discovery-questions.md` (customised for Sarah and this dataset, 15-min version)
+**Notion questions:** https://app.notion.com/p/40b8f31ef05f8114908bd8ada551932c (take call notes here)
 **Analysis:** `notebooks/spectra_profile.ipynb` (Profile mode) and `notebooks/region_abs_vs_rate.png`
 
 Everything below applies to **run 1 only**. Do not carry it into any other run.
