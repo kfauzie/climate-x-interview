@@ -20,6 +20,9 @@ Input: the run's `solution.md` (the pick, its narrowest version, success criteri
 - **Navigation never loses work.** Going back keeps everything entered; nothing resets unless the user asks
 - **Consistent action placement.** Back (secondary) at the bottom left, the forward action (primary) at the bottom right, on every step. One primary action per step
 - **Tag where each value came from** (from the user, a default, changed by the user) when trust matters
+- **Use the product's own vocabulary and objects:** its metric names, settings and toggles, rating scales and report formats, so users recognise them and the prototype looks like part of the product
+- **Defaults that can change get an owner and a history:** methodology choices (e.g. default scenarios) are configurable, owned by a named person, versioned, with a change log. During a transition (e.g. a standard being replaced), show old and new side by side
+- **Make provenance visible:** each figure can be traced to its inputs, settings and source rows from the screen, not only in an export
 - **Warn rather than block** where a reviewer will see it, unless the step would produce something wrong
 
 ## Visual principles

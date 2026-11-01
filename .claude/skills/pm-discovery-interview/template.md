@@ -6,6 +6,7 @@ Source: Notion, Interview prep → ClimateX → 2nd round prep → Discovery Que
 - Could you tell me where the need for X is coming from? Tell me about the most recent requests or questions that led to it
 - **Always ask:** Who would actually use X day to day? Would the people asking for the answers use it themselves?
   - Separates the person asking from the person using. An answer here can kill the ask, so never skip it
+- If not already clear: Is anything making this more pressing at the moment? (a deadline, a review, a rule change)
 
 ### Detailed walkthrough <What>
 - Could you walk me through the last time you needed to do X? Each step: who, which tool, how long
@@ -14,7 +15,7 @@ Source: Notion, Interview prep → ClimateX → 2nd round prep → Discovery Que
   - What data goes into <the process>, and where does it come from?
   - What's the most painful part? → What do you check, and why?
   - **If they drop a cue** ("not a great look", "it queues on my desk"): "How's that been for you?" Five seconds. Otherwise skip it; the painful-part question is enough
-  - At what point does <the climate risk> start to matter to you?
+  - At what point does <the risk> start to change a decision for you? Why there?
 - Follow up if hearing:
   - General answers ("usually", "it depends") → "Tell me about the last time"
   - Hedges ("roughly", "sort of") → "What's the part I'm missing?" Don't relabel the answer and move on
@@ -27,7 +28,7 @@ Source: Notion, Interview prep → ClimateX → 2nd round prep → Discovery Que
   - Risk: **Besides time, what else does it cost you?** (reputation, being seen as a blocker, a wrong figure reaching a regulator or the board)
 - **Target:** If this got better, how would you know it's working?
 - **Guardrail:** What would need to be true for you to trust <the answer> without <the painful step>?
-- **Process:** Besides you, who has to sign it off? Who could block it?
+- **Process:** Besides you, who has to sign it off? Who could block it? When someone last challenged a number like this, what did you show them?
 
 ### Closing
 - Recap in three points at most, **leading with the biggest pain** (often a person or a bottleneck), not with volume or stats. "Anything I missed?"
