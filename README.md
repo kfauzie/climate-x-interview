@@ -10,6 +10,7 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 | Company skill | [`.claude/skills/climate-x-company/`](.claude/skills/climate-x-company/) | Funding, stage, methodology, banking use cases, partners, competitors, with sources |
 | Role skill | [`.claude/skills/climate-x-role/`](.claude/skills/climate-x-role/) | The Principal PM role, positioning, and the live build session |
 | Product skill | [`.claude/skills/climate-x-products/`](.claude/skills/climate-x-products/) | Spectra, Adapt and Carta: customers, value proposition, strengths, weaknesses, opportunities, discovery questions |
+| Toolkit | [`tools/cxlens.py`](tools/cxlens.py) | Fast, deterministic analysis for wide climate-risk exports: trust checks, one-at-a-time swings, verdicts computed from the numbers |
 | Runs | [`runs/`](runs/) | One folder per run: dataset, interview notes, analysis and `RUN.md`. Run 1 is a practice run on synthetic Spectra-style data |
 | Context for Claude | [`CLAUDE.md`](CLAUDE.md) | Active run, run-isolation rules, workflow |
 

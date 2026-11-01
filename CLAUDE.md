@@ -40,18 +40,20 @@ The process is always the same five steps. Keep each step quick: about 15 minute
 2. **Data and context arrive** (uploaded data, plus the customer profile and any problem or ask):
    - Create `runs/run-N/` (next number) and set **Active run** above. If unsure whether this is a new run, ask
    - Save the dataset to `data/`. Write the customer profile and the problem or ask, word for word, into `RUN.md`
-   - Run `/pm-data-lens` (Profile) on the data, saving the notebook to `notebooks/`
+   - Run `/pm-data-lens` (Profile), starting with `python3 tools/cxlens.py profile runs/run-N/data/<file>.csv`. Show the result in chat, then save the notebook to `notebooks/`
 3. **Generate discovery questions in a new Notion page:**
    - Customise the `discovery-interview` template for this run's customer, ask and Profile findings (15-minute budget, 7 live questions), saved as `discovery-questions.md`
    - Create a **new** Notion page for this run under 2nd round prep, titled `Run N: discovery questions (<customer>)`, with an empty `## Notes` section at the end. Record its link in `RUN.md`
 4. **Interview** (done by me, not Claude): I interview the customer, and the Notion note-taking assistant writes notes into that same page
 5. **Summarise the problem:**
-   - Fetch the run's Notion page, and save the notes to `notes/interview.md` with the page link
+   - **One fetch:** fetch the meeting-notes block inside the run's Notion page directly, with `include_transcript: true` (it already contains the summary). Save the summary and transcript as they are, without rewriting, to `notes/interview.md` with the page link
    - Run `/pm-data-lens <notes>` (Test): contradictions first, then the problem statement (narrow and broad), updated product implications and the top 3 follow-up questions
-   - Record the problem statement in `RUN.md`, then move on to design and the prototype (a reviewable PR)
+   - Use `cx` functions for every test, with verdicts from `cx.swing` / `cx.verdict`. Show the result in chat first
+   - Record the problem statement in `RUN.md` and commit once, then move on to design and the prototype (a reviewable PR)
 
 ## Files
 - `.claude/skills/`: `pm-data-lens` (method; this repo copy is the one to edit), `discovery-interview` (question principles and template), `climate-x-company`, `climate-x-role`, `climate-x-products`
+- `tools/cxlens.py`: fast analysis toolkit for wide climate-risk exports (general code, no run data); self-test `tools/test_cxlens.py`
 - `runs/`: one folder per run
 - `README.md`: tour of the repo
 - `requirements.txt`: Python packages for the notebooks
