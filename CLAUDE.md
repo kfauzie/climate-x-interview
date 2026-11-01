@@ -23,6 +23,8 @@ Preparation for a live prototyping interview for a Principal PM role (senior IC)
 - Customers: banks, asset managers, real estate, private equity. Growing in data centres and renewables
 - Stage: between Series A and B, about 85 people, approaching profitability. Lean, flat, AI-native
 
+More detail (products, methodology, banking use cases, competitors, sources): `docs/climate-x-brief.md`
+
 ## Customer context (for analysis)
 - Customer: an enterprise customer role-played by Kevin. For this dataset, inferred to be a UK lender (residential mortgages plus CRE)
 - Users of this data: [confirm in discovery] likely climate / credit risk team, reporting to risk committee and regulator
@@ -39,6 +41,7 @@ At the start of every session, before any analysis, run `pip install -q -r requi
 
 ## Files
 - `data/spectra_portfolio_export.csv`: vendor export, 2,000 loans on 1,880 properties, 81 columns
+- `docs/climate-x-brief.md`: company and product research with sources
 - `notebooks/spectra_profile.ipynb`: Profile-mode analysis (trust checks, judgment calls, discovery questions)
 
 ## Data notes
