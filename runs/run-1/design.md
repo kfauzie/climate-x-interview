@@ -58,7 +58,7 @@ Common to every screen: plain risk language (no "model", "LLM", "eval"); the dat
   - **Out of scope, refused with the reason:** "Loss to the bank needs default-loss and insurance data that isn't loaded. Showing damage to properties instead?"
   - **Not in the data:** "Present-day ratings aren't in this export (2030 and 2050 only)" (catches the sent-back slip)
 - **Edge cases:**
-  - Analyst changes a choice outside the methodology (e.g. severe for a committee question) → row marked **"Needs Sarah's approval"**, with a required reason
+  - Analyst changes a choice outside the methodology **on their own** (e.g. severe for a committee question nobody asked about) → row marked **"Needs Sarah's approval"**, with a required reason. A choice the **asker** stated ("under the severe scenario") is tagged *from the question* and isn't a departure
   - The AI can't read the question → falls back to the same rows as a form, all empty, and says which parts it couldn't read
   - A choice the data can't support (e.g. a hazard not in the file) → blocked, with what's available
 - **Acceptance criteria:**
@@ -96,14 +96,14 @@ Common to every screen: plain risk language (no "model", "LLM", "eval"); the dat
   3. The method note as it will be sent
   4. Source rows, one click away
 - **Happy path:** no failed checks, no departures → she reads the answer and the note, approves; the analyst gets email text plus the Excel file to send
-- **Fast-track (follow-up, step 8):** "What about severe?" → the analyst reopens the approved answer and changes one choice. If that's the only change, it's within her defaults and all checks pass, Sarah sees **only the difference** ("Scenario: central → severe. 4 → 8 loans") and approves in one click. Otherwise, the full review
+- **Fast-track (follow-up, step 8):** "What about severe?" → the analyst reopens the approved answer and changes one choice. The follow-up is entered as a question, so "severe" is tagged *from the question*, not a departure. If that's the only change and all checks pass, Sarah sees **only the difference** ("Scenario: central → severe. 4 → 8 loans") and approves in one click. Otherwise, the full review
 - **Edge cases:**
   - Send back → her comment goes to the analyst, and the answer reopens at Confirm with her comment shown
   - A new Spectra export arrives while an answer is waiting → "Data has changed since this was built. Rebuild?"
 - **Acceptance criteria:**
   - Nothing can be sent without her approval
   - Every approved answer can be rebuilt later from its log entry and give the same number
-  - Fast-track appears only when exactly one choice changed, within the defaults, with all checks passing
+  - Fast-track appears only when exactly one choice changed, that change came from the asker's follow-up (not the analyst), and all checks pass
 
 ## Test set for the prototype
 | Case | Expected (practice data) |
