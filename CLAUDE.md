@@ -29,6 +29,9 @@ Preparation for a live prototyping interview for a Principal PM role (senior IC)
 - Decisions it feeds: [confirm in discovery] likely PRA climate stress test / disclosure figures, lending appetite by region or property type, loans to review
 - Stakes: regulated, decision-grade. Numbers must be defensible to auditors and regulators
 
+## Session setup
+At the start of every session, before any analysis, run `pip install -q -r requirements.txt && python3 -m ipykernel install --user`
+
 ## Live-session workflow with pm-data-lens
 1. When the dataset arrives: `/pm-data-lens` (Profile) for a fast decode, trust checks and judgment calls → use the discovery questions on Kevin
 2. Paste rough notes from Kevin's answers: `/pm-data-lens <notes>` (Test) → contradictions first, problem statement
