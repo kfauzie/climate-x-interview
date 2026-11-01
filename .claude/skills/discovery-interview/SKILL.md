@@ -1,0 +1,41 @@
+---
+name: discovery-interview
+description: "Principles and a base template for customer discovery interview questions, customised for each run from its dataset and customer profile. Use when drafting, customising or reviewing discovery questions, preparing for a customer call or the live session, or deciding follow-ups during an interview."
+---
+
+# Discovery interview
+
+The base template is `template.md` in this skill (source: the Discovery Question template in my Notion). It is generic. **Customise it for each run** using that run's `RUN.md` (customer profile, data notes) and its pm-data-lens Profile findings. Save the result as `runs/run-N/discovery-questions.md`. Never edit `template.md` for a single run, and never reuse another run's customised questions.
+
+## Principles
+1. **Problem, not solution.** Ask what happens and why it hurts. Do not pitch, suggest features or ask "would you like X?". If they describe a solution, ask what problem it would solve
+2. **Go specific and map the workflow.** Anchor on the *last real time* they did the task. Get each step: who does it, with what tool, how long it takes, and what is handed to whom. Write the workflow down as you go
+3. **Find the data.** For each step: what data goes in, where it comes from (system, vendor, spreadsheet, person), what format, how often, and what they do to it before use
+4. **Find the most painful problems.** Listen for where the time goes, where errors and rework happen, and emotion ("I dread…", "every quarter we…"). Rank pains by frequency × severity × who feels it
+5. **Push further on:**
+   - general answers ("usually", "it depends") → "Tell me about the last time"
+   - hedges ("roughly", "sort of", "should be fine") → "What makes it roughly?"
+   - seemingly simple steps that take suspiciously long → "Walk me through that step. Where does the time go?"
+   - the why behind the why: keep asking until you reach the root cause
+6. **Measure potential ROI.** Baseline cost today: hours per cycle × people × cycles per year, consultant spend, delays, and decisions made worse or later. Frame commercially: time saved, consultant cost avoided, better lending and investment decisions
+7. **Have ideas on success criteria.** What would "this works" look like to them: a target metric, and what they would need to see to trust the output (the guardrail)
+8. **Map who else is involved.** Who prepares, reviews, signs off, consumes and challenges the output. Who could block adoption. Who to bring into the next conversation
+9. **Close with clear next steps:**
+   - Recap the biggest problems, biggest first, and ask what was missed
+   - Agree a prototype review with them and the other key stakeholders and users named in the call
+   - Ask permission to send short ad-hoc questions in between, and how (email, Teams)
+   - Ask for any data useful for evals and testing (sample outputs, past reports, real cases where they were challenged), and send it over
+
+## Rules when writing questions
+- **Non-leading.** Never reveal a data finding or hint at the answer. Turn a finding into a question about how they handle that situation ("How do you treat a property that secures more than one loan?", not "You're double counting properties")
+- **Tag each data-informed question** with `(from: <finding>)` so the link to the analysis stays visible to me, not to the customer
+- **Speak their language.** Use the customer's terms from the profile (e.g. ICAAP, risk appetite, LTV for a bank) and avoid ours (model, LLM, API) unless they use them first
+- **Prioritise.** Mark the 5–7 must-ask questions. A live session has limited time; the rest are follow-ups
+
+## How to customise for a run
+1. Read the run's `RUN.md` (customer profile, data notes) and its Profile findings
+2. Fill the template placeholders: `X` = the task the data feeds, `<the process>`, `<the climate risk>`, `<the answer>`, `<the painful step>`
+3. Add role-specific angles from the profile: their audiences, cadence, tools, team, regulator
+4. Add data-informed questions under the matching section, tagged `(from: finding)`
+5. Mark the must-asks, and write a one-line hypothesis per section for what you expect to hear (so you notice surprises)
+6. Save to `runs/run-N/discovery-questions.md`

@@ -10,6 +10,7 @@ The skills are the single source of truth and are kept up to date. Do not answer
 - `climate-x-company`: funding, stage, methodology, partners, competitors, with sources
 - `climate-x-role`: the Principal PM role, positioning, round-1 learnings. Its `live-session.md` covers the live build session
 - `climate-x-products`: Spectra, Adapt and Carta (one file each): customers, value proposition, strengths, weaknesses, opportunities, discovery questions
+- `discovery-interview`: principles for interview questions and the base template. Customise it per run into `runs/run-N/discovery-questions.md`
 - `pm-data-lens`: the analysis method. `/pm-data-lens` = Profile, `/pm-data-lens <notes>` = Test, `/pm-data-lens <question>` = Answer
 
 ## Runs: keep them isolated
@@ -19,6 +20,7 @@ runs/run-N/
   RUN.md        # status, customer context, data notes and analysis defaults for THIS run
   data/         # this run's dataset(s)
   notes/        # this run's interview notes, saved from Notion
+  discovery-questions.md  # template customised for this run's data and customer
   notebooks/    # this run's analysis
 ```
 Rules:
@@ -32,13 +34,13 @@ Rules:
 At the start of every session, before any analysis, run `pip install -q -r requirements.txt && python3 -m ipykernel install --user`
 
 ## Workflow for each run
-1. When the dataset arrives: `/pm-data-lens` (Profile) for a fast decode, trust checks and judgment calls → discovery questions for the customer
+1. When the dataset arrives: `/pm-data-lens` (Profile) for a fast decode, trust checks and judgment calls → customise the `discovery-interview` template into `discovery-questions.md`
 2. Save the customer's answers (Notion notes) to `notes/`, then `/pm-data-lens <notes>` (Test) → contradictions first, problem statement
 3. Turn product implications into requirements for the feature, then build it to a reviewable PR
 4. Record the run's data notes and analysis defaults in its `RUN.md`
 
 ## Files
-- `.claude/skills/`: `pm-data-lens` (method; this repo copy is the one to edit), `climate-x-company`, `climate-x-role`, `climate-x-products`
+- `.claude/skills/`: `pm-data-lens` (method; this repo copy is the one to edit), `discovery-interview` (question principles and template), `climate-x-company`, `climate-x-role`, `climate-x-products`
 - `runs/`: one folder per run
 - `README.md`: tour of the repo
 - `requirements.txt`: Python packages for the notebooks

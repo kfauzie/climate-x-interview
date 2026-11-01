@@ -56,6 +56,7 @@ Analyse data the way a product manager needs it: in service of a customer's deci
    - Stay neutral on which product
 
 8. **Discovery questions**
+   - Follow the `discovery-interview` skill: its principles, and its template customised for this run, saved as the run's `discovery-questions.md`
    - 6 to 10 questions, each tied to a finding above
    - Non-leading: ask how the customer handles the issue, never reveal the finding or suggest a solution
    - Favour questions about real recent moments, who uses the numbers, and how they are checked and defended
