@@ -1,6 +1,6 @@
 # Climate X: company and product brief (for the live session)
 
-Compiled 2026-11-01 from web search results and the recruiter prep notes. Most product claims come from Climate X's own marketing and are **unverified**. Points where sources conflict are marked ⚠️.
+Compiled 2026-11-01 from web search results and my preparation notes. Most product claims come from Climate X's own marketing and are **unverified**. Points where sources conflict are marked ⚠️.
 
 ## Company
 - UK-headquartered B2B physical climate-risk analytics company. Co-founders: Lukky Ahmed (CEO) and Kamil Kluza (COO in most sources, CPO in one ⚠️)
@@ -23,7 +23,7 @@ Compiled 2026-11-01 from web search results and the recruiter prep notes. Most p
 - Fathom integration (Oct 2025) for water, wind, fire and earth perils, described as "the most defensible global model stack"
 - Alignment claims: NGFS pathways, EU Taxonomy, ECB / IFRS frameworks, central-bank stress tests, TCFD
 
-## Banking use cases (most relevant to Kevin's role-play)
+## Banking use cases
 - Climate impact on **collateral value and insurability**
 - Regulatory **stress testing and scenario analysis** (central banks, the ECB, and by implication the PRA in the UK)
 - Case study: a European Tier 1 bank used Spectra cVaR loss data for stress testing and analysis of its existing loan book
@@ -45,11 +45,11 @@ Compiled 2026-11-01 from web search results and the recruiter prep notes. Most p
 - Consolidation: the big rating agencies are buying smaller players
 - The theme regulators keep raising: **black-box models**. Supervisors want projections they can check
 
-## What this means for the session (inferred)
-- Kevin's dataset will probably resemble Spectra outputs: ratings, £ and % annual loss, possibly cVaR, by hazard × scenario × horizon
+## Implications (inferred)
+- Customer datasets will probably resemble Spectra outputs: ratings, £ and % annual loss, possibly cVaR, by hazard × scenario × horizon
 - A banking customer's pain will likely sit between the export and a number they can defend: choosing scenarios, aggregating to portfolio level, linking to collateral and LGD, and explaining the model to a regulator
 - The way to stand out from Moody's and Jupiter is trust and explainability. The feature should show its assumptions, cite the rows it used and keep an audit trail, which fits the deterministic-plus-AI split
-- Commercial angle: partners and resellers need outputs that non-experts can use (a consultancy or a facilities manager turning data into a plan). Ask Kevin who else sees these numbers
+- Commercial angle: partners and resellers need outputs that non-experts can use (a consultancy or a facilities manager turning data into a plan). Ask the customer who else sees these numbers
 
 ## Discovery angles from this research
 - "When your regulator or auditor last asked how a number was produced, what did you show them?"

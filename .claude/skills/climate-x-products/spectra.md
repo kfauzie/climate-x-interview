@@ -1,11 +1,7 @@
----
-name: climate-x-spectra
-description: Product knowledge and analysis of Climate X Spectra (asset- and portfolio-level physical climate risk and financial loss). Use when discussing Spectra, analysing a Spectra export, framing discovery questions or feature ideas for banks, real estate or investors, or positioning against competitors such as Moody's RMS or Jupiter.
----
 
 # Climate X Spectra
 
-Confidence tags: **[public]** from Climate X marketing or press (unverified), **[prep]** from recruiter or interview notes, **[analysis]** my inference. Present [analysis] items as hypotheses to test with the customer, never as facts.
+Confidence tags: **[public]** from Climate X marketing or press (unverified), **[prep]** from my preparation notes, **[analysis]** my inference. Present [analysis] items as hypotheses to test with the customer, never as facts.
 
 ## What it is
 - Search any asset worldwide and see its physical-risk profile and quantified financial loss, on a map (the "Google Maps for climate change") [public]
@@ -56,6 +52,5 @@ Confidence tags: **[public]** from Climate X marketing or press (unverified), **
 - What do you do with the export after downloading it?
 
 ## Related
-- Company and competitor research: `docs/climate-x-brief.md`
-- Role and positioning: `docs/role-brief.md`
+- Company and competitor research: `docs/climate-x-brief.md` (repo root)
 - Data analysis method: the `pm-data-lens` skill

@@ -1,11 +1,7 @@
----
-name: climate-x-adapt
-description: Product knowledge and analysis of Climate X Adapt (cost and ROI of climate adaptation measures). Use when discussing Adapt, adaptation or retrofit investment cases, resilience planning, green lending, or how risk findings from Spectra turn into actions and spend.
----
 
 # Climate X Adapt
 
-Confidence tags: **[public]** from Climate X marketing or press (unverified), **[prep]** from recruiter or interview notes, **[analysis]** my inference. Present [analysis] items as hypotheses, never as facts.
+Confidence tags: **[public]** from Climate X marketing or press (unverified), **[prep]** from my preparation notes, **[analysis]** my inference. Present [analysis] items as hypotheses, never as facts.
 
 ## What it is
 - Models the cost and ROI of adaptation strategies such as building retrofits, flood mitigation and heat resilience [public]
@@ -47,4 +43,4 @@ Confidence tags: **[public]** from Climate X marketing or press (unverified), **
 - Who do you need to convince, and what evidence do they trust?
 
 ## Related
-- `climate-x-spectra` skill (where the risk comes from), `docs/climate-x-brief.md`
+- `spectra.md` (where the risk comes from), `docs/climate-x-brief.md` (repo root)

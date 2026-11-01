@@ -1,11 +1,7 @@
----
-name: climate-x-carta
-description: Product knowledge and analysis of Climate X Carta (maps a company's structure, subsidiaries and physical assets, then the climate risk flowing through them). Use when discussing Carta, counterparty or borrower climate risk, investment or M&A due diligence, asset discovery with LLMs, or evaluating accuracy without a golden dataset.
----
 
 # Climate X Carta
 
-Confidence tags: **[prep]** from recruiter or interview notes, **[analysis]** my inference. ⚠️ No public source for Carta was found in web search. Everything here comes from prep material and should be confirmed with Kevin.
+Confidence tags: **[prep]** from my preparation notes, **[analysis]** my inference. ⚠️ No public source for Carta was found in web search. Everything here comes from prep material and should be confirmed with Climate X.
 
 ## What it is
 - Maps a company's structure, subsidiaries and assets, and the physical risk flowing through them [prep]
@@ -46,4 +42,4 @@ Confidence tags: **[prep]** from recruiter or interview notes, **[analysis]** my
 - Which counterparties matter most, and why those?
 
 ## Related
-- `climate-x-spectra` skill (risk engine), `docs/climate-x-brief.md`, `docs/role-brief.md`
+- `spectra.md` (risk engine), `docs/climate-x-brief.md` (repo root)
