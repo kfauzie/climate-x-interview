@@ -4,6 +4,7 @@
 **Dataset:** `data/spectra_portfolio_export.csv` (Spectra-style UK loan portfolio export)
 **Interview notes:** `notes/interview.md` (from Notion), `notes/sarah-followup.md` (her example questions, a sent-back case, defaults), `notes/mock-feedback.md`
 **Solution:** `solution.md` (recommended: answer with its method)
+**Design:** `design.md` (user flow agreed)
 **Test:** `notebooks/spectra_test.ipynb` (built by `notebooks/build_test.py`), chart `notebooks/test_cre_flood_by_scenario.png`
 **Discovery questions:** `discovery-questions.md` (customised for Sarah and this dataset, 15-min version)
 **Notion questions:** https://app.notion.com/p/40b8f31ef05f8114908bd8ada551932c (take call notes here)
