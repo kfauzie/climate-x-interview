@@ -2,7 +2,8 @@
 
 **Status:** practice run. The data is synthetic, not real Climate X data
 **Dataset:** `data/spectra_portfolio_export.csv` (Spectra-style UK loan portfolio export)
-**Interview notes:** none yet. Save Notion notes for this run in `notes/`
+**Interview notes:** `notes/interview.md` (from Notion), `notes/mock-feedback.md`
+**Test:** `notebooks/spectra_test.ipynb` (built by `notebooks/build_test.py`), chart `notebooks/test_cre_flood_by_scenario.png`
 **Discovery questions:** `discovery-questions.md` (customised for Sarah and this dataset, 15-min version)
 **Notion questions:** https://app.notion.com/p/40b8f31ef05f8114908bd8ada551932c (take call notes here)
 **Analysis:** `notebooks/spectra_profile.ipynb` (Profile mode, built by `notebooks/build_profile.py`) and `notebooks/region_abs_vs_rate.png`
@@ -45,6 +46,15 @@ Everything below applies to **run 1 only**. Do not carry it into any other run.
 - INFERRED (unconfirmed): damage_pct is percent of property value, and loss is an annual expected loss to the property, not to the lender. Valuation date unknown
 - Missing: 45 loans each lack one hazard × year in all 3 scenarios
 - Postcodes: 159 badly formatted. Normalise (trim, uppercase, inner space) before any join
+
+## Problem statement (from Test, run 1)
+**Narrow:** Sarah (Head of Climate Risk) needs each ad-hoc physical-risk answer her team sends (about 15 a month) to be correct and defensible before it leaves the team. Today each one is built by hand in Excel, with the scenario, horizon and loan population chosen case by case and written up by hand, then queued for her personal check. That causes 2–5 day turnarounds (her estimate: about 45 analyst days a month, plus several half-days a week of her review time), follow-ups that restart the clock, and key-person risk.
+Success (proposed, to validate): a standard-shape question answered and ready to review the same day; her review per answer cut from up to half a day to minutes because the method is stated and traceable; model risk approval.
+
+**Broad:** The bank needs climate-risk numbers that are consistent and defensible across all its audiences (CRO, committees, pricing, treasury, IR, the PRA). Today every answer depends on case-by-case analyst choices checked by one person. That causes slow answers, key-person risk, and the chance that different audiences get numbers built on different assumptions.
+Success (proposed): one agreed set of defaults; every figure traceable to source rows; numbers that reconcile across audiences; model risk sign-off.
+
+**Key tension:** the ask (analysts configure reports themselves) targets the hour of filtering. The pain is the days of choosing, writing up and checking. A builder alone could increase her review queue.
 
 ## Profile findings (run 1, from the notebook)
 - Baseline (defaults below): £3,313,709 annual expected loss to properties
