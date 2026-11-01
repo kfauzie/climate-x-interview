@@ -1,6 +1,6 @@
 # Run 1: problem and recommended solution (Sarah Okafor)
 
-Made with the `problem-to-solution` skill from `RUN.md`, `notes/interview.md` and `notebooks/spectra_test.ipynb`. Numbers use run 1 defaults (SSP245, 2050, each property counted once) unless stated.
+Made with the `pm-problem-to-solution` skill from `RUN.md`, `notes/interview.md` and `notebooks/spectra_test.ipynb`. Numbers use run 1 defaults (SSP245, 2050, each property counted once) unless stated.
 
 ## 1. Problem
 - **The ask:** "a customised report builder to help her team produce custom reports to answer any questions". In the call: "I want my analysts configuring reports in Spectra directly rather than wrestling with a spreadsheet of hundreds of columns." This is a solution; it targets the filtering step

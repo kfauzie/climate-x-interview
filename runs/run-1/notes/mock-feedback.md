@@ -1,6 +1,6 @@
 # Run 1: mock interview feedback (from the role-play, out of character)
 
-Run 1 specific. General lessons from this were folded into the `discovery-interview` skill.
+Run 1 specific. General lessons from this were folded into the `pm-discovery-interview` skill.
 
 ## What I uncovered
 - **Volume:** asking for the most recent questions got about fifteen a month straight away

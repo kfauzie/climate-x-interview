@@ -1,6 +1,6 @@
 # Run 1: discovery questions for Sarah Okafor (Head of Climate Risk)
 
-Customised from the `discovery-interview` skill's template, using this run's `RUN.md` and the Profile findings in `notebooks/spectra_profile.ipynb`.
+Customised from the `pm-discovery-interview` skill's template, using this run's `RUN.md` and the Profile findings in `notebooks/spectra_profile.ipynb`.
 **Ask (her words):** a customised report builder to help her team produce custom reports to answer any questions the team may have.
 **X** = producing a custom report to answer a question about physical risk in the book. The ask is a solution: find the questions and the pain behind it before discussing any builder.
 **Time budget: 15 minutes, 7 questions.** Use sub-probes only if the answer is vague. `(from: …)` tags are for me only. Never read them out.

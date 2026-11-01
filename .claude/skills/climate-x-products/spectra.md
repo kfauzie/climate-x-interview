@@ -54,4 +54,4 @@ Confidence tags: **[public]** from Climate X marketing or press (unverified), **
 ## Related
 - Company and competitor research: the `climate-x-company` skill
 - Role and positioning: the `climate-x-role` skill
-- Data analysis method: the `data-discovery` skill
+- Data analysis method: the `pm-data-discovery` skill

@@ -1,4 +1,4 @@
-"""cxlens: a fast, reusable toolkit for data-discovery on wide climate-risk exports.
+"""cxlens: a fast, reusable toolkit for pm-data-discovery on wide climate-risk exports.
 
 General code only. It never stores run data, findings or defaults; those belong in each run's RUN.md.
 

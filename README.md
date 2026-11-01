@@ -3,16 +3,26 @@
 How I prepare for and run customer discovery on Climate X data, with Claude Code.
 
 ## Tour
+
+### General PM skills (reusable for any customer)
+| Skill | Purpose |
+|---|---|
+| [`pm-data-discovery`](.claude/skills/pm-data-discovery/) | Analyse a dataset for discovery: Profile, Test and Answer modes, trust checks, judgment calls, product implications |
+| [`pm-discovery-interview`](.claude/skills/pm-discovery-interview/) | Principles for discovery questions and a base template, customised per run |
+| [`pm-problem-to-solution`](.claude/skills/pm-problem-to-solution/) | Turn interview notes and data into a problem summary, options with trade-offs, and a recommended solution |
+
+### Climate X context
+| Skill | Purpose |
+|---|---|
+| [`climate-x-company`](.claude/skills/climate-x-company/) | Funding, stage, methodology, banking use cases, partners, competitors, with sources |
+| [`climate-x-products`](.claude/skills/climate-x-products/) | Spectra, Adapt and Carta: customers, value proposition, strengths, weaknesses, opportunities, discovery questions |
+| [`climate-x-role`](.claude/skills/climate-x-role/) | The Principal PM role, positioning, and the live build session |
+
+### Everything else
 | What | Where | Purpose |
 |---|---|---|
-| Method skill | [`.claude/skills/data-discovery/`](.claude/skills/data-discovery/) | How I analyse a dataset for discovery: Profile, Test and Answer modes, trust checks, judgment calls, product implications |
-| Discovery skill | [`.claude/skills/discovery-interview/`](.claude/skills/discovery-interview/) | Principles for discovery questions and a base template, customised per run |
-| Solution skill | [`.claude/skills/problem-to-solution/`](.claude/skills/problem-to-solution/) | Turns interview notes and data into a problem summary, options with trade-offs, and a recommended solution |
-| Company skill | [`.claude/skills/climate-x-company/`](.claude/skills/climate-x-company/) | Funding, stage, methodology, banking use cases, partners, competitors, with sources |
-| Role skill | [`.claude/skills/climate-x-role/`](.claude/skills/climate-x-role/) | The Principal PM role, positioning, and the live build session |
-| Product skill | [`.claude/skills/climate-x-products/`](.claude/skills/climate-x-products/) | Spectra, Adapt and Carta: customers, value proposition, strengths, weaknesses, opportunities, discovery questions |
 | Toolkit | [`tools/cxlens.py`](tools/cxlens.py) | Fast, deterministic analysis for wide climate-risk exports: trust checks, one-at-a-time swings, verdicts computed from the numbers |
-| Runs | [`runs/`](runs/) | One folder per run: dataset, interview notes, analysis and `RUN.md`. Run 1 is a practice run on synthetic Spectra-style data |
+| Runs | [`runs/`](runs/) | One folder per run: dataset, interview notes, analysis, solution and `RUN.md`. Run 1 is a practice run on synthetic Spectra-style data |
 | Context for Claude | [`CLAUDE.md`](CLAUDE.md) | Active run, run-isolation rules, workflow |
 
 ## Workflow (each run)

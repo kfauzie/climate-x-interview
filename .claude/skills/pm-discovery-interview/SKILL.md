@@ -1,11 +1,11 @@
 ---
-name: discovery-interview
+name: pm-discovery-interview
 description: "Principles and a base template for customer discovery interview questions, customised for each run from its dataset and customer profile. Use when drafting, customising or reviewing discovery questions, preparing for a customer call or the live session, or deciding follow-ups during an interview."
 ---
 
 # Discovery interview
 
-The base template is `template.md` in this skill (source: the Discovery Question template in my Notion). It is generic. **Customise it for each run** using that run's `RUN.md` (customer profile, data notes) and its data-discovery Profile findings. Save the result as `runs/run-N/discovery-questions.md`. Never edit `template.md` for a single run, and never reuse another run's customised questions.
+The base template is `template.md` in this skill (source: the Discovery Question template in my Notion). It is generic. **Customise it for each run** using that run's `RUN.md` (customer profile, data notes) and its pm-data-discovery Profile findings. Save the result as `runs/run-N/discovery-questions.md`. Never edit `template.md` for a single run, and never reuse another run's customised questions.
 
 ## Principles
 1. **Problem, not solution.** Ask what happens and why it hurts. Do not pitch, suggest features or ask "would you like X?". If they describe a solution, ask what problem it would solve
