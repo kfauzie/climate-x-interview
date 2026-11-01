@@ -12,7 +12,10 @@ The base template is `template.md` in this skill (source: the Discovery Question
 2. **Go specific and map the workflow.** Anchor on the *last real time* they did the task. Get each step: who does it, with what tool, how long it takes, and what is handed to whom. Write the workflow down as you go
 3. **Find the data.** For each step: what data goes in, where it comes from (system, vendor, spreadsheet, person), what format, how often, and what they do to it before use
 4. **Find the most painful problems.** Listen for where the time goes, where errors and rework happen, and emotion ("I dread…", "every quarter we…"). Rank pains by frequency × severity × who feels it
-   - After any pain or bottleneck, ask **how it lands on them**: "What does that mean for you and your team?" This surfaces stress, morale and people at risk of leaving, which time alone misses
+   - Once it's clear something hurts and you've found the bottleneck, that's enough to prototype. **Don't add a separate "how does it land on you" question by default.** "What's the most painful part?" already does most of the work
+   - Ask about personal impact only in two situations:
+     - **They drop a cue** ("not a great look", "it queues on my desk"). That's an invitation: a quick "How's that been for you?" takes five seconds. Skipping a cue is the miss, not skipping the question
+     - **You need urgency** (a real deal, not a short interview): "I'm worried a wrong number reaches the regulator" or "an analyst might leave" tells you whether they'll push it through IT and procurement or let it drift
 5. **Push further on:**
    - general answers ("usually", "it depends") → "Tell me about the last time"
    - hedges ("roughly", "sort of", "should be fine") → "What's the part I'm missing?" Never relabel the answer in your own words and move on; the hidden step is usually behind the hedge

@@ -12,7 +12,7 @@ Run 1 specific. General lessons from this were folded into the `discovery-interv
 - **Follow-ups:** only via "anything I missed?". Fine, it did its job
 
 ## What I missed
-- **How it lands on her:** "What does that mean for you and your team?" after "it queues on my desk" would have got her anxiety and an analyst thinking of leaving
+- ~~**How it lands on her**~~ *Dropped from scoring (later feedback).* Pain and the bottleneck were already confirmed, which is enough to prototype. The real miss was the cue: "it queues on my desk" invited a quick "How's that been for you?". Personal impact matters mainly for urgency in a real deal
 - **Consequences beyond time:** "Besides time, what else does it cost you?" would have got climate risk being seen as a blocker, and the risk of a wrong figure reaching the PRA
 
 ## Slips

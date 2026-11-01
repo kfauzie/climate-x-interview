@@ -13,7 +13,7 @@ Source: Notion, Interview prep → ClimateX → 2nd round prep → Discovery Que
   - Where does most of the time go?
   - What data goes into <the process>, and where does it come from?
   - What's the most painful part? → What do you check, and why?
-  - **After any pain or bottleneck:** What does that mean for you and your team?
+  - **If they drop a cue** ("not a great look", "it queues on my desk"): "How's that been for you?" Five seconds. Otherwise skip it; the painful-part question is enough
   - At what point does <the climate risk> start to matter to you?
 - Follow up if hearing:
   - General answers ("usually", "it depends") → "Tell me about the last time"
