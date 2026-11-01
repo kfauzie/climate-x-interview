@@ -7,9 +7,9 @@ A workspace for discovery and building on Climate X data. It is used over severa
 
 ## Always use the skills for company, role and product information
 The skills are the single source of truth and are kept up to date. Do not answer from memory or from older notes in this file.
-- `climate-x-company`: funding, stage, methodology, partners, competitors, with sources
+- `climate-x-company`: mission and values, funding, advisers, methodology, regulation (PRA SS5/25), use cases, partners, thought leadership, brand, competitors, with sources
 - `climate-x-role`: the Principal PM role, positioning, round-1 learnings. Its `live-session.md` covers the live build session
-- `climate-x-products`: Spectra, Adapt and Carta (one file each): customers, value proposition, strengths, weaknesses, opportunities, discovery questions
+- `climate-x-products`: Spectra, Adapt (with Adaptation Finance), Carta and the Infrastructure Screener (one file each): what each does, customers, value proposition, strengths, weaknesses, opportunities, discovery questions
 - `pm-discovery-interview`: principles for interview questions and the base template. Customise it per run into `runs/run-N/discovery-questions.md`
 - `pm-problem-to-solution`: turns the run's notes and Test results into a problem summary and a recommended solution, saved as `runs/run-N/solution.md`
 - `pm-design`: user flow first, then screens, test set and prototype; interaction and visual principles from feedback rounds. Output: `runs/run-N/design.md`
