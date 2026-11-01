@@ -5,6 +5,7 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 ## Tour
 | What | Where | Purpose |
 |---|---|---|
+| Method skill | [`.claude/skills/pm-data-lens/`](.claude/skills/pm-data-lens/) | How I analyse a dataset for discovery: Profile, Test and Answer modes, trust checks, judgment calls, product implications |
 | Company skill | [`.claude/skills/climate-x-company/`](.claude/skills/climate-x-company/) | Funding, stage, methodology, banking use cases, partners, competitors, with sources |
 | Role skill | [`.claude/skills/climate-x-role/`](.claude/skills/climate-x-role/) | The Principal PM role, positioning, and the live build session |
 | Product skill | [`.claude/skills/climate-x-products/`](.claude/skills/climate-x-products/) | Spectra, Adapt and Carta: customers, value proposition, strengths, weaknesses, opportunities, discovery questions |

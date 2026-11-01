@@ -38,7 +38,7 @@ At the start of every session, before any analysis, run `pip install -q -r requi
 4. Record the run's data notes and analysis defaults in its `RUN.md`
 
 ## Files
-- `.claude/skills/`: `climate-x-company`, `climate-x-role`, `climate-x-products`
+- `.claude/skills/`: `pm-data-lens` (method; this repo copy is the one to edit), `climate-x-company`, `climate-x-role`, `climate-x-products`
 - `runs/`: one folder per run
 - `README.md`: tour of the repo
 - `requirements.txt`: Python packages for the notebooks
