@@ -12,6 +12,7 @@ The skills are the single source of truth and are kept up to date. Do not answer
 - `climate-x-products`: Spectra, Adapt and Carta (one file each): customers, value proposition, strengths, weaknesses, opportunities, discovery questions
 - `pm-discovery-interview`: principles for interview questions and the base template. Customise it per run into `runs/run-N/discovery-questions.md`
 - `pm-problem-to-solution`: turns the run's notes and Test results into a problem summary and a recommended solution, saved as `runs/run-N/solution.md`
+- `pm-design`: user flow first, then screens, test set and prototype; interaction and visual principles from feedback rounds. Output: `runs/run-N/design.md`
 - `pm-data-discovery`: the analysis method. `/pm-data-discovery` = Profile, `/pm-data-discovery <notes>` = Test, `/pm-data-discovery <question>` = Answer
 
 ## Runs: keep them isolated
@@ -23,6 +24,7 @@ runs/run-N/
   notes/        # this run's interview notes, saved from Notion
   discovery-questions.md  # template customised for this run's data and customer
   solution.md   # problem summary and recommended solution
+  design.md     # user flow, screens, test set, feedback rounds
   notebooks/    # this run's analysis
 ```
 Rules:
@@ -52,10 +54,10 @@ The process is always the same six steps. Keep each step quick: about 15 minutes
    - Run `/pm-data-discovery <notes>` (Test): contradictions first, then the problem statement (narrow and broad), updated product implications and the top 3 follow-up questions
    - Use `cx` functions for every test, with verdicts from `cx.swing` / `cx.verdict`. Show the result in chat first
    - Record the problem statement in `RUN.md` and commit once
-6. **Problem to solution:** run the `pm-problem-to-solution` skill (options with evidence-based trade-offs, one pick, narrowest version, success criteria, riskiest assumption), saved as `solution.md`. Then design and the prototype (a reviewable PR)
+6. **Problem to solution:** run the `pm-problem-to-solution` skill (options with evidence-based trade-offs, one pick, narrowest version, success criteria, riskiest assumption), saved as `solution.md`. Then design with `pm-design` (flow first, then screens) and the prototype (a reviewable PR)
 
 ## Files
-- `.claude/skills/`: `pm-data-discovery` (method; this repo copy is the one to edit), `pm-discovery-interview` (question principles and template), `pm-problem-to-solution` (problem and recommended solution), `climate-x-company`, `climate-x-role`, `climate-x-products`
+- `.claude/skills/`: `pm-data-discovery` (method; this repo copy is the one to edit), `pm-discovery-interview` (question principles and template), `pm-problem-to-solution` (problem and recommended solution), `pm-design` (flow, screens, prototype principles), `climate-x-company`, `climate-x-role`, `climate-x-products`
 - `tools/cxlens.py`: fast analysis toolkit for wide climate-risk exports (general code, no run data); self-test `tools/test_cxlens.py`
 - `runs/`: one folder per run
 - `README.md`: tour of the repo

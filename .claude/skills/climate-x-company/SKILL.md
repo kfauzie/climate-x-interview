@@ -12,6 +12,12 @@ Compiled 2026-11-01 from web search results and my preparation notes. Most produ
 - Funding: $18m Series A in June 2024, led by GV (Google Ventures). Tracxn lists $24.9m in total, including CommerzVentures and Pale Blue Dot. Stated use of the round: expansion in Europe, North America and APAC. No 2026 round found. Prep notes: between Series A and B, about 85 people, approaching profitability
 - Named clients (company-reported): Goldman Sachs, CBRE, Deloitte. Also claims clients with more than $13.5tn in combined AUM
 
+## Brand (from climate-x.com's own CSS, fetched 2026-11-01)
+- **Font:** Graphik (a commercial typeface from Commercial Type), with Helvetica and Arial as fallbacks
+- **Colours:** brand red `#e01e1a` (hover and darker red `#a11b14`), charcoal text `#343a40`, off-white background `#f9f9fa`, white surfaces `#ffffff`
+- **Product look and feel** (Spectra and Carta screenshots on climate-x.com): light UI with white panels and hairline grey dividers (Carta also has a dark map view with teal); small grey uppercase section labels ("Settings", "Risk dashboard"); settings as rounded dropdowns (SSP scenario, year) at the top of a side panel, with a red active state on toggles (Undefended / Defended); rating letters A–G in circular badges coloured by severity; large light-weight numbers for headline figures; fully rounded pill buttons with icons; red reserved for primary actions, active states and callouts; compact tables (Rating, Severity, Probability, Accuracy; "Acute" / "Chronic" group headers in red)
+- Use in prototype code for Climate X. On a page published for others, don't present it as Climate X's own product (see `pm-design`)
+
 ## Products
 - **Spectra**: asset- and portfolio-level physical risk
   - Outputs: hazard-specific risk ratings, annual losses in £ and as % of value, climate-adjusted VaR (cVaR) out to 2100
