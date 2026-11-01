@@ -127,3 +127,33 @@ def test_excel_export():
     rec = run(CRE_Q).json()
     x = client.get(f"/api/answers/{rec['id']}/export.xlsx")
     assert x.status_code == 200 and x.content[:2] == b'PK'
+
+
+# ---- feedback round 1: free text, added choices, follow-ups keep approved changes ----
+def test_free_text_audience_uses_other_defaults():
+    r = client.post('/api/interpret', json={'question': CRE_Q, 'audience': 'Board ESG committee', 'asker': 'x'}).json()
+    assert r['audience_key'] == 'other' and r['choices']['scenarios'] == ['central']
+
+
+def test_region_in_question_becomes_a_choice():
+    r = ask('How many CRE loans in the South East have a flood rating of E or worse by 2050?')
+    assert r['choices']['filters'] == {'region': ['South East']} and r['sources']['filter:region'] == 'question'
+
+
+def test_added_region_filters_the_answer_and_note():
+    def add(r): r['choices']['filters'] = {'region': ['London']}; r['sources']['filter:region'] = 'added'
+    rec = run(CRE_Q, edit=add).json()
+    assert 'in London' in rec['result']['headline'] and any('region: London' in l for l in rec['result']['method_note'])
+    def bad(r): r['choices']['filters'] = {'region': ['Atlantis']}
+    assert run(CRE_Q, edit=bad).status_code == 400
+
+
+def test_followup_keeps_an_approved_departure_and_fast_tracks():
+    def sev(r): r['choices']['scenarios'] = ['central', 'severe']; r['sources']['scenarios'] = 'analyst'
+    rec = run(CRE_Q, edit=sev, reasons={'scenarios': 'board wants stress view'}).json()
+    client.post(f"/api/answers/{rec['id']}/submit", json={'comment': ''}); client.post(f"/api/answers/{rec['id']}/review", json={'decision': 'approve'})
+    fu = client.post(f"/api/answers/{rec['id']}/followup", json={'question': 'And by 2030?'}).json()
+    assert fu['question_years'] == ['2030']
+    x = client.post('/api/compute', json={'question': fu['question'], 'audience': 'committee', 'asker': 't', 'choices': fu['choices'], 'sources': fu['sources'],
+                                          'question_years': fu['question_years'], 'reasons': {}, 'parent_id': rec['id']}).json()
+    assert x['reasons']['scenarios'] == 'board wants stress view' and x['fast_track']

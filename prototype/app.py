@@ -15,6 +15,7 @@ from .interpret import interpret
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RUN_DIR = os.environ.get('RUN_DIR', os.path.join(ROOT, 'runs', 'run-1'))
 book = Book(RUN_DIR)
+DIMS = {'region': sorted(book.df.region.dropna().unique().tolist()), 'property_type': sorted(book.df.property_type.dropna().unique().tolist())}
 STORE: dict[str, dict] = {}
 LOG: list[dict] = []
 app = FastAPI(title='Answer with its method (prototype)')
@@ -59,16 +60,18 @@ def _log(event, rec, **kw):
 def meta():
     return {'export_as_at': book.export_as_at, 'book_as_at': book.book_as_at, 'hazards': book.hazards, 'years': book.d.years,
             'scenarios': book.scen_map, 'audiences': {k: v for k, v in AUDIENCE_DEFAULTS.items()},
-            'loan_types': sorted(book.d.df.loan_type.unique().tolist()), 'run_dir': os.path.relpath(RUN_DIR, ROOT)}
+            'loan_types': sorted(book.d.df.loan_type.unique().tolist()), 'dims': DIMS, 'run_dir': os.path.relpath(RUN_DIR, ROOT)}
 
 
 @app.post('/api/interpret')
 def api_interpret(a: AskIn):
     if len(a.question.split()) < 3:
         raise HTTPException(400, 'Add the question as the asker wrote it')
-    if a.audience not in AUDIENCE_DEFAULTS:
+    if not a.audience.strip():
         raise HTTPException(400, 'Pick an audience: it sets the default scenario and years')
-    r = interpret(a.question, a.audience, book.hazards, book.d.years)
+    aud = a.audience if a.audience in AUDIENCE_DEFAULTS else 'other'
+    r = interpret(a.question, aud, book.hazards, book.d.years, DIMS)
+    r['audience_key'] = aud
     r['defaults'] = defaults_for(a.audience)
     return r
 
@@ -80,12 +83,21 @@ def _validate(c: Choices):
     if badf: raise HTTPException(400, f"Year not in the data: {', '.join(badf)}. Available: {', '.join(book.d.years)}")
     bads = [s for s in c.scenarios if s not in book.scen_map]
     if bads: raise HTTPException(400, f"Unknown scenario: {', '.join(bads)}")
+    for col, vals in (c.filters or {}).items():
+        bad = [v for v in vals if col not in DIMS or v not in DIMS[col]]
+        if bad: raise HTTPException(400, f"Not in the data for {col}: {', '.join(bad)}")
 
 
 @app.post('/api/compute')
 def api_compute(x: ComputeIn):
     c = Choices.from_dict(x.choices); _validate(c)
-    deps = departures(c, x.sources, x.audience)
+    aud = x.audience if x.audience in AUDIENCE_DEFAULTS else 'other'
+    deps = departures(c, x.sources, aud)
+    parent = STORE.get(x.parent_id) if x.parent_id else None
+    if parent:  # a change Sarah already approved on the parent answer carries over with its reason
+        for d in deps:
+            if d in parent['departures'] and not x.reasons.get(d['field']):
+                x.reasons[d['field']] = parent['reasons'].get(d['field'], '')
     missing = [d['field'] for d in deps if not x.reasons.get(d['field'])]
     if missing:
         raise HTTPException(400, f"Give a reason for each change from Sarah's defaults: {', '.join(missing)}")
@@ -93,12 +105,15 @@ def api_compute(x: ComputeIn):
     rid = uuid.uuid4().hex[:8]
     rec = {'id': rid, 'question': x.question, 'audience': x.audience, 'asker': x.asker, 'choices': c.__dict__, 'sources': x.sources,
            'question_years': x.question_years, 'reasons': x.reasons, 'departures': deps, 'result': res, 'status': 'draft',
-           'parent_id': x.parent_id, 'comments': [], 'fast_track': False, 'diff': []}
+           'parent_id': x.parent_id, 'comments': [], 'fast_track': False, 'diff': [], 'defaults': defaults_for(aud)}
     if x.parent_id and x.parent_id in STORE:
         p = STORE[x.parent_id]
         rec['diff'] = [{'field': k, 'from': p['choices'][k], 'to': v} for k, v in c.__dict__.items() if p['choices'].get(k) != v]
-        rec['fast_track'] = (p['status'] == 'approved' and len(rec['diff']) == 1 and x.sources.get(rec['diff'][0]['field']) == 'question'
-                             and not deps and all(ch['ok'] for ch in res['checks']))
+        f0 = rec['diff'][0]['field'] if rec['diff'] else None
+        from_q = (x.sources.get(f0) == 'question') if f0 != 'filters' else all(
+            x.sources.get(f'filter:{k}') == 'question' for k, v in (c.filters or {}).items() if v != (p['choices'].get('filters') or {}).get(k))
+        rec['fast_track'] = (p['status'] == 'approved' and len(rec['diff']) == 1 and from_q
+                             and all(d in p['departures'] for d in deps) and all(ch['ok'] for ch in res['checks']))
         rec['parent_headline'] = p['result']['headline']
     STORE[rid] = rec; _log('computed', rec)
     return rec
@@ -130,15 +145,18 @@ def api_review(rid: str, r: ReviewIn):
 def api_followup(rid: str, f: FollowIn):
     """Interpret a follow-up against an approved answer: only what the follow-up states changes."""
     p = STORE.get(rid) or _404()
-    r = interpret(f.question, p['audience'], book.hazards, book.d.years)
+    r = interpret(f.question, p['audience'] if p['audience'] in AUDIENCE_DEFAULTS else 'other', book.hazards, book.d.years, DIMS)
     ch = copy.deepcopy(p['choices']); src = dict(p['sources'])
     for k, v in r['choices'].items():
+        if k == 'filters':
+            for col, vals in v.items(): ch.setdefault('filters', {})[col] = vals; src[f'filter:{col}'] = 'question'
+            continue
         if r['sources'].get(k) == 'question' and k not in ('measure', 'loan_type') and v not in (None, [], {}):
             if v != ch.get(k): ch[k] = v; src[k] = 'question'
     if r['sources'].get('rating') == 'question':
         ch['rating_min'], ch['rating_max'] = r['choices']['rating_min'], r['choices']['rating_max']
     return {'choices': ch, 'sources': src, 'flags': [x for x in r['flags'] if x['kind'] not in ('unstated', 'suggestion')],
-            'question_years': p['question_years'], 'parent_id': rid, 'question': f'{p["question"]} → follow-up: {f.question}'}
+            'question_years': r['question_years'] or p['question_years'], 'parent_id': rid, 'question': f'{p["question"]} → follow-up: {f.question}'}
 
 
 @app.get('/api/answers')

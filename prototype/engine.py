@@ -37,6 +37,7 @@ class Choices:
     origination_source: str = 'loan_book'  # loan_book | spectra
     exclusions: dict = field(default_factory=lambda: dict(DEFAULT_EXCLUSIONS))
     group_by: list = field(default_factory=list)   # e.g. ['hazard', 'region']
+    filters: dict = field(default_factory=dict)    # added dimensions, e.g. {'region': ['South East'], 'property_type': ['Office']}
 
     @staticmethod
     def from_dict(d):
@@ -108,9 +109,15 @@ def _population(bk: Book, c: Choices):
     if c.loan_type:
         pop = pop[pop.loan_type == c.loan_type]
         unmatched = unmatched[unmatched.loan_type == c.loan_type]
+    for col, vals in (c.filters or {}).items():
+        if vals:
+            pop = pop[pop[col].isin(vals)]; unmatched = unmatched[unmatched[col].isin(vals)]
     excl = pd.concat(excluded) if excluded else df.iloc[0:0]
     if c.loan_type and len(excl):
         excl = excl[excl.loan_type == c.loan_type]
+    for col, vals in (c.filters or {}).items():
+        if vals and len(excl):
+            excl = excl[excl[col].isin(vals)]
     return pop, excl, unmatched
 
 
@@ -174,17 +181,20 @@ def _scen_label(s):
 def headline(bk: Book, c: Choices, scen, year, v=None):
     v = v or _value(bk, c, scen, year)
     sub = (c.loan_type + ' ' if c.loan_type else '').replace('Commercial real estate ', 'CRE ').replace('Residential mortgage ', 'mortgage ')
+    where = '; '.join(f"{', '.join(v)}" for v in (c.filters or {}).values() if v)
+    if where: sub = f'{sub}'; band_suffix = f' in {where}'
+    else: band_suffix = ''
     unit = 'properties' if c.unit == 'properties' else 'loans'
     hz = ', '.join(c.hazards) if c.hazards else 'all hazards'
     band = (f'rated {hz} {c.rating_min} or worse' if c.rating_min and not c.rating_max else
             f'rated {hz} {c.rating_min} to {c.rating_max}' if c.rating_min else hz)
     if c.measure == 'count':
-        return f"{v['n']:,} of {v['of_n']:,} {sub}{unit}, {_money(v['balance'])} of {_money(v['of_balance'])} balance, {band} at {year} ({_scen_label(scen)})"
+        return f"{v['n']:,} of {v['of_n']:,} {sub}{unit}{band_suffix}, {_money(v['balance'])} of {_money(v['of_balance'])} balance, {band} at {year} ({_scen_label(scen)})"
     if c.measure == 'loss':
-        return f"{_money(v['loss'])} annual expected damage to properties, {hz}, {year} ({_scen_label(scen)})"
+        return f"{_money(v['loss'])} annual expected damage to properties{band_suffix}, {hz}, {year} ({_scen_label(scen)})"
     if c.measure == 'share':
         yrs = ' and '.join(str(y) for y in c.originated or [])
-        return f"{_money(v['balance'])}, {v['share']:.1%} of {yrs} lending ({_money(v['of_balance'])}), {band} at {year} ({_scen_label(scen)}), vs {v['older_share']:.1%} of the older book"
+        return f"{_money(v['balance'])}, {v['share']:.1%} of {yrs} lending{band_suffix} ({_money(v['of_balance'])}), {band} at {year} ({_scen_label(scen)}), vs {v['older_share']:.1%} of the older book"
     return ''
 
 
@@ -222,8 +232,11 @@ def compute(bk: Book, c: Choices, question_years=None, question_text='') -> dict
         if sv:
             for s, v in sv:
                 res['versions'].append({'change': f'scenario → {_scen_label(s)}', 'text': headline(bk, c, s, y0, v), 'value': v[_key(c, v)]})
-            groups.append(('scenario', [base] + [v[_key(c, v)] for _, v in sv]))
-            bal['scenario'] = [main['detail'].get('balance')] + [v.get('balance') for _, v in sv]
+        # scenario verdict covers the selected scenarios (in the grid) and the others, at the main year
+        sel = [g for g in res['grid'] if g['year'] == y0]
+        if len(sel) + len(sv) > 1:
+            groups.append(('scenario', [g['value'] for g in sel] + [v[_key(c, v)] for _, v in sv]))
+            bal['scenario'] = [g['detail'].get('balance') for g in sel] + [v.get('balance') for _, v in sv]
         yv = [(y, _value(bk, c, s0, y)) for y in bk.d.years if y not in years]
         for y, v in yv:
             res['versions'].append({'change': f'year → {y}', 'text': headline(bk, c, s0, y, v), 'value': v[_key(c, v)]})
@@ -294,7 +307,7 @@ def method_note(bk: Book, c: Choices) -> list:
                            (f"loans maturing before {ex.get('maturing_before')}", ex.get('maturing_before'))] if on]
     lines = [f"Scenario: {scen}. Horizon: {', '.join(c.years) if c.years else 'NOT STATED'}.",
              f"Hazards: {hz}" + (f"; rated {c.rating_min}{' to ' + c.rating_max if c.rating_max else ' or worse'}, worst rating across the hazards per loan." if c.rating_min else '.'),
-             f"Population: {c.loan_type or 'all loans'}" + (f", originated {' and '.join(map(str, c.originated))} (origination date from the {'loan system' if c.origination_source == 'loan_book' else 'Spectra export'})" if c.originated else '') + '.',
+             f"Population: {c.loan_type or 'all loans'}" + ''.join(f"; {k.replace('_', ' ')}: {', '.join(v)}" for k, v in (c.filters or {}).items() if v) + (f", originated {' and '.join(map(str, c.originated))} (origination date from the {'loan system' if c.origination_source == 'loan_book' else 'Spectra export'})" if c.originated else '') + '.',
              f"Excludes: {', '.join(exl) if exl else 'nothing'} ({len(excl)} loans).",
              f"Counting: per {c.unit[:-1]}" + ('; £ damage counted once per property even where it secures several loans.' if c.measure in ('loss', 'rise') else '.'),
              f"Data: Spectra export as at {bk.export_as_at}, joined to the loan book as at {bk.book_as_at} on loan ID; {len(unm)} loans didn't match and are listed separately.",

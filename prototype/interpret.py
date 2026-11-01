@@ -14,7 +14,7 @@ ALLOWED = {'measure': ['count', 'loss', 'rise', 'share'], 'loan_type': [None, 'R
 OUT_OF_SCOPE = r'loss to the bank|credit loss|\blgd\b|provision|capital (impact|charge)|expected credit'
 
 
-def interpret(question: str, audience: str, hazards: list, years_available: list) -> dict:
+def interpret(question: str, audience: str, hazards: list, years_available: list, dims: dict | None = None) -> dict:
     q = question.strip(); ql = q.lower()
     c = Choices(); src = {}; flags = []
     d = defaults_for(audience)
@@ -44,6 +44,12 @@ def interpret(question: str, audience: str, hazards: list, years_available: list
 
     if c.loan_type == 'Commercial real estate' and c.measure == 'count':
         flags.append({'kind': 'suggestion', 'field': 'exclusions', 'text': 'Your CRE write-up also excluded loans maturing before 2030. Apply that here?'})
+
+    # added dimensions named in the question (e.g. a region or property type)
+    for col, vals in (dims or {}).items():
+        hit = [v for v in vals if re.search(r'\b' + re.escape(v.lower()) + r's?\b', ql)]
+        if hit:
+            c.filters[col] = hit; src[f'filter:{col}'] = 'question'
 
     # hazards and rating band
     hz = [h for h in hazards if h in ql]

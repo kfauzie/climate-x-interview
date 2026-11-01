@@ -163,8 +163,10 @@ def verdict(values, dim='choice'):
         return f'Same answer for every {dim} ({vals[0]:,.6g}): this choice does not change the answer'
     lo, hi = min(vals), max(vals)
     same = len(vals) - distinct + 1 if distinct < len(vals) else 0
-    ratio = hi / lo if lo else float('inf')
-    msg = f'{distinct} different answers across {len(vals)} {dim} values; highest is {ratio:.2f}x the lowest'
+    if lo:
+        msg = f'{distinct} different answers across {len(vals)} {dim} values; highest is {hi / lo:.2f}x the lowest'
+    else:
+        msg = f'{distinct} different answers across {len(vals)} {dim} values; ranges from 0 to {hi:,.6g}'
     if same:
         msg += f'; {same} values give the same answer'
     return msg

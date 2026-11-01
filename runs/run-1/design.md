@@ -121,9 +121,11 @@ Common to every screen: plain risk language (no "model", "LLM", "eval"); the dat
 3. **Back keeps state.** Going back to an earlier step keeps everything entered; nothing resets
 4. **Button placement.** Back at the bottom left, the forward action at the bottom right, on every step
 5. **Modern B2B SaaS look and feel:** cleaner layout, clear hierarchy, consistent components (the style of top B2B SaaS products)
-6. **Climate X's colour scheme and fonts** in the app. *Blocked: climate-x.com is outside this session's allowed network, and web search didn't return their brand values. Needs the palette and font names (e.g. from their site's CSS or a screenshot), or climate-x.com allowed in the environment's network settings*
+6. **Climate X's colour scheme and fonts** in the app: Graphik (Helvetica, Arial fallback); red `#e01e1a`, charcoal `#343a40`, off-white `#f9f9fa` (from climate-x.com's CSS; recorded in `climate-x-company`). Graphik is a licensed font, so it shows only where it's installed; otherwise the fallback is used. Brand red is also the natural colour for failures, so failed checks get a labelled chip and icon, not colour alone
 
-Status: recorded; not yet implemented.
+7. **Look and feel of Climate X's own products** (from Spectra and Carta screenshots on climate-x.com): see `climate-x-company` → Brand
+
+Status: **implemented** (all 7). Also fixed while testing: a follow-up keeps a change Sarah already approved (with its reason) and can still fast-track; a follow-up that names a year uses that year for the horizon check; the scenario verdict now includes the selected scenarios; "infx" when an answer is 0 now reads "ranges from 0 to N".
 
 ## Open items
 - Confirm the scenario mapping: central = `ssp245`, severe = `ssp585` (inferred)

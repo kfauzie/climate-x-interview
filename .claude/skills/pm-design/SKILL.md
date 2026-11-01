@@ -24,6 +24,7 @@ Input: the run's `solution.md` (the pick, its narrowest version, success criteri
 
 ## Visual principles
 - **Modern B2B SaaS feel:** clean layout with generous spacing, a clear hierarchy (one headline number, then supporting detail), consistent components (buttons, inputs, tags, panels), restrained colour, a step indicator for multi-step flows, and status shown with chips and colour, not only text
+- **Match the company's product UI, not just its website:** study real product screenshots (product pages, demo videos, docs) for layout, components, how colour is used and how numbers and ratings are shown, and reuse those conventions so the prototype looks like it belongs in their product
 - **Use the customer's or company's brand** (colour palette and fonts) when the prototype is for them. Get the real values from the brand source (site CSS, brand guide, or the person); never guess them. If they can't be fetched, say so and ask
 - **Brand use and publishing:** a company's branding belongs in the prototype code. A page published for others to view should not impersonate the company (no logo, no brand name as the product's name) unless the person confirms it's for that company's internal use
 - **Both light and dark, and phone width,** for anything published as a page
