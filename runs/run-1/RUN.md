@@ -9,6 +9,11 @@
 
 Everything below applies to **run 1 only**. Do not carry it into any other run.
 
+## Customer ask (given, word for word)
+> customized report builder to help her team product custom reports to answer any questions that the team may have
+
+*This is a solution, not a problem. Discovery should find the questions behind it: which questions, from whom, how often, how they're answered today, and what makes that slow or risky.*
+
 ## Customer profile (given for this run)
 - **Name:** Sarah Okafor
 - **Role:** Head of Climate Risk
