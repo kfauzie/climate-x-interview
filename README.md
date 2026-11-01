@@ -13,11 +13,12 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 | Runs | [`runs/`](runs/) | One folder per run: dataset, interview notes, analysis and `RUN.md`. Run 1 is a practice run on synthetic Spectra-style data |
 | Context for Claude | [`CLAUDE.md`](CLAUDE.md) | Active run, run-isolation rules, workflow |
 
-## Workflow
-1. **Profile** the data before discovery: what it is, what to trust, which judgment calls change the answer
-2. **Discover:** ask non-leading questions drawn from the data and the product skill
-3. **Test** what the customer said against the data, then write the problem statement
-4. **Build** the narrowest useful version to a reviewable PR. Deterministic code computes the numbers; AI interprets and explains
+## Workflow (each run)
+1. Open Claude Code on this repo
+2. Upload the data and the customer and problem context → a new run folder, and a **Profile** of the data: what it is, what to trust, which judgment calls change the answer
+3. Generate discovery questions, customised to this customer and data, in a **new Notion page**
+4. Interview the customer, with notes taken in the same Notion page
+5. Pull the notes back → **Test** what the customer said against the data → problem statement → design and prototype (a reviewable PR). Deterministic code computes the numbers; AI interprets and explains
 
 ## Setup
 ```bash
