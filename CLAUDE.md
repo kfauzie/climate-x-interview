@@ -9,7 +9,7 @@ Preparation for a live prototyping interview for a Principal PM role (senior IC)
 ## The session
 - Live build session, remote with screen share, with **Kevin Luo** (leads product). Kevin hands over a real dataset of Climate X outputs during the session, possibly not this CSV, and asks for a new feature built on it
 - **Kevin role-plays an enterprise customer.** Run live discovery on him first, get past the stated ask to the real workflow problem, and keep asking while building so every trade-off traces back to something he said
-- Kamil Kluza (co-founder): the prep page lists him for the session, but that is wrong. Per the candidate, Kamil is only involved if it does not go well. Do not plan around him
+- Kamil Kluza (co-founder): the prep page lists him for the session, but that is wrong. Per the candidate, the session is with Kevin, and the conversation with Kamil only happens **if it goes well**. Kamil brings a founder's lens: commercial impact, product strategy, the Series B vision
 - Assessed on thinking and outcome, not polish. AI tools are encouraged
 - What lands:
   - think out loud and narrate choices
