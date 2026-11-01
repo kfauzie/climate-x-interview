@@ -7,11 +7,23 @@
 
 Everything below applies to **run 1 only**. Do not carry it into any other run.
 
-## Customer context (inferred for this dataset)
-- Customer: an enterprise customer, inferred to be a UK lender (residential mortgages plus CRE)
-- Users of this data: [confirm in discovery] likely climate / credit risk team, reporting to risk committee and regulator
-- Decisions it feeds: [confirm in discovery] likely PRA climate stress test / disclosure figures, lending appetite by region or property type, loans to review
-- Stakes: regulated, decision-grade. Numbers must be defensible to auditors and regulators
+## Customer profile (given for this run)
+- **Name:** Sarah Okafor
+- **Role:** Head of Climate Risk
+- **Organisation:** large UK bank, regulated by the PRA. Retail mortgages plus commercial lending, including commercial real estate
+- **Background:** about 12 years in credit risk before moving into climate risk. Sharp, commercially minded, fluent in risk and regulatory language (stress tests, ICAAP, risk appetite). Lives in Excel and PowerPoint. Not technical: has heard of APIs and LLMs, never used either directly
+- **Team:** three analysts, who do the hands-on data work
+- **Reports to:** the CRO
+- **Fields questions from:** CRO and risk committee, credit committee, mortgage pricing, treasury, sustainability reporting, investor relations, the PRA
+- **Relationship with Climate X:** customer for about 18 months. Receives Spectra outputs for the full mortgage and CRE book each quarter
+
+## What the profile implies (inferred, test in discovery)
+- **Two users:** Sarah (buyer and decision owner, defends the numbers) and her three analysts (prepare them). Their needs may differ
+- **Outputs must land in Excel and PowerPoint,** in risk and regulatory language. No API or LLM jargon
+- **Seven audiences:** the same data probably gets cut differently for each, which is where inconsistent numbers can creep in
+- **Quarterly cadence for about 18 months (about 6 deliveries):** quarter-on-quarter change and reconciliation may matter
+- **PRA, ICAAP and stress tests:** answers must be defensible, with assumptions and an audit trail
+- **Credit risk background:** she is likely to think in terms of loan-level impact (LTV, LGD, risk appetite) rather than property damage
 
 ## Data notes
 - 2,000 loans on 1,880 properties, 81 columns
