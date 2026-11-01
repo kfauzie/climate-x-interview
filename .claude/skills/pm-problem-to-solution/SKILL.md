@@ -10,7 +10,7 @@ Inputs, all from the **active run only** (see CLAUDE.md run rules):
 - `runs/run-N/notes/interview.md`: summary and transcript
 - The pm-data-discovery **Test** results (claims tested, contradictions, problem statement). If Test hasn't been run, run it first
 
-Background, general knowledge only: `climate-x-products` (fit with Spectra, Adapt, Carta), `climate-x-company` (competitors, go-to-market), `climate-x-role` (what the session rewards).
+Background, general knowledge only: the company, product and role skills for this engagement (here `climate-x-company`, `climate-x-products`, `climate-x-role`): the vendor's positioning, existing products and patterns, stated next steps, the regulation its customers face, and competitors.
 
 Output: show it in chat first, then save to `runs/run-N/solution.md` and commit once. Keep it to one screen where possible; it gets narrated live.
 
@@ -21,6 +21,7 @@ Output: show it in chat first, then save to `runs/run-N/solution.md` and commit 
 - **The problem** in one line, in the customer's words where possible ("It all runs through me")
 - **Evidence:** 3–5 bullets, each a quote from the notes or a number from the data (with its source: notes, Test claim ID or Profile finding). No unsourced claims
 - **Problem statement:** [user] needs to [job] but currently [workaround], causing [impact]. Narrow and broad versions. Reuse Test's statement if it still holds
+- **Why now:** any deadline, supervisory review or standard change that makes this urgent, with its source. If none, say so
 - **Size (ROI, three parts):** efficiency (time, people, consultants), decision value (what a slow or wrong answer held up or changed), risk and reputation. Mark estimates as estimates
 
 ### 2. Options (2–3)
@@ -36,7 +37,8 @@ For each: one-line description, which pain it fixes (by rank from the notes), an
 | Fixes the top pain? | Yes / partly / no, with the evidence |
 | Customer value | Against the three ROI parts |
 | Adoption | Who uses it day to day (asker vs user), fit with their tools and workflow (e.g. Excel, PowerPoint), behaviour change needed |
-| Revenue for Climate X | Retention or renewal, expansion (more users, teams, products), reuse across similar customers, differentiation from competitors. Mark as hypotheses |
+| Revenue for the vendor | Retention or renewal, expansion (more users, teams, products), reuse across similar customers, differentiation from competitors. Also any **new revenue for the customer** (e.g. a product they can sell or finance). Mark as hypotheses |
+| Fit with the vendor's direction | Matches its public positioning and stated next steps (e.g. from case studies); **reuses an existing product or pattern** rather than inventing one; helps customers with the why-now rules |
 | Conservative buyer | What their gatekeepers (model risk, IT, procurement, audit, regulator) need, and how this option meets it: code-computed numbers, audit trail, staged rollout, no real data until signed |
 | Effort and risk | Rough build size; what could make it fail |
 
@@ -55,4 +57,6 @@ For each: one-line description, which pain it fixes (by rank from the notes), an
 - **Who asks vs who uses.** Design for the person who would use it day to day, and say who that is
 - **Speak the customer's language** in anything they'll see. No model, LLM or eval jargon
 - **Stay solution-neutral until step 2.** The problem section must stand on its own
+- **Reuse before inventing.** Check the vendor's own products and published patterns first; an option that extends an existing pattern is easier to sell and build
+- **Source external facts.** Tag them ([site] the vendor's own pages, [web] third parties); when sources conflict, check the primary source and say which you used
 - **Time:** this should take minutes, not tens of minutes. Use the existing Test and Profile outputs; don't re-analyse unless a claim needs a number that's missing

@@ -39,15 +39,18 @@ The base template is `template.md` in this skill (source: the Discovery Question
 - **Non-leading.** Never reveal a data finding or hint at the answer. Turn a finding into a question about how they handle that situation ("How do you treat a property that secures more than one loan?", not "You're double counting properties")
 - **Tag each data-informed question** with `(from: <finding>)` so the link to the analysis stays visible to me, not to the customer
 - **Speak their language.** Use the customer's terms from the profile (e.g. ICAAP, risk appetite, LTV for a bank) and avoid ours (model, LLM, API, training, eval) unless they use them first. Say "check our answers against yours", not "eval"
+- **Ask about why now, without leading.** "Is anything making this more pressing at the moment?" surfaces deadlines, reviews and rule changes. Don't name the regulation first
+- **Ask how numbers are defended.** "When someone last challenged one of these numbers, what did you show them?" reveals the evidence their gatekeepers expect
 - **Ask once.** Keep track of what has been answered and don't ask it again (e.g. volume). If an answer covered a later question, skip it
 - **Time budget: about 15 minutes of live Q&A by default** (the rest of the session goes on synthesis, design and the prototype). Plan **7 questions at most**: Opening 2 min (1 question), Workflow 8 min (3), Value and trust 3 min (2), Close 2 min (1). Use sub-probes only when an answer is vague
 - **Merge, don't add.** Fold baseline, guardrail and sign-off into combined questions. The baseline question must still reach beyond time: combine efficiency with decision value or risk in one question. Pick the 1–2 data-informed questions with the biggest effect on the answer for the live list
 - **Everything else goes under "Later"**: asked only if time is left, otherwise sent by email after the call, using the permission asked for in the close
 
 ## How to customise for a run
+0. **Research first, briefly:** the vendor's and the customer's public material (product pages, case studies and their stated next steps, regulation pages) and the rules the customer answers to. Use it to form hypotheses and to pick up the customer's and regulator's terms. Never pitch it or quote it at them
 1. Read the run's `RUN.md` (customer profile, data notes) and its Profile findings
-2. Fill the template placeholders: `X` = the task the data feeds, `<the process>`, `<the climate risk>`, `<the answer>`, `<the painful step>`
-3. Add role-specific angles from the profile: their audiences, cadence, tools, team, regulator
+2. Fill the template placeholders: `X` = the task the data feeds, `<the process>`, `<the risk>`, `<the answer>`, `<the painful step>`
+3. Add role-specific angles from the profile: their audiences, cadence, tools, team, regulator, and any why-now (a deadline, a review, a standard changing)
 4. Add data-informed questions under the matching section, tagged `(from: finding)`
 5. Fit the 15-minute budget: 7 live questions with minutes per section, the rest under "Later". Write a one-line hypothesis per section for what you expect to hear (so you notice surprises)
 6. Save to `runs/run-N/discovery-questions.md`

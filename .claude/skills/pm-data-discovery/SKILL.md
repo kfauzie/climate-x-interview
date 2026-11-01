@@ -19,6 +19,7 @@ Analyse data the way a product manager needs it: in service of a customer's deci
 - Every number is computed in code. Never estimate or round in your head
 - Work in a Jupyter notebook, one cell per step, so the reasoning is reviewable
 - Mark anything inferred (column meanings, units, intent) as inferred
+- **Check the data provider's own documentation first** (methodology pages, FAQs, product pages, case studies) for column meanings, units, scenario sets and outputs. Cite it. If third-party claims conflict with the primary source, prefer the primary source and flag the conflict
 - Plain language. Explain any metric a non-technical customer would not know
 - No solution recommendations (dashboards, agents, tools) unless asked. Product implications are requirements, not solutions
 
@@ -32,12 +33,14 @@ Analyse data the way a product manager needs it: in service of a customer's deci
 
 1. **Frame**
    - Who uses this data and which decisions it could feed, from the run's `RUN.md` or inputs. One line each
+   - The rules that govern those decisions (regulator, standard, policy) and any **why-now** (a deadline, a supervisory review, a standard being replaced). One line each, sourced
 
 2. **Decode the data**
    - What one row represents, row and entity counts
    - Data dictionary: column groups, meaning, example value. For wide formats, decode the dimensions encoded in column names
    - Flag every ambiguous column with the assumption you made (units, time basis, annual vs cumulative)
    - Note how hard the raw structure is to use: this friction is itself a product insight
+   - Note which standard or version each dimension follows (e.g. a scenario set or taxonomy) and whether any value is **being retired or replaced**. A value in transition is a judgment call and a limit
 
 3. **Trust checks**
    - Internal consistency: derived fields recompute from their inputs, values respect expected bounds and orderings (e.g. risk should not fall as severity rises), ratings or bands are consistent
@@ -46,6 +49,7 @@ Analyse data the way a product manager needs it: in service of a customer's deci
 
 4. **Judgment calls**
    - List every choice an analyst must make that changes the answer: which subset, which value of each dimension, which metric (count vs value vs rate), unit of aggregation, how to treat missing data
+   - Include **whose loss** the metric measures (damage to the asset vs loss to the lender or the company; direct only vs including indirect effects such as business interruption, which can be several times larger) and **which version** of a standard or scenario (old vs its replacement)
    - Isolate one dimension at a time, holding the others fixed, and quantify the swing. Do not mix two dimensions in one comparison
    - These explain why two people answering the same question get different numbers
 
@@ -56,9 +60,11 @@ Analyse data the way a product manager needs it: in service of a customer's deci
 
 6. **Limits**
    - 3 to 5 questions a customer might reasonably ask that this data cannot answer, and what extra data would
+   - Always check two common gaps: the customer's own financial loss (vs what the data measures), and history (can this period be compared with the last one)
 
 7. **Product implications**
    - For each judgment call, trust issue and limit: what any product built on this data must do. For example: state assumptions in every answer, apply consistent defaults, disclose exclusions, refuse out-of-scope questions, keep an audit trail
+   - Map them to the governing rules' **evidence expectations** (e.g. granularity, data lineage, documented assumptions, justified scenario choice, reproducibility) and state each as a requirement
    - Stay neutral on which product
 
 8. **Discovery questions**
