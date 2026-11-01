@@ -15,8 +15,8 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 ### Climate X context
 | Skill | Purpose |
 |---|---|
-| [`climate-x-company`](.claude/skills/climate-x-company/) | Funding, stage, methodology, banking use cases, partners, competitors, with sources |
-| [`climate-x-products`](.claude/skills/climate-x-products/) | Spectra, Adapt and Carta: customers, value proposition, strengths, weaknesses, opportunities, discovery questions |
+| [`climate-x-company`](.claude/skills/climate-x-company/) | Mission and values, funding, methodology, regulation (PRA SS5/25), banking use cases, partners, thought leadership, brand, competitors, with sources |
+| [`climate-x-products`](.claude/skills/climate-x-products/) | Spectra, Adapt and Adaptation Finance, Carta, Infrastructure Screener: customers, value proposition, strengths, weaknesses, opportunities, discovery questions |
 | [`climate-x-role`](.claude/skills/climate-x-role/) | The Principal PM role, positioning, and the live build session |
 
 ### Everything else
