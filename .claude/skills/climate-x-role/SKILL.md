@@ -1,6 +1,6 @@
 ---
 name: climate-x-role
-description: The Principal Product Manager role at Climate X: what the seat is, the two seats (Customer & UX / Discovery vs Agentic AI), interview process, what was learned in round 1, how my experience maps to the bar, gaps and positioning. Use when preparing for or running the Climate X interview, framing answers about my experience, or deciding what to emphasise. For the live build session itself, also read live-session.md.
+description: "The Principal Product Manager role at Climate X: what the seat is, the two seats (Customer & UX / Discovery vs Agentic AI), interview process, what was learned in round 1, how my experience maps to the bar, gaps and positioning. Use when preparing for or running the Climate X interview, framing answers about my experience, or deciding what to emphasise. For the live build session itself, also read live-session.md."
 ---
 
 # Role brief: Principal Product Manager (AI-native B2B), Climate X

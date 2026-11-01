@@ -1,6 +1,6 @@
 ---
 name: climate-x-products
-description: Product knowledge and analysis of Climate X's products (Spectra for physical risk and financial loss, Adapt for adaptation ROI, Carta for counterparty and company asset mapping), covering customers, value proposition, strengths, weaknesses, opportunities and discovery questions. Use when discussing any Climate X product, analysing a Climate X export, framing discovery questions or feature ideas for banks, real estate, investors or partners, or positioning against competitors such as Moody's RMS or Jupiter.
+description: "Product knowledge and analysis of Climate X's products (Spectra for physical risk and financial loss, Adapt for adaptation ROI, Carta for counterparty and company asset mapping), covering customers, value proposition, strengths, weaknesses, opportunities and discovery questions. Use when discussing any Climate X product, analysing a Climate X export, framing discovery questions or feature ideas for banks, real estate, investors or partners, or positioning against competitors such as Moody's RMS or Jupiter."
 ---
 
 # Climate X products

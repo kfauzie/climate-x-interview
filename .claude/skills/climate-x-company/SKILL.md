@@ -1,6 +1,6 @@
 ---
 name: climate-x-company
-description: Background on Climate X the company: funding, founders, stage, products at a glance, methodology, banking use cases, partnerships, go-to-market and competitors (Moody's RMS, Jupiter, S&P), with sources. Use for company context, market and competitive positioning, commercial or strategy questions, or to check which claims are verified.
+description: "Background on Climate X the company: funding, founders, stage, products at a glance, methodology, banking use cases, partnerships, go-to-market and competitors (Moody's RMS, Jupiter, S&P), with sources. Use for company context, market and competitive positioning, commercial or strategy questions, or to check which claims are verified."
 ---
 
 # Climate X: company brief
