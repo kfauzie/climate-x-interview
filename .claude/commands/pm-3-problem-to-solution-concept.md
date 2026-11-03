@@ -18,7 +18,7 @@ Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/int
 - **Why now**, with its source, or "none stated"
 
 ## 2. Options, and which I recommend
-Two or three: the ask as stated, the option that hits the root problem, and the smallest useful thing. Name each by what it does for whom, not a slogan.
+Two or three: the ask as stated, the option that hits the root problem, and the smallest useful thing. Name each by what it does for whom, not a slogan. Options must differ in what they solve, not in how it's built (AI vs dropdowns is an implementation detail; pick the simpler one inside the option).
 
 One table, options as columns: what it is (one line) · fixes the top pain? · value · adoption · what the gatekeepers need · revenue (hypothesis) · effort and risk.
 
