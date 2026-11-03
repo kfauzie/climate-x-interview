@@ -127,7 +127,7 @@ Common to every screen: plain risk language (no "model", "LLM", "eval"); the dat
 
 Status: **implemented** (all 7). Also fixed while testing: a follow-up keeps a change Sarah already approved (with its reason) and can still fast-track; a follow-up that names a year uses that year for the horizon check; the scenario verdict now includes the selected scenarios; "infx" when an answer is 0 now reads "ranges from 0 to N".
 
-## Design review checklist (pm-design §7, run on the prototype, 2026-11-03)
+## Design review checklist (pm-design checklist, run on the prototype, 2026-11-03)
 | Check | Result |
 |---|---|
 | Purpose and next step clear in five seconds | Pass: each screen has a one-line heading, the question restated, one primary action bottom right |
