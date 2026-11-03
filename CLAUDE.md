@@ -11,6 +11,7 @@ Used over several **runs**. Each run brings its own data, customer and interview
 - Nothing carries over between runs: numbers, findings, defaults, customer context. New data is profiled from scratch
 - Skills hold general knowledge only. Run-specific findings go in the run's `RUN.md` or `notes/`
 - Unsure which run something belongs to → ask
+- Everything I show gets screen-shared to someone following along: lead with the point, tables and short lines over paragraphs, no detail that doesn't change a decision
 - Setup at the start of every session: `pip install -q -r requirements.txt && python3 -m ipykernel install --user`
 
 ## Run folder
