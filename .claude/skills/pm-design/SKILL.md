@@ -1,96 +1,75 @@
 ---
 name: pm-design
-description: "My product and UX design approach: how to make an AI product a non-technical user trusts and can act on. Principles, the process from success measures to user flow to a prototype that becomes the spec, a review checklist, and the per-run design doc. Use when designing flows or screens, building a prototype UI or applying design feedback."
+description: "My product and UX design approach for AI products a non-technical user trusts and can act on: principles, then the process from user flow to a visual design (static images) to a clickable prototype that becomes the spec. Use when designing flows or screens, producing a visual design, building a prototype or applying design feedback."
 ---
 
 # Design
 
-Make it something a non-technical user can trust, understand at a glance and act on. One job, done well: fits where they already work, explains itself, shows how it got every answer, ends in a decision.
+Make it something a non-technical user can trust, understand at a glance and act on. One job, done well: it fits where they already work, explains itself, shows how it got every answer, and ends in a decision.
 
-Input: `solution.md` (the pick, the slice, success criteria). Output: `runs/run-N/design.md` (outline at the end), then the prototype.
+Input: `solution.md` (what to build, the slice, success criteria). Output: `runs/run-N/design.md`, a visual design, then a clickable prototype.
 
 ## Principles
 
-### Worth building
-- Every screen removes a named pain, in the customer's words. If it doesn't, cut it
+### Every screen earns its place
+- Each screen removes a pain the customer named. If it doesn't, cut it
 - Rules, defaults and layout before AI
-- Ends in an action (approve, send, change a decision), with the consequence next to it
-- Design for who uses it, not who asked
+- The flow ends in an action (approve, send, change a decision), with the consequence next to it
 
-### Trustworthy
-- **Reasoning for every outcome:** answer up front, method and source rows one click away
-- **Honest about uncertainty:** say "unsure" and why. Flag what's unstated, ambiguous or not in the data; never guess
-- **Humans in control:** easy to review, override, configure. Overrides feed the test set
-- **AI interprets, code computes:** AI turns messy input into choices the user confirms; a model never shows a number
-- **Provenance visible:** each figure traces to its inputs and rows on screen; each value tagged (from the user / default / changed)
-- **Earn trust gradually:** offline tests → shadow mode → pilot → scale
-- **Limits in the product:** what it won't do, a way to stop, a narrow scope. A stated limit builds more trust than a hidden one
+### Trust
+- Answer up front; the method and source rows one click away
+- Honest about uncertainty: say "unsure" and why. Flag what's unstated, ambiguous or not in the data instead of guessing
+- People stay in control: easy to review, override and configure. Their overrides become test cases
+- AI interprets, code computes. AI turns messy input into choices the user confirms; it never shows a number
+- Every value shows where it came from: the user, a default, or a change
+- State the limits in the product: what it won't do, and a way to stop. A stated limit builds more trust than a hidden one
+- Earn trust in stages: offline tests, then shadow mode beside the current process, then a pilot
 
-### Easy to use
-- **Fit the workflow:** where they already work, in the format they already send (email, Excel tab, slide)
-- **Explains itself:** one line on what will happen ("Uses your committee defaults: central scenario, 2050")
-- **Pyramid:** one headline, then detail, then the full method
-- **Their language:** their terms, the product's vocabulary; yes / no / unsure, not confidence scores. The AI should feel almost invisible
-- **Inputs:** free text first, examples only pre-fill, "Other" always there. Show what was understood; let them add what was missed
-- **Flow:** back keeps everything; back bottom left, next bottom right, one primary action per step; warn rather than block when a reviewer will see it
-- **Changeable defaults** have an owner, a version and a change log; in a transition, old and new side by side
+### Ease of use
+- Fits the workflow: where they already work, in the format they already send (email, spreadsheet, slide)
+- Explains itself in one line ("Uses your committee defaults: central scenario, 2050")
+- Pyramid: one headline, then detail, then the full method
+- Their language and the product's own terms. Yes / no / unsure, not confidence scores. The AI should feel almost invisible
+- Free text first; examples only pre-fill. Show what was understood and let them add what was missed
+- Back keeps everything. Back bottom left, next bottom right, one primary action per step
+- Warn rather than block when a reviewer will see it
+- Defaults that can change have an owner and a change log
 
-### Craft
-- Clean B2B SaaS: spacing, hierarchy, consistent components, restrained colour, status as chips as well as text
-- Looks like part of the product: copy conventions from real product screenshots, not the marketing site
-- Real brand values from the source, never guessed. A published page doesn't impersonate the company
-- Accessible: not colour alone, visible focus, light and dark, phone width
+### Look
+- Clean B2B SaaS: generous spacing, clear hierarchy, consistent components, restrained colour
+- Looks like part of their product: copy conventions from real product screenshots, and real brand values from the source, never guessed
+- Accessible: never colour alone, visible focus, works in light and dark and on a phone
+- A page shared outside the company doesn't present itself as the company's product
 
 ## Process
-1. **Success first:** users, measures (task completion, time to a usable answer, edits, review time, overrides), guardrail, where it breaks today
-2. **Flow before screens:** who does what (asker, user, approver, gatekeeper), the steps, decisions to agree, each with my recommendation
-3. **Brief the design** (for Claude with Figma, or a designer):
-   - Users, target outcome for one session, tone
-   - Grounding: design guide, glossary, product screenshots. "Flag gaps, don't fill them"
-   - Each step: input, output, happy path, edge cases with the exact message, acceptance criteria, hand-off. E.g. upload: "Found 200, all matched" / "188 matched, 12 need a check: here they are" / every item matched or flagged, none silently dropped
-4. **Screens:** their real examples as happy paths; a real failure they described as the main edge case
-5. **Test set:** expected answers from code
-6. **Build** (on a branch `prototype/<name>`, PR at the end):
-   - Engine (numbers, checks, method note, rows) separate from the interpreter (input → choices, never a number); thin API; static front end
-   - No real data yet → seeded script in the run, labelled SYNTHETIC; check defaults don't exclude most of it
-   - Tests = test set + flow rules; same input → same number. Run after every change
-   - Labels and verdicts from the numbers, never typed by hand
-7. **Check:** walk it in a real browser (end to end, phone, dark), look at screenshots, run the checklist below. Catches what tests miss: misleading labels, raw JSON, back that loses work
-8. **Think-aloud with users:** don't explain; they say what they're thinking (`pm-prototype-review`). Later: compare options on completion and speed
-9. **Prototype + brief = the spec:** real components, one PR per screen with tests, behind a feature flag; engineer reviews; check in staging
-10. **Release and measure** against targets agreed in advance → iterate or scale. Log each feedback round in `design.md`; general lessons back into this skill
+1. **Success:** who the users are; how we'll measure it (task completion, time to a usable answer, edits, review time); what must stay true to trust it; where it breaks today
+2. **Flow:** who does what (asker, user, approver, gatekeeper) and the steps. List the decisions to agree, each with my recommendation
+3. **Visual design (static images first).** Key screens as polished, realistic mock-ups, not clickable:
+   - Real content: their actual question, real numbers from code, their terms
+   - The happy path, plus the one screen that matters most for trust (e.g. the review screen, or a failure being caught)
+   - Made in Figma when connected, otherwise a static HTML mock rendered to PNG. Annotate what each element is for
+   - Review them with the user and agree before building anything clickable. Cheap to change now, expensive later
+4. **Screen spec:** for each screen, input, output, happy path, edge cases with the exact message, acceptance criteria. A real failure the customer described is the main edge case
+5. **Test set:** their examples, a real failure and an out-of-scope request, with expected answers computed by code
+6. **Clickable prototype** (on a branch, PR at the end):
+   - The engine (numbers, checks, method, rows) separate from the interpreter (input → choices, never a number)
+   - No real data yet: a seeded synthetic file in the run, labelled as synthetic
+   - Tests from the test set; run them after every change
+   - Labels and verdicts generated from the numbers, never typed by hand
+7. **Check before showing anyone:** walk it end to end in a real browser and look at the screenshots. Then ask:
+   - Can a first-time user tell in five seconds what the screen is for and what to do next?
+   - Does each principle above hold on the real screens?
+   - Are the numbers right, and are the limits stated?
+8. **Test with users** (`pm-prototype-review`): they think aloud while I watch
+9. **Hand-off:** the visual design and the screen spec are the spec. Rebuild with real components, one PR per screen with tests, behind a feature flag; an engineer reviews; check in staging
+10. **Release and measure** against targets agreed in advance; iterate if it misses, scale if it hits
 
-For people who can't run it: a clickable demo from the real UI with an in-page mock of precomputed answers, so the two never drift apart. Say on the page what it can't do.
-
-## Checklist (before showing anyone)
-- [ ] Non-technical user knows in 5 seconds what the screen is for and what to do next
-- [ ] Every screen ties to a pain; the flow ends in an action
-- [ ] One headline; detail on demand
-- [ ] Every number traceable from the screen
-- [ ] Uncertainty, assumptions and limits visible where the decision is made
-- [ ] Unstated, ambiguous, out-of-scope flagged, not guessed
-- [ ] Their language, no AI jargon
-- [ ] Back keeps everything; actions in the same place
-- [ ] Errors and empty states say what to do
-- [ ] Looks like part of the product
-- [ ] Light, dark, phone width, keyboard
-- [ ] Finished to something credible: checked, end to end, limits stated
+For people who can't run it: a clickable demo built from the real UI that replays precomputed answers, with a note on what it can't do.
 
 ## Under time pressure
-- Usable version early, then improve
-- Narrow the analysis early; don't let it eat the build
-- Narrate what I'm building, leaving out, and why
-- Leave time to finish: check numbers, walk the flow once, state the limits
+- Get a usable version in front of people early, then improve it
+- Narrate what I'm building, what I'm leaving out, and why
+- Leave time to finish: check the numbers and walk the flow once
 
-## `design.md` outline (per run)
-- **Success:** users, measures, guardrail, where it breaks today
-- **Who does what:** asker, user, approver, gatekeepers (what each needs)
-- **Flow:** steps, each marked computed / interpreted / decided by a person
-- **Decisions:** each with the agreed answer
-- **Screens:** input, output, happy path, edge cases, acceptance
-- **Test set:** their examples, a real failure, an out-of-scope request, expected answers from code
-- **Limits shown in the product**
-- **Checklist result:** what failed, the fix
-- **Brand and look:** values and source; product conventions
-- **Feedback rounds:** who, when, what was said, status
-- **Open items**
+## `design.md` (per run)
+Success · who does what · flow · decisions · visual design (images and annotations) · screen spec · test set · limits shown in the product · check results · brand values and their source · feedback rounds · open items
