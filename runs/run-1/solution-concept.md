@@ -4,6 +4,7 @@
 
 ## 1. Problem
 **Ask:** "customized report builder" → a solution. It fixes the hour of filtering, not the days around it.
+
 **Problem:** "It all runs through me, so I'm the bottleneck."
 
 | Evidence | Source |
@@ -14,6 +15,7 @@
 | Sent-back draft: 3 small slips, count up "by about a third" | Follow-up |
 
 **Size:** ~45 analyst days a month, plus her review (her estimate)
+
 **Why now:** none stated. PRA can ask for evidence from June 2026
 
 ## 2. Users
@@ -60,7 +62,9 @@
 | Named owner | Sarah per answer. **Open:** owner of the tool |
 
 **Success:** asked → approved in a day; her review in minutes. **Guardrail:** nothing sent unapproved.
+
 **Riskiest assumption:** method note + source rows is enough for model risk → show them one figure's trace.
+
 **Next:** prototype with Sarah, an analyst and model risk: "Would you sign off from this screen?"
 
 ## 5. Example: "How many CRE loans have a flood rating of E or worse by 2050?"
