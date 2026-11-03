@@ -48,8 +48,9 @@ Input: `solution.md` (what to build, the slice, success criteria). Output: `runs
    - Real content: their actual question, real numbers from code, their terms
    - The happy path, plus the one screen that matters most for trust (e.g. the review screen, or a failure being caught)
    - Made in Figma when connected, otherwise a static HTML mock rendered to PNG
+   - **One screen first.** Make the most important screen (usually the answer), show it, and make the others while the user reviews it. Their feedback on it shapes the rest
    - **The images show only the product, exactly as the user would see it.** No annotations, numbered markers, side notes, "screen 1 of 3" labels, pain call-outs, design-check results or review comments. Anything about the design goes in `design.md`, never in the image
-   - Review them with the user and agree before building anything clickable. Cheap to change now, expensive later
+   - Agree all of them with the user before building anything clickable. Cheap to change now, expensive later
 4. **Screen spec:** for each screen, input, output, happy path, edge cases with the exact message, acceptance criteria. A real failure the customer described is the main edge case
 5. **Test set:** their examples, a real failure and an out-of-scope request, with expected answers computed by code
 6. **Clickable prototype** (on a branch, PR at the end):
