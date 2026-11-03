@@ -4,6 +4,18 @@
 
 From `solution.md`, `notes/…` and any follow-up material the customer sent. Status: **<flow drafted / flow agreed / screens agreed / prototype built>**
 
+## What's worth building
+- **The pain it removes** (customer's words): …
+- **The one job it does:** …
+- **What it deliberately doesn't do (and why):** …
+- **Where this could go** (one line): … **The slice we build now:** …
+
+## Success, defined before designing
+- **Users:** <role, how technical, how often>
+- **Measures:** <task completion, time to a usable answer, manual edits, review time, override rate>, with targets to agree
+- **Guardrail:** <what must stay true for them to trust it>
+- **Where it breaks today:** <the step where time goes or errors happen>
+
 ## Who does what
 - **Asker:** <who brings the question or need; do they use the tool?>
 - **User:** <who works in the tool day to day>
@@ -22,6 +34,9 @@ From `solution.md`, `notes/…` and any follow-up material the customer sent. St
 1. <Decision>: **<agreed answer>**
 2. …
 
+## Design brief
+<!-- From pm-design/design-prompt.md: role, users, target outcome, grounding (design guide, glossary, product screenshots; flag gaps), tone, trust requirements, steps. -->
+
 ## Screens
 <!-- One block per screen. Use the customer's real examples for happy paths and a real failure they described for edge cases. -->
 ### Screen 1 · <name> (step <n>)
@@ -38,6 +53,12 @@ From `solution.md`, `notes/…` and any follow-up material the customer sent. St
 | <customer example 1> | <computed answer> |
 | <real failure the customer described> | <what must be flagged or blocked> |
 | <out-of-scope request> | <refused, with the reason> |
+
+## Limitations shown in the product
+- <what the product says it won't do, where it says it, and why>
+
+## Design review checklist
+<!-- Run pm-design §7 against the running prototype; note any item that fails and what was done. -->
 
 ## Brand and look
 - **Colours and fonts:** <values, and where they came from (site CSS, brand guide, the person)>

@@ -10,7 +10,7 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 | [`pm-data-discovery`](.claude/skills/pm-data-discovery/) | Analyse a dataset for discovery: Profile, Test and Answer modes, trust checks, judgment calls, product implications |
 | [`pm-discovery-interview`](.claude/skills/pm-discovery-interview/) | Principles for discovery questions and a base template, customised per run |
 | [`pm-problem-to-solution`](.claude/skills/pm-problem-to-solution/) | Turn interview notes and data into a problem summary, options with trade-offs, and a recommended solution |
-| [`pm-design`](.claude/skills/pm-design/) | Flow first, then screens, test set and prototype; interaction and visual principles |
+| [`pm-design`](.claude/skills/pm-design/) | Design philosophy and process: what's worth building, success defined first, trust and ease of use for non-technical users, design brief, review checklist, prototype as spec |
 | [`pm-prototype-review`](.claude/skills/pm-prototype-review/) | Review the prototype with the customer: a script built on their example, questions on fit, trust and adoption |
 
 ### Climate X context

@@ -46,6 +46,10 @@ Not to sell the prototype: to learn whether it solves the problem, for the peopl
 - **Next step:** "What would a pilot need to look like for you to say yes? Who has to agree?"
 - Follow-ups: "What makes you say that?", "Tell me more about…", "What would you expect to happen here?"
 
+## Measure, don't only listen
+- During hands-on, note **task completion** (did they get to a usable answer unaided?), **time**, **where they hesitated or misread**, and **what they'd change before sending**. These are the design's success measures (`pm-design` §2)
+- In later rounds, **compare options side by side** on task completion and speed rather than asking which one they prefer
+
 ## Rules
 - **Don't defend or explain away.** When they criticise, ask why and write it down. A criticism is data
 - **Watch, don't only listen.** Note where they hesitate, misread a screen or ask "what does this mean?": those are design findings
