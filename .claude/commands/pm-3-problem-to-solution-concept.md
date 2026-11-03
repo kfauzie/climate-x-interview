@@ -1,67 +1,43 @@
 ---
 name: pm-3-problem-to-solution-concept
-description: "Turn discovery notes and data findings into a solution concept: a problem statement, the users and their workflow, a recommendation on what's worth building: 2–3 options with trade-offs, one pick, a worked example from a real request, the narrowest slice, success criteria and the riskiest assumption. Use after the interview and the data Test, before design."
+description: "Turn discovery notes and data findings into a solution concept in three parts: the problem, the options ending in a recommendation and why, then the recommended solution in detail (workflow with a real example, scope, where AI is used and its sources, gatekeeper conditions, success, riskiest assumption). Use after the interview and the data Test, before design."
 ---
 
 # Problem to solution concept
 
 Start from the problem, not the feature request. Build the simplest thing that solves it, and only go more complex once that's been tested and falls short.
 
-Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/interview.md`, the `pm-1-data-discovery` Test results; the company and product skills for background. Output: `runs/run-N/solution-concept.md`, shown in chat first. It gets screen-shared and narrated, so it's written to be followed at a glance (see Presenting it).
+Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/interview.md`, the `pm-1-data-discovery` Test results; the company and product skills for background. Output: `runs/run-N/solution-concept.md`, shown in chat first. It gets screen-shared and narrated: three parts, two tables, short bullets.
 
 ## 1. Problem
-- The ask, word for word, and why it's a solution rather than a problem
-- The problem in one line, in their words if possible ("It all runs through me")
-- 3–5 pieces of evidence, each a quote or a number from code, with its source in plain words ("discovery call", "her follow-up email", "our analysis of their data"), never internal names
-- Problem statement: [user] needs to [job] but currently [workaround], causing [impact]. Then one line on the bigger problem behind it, if there is one
-- Why now: a deadline, review or rule change, with its source. Or "none"
-- Impact on each user: what it costs them today (time, waiting, rework, risk to them or the decisions they feed). Estimates marked as estimates
+- **The ask**, word for word, and why it's a solution rather than the problem
+- **The problem in their words** ("It all runs through me")
+- **Evidence:** 3–5 bullets, each a quote or a number from code, with its source in plain words ("discovery call", "her follow-up email", "our analysis of their data")
+- **Problem statement:** [user] needs to [job] but currently [workaround], causing [impact]. Then one line on the bigger problem behind it, if there is one
+- **Impact on each user:** one bullet per user (time, waiting, rework, risk to the decisions they feed). Estimates marked
+- **Why now**, with its source, or "none stated"
 
-## 2. Users and workflow
-The job as a flow with the pick in place, from the request to the answer delivered: step | who | what they do | what the product does. Show who asks but never touches it, who uses it day to day, who approves, and what the product hands back for sending. Then one line on who signs off the tool. Design for the people who use and approve it.
+## 2. Options, and which I recommend
+Two or three: the ask as stated, the option that hits the root problem, and the smallest useful thing. Name each by what it does for whom, not a slogan.
 
-## 3. Options
-Two or three, always including: the ask as stated, the option that hits the root problem, and the smallest useful thing (e.g. fix one report, or agree defaults).
+One table, options as columns: what it is (one line) · fixes the top pain? · value · adoption · what the gatekeepers need · revenue (hypothesis) · effort and risk.
 
-Name each option by what it does for whom ("Analysts answer it themselves; the manager approves on one screen"), not a slogan.
+**Recommendation:** which, and why in 2–3 sentences: the top pain, the gatekeeper's condition, and how it still delivers the ask (or what it doesn't).
 
-| | A | B | C |
-|---|---|---|---|
-| Who uses it, who approves | | | |
-| Fixes the top pain? | | | |
-| Value to the customer | | | |
-| Adoption: change needed | | | |
-| Each gatekeeper condition | | | |
-| Revenue (hypothesis) | | | |
-| Fit with the vendor: reuses an existing product or pattern? | | | |
-| Effort and risk | | | |
-
-## 4. Pick
-- Which, and why in two sentences: tied to the top pain and the gatekeeper's condition
-- The one job it does and the action it ends in. Decision-ready beats a better report
-- The narrowest slice: which of the users first, what it covers and refuses
-- Where it could go, in one line. Think big, ship narrow
-- What's left out for now, and why
-- Where AI is used and where a person checks. Anything AI touches shows its source (the words in the request, the default and where it's written down, the data rows), confirmable in one click. AI never produces a number
-- Gatekeeper conditions, one row each: how it's met, concretely, or "partly" / "not yet" with what's missing
-- Success: a target, a guardrail, and test cases with known answers
-- The riskiest assumption, and how the prototype will test it
-- Next step: who sees the prototype, and what I'll ask them
-
-## 5. Worked example
-One real request from the notes, as a table: step | today (who, how long, what went wrong) | with the pick (who, what they see and click, the actual numbers from code). Last row: what the approver does and how long it took.
-
-## Presenting it
-- Open with one line: the problem, who it's for, the pick
-- Plain words a stranger can follow: no internal labels (mode names, file names, "narrow/broad")
-- Tables over paragraphs; a few words per cell; one point per line
-- Quotes cut to the words that carry them
-- Bold only the decision and the key numbers
-- Anything that doesn't change the decision goes
+## 3. The recommended solution
+- **Workflow:** one table from the request to the answer delivered: step | who | what they do | what the product does | the real example. Show who never touches it, who uses it, who approves, and what the product hands back. Use one real request from the notes, with actual numbers from code. Then one line on who signs off the product
+- **Scope:** what it covers, what it refuses (with the reason), what's not yet, and where it could go
+- **AI and its sources:** what AI does, and nothing else. Anything AI touches shows its source (the words in the request, the default and where it's written, the data rows), one click away. AI never produces a number. Where a person checks
+- **Gatekeeper conditions:** one bullet each, how it's met concretely, or "partly" / "not yet" with what's missing
+- **Success:** a target, a guardrail, test cases with known answers
+- **Riskiest assumption**, and how the prototype tests it
+- **Next step:** who sees the prototype, and what I'll ask them
 
 ## Rules
 - Evidence or it doesn't go in
-- Say how, not that: never "met by design" or "seamless". Show the mechanism
-- Don't just build the ask, and don't dismiss it: show how the pick still delivers it, or say what it doesn't
-- Tag outside facts with their source; check the original when sources disagree
+- Say how, not that: never "met by design" or "seamless"
+- Plain words a stranger can follow: no internal labels (mode names, file names, codes)
+- Bold only the decision and the key numbers
+- Don't just build the ask, and don't dismiss it
+- Tag outside facts with their source
 - Minutes, not tens of minutes: reuse the Test and Profile, don't re-analyse
