@@ -127,6 +127,24 @@ Common to every screen: plain risk language (no "model", "LLM", "eval"); the dat
 
 Status: **implemented** (all 7). Also fixed while testing: a follow-up keeps a change Sarah already approved (with its reason) and can still fast-track; a follow-up that names a year uses that year for the horizon check; the scenario verdict now includes the selected scenarios; "infx" when an answer is 0 now reads "ranges from 0 to N".
 
+## Design review checklist (pm-design §7, run on the prototype, 2026-11-03)
+| Check | Result |
+|---|---|
+| Purpose and next step clear in five seconds | Pass: each screen has a one-line heading, the question restated, one primary action bottom right |
+| Every screen tied to a pain; flow ends in an action | Pass: Confirm = choosing scenario/loans; Answer = write-up and follow-ups; Review = her check; ends in approve / send back |
+| One headline, detail on demand | Pass: one headline answer; versions, checks and method below; settings in the side panel |
+| Every number traceable from the screen | **Partial:** method note and settings are on screen, but **source rows only download as Excel**. To fix: a "Show the loans" view on the Answer and Review screens |
+| Uncertainty, assumptions, limitations visible at the decision | **Partial:** flags (unstated, ambiguous, not in data, out of scope) and failed checks are shown; **what the product won't do isn't stated in the app** (only on the demo page). To fix: an "About this answer" note (property damage, not loss to the bank; practice data; questions it can't answer) |
+| Unstated, ambiguous, out of scope flagged, not guessed | Pass |
+| User's language, no AI jargon | Pass: "From the question / Default / Changed by analyst", no model or prompt terms |
+| Back keeps everything; actions always in the same place | Pass (tested in the browser) |
+| Errors and empty states say what to do | Pass: e.g. "Pick at least one value for Region, or remove it"; zero results shown as 0 with the choices |
+| Belongs in the product | Pass: brand palette and type stack; settings panel, rating circles and pill buttons from product screenshots |
+| Light, dark, phone width, keyboard | Pass in light/dark and at 400px; keyboard focus visible on buttons and chips |
+| Finished to something credible | Pass: 21 tests, browser walk-through, limitations listed in the PR (to move into the app, see above) |
+
+**Two gaps to fix next:** source rows viewable on screen; an in-product "About this answer" note with the limits.
+
 ## Open items
 - Confirm the scenario mapping: central = `ssp245`, severe = `ssp585` (inferred)
 - Confirm with Sarah that she'd accept fast-track review for follow-ups
