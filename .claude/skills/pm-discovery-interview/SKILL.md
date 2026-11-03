@@ -25,7 +25,7 @@ The base template is `template.md` in this skill (source: the Discovery Question
    - **Efficiency:** hours per cycle × people × cycles per year, consultant spend avoided
    - **Decision value:** which decisions the answer feeds (lending, pricing, risk appetite, investment) and what a late or wrong answer did to one. "When an answer was late or wrong, what decision did it hold up or change?"
    - **Risk and reputation:** a wrong figure reaching the regulator or the board, capital or provisioning impact, being seen as a blocker. "Besides time, what else does it cost you?"
-   This matches how Climate X frames value: time saved, consultant cost avoided, better business decisions
+   Check how the vendor frames value for its customers (e.g. time saved, consultant cost avoided, better decisions) and make sure each part is covered
 7. **Have ideas on success criteria.** What would "this works" look like to them: a target metric, and what they would need to see to trust the output (the guardrail)
 8. **Map who else is involved.** Who prepares, reviews, signs off, consumes and challenges the output. Who could block adoption. Who to bring into the next conversation
    - **Always ask "Who would actually use it?"** Separate the people asking the questions from the people who would use the thing asked for. If the askers wouldn't use it, the ask may not hold

@@ -12,7 +12,7 @@ The skills are the single source of truth and are kept up to date. Do not answer
 - `climate-x-products`: Spectra, Adapt (with Adaptation Finance), Carta and the Infrastructure Screener (one file each): what each does, customers, value proposition, strengths, weaknesses, opportunities, discovery questions
 - `pm-discovery-interview`: principles for interview questions and the base template. Customise it per run into `runs/run-N/discovery-questions.md`
 - `pm-problem-to-solution`: turns the run's notes and Test results into a problem summary and a recommended solution, saved as `runs/run-N/solution.md`
-- `pm-design`: user flow first, then screens, test set and prototype; interaction and visual principles from feedback rounds. Output: `runs/run-N/design.md`
+- `pm-design`: design philosophy and process (what's worth building, success first, trust and ease of use for non-technical users, flow before screens, design brief, review checklist, prototype as spec). Output: `runs/run-N/design.md`
 - `pm-prototype-review`: script and questions for reviewing the prototype with the customer and their gatekeepers, saved as `runs/run-N/prototype-review.md` and published to Notion
 - `pm-data-discovery`: the analysis method. `/pm-data-discovery` = Profile, `/pm-data-discovery <notes>` = Test, `/pm-data-discovery <question>` = Answer
 

@@ -24,6 +24,8 @@ Analyse data the way a product manager needs it: in service of a customer's deci
 - No solution recommendations (dashboards, agents, tools) unless asked. Product implications are requirements, not solutions
 
 ## Speed (live sessions)
+- **Narrow early and time-box the analysis.** Profile is for knowing what to ask and what to trust, not for exhausting the data; leave most of the time for building
+- **Surface the real signal and flag uncertainty** (e.g. one asset dominating the total) rather than presenting a falsely confident number
 - **Use the toolkit first:** `tools/cxlens.py` in the repo. `python3 tools/cxlens.py profile <csv>` gives decode, trust checks, one-at-a-time swings and shape in about a second. In Python: `import sys; sys.path.insert(0,'tools'); import cxlens as cx`, then `cx.load`, `cx.total`, `cx.count`, `cx.swing`, `cx.rise`, `cx.top_driver`, `cx.loss_rate_bp`, `cx.trust`
 - **Verdicts come from code:** use the verdict returned by `cx.swing` / `cx.verdict` ("same answer under 2 of 3 scenarios") instead of writing one by hand. Never state that a choice changes the answer without that verdict
 - **If `cx.load` raises `ShapeError`,** the file doesn't fit the wide layout: say so, and write the analysis by hand

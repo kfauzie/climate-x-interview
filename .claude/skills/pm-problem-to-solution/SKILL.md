@@ -45,6 +45,8 @@ For each: one-line description, which pain it fixes (by rank from the notes), an
 ### 3. Recommendation
 - **Pick one** and say why in two sentences, tied to the top pain and the gatekeeper's condition
 - **Narrowest version:** who uses it, the scope (which questions or cases it covers, which it refuses), and the steps or screens in order
+- **Where it could go:** one line on the bigger version this slice leads to (think big, ship narrow)
+- **The action it ends in:** the decision the user takes at the end, and its financial or operational consequence. Decision-ready, not a better report
 - **Deterministic vs AI:** what code computes (every number), what AI does (e.g. interpret a plain-English question into structured choices, shown back for confirmation) and where a human checks
 - **What we won't build yet,** and why
 - **Success criteria:** a target (from the customer's words or a proposed number to validate), a guardrail (what must stay true for them to trust it) and a test set (real or sample cases with known answers)
