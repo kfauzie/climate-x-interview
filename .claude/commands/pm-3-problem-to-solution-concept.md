@@ -1,6 +1,6 @@
 ---
 name: pm-3-problem-to-solution-concept
-description: "Turn discovery notes and data findings into a solution concept: a problem statement and the users, a recommendation on what's worth building: 2–3 options with trade-offs, one pick, a worked example from a real request, the narrowest slice, success criteria and the riskiest assumption. Use after the interview and the data Test, before design."
+description: "Turn discovery notes and data findings into a solution concept: a problem statement, the users and their workflow, a recommendation on what's worth building: 2–3 options with trade-offs, one pick, a worked example from a real request, the narrowest slice, success criteria and the riskiest assumption. Use after the interview and the data Test, before design."
 ---
 
 # Problem to solution concept
@@ -12,13 +12,13 @@ Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/int
 ## 1. Problem
 - The ask, word for word, and why it's a solution rather than a problem
 - The problem in one line, in their words if possible ("It all runs through me")
-- 3–5 pieces of evidence, each a quote or a number from code, with its source
-- Statement: [user] needs to [job] but currently [workaround], causing [impact]. A narrow and a broad version
+- 3–5 pieces of evidence, each a quote or a number from code, with its source in plain words ("discovery call", "her follow-up email", "our analysis of their data"), never internal names
+- Problem statement: [user] needs to [job] but currently [workaround], causing [impact]. Then one line on the bigger problem behind it, if there is one
 - Why now: a deadline, review or rule change, with its source. Or "none"
-- Size: time and cost, decision value, and risk. Estimates marked as estimates
+- Impact on each user: what it costs them today (time, waiting, rework, risk to them or the decisions they feed). Estimates marked as estimates
 
-## 2. Users
-Name them before any option: who uses it day to day, who approves the output, who asks but never touches it, and who has to sign it off. Design for the first two.
+## 2. Users and workflow
+The job as a flow with the pick in place, from the request to the answer delivered: step | who | what they do | what the product does. Show who asks but never touches it, who uses it day to day, who approves, and what the product hands back for sending. Then one line on who signs off the tool. Design for the people who use and approve it.
 
 ## 3. Options
 Two or three, always including: the ask as stated, the option that hits the root problem, and the smallest useful thing (e.g. fix one report, or agree defaults).
@@ -39,7 +39,7 @@ Name each option by what it does for whom ("Analysts answer it themselves; the m
 ## 4. Pick
 - Which, and why in two sentences: tied to the top pain and the gatekeeper's condition
 - The one job it does and the action it ends in. Decision-ready beats a better report
-- The narrowest slice: which of the users first, what it covers and refuses, the steps
+- The narrowest slice: which of the users first, what it covers and refuses
 - Where it could go, in one line. Think big, ship narrow
 - What's left out for now, and why
 - Where AI is used and where a person checks. Anything AI touches shows its source (the words in the request, the default and where it's written down, the data rows), confirmable in one click. AI never produces a number
@@ -53,6 +53,7 @@ One real request from the notes, as a table: step | today (who, how long, what w
 
 ## Presenting it
 - Open with one line: the problem, who it's for, the pick
+- Plain words a stranger can follow: no internal labels (mode names, file names, "narrow/broad")
 - Tables over paragraphs; a few words per cell; one point per line
 - Quotes cut to the words that carry them
 - Bold only the decision and the key numbers
