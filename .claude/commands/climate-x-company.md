@@ -9,7 +9,7 @@ From climate-x.com (read November 2026) unless marked (web) for press or third p
 
 ## Snapshot
 - B2B physical climate-risk analytics, based in London. "Google Maps for climate change"
-- Founders: Lukky Ahmed (CEO) and Kamil Kluza (COO; one source says CPO ⚠️)
+- Founders: Lukky Ahmed (CEO) and Kamil Kluza (COO as of January 2025; CPTO before from 2021)
 - $18m Series A in June 2024, led by GV (web); about $24.9m raised in total (web). Other investors: WTI, PropTech1, Unconventional Ventures, CommerzVentures, noa
 - Advisers include Bob Wigley (Chair of UK Finance) and David Carlin (UNEP FI); science partner CCRM, which started at Oxford
 - Claims clients with over $13.5tn in assets, including G-SIBs. ISO certified; works to the PRA's model risk framework
