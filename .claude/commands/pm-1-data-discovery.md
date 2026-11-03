@@ -1,5 +1,5 @@
 ---
-name: pm-data-discovery
+name: pm-1-data-discovery
 description: "Analyse a customer's dataset as a PM: what it is, what to trust, which choices change the answer, and what a product built on it must handle. Three modes: Profile (before the interview), Test (check what the customer said), Answer (one question, with every assumption stated)."
 ---
 
@@ -35,7 +35,7 @@ The goal isn't the most interesting finding. It's knowing what to ask, what to t
 5. **Shape:** concentration (top entity, top 1%, top 10); segments by total and by rate, and where they disagree. Report observations, not "the key risk is"
 6. **Limits:** 3–5 questions the data can't answer, and what data would. Always check the customer's own financial loss and comparison with last period
 7. **Product implications:** turn each judgment call, trust issue and limit into a requirement (state assumptions, consistent defaults, disclose exclusions, refuse out-of-scope questions, keep an audit trail), including what the governing rules expect
-8. **Questions:** pass the findings to `pm-discovery-interview`
+8. **Questions:** pass the findings to `pm-2-discovery-interview`
 
 ## Test
 1. List every claim and assumption from the notes, with who said it
