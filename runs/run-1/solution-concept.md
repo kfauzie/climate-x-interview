@@ -43,7 +43,7 @@ Signs off the product once: model risk, IT, procurement, the CRO.
 
 ## 3. Options
 
-| | **A. Analysts answer; Sarah approves on one screen** | B. Analysts build reports in Spectra (the ask) | C. Defaults + write-up template |
+| | **A. Analysts draft answers; Sarah approves; it drafts the reply** | B. Analysts build reports in Spectra (the ask) | C. Defaults + write-up template |
 |---|---|---|---|
 | Who uses, who approves | Analysts; Sarah in the tool | Analysts; Sarah by hand | Analysts; Sarah by hand |
 | Fixes her check? | **Yes** | No | Partly |
