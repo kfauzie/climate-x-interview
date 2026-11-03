@@ -1,112 +1,68 @@
 ---
-name: "pm-data-discovery"
-description: "Use when a PM analyses a dataset around customer discovery: surfaces judgment calls, product implications and discovery questions, not premature conclusions."
+name: pm-data-discovery
+description: "Analyse a customer's dataset as a PM: what it is, what to trust, which choices change the answer, and what a product built on it must handle. Three modes: Profile (before discovery), Test (check what the customer said), Answer (one question, answered the way a trustworthy product should)."
 ---
 
 # Data discovery
 
-Analyse data the way a product manager needs it: in service of a customer's decision and of what a product must do to support it. The goal is not the most interesting finding. It is knowing what to ask, what to trust, and what any product built on this data has to handle.
+Goal isn't the most interesting finding. It's knowing what to ask, what to trust, and what any product on this data has to handle.
 
-## Pick the mode
-- **Profile** (default, no notes given): before discovery. Understand the data, surface patterns as questions, no conclusions
-- **Test** (notes given): after discovery. Test what the customer said against the data and sharpen the problem
-- **Answer** (question given): answer one customer question the way a trustworthy product should
+## Modes
+- **Profile** (no notes yet): understand the data, turn patterns into questions, no conclusions
+- **Test** (notes given): check what the customer said against the data, sharpen the problem
+- **Answer** (a question given): answer it with every assumption stated
 
-## Rules for every mode
-- Find the active run in CLAUDE.md, then read that run's `runs/run-N/RUN.md` for the customer, their decisions, the stakes, data notes and defaults. If unknown, say so rather than assume
-- Run isolation: use only the active run's `data/` and `notes/`. Never read, reuse or cite another run's data, notes, notebooks, findings or defaults, even if the dataset looks similar
-- Save outputs (notebooks, charts) in the active run's `notebooks/`. Record new data notes and defaults in that run's `RUN.md`, never in a skill or in CLAUDE.md
-- Every number is computed in code. Never estimate or round in your head
-- Work in a Jupyter notebook, one cell per step, so the reasoning is reviewable
-- Mark anything inferred (column meanings, units, intent) as inferred
-- **Check the data provider's own documentation first** (methodology pages, FAQs, product pages, case studies) for column meanings, units, scenario sets and outputs. Cite it. If third-party claims conflict with the primary source, prefer the primary source and flag the conflict
-- Plain language. Explain any metric a non-technical customer would not know
-- No solution recommendations (dashboards, agents, tools) unless asked. Product implications are requirements, not solutions
+## Ground rules
+- Active run only: read `runs/run-N/RUN.md` first; never touch another run. Outputs → the run's `notebooks/`; data notes and defaults → its `RUN.md`
+- Every number from code, never estimated. Notebook, one cell per step
+- Check the data provider's own docs first (methodology, FAQs, case studies). If third parties disagree, go with the primary source and flag it
+- Mark anything inferred (meanings, units, intent) as inferred
+- Plain language; explain any metric a non-expert wouldn't know
+- Requirements, not solutions. No dashboards or agents unless asked
+- Live: narrow early and time-box. Profile is for knowing what to ask, not for exhausting the data
 
-## Speed (live sessions)
-- **Narrow early and time-box the analysis.** Profile is for knowing what to ask and what to trust, not for exhausting the data; leave most of the time for building
-- **Surface the real signal and flag uncertainty** (e.g. one asset dominating the total) rather than presenting a falsely confident number
-- **Use the toolkit first:** `tools/cxlens.py` in the repo. `python3 tools/cxlens.py profile <csv>` gives decode, trust checks, one-at-a-time swings and shape in about a second. In Python: `import sys; sys.path.insert(0,'tools'); import cxlens as cx`, then `cx.load`, `cx.total`, `cx.count`, `cx.swing`, `cx.rise`, `cx.top_driver`, `cx.loss_rate_bp`, `cx.trust`
-- **Verdicts come from code:** use the verdict returned by `cx.swing` / `cx.verdict` ("same answer under 2 of 3 scenarios") instead of writing one by hand. Never state that a choice changes the answer without that verdict
-- **If `cx.load` raises `ShapeError`,** the file doesn't fit the wide layout: say so, and write the analysis by hand
-- **Answer in chat first,** then save the notebook (cells calling the same `cx` functions) and commit once at the end of the step
+## Toolkit
+- `python3 tools/cxlens.py profile <csv>` → decode, trust checks, swings, shape in ~1s
+- In Python: `import sys; sys.path.insert(0, 'tools'); import cxlens as cx` → `cx.load`, `cx.total`, `cx.count`, `cx.swing`, `cx.rise`, `cx.top_driver`, `cx.loss_rate_bp`, `cx.trust`
+- Verdicts come from `cx.swing` / `cx.verdict`, never written by hand
+- `ShapeError` → the file doesn't fit; say so and analyse by hand
+- Answer in chat first, then save the notebook, commit once
 
-## Profile mode
+## Profile
+1. **Frame:** who uses the data, which decisions it feeds, which rules govern them, and any why-now (deadline, review, standard being replaced)
+2. **Decode:** what a row is; counts; data dictionary (decode dimensions packed into column names); assumptions on ambiguous columns (units, annual vs cumulative); standards in transition (e.g. a scenario being retired); how hard the raw file is to use (itself a product insight)
+3. **Trust:** derived fields recompute; values respect bounds and order (risk shouldn't fall as severity rises); nulls, duplicates (incl. one entity on several rows), formats, outliers, each counted. For each issue: which answers it changes, by how much
+4. **Judgment calls:** every choice that changes the answer: subset, dimension values, metric (count vs value vs rate), unit of aggregation, missing data, whose loss (asset vs lender; direct vs indirect), old vs new standard. Change one at a time, quantify the swing
+   - This is why two people get different numbers from the same file
+5. **Shape:** concentration (top entity, top 1%, top 10); segments on £ and on rate, and where they disagree. Observations, never "the key risk is"
+6. **Limits:** 3–5 questions the data can't answer and what would. Always check: the customer's own financial loss; comparison with last period
+7. **Product implications:** for each judgment call, trust issue and limit → a requirement (state assumptions, consistent defaults, disclose exclusions, refuse out-of-scope, audit trail). Map to what the governing rules expect (granularity, lineage, justified scenarios, reproducibility)
+8. **Questions:** hand findings to `pm-discovery-interview`, tagged `(from: finding)`
 
-1. **Frame**
-   - Who uses this data and which decisions it could feed, from the run's `RUN.md` or inputs. One line each
-   - The rules that govern those decisions (regulator, standard, policy) and any **why-now** (a deadline, a supervisory review, a standard being replaced). One line each, sourced
+## Test
+1. Every claim and assumption from the notes, with who said it
+2. Each tested: supported / not / unclear, with the number
+3. What the data shows that they didn't mention
+4. Contradictions first: the best follow-up questions
+5. Problem statement: [user] needs to [decision] but currently [workaround], causing [impact]. Narrow and broad
+6. Updated implications; top 3 questions to close the gaps
 
-2. **Decode the data**
-   - What one row represents, row and entity counts
-   - Data dictionary: column groups, meaning, example value. For wide formats, decode the dimensions encoded in column names
-   - Flag every ambiguous column with the assumption you made (units, time basis, annual vs cumulative)
-   - Note how hard the raw structure is to use: this friction is itself a product insight
-   - Note which standard or version each dimension follows (e.g. a scenario set or taxonomy) and whether any value is **being retired or replaced**. A value in transition is a judgment call and a limit
+## Answer
+1. The question in data terms; flag ambiguity
+2. Every judgment call made and why (use `RUN.md` defaults)
+3. The answer, with the code and rows used
+4. How it moves under the main alternatives
+5. What the data can't answer; likely follow-ups
 
-3. **Trust checks**
-   - Internal consistency: derived fields recompute from their inputs, values respect expected bounds and orderings (e.g. risk should not fall as severity rises), ratings or bands are consistent
-   - Quality: nulls, duplicates (including one entity across several rows), inconsistent formats, outliers. Count each precisely by sub-type
-   - For each issue: which answers it changes, and by how much
-
-4. **Judgment calls**
-   - List every choice an analyst must make that changes the answer: which subset, which value of each dimension, which metric (count vs value vs rate), unit of aggregation, how to treat missing data
-   - Include **whose loss** the metric measures (damage to the asset vs loss to the lender or the company; direct only vs including indirect effects such as business interruption, which can be several times larger) and **which version** of a standard or scenario (old vs its replacement)
-   - Isolate one dimension at a time, holding the others fixed, and quantify the swing. Do not mix two dimensions in one comparison
-   - These explain why two people answering the same question get different numbers
-
-5. **Shape of the data**
-   - Concentration: share held by the top entity, top 1% and top 10. Name any single entity that dominates
-   - Segment comparisons on both absolute and normalised basis (e.g. £ and rate per £), and say when they disagree
-   - Report as observations, never as "the key risk is" or "you should focus on"
-
-6. **Limits**
-   - 3 to 5 questions a customer might reasonably ask that this data cannot answer, and what extra data would
-   - Always check two common gaps: the customer's own financial loss (vs what the data measures), and history (can this period be compared with the last one)
-
-7. **Product implications**
-   - For each judgment call, trust issue and limit: what any product built on this data must do. For example: state assumptions in every answer, apply consistent defaults, disclose exclusions, refuse out-of-scope questions, keep an audit trail
-   - Map them to the governing rules' **evidence expectations** (e.g. granularity, data lineage, documented assumptions, justified scenario choice, reproducibility) and state each as a requirement
-   - Stay neutral on which product
-
-8. **Discovery questions**
-   - Follow the `pm-discovery-interview` skill: its principles, and its template customised for this run, saved as the run's `discovery-questions.md`
-   - 6 to 10 questions, each tied to a finding above
-   - Non-leading: ask how the customer handles the issue, never reveal the finding or suggest a solution
-   - Favour questions about real recent moments, who uses the numbers, and how they are checked and defended
-   - If a template link is given, place each under its matching section and add them under a new heading "Data-informed questions" with "(from: finding)" after each. Edit nothing else. Never write to a master template; ask for a copy if unsure
-
-## Test mode
-
-1. Extract every claim, hypothesis and assumption from the notes, with who said it
-2. Test each against the data: supported, not supported or unclear, with the number and one chart
-3. What the data shows that the customer did not mention but would care about
-4. Contradictions between what they said and what the data shows. Flag these first, they are the best follow-up questions
-5. Problem statement: [user] needs to [decision] but currently [workaround], causing [impact]. Success = [measurable outcome]. A narrow version and a broad one
-6. Updated product implications
-7. Top 3 questions to ask next to close the biggest gaps
-
-## Answer mode
-
-1. Restate the question in data terms, and flag ambiguity
-2. State every judgment call you made (subset, dimension values, metric, aggregation, missing data) and why. Use a documented default if the run's `RUN.md` has one
-3. Give the answer, with the code and the rows used
-4. Sensitivity: how the answer changes under the main alternative choices
-5. What part of the question the data cannot answer
-6. Likely follow-up questions
-
-## Self-check before presenting
-Fail and fix if any of these is true:
-- A total or headline number without its assumptions stated
+## Before presenting
+Fix if any is true:
+- A headline number without its assumptions
 - Duplicates or missing data handled silently
-- A conclusion about what matters most, before discovery
-- A solution recommendation nobody asked for
-- A number not produced by code
-- An inferred column meaning presented as fact
-- A data quality issue listed without saying which answers it affects
-- Two dimensions changed at once in a comparison
+- A view on what matters most, before discovery
+- A number not from code, or an inferred meaning stated as fact
+- A data issue without the answers it affects
+- Two dimensions changed in one comparison
 
 ## Output
-- Start with 5 bullets: what the data is, the biggest judgment calls, trust issues, limits, and what you added or concluded
-- Then the sections for the mode, short and scannable
-- For live sessions: one sentence per step on the choice made and why, so it can be narrated
+- 5 bullets first: what the data is, biggest judgment calls, trust issues, limits, what I concluded
+- Then the mode's sections, short. Live: one line per step, so it can be narrated
