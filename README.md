@@ -10,8 +10,9 @@ How I go from a customer's data and a short interview to a prototype they'd trus
 | [`pm-2-discovery-interview`](.claude/commands/pm-2-discovery-interview.md) | Finding the problem behind the ask, in 15 minutes |
 | [`pm-3-problem-to-solution-concept`](.claude/commands/pm-3-problem-to-solution-concept.md) | Solution concept: what's worth building, and the narrowest slice |
 | [`pm-4-solution-detail`](.claude/commands/pm-4-solution-detail.md) | What each screen does: inputs, mandatory or not, checks. Design principles |
-| [`pm-5-visual-design`](.claude/commands/pm-5-visual-design.md) | Static images of the key screens, then the clickable prototype and PR |
-| [`pm-6-prototype-review`](.claude/commands/pm-6-prototype-review.md) | Testing the prototype with the people who'd use and approve it |
+| [`pm-5-visual-design`](.claude/commands/pm-5-visual-design.md) | Static images of the key screens, product only, one shown first |
+| [`pm-6-clickable-prototype`](.claude/commands/pm-6-clickable-prototype.md) | Working prototype on a branch, tested, checked in a browser, PR |
+| [`pm-7-prototype-review`](.claude/commands/pm-7-prototype-review.md) | Testing the prototype with the people who'd use and approve it |
 
 **Climate X context**
 | Skill | |

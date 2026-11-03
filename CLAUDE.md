@@ -32,8 +32,8 @@ runs/run-N/
 | 5. Solution concept | Claude | `pm-3-problem-to-solution-concept` | `solution-concept.md` |
 | 6. Solution detail | Claude | `pm-4-solution-detail` | `solution-detail.md`: each screen, its inputs (mandatory or not), checks, edge cases |
 | 7. Visual design | Claude | `pm-5-visual-design` | `visual-design.md` + static images of the key screens, one shown first; agreed with me |
-| 8. Clickable prototype | Claude | `pm-5-visual-design` | `clickable-prototype.md`, the prototype on a branch + PR |
-| 9. Prototype review | me + Claude | `pm-6-prototype-review` | `prototype-review.md` + new Notion page; feedback back into the files above |
+| 8. Clickable prototype | Claude | `pm-6-clickable-prototype` | `clickable-prototype.md`, the prototype on a branch + PR |
+| 9. Prototype review | me + Claude | `pm-7-prototype-review` | `prototype-review.md` + new Notion page; feedback back into the files above |
 
 Keep each step quick: about 15 minutes of the session is interview; the rest is synthesis, design and the build. Show results in chat first, commit once per step.
 
