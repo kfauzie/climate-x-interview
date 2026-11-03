@@ -18,7 +18,8 @@ Used over several **runs**. Each run brings its own data, customer and interview
 runs/run-N/
   RUN.md                  status, customer, the ask, data notes, defaults, links
   data/  notes/  notebooks/
-  discovery-questions.md  solution.md  design.md  prototype-review.md
+  discovery-questions.md  solution-concept.md  solution-detail.md
+  visual-design.md  clickable-prototype.md  prototype-review.md
 ```
 
 ## Workflow
@@ -28,9 +29,11 @@ runs/run-N/
 | 2. Discovery questions | Claude | `pm-discovery-interview` | `discovery-questions.md` + new Notion page |
 | 3. Interview | me | | notes in that Notion page |
 | 4. Summarise the problem | Claude | `pm-data-discovery` (Test) | `notes/interview.md` (one fetch of the meeting notes with transcript, saved as is), problem statement in `RUN.md` |
-| 5. What to build | Claude | `pm-problem-to-solution` | `solution.md` |
-| 6. Design, then prototype | Claude | `pm-design` | `design.md`; visual design (static images of the key screens, agreed with me) before anything clickable; then the prototype on a branch + PR |
-| 7. Prototype review | me + Claude | `pm-prototype-review` | `prototype-review.md` + new Notion page; feedback back into `design.md` |
+| 5. Solution concept | Claude | `pm-problem-to-solution` | `solution-concept.md` |
+| 6. Solution detail | Claude | `pm-design` | `solution-detail.md`: each screen, its inputs (mandatory or not), checks, edge cases |
+| 7. Visual design | Claude | `pm-design` | `visual-design.md` + static images of the key screens, one shown first; agreed with me |
+| 8. Clickable prototype | Claude | `pm-design` | `clickable-prototype.md`, the prototype on a branch + PR |
+| 9. Prototype review | me + Claude | `pm-prototype-review` | `prototype-review.md` + new Notion page; feedback back into the files above |
 
 Keep each step quick: about 15 minutes of the session is interview; the rest is synthesis, design and the build. Show results in chat first, commit once per step.
 

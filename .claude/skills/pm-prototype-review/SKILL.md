@@ -7,7 +7,7 @@ description: "Run a prototype review with the customer and their gatekeepers: wh
 
 Not to sell it. To learn whether it solves the problem for the people who'd use and approve it.
 
-Inputs (active run): `RUN.md`, `solution.md` (the riskiest assumption), `design.md`, `notes/`, the prototype. Output: `runs/run-N/prototype-review.md`, published to Notion.
+Inputs (active run): `RUN.md`, `solution-concept.md` (the riskiest assumption), `solution-detail.md`, `visual-design.md`, `clickable-prototype.md`, `notes/`, the prototype. Output: `runs/run-N/prototype-review.md`, published to Notion.
 
 ## What I'm testing, in order
 1. Problem fit: does it remove the pain, in their workflow?
@@ -51,4 +51,4 @@ Invite the decision owner, a day-to-day user, and the gatekeeper behind the risk
 ## Per run
 1. Write `prototype-review.md`: who's coming, prototype link, data used, riskiest assumption, the recap line, a walkthrough table (what I show, what I say, the pain it addresses; one row is a failure being caught), the AI line, the hands-on example, the questions with my hypotheses, the pilot I'll propose, and a `## Notes` section
 2. Publish it as a new Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled `Run N: prototype review (<customer>)`. Link it in `RUN.md`
-3. After the review: save the notes to `notes/prototype-review-notes.md` as they are; add a feedback round to `design.md`; update the riskiest assumption in `solution.md`
+3. After the review: save the notes to `notes/prototype-review-notes.md` as they are; log a feedback round in `clickable-prototype.md` and update the file each change belongs to; update the riskiest assumption in `solution-concept.md`

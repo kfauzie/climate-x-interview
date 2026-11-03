@@ -1,13 +1,19 @@
 ---
 name: pm-design
-description: "My product and UX design approach for AI products a non-technical user trusts and can act on: principles, then the process from user flow to a visual design (static images) to a clickable prototype that becomes the spec. Use when designing flows or screens, producing a visual design, building a prototype or applying design feedback."
+description: "My product and UX design approach for AI products a non-technical user trusts and can act on: principles, then three steps after the solution concept: solution detail (each screen, its inputs and checks), visual design (static images), clickable prototype (PRs). Use when detailing screens, producing a visual design, building a prototype or applying design feedback."
 ---
 
 # Design
 
 Make it something a non-technical user can trust, understand at a glance and act on. One job, done well: it fits where they already work, explains itself, shows how it got every answer, and ends in a decision.
 
-Input: `solution.md` (what to build, the slice, success criteria). Output: `runs/run-N/design.md`, a visual design, then a clickable prototype.
+Input: `solution-concept.md` (what to build, the slice, success criteria). Three steps, each a file in the run, each agreed with the user before the next:
+
+| Step | File | Answers |
+|---|---|---|
+| 1. Solution detail | `solution-detail.md` | What each screen does, takes in and checks |
+| 2. Visual design | `visual-design.md` + images | What it looks like |
+| 3. Clickable prototype | `clickable-prototype.md` + PRs | Does it work end to end |
 
 ## Principles
 
@@ -41,37 +47,49 @@ Input: `solution.md` (what to build, the slice, success criteria). Output: `runs
 - Accessible: never colour alone, visible focus, works in light and dark and on a phone
 - A page shared outside the company doesn't present itself as the company's product
 
-## Process
-1. **Success:** who the users are; how we'll measure it (task completion, time to a usable answer, edits, review time); what must stay true to trust it; where it breaks today
-2. **Flow:** who does what (asker, user, approver, gatekeeper) and the steps. List the decisions to agree, each with my recommendation
-3. **Visual design (static images first).** Key screens as polished, realistic mock-ups, not clickable:
-   - Real content: their actual question, real numbers from code, their terms
-   - The happy path, plus the one screen that matters most for trust (e.g. the review screen, or a failure being caught)
-   - Made in Figma when connected, otherwise a static HTML mock rendered to PNG
-   - **One screen first.** Make the most important screen (usually the answer), show it, and make the others while the user reviews it. Their feedback on it shapes the rest
-   - **The images show only the product, exactly as the user would see it.** No annotations, numbered markers, side notes, "screen 1 of 3" labels, pain call-outs, design-check results or review comments. Anything about the design goes in `design.md`, never in the image
-   - Agree all of them with the user before building anything clickable. Cheap to change now, expensive later
-4. **Screen spec:** for each screen, input, output, happy path, edge cases with the exact message, acceptance criteria. A real failure the customer described is the main edge case
-5. **Test set:** their examples, a real failure and an out-of-scope request, with expected answers computed by code
-6. **Clickable prototype** (on a branch, PR at the end):
-   - The engine (numbers, checks, method, rows) separate from the interpreter (input → choices, never a number)
-   - No real data yet: a seeded synthetic file in the run, labelled as synthetic
-   - Tests from the test set; run them after every change
-   - Labels and verdicts generated from the numbers, never typed by hand
-7. **Check before showing anyone** (results go in `design.md`, never on the screens): walk it end to end in a real browser and look at the screenshots. Then ask:
-   - Can a first-time user tell in five seconds what the screen is for and what to do next?
-   - Does each principle above hold on the real screens?
-   - Are the numbers right, and are the limits stated?
-8. **Test with users** (`pm-prototype-review`): they think aloud while I watch
-9. **Hand-off:** the visual design and the screen spec are the spec. Rebuild with real components, one PR per screen with tests, behind a feature flag; an engineer reviews; check in staging
-10. **Release and measure** against targets agreed in advance; iterate if it misses, scale if it hits
+## 1. Solution detail (`solution-detail.md`)
+- **Success:** who the users are; how we'll measure it (task completion, time to a usable answer, edits, review time); what must stay true to trust it
+- **Flow:** who does what (asker, user, approver, gatekeeper) and the steps. Decisions to agree, each with my recommendation
+- **Each screen:**
+  - Purpose: the pain it removes
+  - Inputs: each one mandatory or optional, its default, and where the value comes from (the user, a default, read by AI)
+  - What it shows, headline first
+  - Checks performed: what's checked, and whether a failure blocks or warns
+  - Edge cases, with the exact message. A real failure the customer described is the main one
+  - The action it ends in, and acceptance criteria
+- **Test set:** their examples, a real failure and an out-of-scope request, with expected answers computed by code
+- **Limits** the product states, and what it refuses
 
-For people who can't run it: a clickable demo built from the real UI that replays precomputed answers, with a note on what it can't do.
+## 2. Visual design (`visual-design.md`)
+Key screens as polished, realistic static images, not clickable:
+- Real content: their actual question, real numbers from code, their terms
+- The happy path, plus the one screen that matters most for trust (e.g. the review screen, or a failure being caught)
+- Made in Figma when connected, otherwise a static HTML mock rendered to PNG
+- **One screen first.** Make the most important screen (usually the answer), show it, and make the others while the user reviews it. Their feedback on it shapes the rest
+- **The images show only the product, exactly as the user would see it.** No annotations, numbered markers, side notes, "screen 1 of 3" labels, pain call-outs, design-check results or review comments. Reasoning goes in `visual-design.md`, never in the image
+- `visual-design.md`: the images, the reasoning for each screen, brand values and their source
+- Agree all of them with the user before building anything clickable. Cheap to change now, expensive later
+
+## 3. Clickable prototype (`clickable-prototype.md`, then PRs)
+- **Build** on a branch:
+  - The engine (numbers, checks, method, rows) separate from the interpreter (input → choices, never a number)
+  - No real data yet: a seeded synthetic file in the run, labelled as synthetic
+  - Tests from the test set; run them after every change
+  - Labels and verdicts generated from the numbers, never typed by hand
+- **Check before showing anyone:** walk it end to end in a real browser and look at the screenshots. Then ask:
+  - Can a first-time user tell in five seconds what the screen is for and what to do next?
+  - Does each principle above hold on the real screens?
+  - Are the numbers right, and are the limits stated?
+- **PR** with screenshots, how to run it and the test results
+- For people who can't run it: a clickable demo built from the real UI that replays precomputed answers, with a note on what it can't do
+- `clickable-prototype.md`: how it's built, how to run it, check results, the PR and demo links, feedback rounds, open items
+
+## After the prototype
+- **Test with users** (`pm-prototype-review`): they think aloud while I watch. Feedback goes back into the file it changes (a screen's inputs or checks → `solution-detail.md`, its look → `visual-design.md`), logged as a round in `clickable-prototype.md`
+- **Hand-off:** solution detail plus visual design are the spec. Rebuild with real components, one PR per screen with tests, behind a feature flag; an engineer reviews; check in staging
+- **Release and measure** against targets agreed in advance; iterate if it misses, scale if it hits
 
 ## Under time pressure
 - Get a usable version in front of people early, then improve it
 - Narrate what I'm building, what I'm leaving out, and why
 - Leave time to finish: check the numbers and walk the flow once
-
-## `design.md` (per run)
-Success · who does what · flow · decisions · visual design (images, plus the reasoning for each screen in text) · screen spec · test set · limits shown in the product · check results · brand values and their source · feedback rounds · open items
