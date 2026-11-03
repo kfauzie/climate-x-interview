@@ -47,7 +47,8 @@ Input: `solution.md` (what to build, the slice, success criteria). Output: `runs
 3. **Visual design (static images first).** Key screens as polished, realistic mock-ups, not clickable:
    - Real content: their actual question, real numbers from code, their terms
    - The happy path, plus the one screen that matters most for trust (e.g. the review screen, or a failure being caught)
-   - Made in Figma when connected, otherwise a static HTML mock rendered to PNG. Annotate what each element is for
+   - Made in Figma when connected, otherwise a static HTML mock rendered to PNG
+   - **The images show only the product, exactly as the user would see it.** No annotations, numbered markers, side notes, "screen 1 of 3" labels, pain call-outs, design-check results or review comments. Anything about the design goes in `design.md`, never in the image
    - Review them with the user and agree before building anything clickable. Cheap to change now, expensive later
 4. **Screen spec:** for each screen, input, output, happy path, edge cases with the exact message, acceptance criteria. A real failure the customer described is the main edge case
 5. **Test set:** their examples, a real failure and an out-of-scope request, with expected answers computed by code
@@ -56,7 +57,7 @@ Input: `solution.md` (what to build, the slice, success criteria). Output: `runs
    - No real data yet: a seeded synthetic file in the run, labelled as synthetic
    - Tests from the test set; run them after every change
    - Labels and verdicts generated from the numbers, never typed by hand
-7. **Check before showing anyone:** walk it end to end in a real browser and look at the screenshots. Then ask:
+7. **Check before showing anyone** (results go in `design.md`, never on the screens): walk it end to end in a real browser and look at the screenshots. Then ask:
    - Can a first-time user tell in five seconds what the screen is for and what to do next?
    - Does each principle above hold on the real screens?
    - Are the numbers right, and are the limits stated?
@@ -72,4 +73,4 @@ For people who can't run it: a clickable demo built from the real UI that replay
 - Leave time to finish: check the numbers and walk the flow once
 
 ## `design.md` (per run)
-Success · who does what · flow · decisions · visual design (images and annotations) · screen spec · test set · limits shown in the product · check results · brand values and their source · feedback rounds · open items
+Success · who does what · flow · decisions · visual design (images, plus the reasoning for each screen in text) · screen spec · test set · limits shown in the product · check results · brand values and their source · feedback rounds · open items
