@@ -1,13 +1,13 @@
 ---
-name: pm-problem-to-solution
+name: pm-3-problem-to-solution-concept
 description: "Turn discovery notes and data findings into a solution concept: a problem statement and a recommendation on what's worth building: 2–3 options with trade-offs, one pick, the narrowest slice, success criteria and the riskiest assumption. Use after the interview and the data Test, before design."
 ---
 
-# Problem to solution
+# Problem to solution concept
 
 Start from the problem, not the feature request. Build the simplest thing that solves it, and only go more complex once that's been tested and falls short.
 
-Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/interview.md`, the `pm-data-discovery` Test results; the company and product skills for background. Output: `runs/run-N/solution-concept.md`, shown in chat first. Keep it to one screen; it gets narrated live.
+Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/interview.md`, the `pm-1-data-discovery` Test results; the company and product skills for background. Output: `runs/run-N/solution-concept.md`, shown in chat first. Keep it to one screen; it gets narrated live.
 
 ## 1. Problem
 - The ask, word for word, and why it's a solution rather than a problem

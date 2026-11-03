@@ -25,15 +25,15 @@ runs/run-N/
 ## Workflow
 | Step | Who | Skill | Output |
 |---|---|---|---|
-| 1. Data and context arrive | Claude | `pm-data-discovery` (Profile; start with `python3 tools/cxlens.py profile <csv>`) | new `runs/run-N/`, `RUN.md` with the profile and the ask word for word, notebook |
-| 2. Discovery questions | Claude | `pm-discovery-interview` | `discovery-questions.md` + new Notion page |
+| 1. Data and context arrive | Claude | `pm-1-data-discovery` (Profile; start with `python3 tools/cxlens.py profile <csv>`) | new `runs/run-N/`, `RUN.md` with the profile and the ask word for word, notebook |
+| 2. Discovery questions | Claude | `pm-2-discovery-interview` | `discovery-questions.md` + new Notion page |
 | 3. Interview | me | | notes in that Notion page |
-| 4. Summarise the problem | Claude | `pm-data-discovery` (Test) | `notes/interview.md` (one fetch of the meeting notes with transcript, saved as is), problem statement in `RUN.md` |
-| 5. Solution concept | Claude | `pm-problem-to-solution` | `solution-concept.md` |
-| 6. Solution detail | Claude | `pm-design` | `solution-detail.md`: each screen, its inputs (mandatory or not), checks, edge cases |
-| 7. Visual design | Claude | `pm-design` | `visual-design.md` + static images of the key screens, one shown first; agreed with me |
-| 8. Clickable prototype | Claude | `pm-design` | `clickable-prototype.md`, the prototype on a branch + PR |
-| 9. Prototype review | me + Claude | `pm-prototype-review` | `prototype-review.md` + new Notion page; feedback back into the files above |
+| 4. Summarise the problem | Claude | `pm-1-data-discovery` (Test) | `notes/interview.md` (one fetch of the meeting notes with transcript, saved as is), problem statement in `RUN.md` |
+| 5. Solution concept | Claude | `pm-3-problem-to-solution-concept` | `solution-concept.md` |
+| 6. Solution detail | Claude | `pm-4-solution-detail` | `solution-detail.md`: each screen, its inputs (mandatory or not), checks, edge cases |
+| 7. Visual design | Claude | `pm-5-visual-design` | `visual-design.md` + static images of the key screens, one shown first; agreed with me |
+| 8. Clickable prototype | Claude | `pm-5-visual-design` | `clickable-prototype.md`, the prototype on a branch + PR |
+| 9. Prototype review | me + Claude | `pm-6-prototype-review` | `prototype-review.md` + new Notion page; feedback back into the files above |
 
 Keep each step quick: about 15 minutes of the session is interview; the rest is synthesis, design and the build. Show results in chat first, commit once per step.
 

@@ -6,11 +6,12 @@ How I go from a customer's data and a short interview to a prototype they'd trus
 **General PM, any customer**
 | Skill | |
 |---|---|
-| [`pm-data-discovery`](.claude/commands/pm-data-discovery.md) | What the data is, what to trust, which choices change the answer |
-| [`pm-discovery-interview`](.claude/commands/pm-discovery-interview.md) | Finding the problem behind the ask, in 15 minutes |
-| [`pm-problem-to-solution`](.claude/commands/pm-problem-to-solution.md) | Solution concept: what's worth building, and the narrowest slice |
-| [`pm-design`](.claude/commands/pm-design.md) | Solution detail (each screen, inputs, checks), visual design, clickable prototype |
-| [`pm-prototype-review`](.claude/commands/pm-prototype-review.md) | Testing the prototype with the people who'd use and approve it |
+| [`pm-1-data-discovery`](.claude/commands/pm-1-data-discovery.md) | What the data is, what to trust, which choices change the answer |
+| [`pm-2-discovery-interview`](.claude/commands/pm-2-discovery-interview.md) | Finding the problem behind the ask, in 15 minutes |
+| [`pm-3-problem-to-solution-concept`](.claude/commands/pm-3-problem-to-solution-concept.md) | Solution concept: what's worth building, and the narrowest slice |
+| [`pm-4-solution-detail`](.claude/commands/pm-4-solution-detail.md) | What each screen does: inputs, mandatory or not, checks. Design principles |
+| [`pm-5-visual-design`](.claude/commands/pm-5-visual-design.md) | Static images of the key screens, then the clickable prototype and PR |
+| [`pm-6-prototype-review`](.claude/commands/pm-6-prototype-review.md) | Testing the prototype with the people who'd use and approve it |
 
 **Climate X context**
 | Skill | |

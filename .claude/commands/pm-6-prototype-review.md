@@ -1,5 +1,5 @@
 ---
-name: pm-prototype-review
+name: pm-6-prototype-review
 description: "Run a prototype review with the customer and their gatekeepers: what to test, a 15-minute script built on the customer's own example, questions, what to measure, and the per-run review page. Use before showing a prototype, or when turning review feedback into the next design round."
 ---
 

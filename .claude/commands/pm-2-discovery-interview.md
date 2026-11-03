@@ -1,5 +1,5 @@
 ---
-name: pm-discovery-interview
+name: pm-2-discovery-interview
 description: "My approach to customer discovery interviews: how I run them, follow-up triggers, how I write the questions, and a 15-minute question template customised per run from the customer profile and data findings. Use when preparing, running or reviewing a discovery call."
 ---
 
