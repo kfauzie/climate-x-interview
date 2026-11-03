@@ -1,42 +1,42 @@
 # Run N: prototype review with <customer>
 
-<!-- Copy to runs/run-N/prototype-review.md and fill in. About 15 minutes. Delete these comments. -->
+<!-- Copy to runs/run-N/prototype-review.md. ~15 min. -->
 
-**Who:** <decision owner>, <day-to-day user>, <gatekeeper> · **Prototype:** <link to app or clickable demo> · **Data:** <real / practice / synthetic, said plainly>
-**Goal:** test problem fit, trust, adoption, and the riskiest assumption: *<from solution.md>*
+**Who:** <owner>, <user>, <gatekeeper> · **Prototype:** <link> · **Data:** <real / practice / synthetic>
+**Riskiest assumption:** <from solution.md>
 
-## 1. Recap the problem (1–2 min)
-> "Last time you said <their words, biggest pain first>. <Second pain>. Have I got that right?"
+## Recap (1–2 min)
+> "Last time you said <biggest pain>. <Second pain>. Have I got that right?"
 
-## 2. Walkthrough (4–5 min)
-> "We built something to test one idea: <one sentence>. It doesn't <what it deliberately leaves out> yet. It runs on <data>."
+## Walkthrough (4–5 min)
+> "We built something to test one idea: <one line>. It doesn't <what's left out> yet. It runs on <data>."
 
-| Step | What I show | What I say (their words) | Pain it addresses |
+| Step | Show | Say (their words) | Pain |
 |---|---|---|---|
 | 1 | | | |
 | 2 | | | |
-| 3 | <a failure they described, caught> | | |
+| 3 | <a failure, caught> | | |
 
-> Where AI is and isn't used: "<plain-language sentence>"
+> AI: "<one plain line>"
 
-## 3. Hands on (3 min, if possible)
-- Second example for them to drive: <their question>. Ask them to think aloud. Note hesitations
+## Hands on (3 min)
+- Their second example: <question>. Note completion, time, hesitations
 
-## 4. Questions (4–5 min)
-1. **Problem fit:** …
-2. **Trust (owner):** …
-3. **Trust (gatekeeper):** …
-4. **Adoption:** …
-5. **Gaps:** …
-6. **Next step / pilot:** …
+## Questions (4–5 min)
+1. Fit: …
+2. Trust (owner): …
+3. Trust (gatekeeper): …
+4. Adoption: …
+5. Gaps: …
+6. Pilot: …
 
-*Hypotheses (what I expect to hear, so I notice surprises):* …
+*Hypotheses:* …
 
-## 5. Next steps (1–2 min)
-- Pilot shape: <who, which questions, which data, how long>
-- Permission for follow-up questions; test data request
+## Next steps (1–2 min)
+- Pilot: <who, which questions, which data, how long>
+- Follow-ups OK? Test data?
 
-## If time allows
+## If time
 - …
 
 ## Notes

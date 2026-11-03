@@ -1,19 +1,19 @@
 # Live build session
 
-## Why this repo exists
-Preparation for a live prototyping interview for a Principal PM role (senior IC) at Climate X. Confidential: keep this repo private.
+Confidential: keep this repo private.
 
-## The session
-- Live build session, remote with screen share, with **Kevin Luo** (leads product). Kevin hands over a real dataset of Climate X outputs during the session, which will differ from any practice run, and asks for a new feature built on it
-- **Kevin role-plays an enterprise customer.** Run live discovery on him first, get past the stated ask to the real workflow problem, and keep asking while building so every trade-off traces back to something he said
-- Kamil Kluza (co-founder): the prep page lists him for the session, but that is wrong. Per the candidate, the session is with Kevin, and the conversation with Kamil only happens **if it goes well**. Kamil brings a founder's lens: commercial impact, product strategy, the Series B vision
-- Considered for **Seat 1 (Customer & UX / Discovery)**: discovery-centric, with LLM familiarity as support. Frame value commercially (investment and lending decisions; ROI = time saved, consultant cost avoided, better decisions), not as safety
-- Assessed on thinking and outcome, not polish. AI tools are encouraged
-- What lands:
-  - think out loud and narrate choices
-  - take the work as far as something an engineer can review (a PR, not a spec)
-  - make AI output trustworthy for regulated, decision-grade use (evals, golden datasets, human in the loop, thresholds, failure modes, the line between deterministic and AI)
-  - keep the commercial thread: customer value, adoption, conservative enterprise buyers
+## Format
+- Remote, screen share, with Kevin Luo. He sends a real Climate X data pack shortly before; I build a new feature on it live
+- He role-plays an enterprise customer → discovery first: past the ask to the real workflow problem; keep asking while building so every trade-off traces to something he said
+- Two-way: he'll nudge; narrate as I go
+- Assessed on thinking and outcome, not polish. AI tools encouraged
+- If it goes well: a separate conversation with Kamil (commercial impact, strategy)
 
-## Private prep notes
-Recruiter feedback and personal prep for this stage are kept outside the repo, in my private Notion (ClimateX → Second-stage prep notes). Don't copy them back here.
+## What lands
+- Narrate choices: what I'm building, leaving out, and why
+- Get to something an engineer can review (a PR, not a spec)
+- Trustworthy for decision-grade use: numbers in code, AI for interpretation, human checks, audit trail
+- Commercial thread: customer value, adoption, conservative buyers
+
+## Private prep
+Recruiter feedback and personal notes live in my private Notion (ClimateX → Second-stage prep notes). Not in this repo.

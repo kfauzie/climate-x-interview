@@ -7,18 +7,18 @@ How I prepare for and run customer discovery on Climate X data, with Claude Code
 ### General PM skills (reusable for any customer)
 | Skill | Purpose |
 |---|---|
-| [`pm-data-discovery`](.claude/skills/pm-data-discovery/) | Analyse a dataset for discovery: Profile, Test and Answer modes, trust checks, judgment calls, product implications |
-| [`pm-discovery-interview`](.claude/skills/pm-discovery-interview/) | Principles for discovery questions and a base template, customised per run |
-| [`pm-problem-to-solution`](.claude/skills/pm-problem-to-solution/) | Turn interview notes and data into a problem summary, options with trade-offs, and a recommended solution |
-| [`pm-design`](.claude/skills/pm-design/) | Design philosophy and process: what's worth building, success defined first, trust and ease of use for non-technical users, design brief, review checklist, prototype as spec |
-| [`pm-prototype-review`](.claude/skills/pm-prototype-review/) | Review the prototype with the customer: a script built on their example, questions on fit, trust and adoption |
+| [`pm-data-discovery`](.claude/skills/pm-data-discovery/) | Analyse a dataset: what it is, what to trust, which choices change the answer (Profile, Test, Answer) |
+| [`pm-discovery-interview`](.claude/skills/pm-discovery-interview/) | Discovery interviews: principles, a 15-minute plan, follow-up triggers, base template |
+| [`pm-problem-to-solution`](.claude/skills/pm-problem-to-solution/) | Problem statement and what's worth building: options, pick, narrowest slice, riskiest assumption |
+| [`pm-design`](.claude/skills/pm-design/) | Design for AI products non-technical users trust: principles, flow → screens → prototype as spec, checklist |
+| [`pm-prototype-review`](.claude/skills/pm-prototype-review/) | Review the prototype with the customer: script on their example, questions, what to measure |
 
 ### Climate X context
 | Skill | Purpose |
 |---|---|
-| [`climate-x-company`](.claude/skills/climate-x-company/) | Mission and values, funding, methodology, regulation (PRA SS5/25), banking use cases, partners, thought leadership, brand, competitors, with sources |
-| [`climate-x-products`](.claude/skills/climate-x-products/) | Spectra, Adapt and Adaptation Finance, Carta, Infrastructure Screener: customers, value proposition, strengths, weaknesses, opportunities, discovery questions |
-| [`climate-x-role`](.claude/skills/climate-x-role/) | The Principal PM role, positioning, and the live build session |
+| [`climate-x-company`](.claude/skills/climate-x-company/) | Company, method, regulation (PRA SS5/25), customers, partners, competitors, brand, sources |
+| [`climate-x-products`](.claude/skills/climate-x-products/) | Spectra, Adapt, Carta, Infrastructure Screener: what each does, buyers, gaps, opportunities, questions |
+| [`climate-x-role`](.claude/skills/climate-x-role/) | The role, round-1 learnings, my evidence, positioning, the live session |
 
 ### Everything else
 | What | Where | Purpose |
