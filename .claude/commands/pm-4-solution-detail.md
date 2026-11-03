@@ -21,7 +21,7 @@ Input: `solution-concept.md`. Output: `runs/run-N/solution-detail.md`, agreed wi
 - Honest about uncertainty: say "unsure" and why. Flag what's unstated, ambiguous or not in the data instead of guessing
 - People stay in control: easy to review, override and configure. Their overrides become test cases
 - AI interprets, code computes. AI turns messy input into choices the user confirms; it never shows a number
-- Every value shows where it came from: the user, a default, or a change
+- Every value shows where it came from (the user's words, a default and where it's written, the data rows), and one click confirms it
 - State the limits in the product: what it won't do, and a way to stop. A stated limit builds more trust than a hidden one
 - Earn trust in stages: offline tests, then shadow mode beside the current process, then a pilot
 
