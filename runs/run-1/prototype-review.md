@@ -1,11 +1,11 @@
 # Run 1: prototype review with Sarah Okafor
 
-Made with the `pm-prototype-review` skill from `RUN.md`, `solution.md`, `design.md` and `notes/sarah-followup.md`. About 15 minutes.
+Made with the `pm-prototype-review` skill from `RUN.md`, `solution-concept.md`, `solution-detail.md`, `visual-design.md` and `notes/sarah-followup.md`. About 15 minutes.
 
 **Who:** Sarah Okafor (Head of Climate Risk, decision owner), one of her analysts (day-to-day user), someone from model risk (gatekeeper; Sarah: "if it involves AI, someone from model risk should hear it early")
 **Prototype:** the app on the `prototype/answer-with-method` branch, or the clickable demo (share the link before the session, or screen-share)
 **Data, said plainly:** practice portfolio data and a made-up loan book. No real loan data until procurement signs
-**Riskiest assumption to test** (from `solution.md`): a step-by-step trace of each figure is enough for model risk to approve. Her model risk criteria: documented method, reproducible numbers, independent validation, a named owner
+**Riskiest assumption to test** (from `solution-concept.md`): a step-by-step trace of each figure is enough for model risk to approve. Her model risk criteria: documented method, reproducible numbers, independent validation, a named owner
 
 ## 1. Recap the problem (1–2 min)
 > "Last time you said it all runs through you, so you're the bottleneck: every answer comes to you to check the scenario and horizon, which loans are in or out, that it reconciles to the book, and that the write-up reads well. And the answers rarely end there: someone always asks about the severe scenario, and you start again. Have I got that right?"

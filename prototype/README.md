@@ -1,6 +1,6 @@
 # Prototype: answer with its method
 
-A web app where an analyst turns a plain-English question into confirmed choices, code computes the answer with its method note and checks, and the reviewer approves it, with fast-track review for one-change follow-ups. Design: `runs/run-1/design.md`.
+A web app where an analyst turns a plain-English question into confirmed choices, code computes the answer with its method note and checks, and the reviewer approves it, with fast-track review for one-change follow-ups. Spec: `runs/run-1/solution-detail.md` and `runs/run-1/visual-design.md`.
 
 ## Run it
 ```bash
@@ -19,7 +19,7 @@ python3 prototype/demo/build_demo.py demo.html
 ```bash
 python3 -m pytest prototype/tests -q
 ```
-The tests are the design's test set: her three example questions, the treasury rise, the sent-back draft (must fail 3 checks), an out-of-scope question, departures needing a reason, reproducibility, the review flow and fast-track.
+The tests are the test set in `solution-detail.md`: her three example questions, the treasury rise, the sent-back draft (must fail 3 checks), an out-of-scope question, departures needing a reason, reproducibility, the review flow and fast-track.
 
 ## How it's built
 | File | Role |
