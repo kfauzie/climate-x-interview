@@ -7,7 +7,7 @@ description: "Turn discovery notes and data findings into a solution concept: a 
 
 Start from the problem, not the feature request. Build the simplest thing that solves it, and only go more complex once that's been tested and falls short.
 
-Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/interview.md`, the `pm-1-data-discovery` Test results; the company and product skills for background. Output: `runs/run-N/solution-concept.md`, shown in chat first. Keep it short; it gets narrated live.
+Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/interview.md`, the `pm-1-data-discovery` Test results; the company and product skills for background. Output: `runs/run-N/solution-concept.md`, shown in chat first. It gets screen-shared and narrated, so it's written to be followed at a glance (see Presenting it).
 
 ## 1. Problem
 - The ask, word for word, and why it's a solution rather than a problem
@@ -49,7 +49,14 @@ Name each option by what it does for whom ("Analysts answer it themselves; the m
 - Next step: who sees the prototype, and what I'll ask them
 
 ## 5. Worked example
-One real request from the notes, walked through: today (who does what, how long, what went wrong) vs with the pick (each step, who does it, what they see and click, the actual numbers from code). Ends with what the approver does and how long it took.
+One real request from the notes, as a table: step | today (who, how long, what went wrong) | with the pick (who, what they see and click, the actual numbers from code). Last row: what the approver does and how long it took.
+
+## Presenting it
+- Open with one line: the problem, who it's for, the pick
+- Tables over paragraphs; a few words per cell; one point per line
+- Quotes cut to the words that carry them
+- Bold only the decision and the key numbers
+- Anything that doesn't change the decision goes
 
 ## Rules
 - Evidence or it doesn't go in
