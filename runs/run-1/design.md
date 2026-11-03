@@ -31,7 +31,13 @@ From `solution.md`, `notes/interview.md` and `notes/sarah-followup.md`. Status: 
 4. Output: **email text plus Excel**, as today: **yes**
 5. Prototype scope: **steps 1–6 plus 8** on the practice data, with a small made-up loan book to show the join, exclusions and staleness check; step 0 simulated; step 7 as a log only: **yes**
 
-## Screens (prototype scope: steps 1–6 + 8)
+## Visual design (static, before anything clickable)
+Source: `design/visual-design.html`; images `design/screen-1.png` to `screen-3.png`. Climate X brand and product conventions; every count, balance and loan from the run 1 engine (practice data).
+1. **Confirm how to answer it** (removes deciding scenario, horizon and loans): one line on the defaults in use; each choice tagged by where it came from; the unstated scenario flagged, not silently filled; suggestions from her own write-ups; "+ Add a choice"
+2. **The answer, with its method** (removes the write-up and "what about severe?"): one headline in her format (4 of 235 CRE loans, £7.1m of £580.3m); one-change versions with plain verdicts (severe doubles it; 2030 same count, different loans); method note in her fields; checks; **the 4 loans on screen** and an **"About this answer" limits note** (closes both checklist gaps)
+3. **Sarah's review: a draft with three slips** (removes half a day of checking): failed checks first, each in plain words with its effect; drafted vs fixed number side by side (4 of 236, £6.2m vs 4 of 235, £7.1m); send back pre-filled, approve still possible and logged
+
+: steps 1–6 + 8)
 Practice-data values below were computed with `tools/cxlens.py` (central = `ssp245`, severe = `ssp585`, inferred). Sarah's own figures are made up, so only the *shape* of her questions is used.
 Common to every screen: plain risk language (no "model", "LLM", "eval"); the data dates (Spectra export and loan book) shown in the header; a step indicator (Ask → Confirm → Answer → Review).
 
