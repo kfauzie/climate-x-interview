@@ -26,17 +26,19 @@ Behind it: every audience (CRO, committees, pricing, treasury, IR, the PRA) shou
 **Why now:** none stated. The PRA can ask banks for evidence from June 2026.
 
 ## 2. Options, and which I recommend
-| | A. Analysts draft answers in the product; Sarah approves on one screen | B. Analysts build their own reports in Spectra (the ask) | C. The quarterly risk committee pack, automated |
-|---|---|---|---|
-| What it is | Analyst pastes the question; the product shows the choices with her defaults and flags gaps; code computes the answer, method note and severe and 2030 versions; Sarah approves; the product drafts the reply | Analysts pick filters and groupings in Spectra instead of Excel | The one repeating report, generated each quarter |
-| Fixes the top pain? | **Yes:** her check, the follow-ups and the write-up | Partly: the hour of filtering; not the choosing, write-up or her check | No: 1 of ~15 requests a month |
-| Value | Her review in minutes; follow-ups answered up front; same defaults every time | Some analyst hours | A small, predictable saving |
-| Adoption | Analysts daily; Sarah approves; askers stay on email | Analysts learn a new interface | None needed |
-| What model risk needs | Every number from code, with a method note and a log per answer | No method trace | Easy to approve |
-| Revenue (hypothesis) | Keeps an 18-month customer; more seats and audiences; repeatable for any bank on Spectra | Table stakes | Low |
-| Effort and risk | Medium. Risk: model risk's bar is higher than we think | Medium. Risk: faster reports, longer queue on her desk | Small. Risk: too small to matter |
+How the analyst enters the choices (dropdowns or AI reading the question) is a detail. What separates the options is what happens after the number.
 
-**Recommendation: A.** It goes at what she called the bottleneck, her check and the follow-ups that restart it, and every number is computed by code and traceable, which is model risk's condition. It still delivers the ask: her analysts build the answers themselves, within her defaults.
+| | A. Report builder with her defaults, a method note it writes, and her approval | B. Report builder (the ask as stated) | C. Her defaults and write-up as a template |
+|---|---|---|---|
+| What it is | Analyst picks loans, hazard, rating, scenario and year, pre-set to her defaults; code computes the answer, method note, checks and the severe and 2030 versions; Sarah approves on one screen; the product drafts the reply | Analysts pick filters and groupings in Spectra instead of Excel, and get a table | A one-page template of her defaults and write-up fields, filled in by hand |
+| Fixes the top pain? | **Yes:** her check, the follow-ups and the write-up | Partly: the hour of filtering; not the write-up or her check | Partly: fewer slips; still manual |
+| Value | Her review in minutes; "what about severe?" answered up front; same defaults every time | Some analyst hours; may lengthen her queue | Fewer send-backs |
+| Adoption | Analysts daily; Sarah approves; askers stay on email | Analysts learn a new interface | A form to fill in |
+| What model risk needs | Every number from code, with a method note and a log per answer | Numbers from code, but no method or log | A documented method; nothing reproducible |
+| Revenue (hypothesis) | Keeps an 18-month customer; more seats and audiences; repeatable for any bank on Spectra | Table stakes | None |
+| Effort and risk | Medium. Risk: analysts still pick the wrong options | Medium. Risk: faster reports, longer queue on her desk | Small. Risk: too small to matter |
+
+**Recommendation: A.** It's the builder she asked for, plus what turns its output into an answer she can approve in minutes: her defaults pre-set, the method written for her, checks that catch the slips she catches today, and one screen to approve. Every number is computed by code and traceable, which is model risk's condition.
 
 ## 3. The recommended solution
 **Workflow**, with her credit committee question: "How many CRE loans have a flood rating of E or worse by 2050?"
@@ -44,7 +46,7 @@ Behind it: every audience (CRO, committees, pricing, treasury, IR, the PRA) shou
 | Step | Who | What they do | What the product does | In the example (practice data) |
 |---|---|---|---|---|
 | 1. Ask | CRO, committees, pricing, treasury, IR | Email or Teams, as today. Never touch the product | | Credit committee emails the question |
-| 2. Draft | **Analyst** | Pastes the question, checks the choices, submits | Reads the question into choices, each with its source; computes the answer, method note, checks and the other versions | 2050 ← "by 2050"; central ← her paper; "scenario not stated" flagged. **4 of 235 CRE loans, £7.1m of £580.3m**; severe 8 loans, £17.0m |
+| 2. Build | **Analyst** | Pastes the question, picks the audience, adjusts the options, submits | Pre-sets her defaults for the audience; computes the answer, method note, checks and the other versions | "Credit committee" → central, 2050 (her paper); picks CRE, flood, E or worse. **4 of 235 CRE loans, £7.1m of £580.3m**; severe 8 loans, £17.0m |
 | 3. Review | **Sarah** | Approves, or sends back with a comment | Shows failed checks first; logs her decision | 6 of 6 checks pass; approves in minutes. The slipped draft would show its 3 failed checks first |
 | 4. Send | Analyst | Sends it | **Drafts the reply email and the Excel file** | Email text plus the 4 loans |
 
@@ -56,10 +58,11 @@ Model risk, IT, procurement and the CRO sign off the product once.
 - Not yet: real loan data until procurement signs (a synthetic loan book stands in), PowerPoint, the quarterly pack
 - Could go: one set of defaults behind every audience's numbers
 
-**AI and its sources**
-- AI only reads the question into choices. Each shows its source, one click away: the words in the question, the default and the paragraph of her methodology paper, or the analyst's change and reason
-- AI never produces a number. Code computes every number, the method note and the other versions; clicking a number shows the loan rows behind it
-- A person checks twice: the analyst confirms the choices, Sarah approves the answer
+**Sources and where AI fits**
+- Every value shows its source, one click away: a default and the paragraph of her methodology paper, or the analyst's change and their reason. Clicking a number shows the loan rows behind it
+- Checks are rules, not AI: e.g. the years in the pasted question must match the horizon picked, which catches the 2030-for-2050 slip
+- No AI in the first version. Later, AI can pre-fill the builder from the question, each pre-filled option showing the words it came from. It never produces a number
+- A person checks twice: the analyst picks the options, Sarah approves the answer
 
 **Model risk's conditions** (her follow-up email)
 - Documented method: a method note per answer, in her write-up fields
@@ -72,6 +75,6 @@ Model risk, IT, procurement and the CRO sign off the product once.
 - Guardrail: nothing is sent unapproved; every figure rebuilds the same
 - Test cases: her three example questions, the treasury rise, the sent-back draft (must fail 3 checks), "loss to the bank" (refused)
 
-**Riskiest assumption:** a method note and the source rows are enough for model risk. The prototype tests it by showing Sarah and a model risk contact the trace for one figure.
+**Riskiest assumption:** with defaults pre-set and the checks running, Sarah's review really drops to minutes. The prototype tests it by giving an analyst the sent-back case and timing Sarah's review. Second: whether a method note and source rows are enough for model risk, tested by showing them one figure's trace.
 
 **Next step:** a working prototype on her own examples with Sarah, an analyst and someone from model risk. Ask: "Would you sign off this answer from this screen? What's missing?"
