@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Run 1 visual design: answer with its method</title>
+<title>Answer with its method</title>
 <style>
-/* Visual design for run 1. Static artboards, not clickable. Numbers come from prototype/engine.py on the run 1 practice data.
+/* Run 1 visual design: the product only, no annotations (reasoning is in design.md). Numbers come from prototype/engine.py on the run 1 practice data.
    Brand: Climate X (Graphik → Inter as the stand-in here; red #e01e1a, charcoal #343a40, off-white #f9f9fa). */
 :root{
   --brand:#e01e1a; --brand-strong:#a11b14; --brand-soft:#fdecec; --ink:#343a40; --muted:#6c757d; --faint:#9aa1a8;
@@ -14,14 +14,14 @@
   --font:Graphik, Inter, Helvetica, Arial, sans-serif;
 }
 *{box-sizing:border-box} body{margin:0;background:var(--canvas);font:14px/1.5 var(--font);color:var(--ink);-webkit-font-smoothing:antialiased}
-.board{width:1600px;padding:36px 40px 40px;background:var(--canvas)}
+.board{width:1230px;padding:40px;background:var(--canvas)}
 .board + .board{border-top:1px solid #d5d9de}
 .bhead{display:flex;align-items:baseline;gap:16px;margin-bottom:18px}
 .bhead h1{font-size:22px;font-weight:600;margin:0;letter-spacing:-.01em}
 .bhead .k{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .bhead .pain{margin-left:auto;font-size:13px;background:var(--surface);border:1px solid var(--line2);border-radius:999px;padding:6px 14px}
 .bhead .pain b{color:var(--brand)}
-.grid{display:grid;grid-template-columns:1150px 1fr;gap:28px;align-items:start}
+.grid{display:block}
 /* app frame */
 .app{background:var(--bg);border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.06),0 12px 32px rgba(33,37,41,.12);border:1px solid #d5d9de}
 .top{background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:12px 24px}
@@ -94,8 +94,6 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
 
 <!-- =============== Screen 1 · Confirm =============== -->
 <section class="board" id="s1">
-  <div class="bhead"><span class="k">Screen 1 of 3</span><h1>Confirm how to answer it</h1>
-    <span class="pain">Removes: <b>deciding scenario, horizon and which loans</b> (most of the 3 days)</span></div>
   <div class="grid">
     <div class="app">
       <div class="top"><span class="brandname"><em></em>Answer with its method</span><span class="dates">Spectra export 30 Jun 2026 · Loan book 30 Sep 2026</span><span class="grow"></span><span class="seg"><span class="on">Analyst</span><span>Reviewer</span></span></div>
@@ -103,9 +101,9 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
         <div class="stepper"><span class="done"><span class="n">✓</span>Ask</span><span class="bar"></span><span class="on"><span class="n">2</span>Confirm</span><span class="bar"></span><span><span class="n">3</span>Answer</span><span class="bar"></span><span><span class="n">4</span>Review</span></div>
         <h2>Confirm how to answer it</h2>
         <p class="sub">“How many CRE loans have a flood rating of E or worse by 2050?” · Credit committee</p>
-        <div class="banner"><span class="m" style="left:-12px;top:-12px">1</span>Uses your <b>committee defaults</b>: central scenario, 2050. The system has read the question into the choices below. Nothing is calculated until you confirm, and every number comes from the files.</div>
+        <div class="banner">Uses your <b>committee defaults</b>: central scenario, 2050. The system has read the question into the choices below. Nothing is calculated until you confirm, and every number comes from the files.</div>
         <div class="card">
-          <span class="m" style="right:-12px;top:30px">2</span>
+          
           <p class="sec">What and who</p>
           <div class="row"><span class="k">Measure</span><span><span class="sel">Count of loans, with their balance</span></span><span class="t"><span class="tag q">From the question</span></span></div>
           <div class="row"><span class="k">Loans</span><span><span class="sel">Commercial real estate</span></span><span class="t"><span class="tag q">From the question</span></span></div>
@@ -114,35 +112,24 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
           <div class="row"><span class="k">Rating</span><span><span class="chips">
             <span class="rate off" style="background:var(--r-a)">A</span><span class="rate off" style="background:var(--r-b)">B</span><span class="rate off" style="background:var(--r-c)">C</span><span class="rate off" style="background:var(--r-d)">D</span><span class="rate on" style="background:var(--r-e)">E</span><span class="rate on" style="background:var(--r-f)">F</span><span class="rate on" style="background:var(--r-g)">G</span>
             <span style="color:var(--muted);font-size:13px;margin-left:6px">E or worse</span></span></span><span class="t"><span class="tag q">From the question</span></span></div>
-          <div class="add"><span class="m" style="left:-12px;top:10px">5</span>+ Add a choice <span class="chip">Region</span><span class="chip">Property type</span></div>
+          <div class="add">+ Add a choice <span class="chip">Region</span><span class="chip">Property type</span></div>
         </div>
         <div class="card">
           <p class="sec">Settings</p>
           <div class="row"><span class="k">Scenario</span><span><span class="chips"><span class="chip on">Central · SSP2-4.5</span><span class="chip">Severe · SSP5-8.5</span><span class="chip">Low · SSP1-2.6</span></span>
-            <div class="flag" style="position:relative"><span class="m" style="left:-36px;top:4px">3</span>The asker didn’t say which scenario. Using central (committee default).</div></span><span class="t"><span class="tag">Default</span></span></div>
+            <div class="flag" style="position:relative">The asker didn’t say which scenario. Using central (committee default).</div></span><span class="t"><span class="tag">Default</span></span></div>
           <div class="row"><span class="k">Year</span><span><span class="chips"><span class="chip">2030</span><span class="chip on">2050</span></span></span><span class="t"><span class="tag q">From the question</span></span></div>
           <div class="row"><span class="k">Exclusions</span><span><span class="chips"><span class="chip on">In default</span><span class="chip on">Redeemed since the export</span><span class="chip">Maturing before 2030</span></span>
-            <div class="flag i" style="position:relative"><span class="m" style="left:-36px;top:4px">4</span>Your CRE write-up also excluded loans maturing before 2030. Apply that here?</div></span><span class="t"><span class="tag">Default</span></span></div>
+            <div class="flag i" style="position:relative">Your CRE write-up also excluded loans maturing before 2030. Apply that here?</div></span><span class="t"><span class="tag">Default</span></span></div>
         </div>
       </div>
-      <div class="actions"><span class="btn">← Back</span><span class="grow"></span><span class="m" style="right:236px;top:-10px">6</span><span class="btn p">Confirm and calculate →</span></div>
-    </div>
-    <div class="notes">
-      <div class="note"><div class="h"><i>1</i>Explains itself</div><p>One line says which defaults apply, what the system did and what it won’t do. The AI reads the question; it never produces a number.</p></div>
-      <div class="note"><div class="h"><i>2</i>Where each choice came from</div><p>Every row is tagged “From the question”, “Default” or “Changed by analyst”. The analyst checks the system’s reading in seconds instead of rebuilding it in Excel.</p></div>
-      <div class="note"><div class="h"><i>3</i>Honest about what wasn’t said</div><p>The asker gave no scenario. The default is applied visibly, not silently, so Sarah’s first check (“is this the scenario they asked for?”) is answered on screen.</p></div>
-      <div class="note"><div class="h"><i>4</i>Her method, not ours</div><p>Suggestions come from her own write-ups (the maturity exclusion, the flood definition). Changing one of her defaults asks for a reason that goes to her review.</p></div>
-      <div class="note"><div class="h"><i>5</i>Add what was missed</div><p>If the question named a region or property type the system missed, the analyst adds it here rather than starting again.</p></div>
-      <div class="note"><div class="h"><i>6</i>One action per step</div><p>Back bottom left, next bottom right, on every screen. Back keeps every edit.</p></div>
-      <p class="legend">Static design, not clickable. Practice data; numbers from the run 1 engine.</p>
+      <div class="actions"><span class="btn">← Back</span><span class="grow"></span><span class="btn p">Confirm and calculate →</span></div>
     </div>
   </div>
 </section>
 
 <!-- =============== Screen 2 · Answer =============== -->
 <section class="board" id="s2">
-  <div class="bhead"><span class="k">Screen 2 of 3</span><h1>The answer, with its method</h1>
-    <span class="pain">Removes: <b>the write-up and “what about severe?”</b> (2 extra days per follow-up)</span></div>
   <div class="grid">
     <div class="app">
       <div class="top"><span class="brandname"><em></em>Answer with its method</span><span class="dates">Spectra export 30 Jun 2026 · Loan book 30 Sep 2026</span><span class="grow"></span><span class="seg"><span class="on">Analyst</span><span>Reviewer</span></span></div>
@@ -152,7 +139,7 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
         <p class="sub">“How many CRE loans have a flood rating of E or worse by 2050?” · Credit committee · draft</p>
         <div class="layout">
           <div>
-            <div class="card"><span class="m" style="left:-12px;top:-12px">1</span>
+            <div class="card">
               <p class="sec">Answer <span class="tag q">✓ All 6 checks pass</span></p>
               <div class="bd">
                 <div class="big"><b>4</b> of 235 CRE loans</div>
@@ -160,7 +147,7 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
                 <div class="meter"><i style="width:1.22%;min-width:6px"></i></div>
                 <div style="font-size:12px;color:var(--muted)">1.2% of the CRE book by balance</div>
               </div></div>
-            <div class="card"><span class="m" style="left:-12px;top:-12px">2</span>
+            <div class="card">
               <p class="sec">If one choice changed</p>
               <div class="bd"><table class="vt">
                 <tr><td>Severe scenario</td><td>8 loans · £17.0m</td><td><span class="tag f">Doubles the answer</span></td></tr>
@@ -168,7 +155,7 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
                 <tr><td>Year 2030</td><td>4 loans · £6.2m</td><td><span class="tag a">Same count, different loans</span></td></tr>
                 <tr><td>Count properties</td><td>4 properties · £7.1m</td><td><span class="tag">Same answer</span></td></tr>
               </table></div></div>
-            <div class="card"><span class="m" style="left:-12px;top:-12px">3</span>
+            <div class="card">
               <p class="sec">Method note <span class="btn s">Copy</span></p>
               <div class="bd"><ol class="method">
                 <li>Scenario: central (SSP2-4.5). Horizon: 2050.</li>
@@ -179,7 +166,7 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
                 <li>Spectra export as at 30 Jun 2026, joined to the loan book as at 30 Sep 2026 on loan ID; 2 loans didn’t match and are listed separately.</li>
                 <li>Current balances, no allowance for repayment.</li>
               </ol></div></div>
-            <div class="card"><span class="m" style="left:-12px;top:-12px">4</span>
+            <div class="card">
               <p class="sec">Checks</p>
               <div class="bd">
                 <div class="ck"><span class="tag q">✓ Pass</span><span><b>Horizon matches the question:</b> 2050</span></div>
@@ -189,7 +176,7 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
               </div></div>
           </div>
           <aside>
-            <div class="card"><span class="m" style="right:-12px;top:-12px">5</span>
+            <div class="card">
               <p class="sec">The 4 loans</p>
               <div class="bd"><table class="mini">
                 <tr><td>Hotel · Yorkshire</td><td>£3.1m · E</td></tr><tr><td>Warehouse · South West</td><td>£1.8m · E</td></tr><tr><td>Mixed use · North West</td><td>£1.2m · E</td></tr><tr><td>Hotel · East of England</td><td>£1.1m · E</td></tr>
@@ -201,24 +188,13 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
           </aside>
         </div>
       </div>
-      <div class="actions"><span class="btn">← Back to choices</span><span class="grow"></span><span class="m" style="right:182px;top:-10px">6</span><span class="btn p">Submit to Sarah →</span></div>
-    </div>
-    <div class="notes">
-      <div class="note"><div class="h"><i>1</i>One headline, in her format</div><p>Count, then balance out of the total, exactly how her team writes it (“142 of 3,860 loans, £410m of £9.2bn”). Detail sits below, never above.</p></div>
-      <div class="note"><div class="h"><i>2</i>The follow-up, answered before it’s asked</div><p>“What about severe?” used to cost two days. Each one-change version comes with a plain verdict, so she sees which choices matter (severe doubles it) and which don’t.</p></div>
-      <div class="note"><div class="h"><i>3</i>Her write-up, written for her</div><p>The same fields her analysts write by hand: scenario, hazard definition, population, exclusions, data dates, join result, balance basis. One click to copy into the email.</p></div>
-      <div class="note"><div class="h"><i>4</i>What she checks today, done first</div><p>Horizon, freshness, scenario, loans in or out. Each check passes or fails in plain words.</p></div>
-      <div class="note"><div class="h"><i>5</i>Provenance and limits on screen</div><p>The actual loans behind the number, the settings used, and what this answer isn’t. Closes the two gaps from the prototype’s checklist (rows only in Excel; limits not stated in the app).</p></div>
-      <div class="note"><div class="h"><i>6</i>Ends in an action</div><p>Submit to Sarah. A failed check never blocks; it moves to the top of her screen and needs a note.</p></div>
-      <p class="legend">All counts, balances and loans from the run 1 engine (practice data).</p>
+      <div class="actions"><span class="btn">← Back to choices</span><span class="grow"></span><span class="btn p">Submit to Sarah →</span></div>
     </div>
   </div>
 </section>
 
 <!-- =============== Screen 3 · Review =============== -->
 <section class="board" id="s3">
-  <div class="bhead"><span class="k">Screen 3 of 3</span><h1>Sarah’s review: a draft with three slips</h1>
-    <span class="pain">Removes: <b>half a day of checking</b>, and a wrong figure reaching committee</span></div>
   <div class="grid">
     <div class="app">
       <div class="top"><span class="brandname"><em></em>Answer with its method</span><span class="dates">Spectra export 30 Jun 2026 · Loan book 30 Sep 2026</span><span class="grow"></span><span class="seg"><span>Analyst</span><span class="on">Reviewer</span></span></div>
@@ -226,14 +202,14 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
         <div class="stepper"><span class="on"><span class="n">1</span>Review</span></div>
         <h2>Review the answer</h2>
         <p class="sub">“How many CRE loans have a flood rating of E or worse by 2050?” · asked by Credit committee · built by an analyst</p>
-        <div class="callout"><span class="m" style="left:-12px;top:-12px">1</span>
+        <div class="callout">
           <h3>Look at these first: 3 checks failed</h3>
           <div class="slip"><span class="x">✕</span><span><b>Wrong horizon.</b> The question asks about 2050; this answer uses 2030.</span><span class="tag f">Changes the answer</span></div>
           <div class="slip"><span class="x">✕</span><span><b>Stale export.</b> The export is older than the loan book; 22 loans redeemed since then are included.</span><span class="tag f">Changes the answer</span></div>
-          <div class="slip" style="position:relative"><span class="m" style="left:-40px;top:6px">2</span><span class="x">✕</span><span><b>No scenario stated.</b> The note wouldn’t say which scenario was used.</span><span class="tag f">Can’t be defended</span></div>
+          <div class="slip" style="position:relative"><span class="x">✕</span><span><b>No scenario stated.</b> The note wouldn’t say which scenario was used.</span><span class="tag f">Can’t be defended</span></div>
           <div style="font-size:13px;color:var(--muted);margin-top:8px">Analyst’s note: “Needed for tomorrow’s committee.”</div>
         </div>
-        <div class="card"><span class="m" style="left:-12px;top:-12px">3</span>
+        <div class="card">
           <p class="sec">What this changes</p>
           <div class="bd"><div class="compare">
             <div class="c bad"><div class="lbl">As drafted</div><div class="v">4 of 236 loans · £6.2m</div><div style="font-size:12.5px;color:var(--fail)">2030 · scenario not stated · includes redeemed loans</div></div>
@@ -242,14 +218,7 @@ ol.method{margin:0;padding-left:18px;font-size:13px;display:grid;gap:4px}
         <div class="card dim"><p class="sec">Method note as drafted</p>
           <div class="bd"><ol class="method"><li>Scenario: <span class="hl">NOT STATED</span>. Horizon: <span class="hl">2030</span>.</li><li>Hazard: flood; rated E or worse.</li><li>Population: commercial real estate. Excludes loans in default.</li></ol></div></div>
       </div>
-      <div class="actions"><span class="btn">← Back to queue</span><span class="grow"></span><span class="m" style="right:330px;top:-10px">4</span><span class="btn">Approve anyway</span><span class="btn p">Send back with these 3 points</span></div>
-    </div>
-    <div class="notes">
-      <div class="note"><div class="h"><i>1</i>Problems first</div><p>What she’d find after half a day of checking is the first thing on the screen. If nothing failed, this box isn’t there and she reads the answer.</p></div>
-      <div class="note"><div class="h"><i>2</i>Each slip in plain words</div><p>Not error codes: what went wrong and whether it changes the answer or just can’t be defended. Each one looks small; together they change what goes to committee.</p></div>
-      <div class="note"><div class="h"><i>3</i>The effect, side by side</div><p>The drafted number next to the number with the checks fixed, both calculated by code, so she sees the impact without redoing the work.</p></div>
-      <div class="note"><div class="h"><i>4</i>Warn, don’t block</div><p>Send back comes pre-filled with the three points. She can still approve; the reason is logged with the answer, along with who asked, built and approved, for model risk.</p></div>
-      <p class="legend">Follow-ups that change one thing the asker requested (e.g. “what about severe?”) go to a lighter fast-track view showing only the change.</p>
+      <div class="actions"><span class="btn">← Back to queue</span><span class="grow"></span><span class="btn">Approve anyway</span><span class="btn p">Send back with these 3 points</span></div>
     </div>
   </div>
 </section>
