@@ -1,50 +1,73 @@
-# Run 1: solution concept (Sarah Okafor)
+# Run 1: solution concept
 
-Made with `pm-3-problem-to-solution-concept` from `RUN.md`, `notes/interview.md`, `notes/sarah-followup.md` and `notebooks/spectra_test.ipynb`. Practice-data numbers use central (`ssp245`, inferred) at 2050.
+**In one line:** Sarah is the bottleneck because every answer waits for her check. **Pick: analysts answer questions themselves with her defaults; Sarah approves each one on a single review screen.**
 
 ## 1. Problem
-**The ask:** "customized report builder to help her team product custom reports to answer any questions that the team may have". In the call: "I want my analysts configuring reports in Spectra directly rather than wrestling with a spreadsheet of hundreds of columns." That's a solution, and it targets the hour of filtering, not the days around it.
+**Ask:** "customized report builder" → a solution. It fixes the hour of filtering, not the days around it.
+**Problem:** "It all runs through me, so I'm the bottleneck."
 
-**In her words:** "It all runs through me, so I'm the bottleneck."
+| Evidence | Source |
+|---|---|
+| Filtering ~1 hour; the rest of **~3 days** is choosing scenario and horizon, then writing up | Call |
+| Her check: **up to half a day**, several a week | Call |
+| "What about severe?" restarts it. CRE flood: **4 loans** central → **8** severe | Call, data |
+| Sent-back draft: 3 small slips, count up "by about a third" | Follow-up |
 
-**Evidence**
-- "The filtering itself took maybe an hour. The rest went on deciding which scenario and horizon to use, whether to include loans in arrears, and then writing up how we got the number" (call; ~3 days end to end)
-- "Honestly, it's the checking… things queue up on my desk"; "half a day when it's a big one and I'm doing several a week" (call)
-- "Someone always comes back with, what about the severe scenario? And we start again" (call). The scenario changes some answers and not others: CRE flood E+ is 4 loans under central and 8 under severe; the treasury rise is 1.57× vs 2.74× (Test)
-- A draft she sent back had three small slips (wrong horizon, stale export, no scenario stated) that "together inflated the count by about a third" (follow-up)
-- Her write-ups already follow one shape (scenario, horizon, hazard, population, exclusions, data date, join), and her defaults are written down in a paper she owns (follow-up)
+**Size:** ~45 analyst days a month, plus her review (her estimate)
+**Why now:** none stated. PRA can ask for evidence from June 2026
 
-**Statement**
-- **Narrow:** Sarah needs each of the ~15 ad-hoc answers a month to be right and defensible before it leaves the team, but each is built by hand in Excel with choices made case by case and written up by hand, then queued for her check, causing 2–5 day turnarounds, follow-ups that restart the clock, and key-person risk
-- **Broad:** the bank needs climate numbers that are consistent and defensible across every audience (CRO, committees, pricing, treasury, IR, PRA), but every answer depends on one-off choices checked by one person
+## 2. Users
+| Role | Who | Uses the tool? |
+|---|---|---|
+| **Builds answers** | 3 analysts | Daily |
+| **Approves** | Sarah | Every answer |
+| Asks | CRO, committees, pricing, treasury, IR | No: email in, email + Excel out |
+| Signs off the tool | Model risk, IT, procurement, CRO | Once |
 
-**Why now:** none stated by her. Background: PRA SS5/25 lets supervisors ask for evidence from June 2026 and expects justified scenario choices and documented lineage (`climate-x-company`).
-
-**Size** (her estimates)
-- Time: "roughly 45 analyst days a month", plus several half-days a week of her review
-- Decisions: answers feed the CRO, credit committee, pricing and treasury; each follow-up adds ~2 days. Not quantified: what a late answer held up
-- Risk: a wrong scenario or a stale export reaching a committee or the PRA; all checking rests on one person
-
-## 2. Options
-| | A. Answer with its method | B. Report builder (the ask) | C. Defaults + write-up template |
+## 3. Options
+| | **A. Analysts answer; Sarah approves on one screen** | B. Analysts build reports in Spectra (the ask) | C. Defaults + write-up template |
 |---|---|---|---|
-| What it is | Analyst pastes the question; it's read into choices with her defaults applied and gaps flagged; code computes the answer, method note, checks and one-change versions; Sarah reviews failures first | Analysts pick filters and groupings in Spectra instead of Excel | Her defaults and write-up fields as a one-page template and Excel checklist |
-| Fixes the top pain? | **Yes:** her check, the follow-ups, the write-up | **Partly:** the hour of filtering only | **Partly:** fewer slips; still manual |
-| Value to the customer | Review in minutes; follow-ups answered up front; same defaults every time | Some analyst hours; may lengthen her queue | Fewer send-backs |
-| Adoption | Analysts daily, Sarah reviews; askers stay on email | Analysts learn a new tool | Easy, but relies on discipline |
-| Gatekeepers (model risk: documented method, reproducible, validated, named owner) | Every number from code, reproducible from the log; method note per answer; Sarah owns the defaults | No method trace | Documents the method; nothing reproducible |
-| Revenue (hypothesis) | Retention, more seats; repeatable for any bank on Spectra | Table stakes | None |
-| Fit with Climate X | Built on the Spectra export and its ratings; "trust in every number" | Generic BI | Services, not product |
-| Effort and risk | Medium. Risk: model risk's bar is higher | Medium. Risk: faster cuts, longer queue | Small. Risk: too small to matter |
+| Fixes her check? | **Yes** | No | Partly |
+| Fixes "what about severe?" | **Yes**, shown up front | No | No |
+| Change for analysts | Paste the question | Learn a report builder | Fill in a form |
+| Model risk | Method + log per answer | No trace | Method only |
+| For Climate X | Retention; repeats for any bank on Spectra | Table stakes | A service, not product |
+| Effort | Medium | Medium | Small |
+| Main risk | Model risk wants more | Faster reports, longer queue | Too small to matter |
 
-## 3. Pick: A, answer with its method
-**Why:** it goes at her bottleneck (the check and the follow-ups), and it meets model risk's condition by design: every number is computed and traceable. It still delivers the ask: analysts build answers themselves, within her defaults.
+## 4. Pick: A
+- **Ends in:** Sarah approves or sends back → email + Excel to the asker
+- **Covers:** counts, £ totals, shares, rises · by loans, hazard, rating · scenario and year
+- **Refuses:** "loss to the bank" (no default or insurance data), with the reason
+- **Still delivers the ask:** analysts build answers themselves
+- **Not yet:** real loan data (until procurement signs), PowerPoint, the quarterly pack
+- **Later:** one set of defaults behind every audience's numbers
 
-- **One job:** an answer Sarah can approve in minutes. Ends in **approve or send back**, then email text plus Excel
-- **Narrowest slice:** one analyst and Sarah; counts, £ totals, shares and rises, filtered by loans, hazard and rating, grouped by hazard or region, for a scenario and year. Refuses loss to the bank (no default or insurance data) with the reason. Steps: Ask → Confirm → Answer → Review
-- **Where it could go:** every audience gets numbers from one set of defaults, with a log ready for the PRA
-- **Left out:** loss to the bank; real loan data until procurement signs (synthetic loan book instead); PowerPoint export; the quarterly committee pack
-- **AI vs person:** AI only reads the question into choices; code computes everything; the analyst confirms the choices and Sarah approves the answer
-- **Success:** target, one of her questions asked to approved in a day, her review in minutes; guardrail, every figure reproducible from its log entry and nothing sent unapproved; test cases, her three example questions, the treasury rise, the sent-back draft (must fail 3 checks), "loss to the bank" (refused)
-- **Riskiest assumption:** a method note plus source rows per answer is enough for model risk. Test: show the trace for one figure to Sarah and a model risk contact and ask whether it would pass
-- **Next step:** prototype on her own examples with Sarah, an analyst and model risk. Ask: "Would you sign off from this screen? What's missing?"
+**AI only reads the question. Everything it touches has a source, one click away**
+| Choice | Source shown |
+|---|---|
+| From the question | The words highlighted ("by 2050") |
+| A default | Her methodology paper, the paragraph |
+| Changed by the analyst | Their reason, flagged to Sarah |
+| Any number | Code, never AI. Click → the loan rows |
+
+**Model risk's four conditions**
+| Condition | How |
+|---|---|
+| Documented method | Method note per answer, in her write-up fields |
+| Reproducible | Each answer logged (choices, file dates, version); rebuild gives the same number |
+| Independent validation | **Partly:** they get the code and a test set to run |
+| Named owner | Sarah per answer. **Open:** owner of the tool |
+
+**Success:** asked → approved in a day; her review in minutes. **Guardrail:** nothing sent unapproved.
+**Riskiest assumption:** method note + source rows is enough for model risk → show them one figure's trace.
+**Next:** prototype with Sarah, an analyst and model risk: "Would you sign off from this screen?"
+
+## 5. Example: "How many CRE loans have a flood rating of E or worse by 2050?"
+| Step | Today | With A (practice data) |
+|---|---|---|
+| Ask | Email; analyst filters Excel, ~1 hour | Analyst pastes it, picks "Credit committee" |
+| Choices | Analyst decides scenario, horizon, exclusions; writes up. Most of ~3 days | Shown with sources: 2050 ← "by 2050"; central ← her paper. "Scenario not stated" flagged. Confirm |
+| Answer | By hand | **4 of 235 CRE loans, £7.1m of £580.3m** · click → the 4 loans · severe: 8 loans, £17.0m |
+| Check | Sarah, up to half a day | 6 of 6 checks pass; Sarah approves in minutes |
+| When it goes wrong | A draft used 2030, a stale export and no scenario | Those 3 shown first: drafted 4 of 236, £6.2m vs fixed 4 of 235, £7.1m · "Send back" pre-filled |
