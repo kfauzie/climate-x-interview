@@ -11,12 +11,12 @@ Output: the screen images, saved in runs/run-N/design/.
 
 ## Principles
 1. **Know the user.** Put yourself in their shoes. They're intelligent and expert in their domain, but not technical. Use their own terms from the interview notes; don't invent labels. No technical or AI terms on screen. Explain domain terms wherever they appear, in a few words (e.g. "central (today's policies)"). Labels use roles, not people's names ("Send for approval", not "Send to Sarah"), so it works for any team; greeting the signed-in user by name is fine.
-2. **One step per screen.** Each screen does exactly one step of the workflow.
+2. **One step per screen.** Each screen does exactly one step of the workflow. When the next step belongs to someone else, make the hand-over clear: a short transition naming the next user and what they do.
 3. **Show only what matters.** Sensible defaults wherever possible, labelled "Default", and a few clear options. Each fact appears once. Every input earns its place: it changes the answer or who gets it. Keep secondary actions (send back, cancel) out of the spot where users expect Back.
 4. **Information hierarchy and progressive disclosure.** The key information is big and up front. Detail sits lower and smaller, or appears only when the user asks for it. Details go in a table, one fact per row (label | value), never a paragraph. Links and buttons say exactly what they open or do ("Show the rise by hazard", not "See where it comes from").
-5. **Trust.** The user can see how each number was produced. Assumptions and counts get a short explanation on hover: what it means, and how the number was reached (e.g. "2,000 loans, 148 left out by the rules above, 20 not in the loan book: 1,832").
+5. **Trust.** The user can see how each number was produced. Assumptions and counts get a short explanation on hover: what it means, and how the number was reached (e.g. "2,000 loans, 148 left out by the rules above, 20 not in the loan book: 1,832"). Every choice shows where it came from as a small coloured tag, one colour per kind: "From the question" (the same colour as its highlight in the question), "Default", "Changed". Notes and warnings look different from the content (e.g. italic on soft yellow).
 6. **Handle edge cases.** Missing data, unclear input, or something the product can't do: say so where it happens, and let the user clarify or pick the closest alternative.
-7. **Make it enjoyable.** Serious, but with a little personality: friendly wording, a clear sense of progress, small moments of feedback (e.g. a short loading message, a clear "done").
+7. **Make it enjoyable.** Serious, but with a little personality: friendly wording, a clear sense of progress, small moments of feedback (e.g. a short loading message, a paper plane when something is sent, a clear "done").
 
 ## How to work
 - Look: clean, delightful B2B SaaS in Climate X's brand: font Graphik (Helvetica, Arial as fallbacks); red #e01e1a, charcoal #343a40, off-white #f9f9fa, white panels. Red only for the main action. Don't rely on colour alone: pair it with text or an icon.
