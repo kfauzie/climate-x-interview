@@ -8,7 +8,8 @@
 - Discovery questions and call notes (current): https://app.notion.com/p/40e8f31ef05f8168becfe438435d0266
 - Discovery questions and notes from the first call: https://app.notion.com/p/40b8f31ef05f8114908bd8ada551932c
 - Solution concept: https://app.notion.com/p/40e8f31ef05f816983a9e4d46a223671
-- MVP review script: https://app.notion.com/p/40b8f31ef05f814e815fc95807769b0b
+- MVP review questions (current): https://app.notion.com/p/40e8f31ef05f81f8bf5ec81d351d23d4
+- MVP review script (older): https://app.notion.com/p/40b8f31ef05f814e815fc95807769b0b
 
 **In the repo**
 - Screens: `design/`
