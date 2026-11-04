@@ -1,11 +1,12 @@
 # Run 3
 
-**Status:** discovery questions ready; next: the interview
+**Status:** interview done; solution concept ready; next: solution design (pm-4)
 **Dataset:** `data/northwind_renewables_spectra_infra_2026-09.csv` (Spectra Infrastructure Screener export, September 2026)
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
 **On Notion (2nd round prep)**
-- Discovery questions v3 (current): https://app.notion.com/p/40e8f31ef05f819485c6de10d3e855be
+- Solution concept: https://app.notion.com/p/40e8f31ef05f81cbadd2e063c7c8018c
+- Discovery questions v3 (current, with call notes): https://app.notion.com/p/40e8f31ef05f819485c6de10d3e855be
 - Discovery questions v2 (has a meeting notes block): https://app.notion.com/p/40e8f31ef05f81d1b5e8fcb7900a5853
 - Discovery questions v1: https://app.notion.com/p/40e8f31ef05f81658eb1c6a31ed1de35
 
@@ -64,3 +65,11 @@ Everything below applies to **run 3 only**. Do not carry it into any other run.
 - Show the 8 sites rated E–G under central, with which debt facility each is in
 - Rerun the findings for 2030
 - List all 62 sites from highest to lowest expected loss compared with what each site is worth, to see where a sensible cut-off for action would fall
+
+## Claims from the interview, tested (`notebooks/concept_numbers.py`)
+| Claim | Result |
+|---|---|
+| "It's really those few sites, not all 62" (the 8 rated E–G for river flood) | **Partly.** His own test ("below this range for every hazard under both scenarios") with E–G as the line leaves 24 sites needing a plan in 2050: 8 under central, 16 more under severe (8 Spanish solar, extreme heat) |
+| Battery sites are on low land near rivers in Teesside and Humberside | **Supported:** 7 of the 8 sites rated E–G under central are UK battery sites, all in Teesside, Lincolnshire or Humberside |
+| Some sites are a single pin, not the outline | **Supported:** 16 sites are scored at a single pin, including 3 of the 8 rated E–G (S014, S017, S038) |
+| Teesside battery site flooded | Not testable (no flood history in the data); the 4 Teesside battery sites expect £216,600 to £728,900 a year of river flood loss by 2050 (central) |
