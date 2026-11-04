@@ -9,7 +9,9 @@ Input: `solution-design.md` (agreed screens, checks, test set). Output: `runs/ru
 
 ## Look
 - Clean B2B SaaS: generous spacing, clear hierarchy, consistent components, restrained colour
-- Looks like part of their product: copy conventions from real product screenshots, and real brand values from the source, never guessed
+- ## Brand and product look
+- Font: Graphik (Helvetica, Arial as fallbacks). Colours: red `#e01e1a` (darker `#a11b14` on hover), charcoal `#343a40`, off-white `#f9f9fa`, white panels
+- Product screens: light, white panels, thin dividers, small grey uppercase labels; scenario and year as rounded dropdowns in a side panel; red for active toggles; A–G ratings as coloured circles; large light-weight numbers; pill buttons; red only for the primary action
 - Accessible: never colour alone, visible focus, works in light and dark and on a phone
 - A page shared outside the company doesn't present itself as the company's product
 
