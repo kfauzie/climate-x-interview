@@ -47,6 +47,6 @@ Test a claim the customer made, or answer one question. One at a time.
 - If cx.load raises ShapeError, the file doesn't fit; analyse by hand
 
 ## Output
-- The top three questions to ask, each with the finding behind it in one line
+- Questions for the customer: only those whose answer could change the product. As many as that is, often one to three, sometimes none. A table: the question in plain words | why ask (the finding, with its number) | how the answer would change the product
 - The data in two lines: rows and what one row is; the key columns; which hazards, scenarios and years
 - Whether it's usable, in one line
