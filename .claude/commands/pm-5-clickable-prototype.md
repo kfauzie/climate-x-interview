@@ -5,7 +5,7 @@ description: "Turn the agreed solution design into a polished, working clickable
 
 # Clickable prototype
 
-Input: `solution-design.md` (agreed screens, checks, test set). Output: `runs/run-N/clickable-prototype.md` and a PR. This is where the screens get full visual polish.
+Input: `solution-design.md` (agreed screens, checks, test set). Output: `runs/run-N/clickable-prototype.md` and a PR. This is where the screens get full visual polish. Layout and content follow the screen rules in `pm-4-solution-design`; polish never adds elements.
 
 ## Look
 - Clean B2B SaaS: generous spacing, clear hierarchy, consistent components, restrained colour

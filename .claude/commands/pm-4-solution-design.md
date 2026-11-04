@@ -37,18 +37,25 @@ Input: `solution-concept.md`. Output: `runs/run-N/solution-design.md` plus the s
 
 ## Medium fidelity
 - Real layout, real labels, their question and real numbers from code
-- Real states on the screen itself: defaults with their source, a warning, a blocked action, an empty or zero result. Mandatory inputs marked as the product would ("Required")
-- Greyscale plus one accent colour, system font, no icons, shadows or brand polish. That comes in the clickable prototype
-- **A smart person with no context gets each screen in 3 seconds.** Show only what that user needs for their job; cut everything else (counts of excluded rows, check lists that pass, about-this notes, repeated settings)
-- **One label per screen, and only one:** a dark strip above the screen, outside the product, naming the user and their job ("Analyst · Check the answer before it goes to Sarah"). Nothing else in the image is commentary: no annotations, markers or side notes
-- Plain words: say what a default is and whose it is ("central: Sarah's standard for committee answers"), never "your default" or internal tags
-- Ask each thing once (no "who asked" and "who it's for"). No needless restrictions
-- Compare like with like: options of the same kind side by side (scenarios in one row, years in another)
-- Checks go to the person who can fix them, before the next step. The approver sees the answer and decides
-- Every input a later screen shows has a place to be entered (a note shown to the approver is written on an earlier screen)
+- Greyscale plus one accent colour, system font, readable sizes, no icons, shadows or brand polish. That comes in the clickable prototype
 - Static HTML rendered to PNG, all screens in one file; Figma when connected
-- **One screen first:** the most important one (usually the answer), shown while the others are made. Its feedback shapes the rest
+- **One screen first:** the most important one, shown while the others are made. Its feedback shapes the rest
 - About 10 minutes for the set. If a screen takes longer, it's too detailed
+
+## Screen rules
+**A smart person with no context gets each screen in 3 seconds.** Every element can be explained in one sentence (who it's for, and why), or it goes.
+
+- **Ribbon:** a dark bar on top holds meta only, larger and bold: "User: [role] · Job to be done: [job]". Nothing else is commentary: no annotations, markers or side notes
+- **Inputs first:** the question, who asked and the data (sources and their dates) are inputs the user can see and check, not meta
+- **Output under its input:** centred, the largest thing on the screen. Key number big; context ("of 144", "of £351.8m") small and lighter
+- **Then the levers and the evidence:** controls on one side, the rows behind the number on the other, in equal columns. The method note at the bottom
+- **Show, don't tell:** toggles and visible state ("Default" beside the chosen option) rather than sentences explaining what was done. The output updates live as they change
+- **Each fact once per screen:** no scenario, year or threshold repeated in labels, sentences and notes. A method note only adds what the controls don't show
+- **Like with like:** options of the same kind together (scenarios in one toggle, years in another)
+- **Plain words:** say whose default it is; label every table column. Ask each thing once; no needless restrictions
+- **Checks go to whoever can fix them,** before the next step. The approver sees the draft with everything needed to decide, and can change the key choices
+- **Every input a later screen shows has a place to be entered** (a note shown to the approver is written on an earlier screen)
+- **Until someone approves it, it's a draft:** in the steps, the title and the button
 
 ## What goes in `solution-design.md`
 1. **Flow:** one table, step | who | screen | ends in. Who never touches it. Decisions to agree, each with my recommendation
