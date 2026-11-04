@@ -39,7 +39,13 @@ Input: `solution-concept.md`. Output: `runs/run-N/solution-design.md` plus the s
 - Real layout, real labels, their question and real numbers from code
 - Real states on the screen itself: defaults with their source, a warning, a blocked action, an empty or zero result. Mandatory inputs marked as the product would ("Required")
 - Greyscale plus one accent colour, system font, no icons, shadows or brand polish. That comes in the clickable prototype
-- **Only the product, as the user would see it.** No annotations, numbered markers, side notes or design commentary in the image
+- **A smart person with no context gets each screen in 3 seconds.** Show only what that user needs for their job; cut everything else (counts of excluded rows, check lists that pass, about-this notes, repeated settings)
+- **One label per screen, and only one:** a dark strip above the screen, outside the product, naming the user and their job ("Analyst · Check the answer before it goes to Sarah"). Nothing else in the image is commentary: no annotations, markers or side notes
+- Plain words: say what a default is and whose it is ("central: Sarah's standard for committee answers"), never "your default" or internal tags
+- Ask each thing once (no "who asked" and "who it's for"). No needless restrictions
+- Compare like with like: options of the same kind side by side (scenarios in one row, years in another)
+- Checks go to the person who can fix them, before the next step. The approver sees the answer and decides
+- Every input a later screen shows has a place to be entered (a note shown to the approver is written on an earlier screen)
 - Static HTML rendered to PNG, all screens in one file; Figma when connected
 - **One screen first:** the most important one (usually the answer), shown while the others are made. Its feedback shapes the rest
 - About 10 minutes for the set. If a screen takes longer, it's too detailed
