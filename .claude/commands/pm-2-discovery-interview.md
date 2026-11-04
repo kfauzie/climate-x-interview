@@ -22,16 +22,19 @@ X is what they asked for. Fill it in from the case context.
 
 1. **Source of the need.**
    - Could you tell me where the need for X is coming from?
-2. **Key data findings (optional).** Only if pm-1-data-discovery found something relevant to the customer's need; otherwise skip this section rather than forcing a question. Pull the findings and clarifications from pm-1 (in `RUN.md`), and ask the top finding early:
+2. **User journey.**
+   - **Walkthrough**
+     - Walk me through the last time you used [the data, named exactly: which file, export or report] for a decision or a report: who did what, in which tool, how long it took.
+     - Who would actually use X?
+     - *\<Unexpected step → "How did you decide that last time?"\>*
+   - **Pain points**
+     - Where does most of the time go?
+     - What makes it painful?
+     - *\<Vague, hedged or suspiciously slow → "Why does that happen? It seems simple."\>*
+     - *\<Admits a gap → "What happens when that goes wrong?"\>*
+3. **Key data findings (optional).** Only if pm-1-data-discovery found something relevant to the customer's need; otherwise skip this section rather than forcing a question. These questions are about the customer's own data, not about what to build, so they come after the user journey, once the customer has described the problem, and open with a short line that marks the switch. Pull the findings and clarifications from pm-1 (in `RUN.md`):
+   - I looked at [the data, named exactly] before the call.
    - Your data shows X. Does that match what you see?
-3. **Detailed walkthrough.**
-   - Walk me through the last time you used this data for a decision or a report: who did what, in which tool, how long it took.
-   - Who would actually use X?
-   - Where does most of the time go?
-   - What makes it painful?
-   - *\<Vague, hedged or suspiciously slow → "Why does that happen? It seems simple."\>*
-   - *\<Admits a gap → "What happens when that goes wrong?"\>*
-   - *\<Unexpected step → "How did you decide that last time?"\>*
 4. **Success criteria.**
    - If this worked, how would you know?
    - What would the impact be: time saved, money, better decisions?

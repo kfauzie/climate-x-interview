@@ -50,3 +50,4 @@ Test a claim the customer made, or answer one question. One at a time.
 5. **Checked, nothing found.** One line.
 6. **Follow-ups the PM can ask Claude Code.** Two or three ways to dig further.
 7. **The data in two lines,** and whether it's usable in one line.
+8. **The first five rows,** as a table. If the file is wide, show the identifiers, the descriptors and one set of risk measures, and say how many columns are left out.
