@@ -19,7 +19,6 @@ I'm a Principal PM at Climate X, owning a product area end to end: from a custom
 ## Writing anything the customer sees (questions, screens, documents)
 
 - **Name the thing.** Say exactly what you mean, as they'd see it: "mortgages and CRE together, leaving out loans in default", not "the default loans". Never use words that only make sense after our own work ("the defaults", "the choices", "this", "the method").
-- **Check for words with another meaning in their field.** In lending, "default" means a borrower who has stopped paying, so call a team's usual choices their "standard". "Exposure", "provision" and "scenario" also have precise meanings.
 - **Explain only what's new to them.** Don't explain what they're expert in (risk, regulation, their own process). Do explain our terms and our assumptions, in a few words, once.
 - **Read it as them.** Before showing it: would someone who hasn't seen our notes understand every noun on first reading?
 
