@@ -1,0 +1,74 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Run 3 screens</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#e8e8e8;font:15px/1.45 Graphik,Helvetica,Arial,sans-serif;color:#343a40}
+.screen{width:1100px;margin:30px auto;background:#f9f9fa;border:1px solid #e3e5e8;border-radius:14px;overflow:hidden}
+.hdr2{background:#1f5fa8;color:#fff;padding:20px 28px;display:flex;align-items:center;gap:16px}
+.hdr2 .ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;flex:none}
+.hdr2 .u,.hdr2 .j{font-size:26px;font-weight:700}.hdr2 .j{margin-top:4px}
+.steps{padding:14px 24px 0;color:#999;font-size:13px}.steps .on{color:#343a40;font-weight:600}
+.body{padding:10px 24px 20px}
+.top{display:flex;justify-content:space-between;align-items:baseline}
+h1{font-size:24px;margin:6px 0 2px}.sub{color:#6c757d}
+.card{background:#fff;border:1px solid #e3e5e8;border-radius:12px;padding:16px 18px;margin-top:12px}
+.lbl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#6c757d;margin-bottom:8px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fact .n{font-size:22px;font-weight:700}.fact .s{font-size:13px;color:#6c757d}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px}
+.t-adapt{background:#eef0f2;color:#5a6168}.t-quote{background:#efe8f8;color:#5b2d91}.t-ok{background:#e6f3e9;color:#1f6b32}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-weight:500;color:#6c757d;font-size:13px;padding:8px 10px;border-bottom:1px solid #e3e5e8}
+td{padding:14px 10px;border-bottom:1px solid #eef0f2;vertical-align:middle}td.r,th.r{text-align:right}
+tr.sel td{background:#f6f8fb}tr.sel td:first-child{box-shadow:inset 4px 0 0 #343a40}
+.big{font-size:20px;font-weight:700}.radio{display:inline-block;width:18px;height:18px;border-radius:50%;border:2px solid #9aa0a6;vertical-align:middle;margin-right:10px}
+tr.sel .radio{border:6px solid #343a40}
+.link{text-decoration:underline;font-size:14px}
+.i{display:inline-block;width:16px;height:16px;border-radius:50%;border:1px solid #888;font-size:11px;text-align:center;line-height:15px;color:#666;margin-left:6px}
+.tip{display:inline-block;background:#343a40;color:#fff;font-size:13px;padding:7px 11px;border-radius:6px;margin-left:8px;max-width:430px;vertical-align:middle}
+.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+.kv td{padding:7px 0;border-bottom:1px solid #eef0f2}.kv td:first-child{color:#6c757d;width:44%}
+.note{border-left:4px solid #c9a227;background:#fff8e6;color:#6b4a00;font-style:italic;padding:8px 12px;font-size:14px;margin-top:10px}
+.bar{height:10px;border-radius:5px;background:#eef0f2;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:#343a40}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:#fff;border-top:1px solid #e3e5e8}
+.btn{display:inline-block;padding:9px 18px;border:1px solid #c8ccd0;background:#fff;border-radius:999px}.btn.p{background:#e01e1a;border-color:#e01e1a;color:#fff}
+</style></head><body>
+
+<div class="screen" id="plan">
+<div class="hdr2"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><div><div class="u">User: Head of Asset Management</div><div class="j">Job to be done: decide which measure is worth paying for at each site</div></div></div>
+<div class="steps">Screen sites ─ Check locations ─ <span class="on">Plan each site</span> ─ Bank document</div>
+<div class="body">
+ <div class="top"><div><h1>S010 · Teesside battery site</h1><div class="sub">Needs a plan: river flood rated E by 2050 (today's policies). E–G are the worst three of seven bands.</div></div><div class="sub">Site 3 of 24 · <span class="tag t-ok">✓ Location confirmed</span></div></div>
+
+ <div class="card"><div class="facts">
+  <div class="fact"><div class="n">£361,100</div><div class="s">expected river flood loss a year by 2030<span class="i">i</span></div></div>
+  <div class="fact"><div class="n">£505,500</div><div class="s">a year by 2050, today's policies</div></div>
+  <div class="fact"><div class="n">£866,600</div><div class="s">a year by 2050, if emissions stay very high</div></div>
+  <div class="fact"><div class="n">£27.5m</div><div class="s">site value · 52 MW battery storage</div></div>
+ </div>
+ <div style="margin-top:10px;font-size:13px"><span class="tip" style="margin-left:0">Expected loss is the average damage a year across all possible floods, from Spectra. Some years cost nothing, some much more.</span></div></div>
+
+ <div class="card"><div class="lbl">Measures for this site · compared on 2030 expected loss</div>
+ <table>
+  <tr><th>Measure</th><th class="r">Cost</th><th class="r">Loss avoided a year</th><th class="r">Pays back in</th><th>Source</th></tr>
+  <tr class="sel"><td><span class="radio"></span><b>Raise the battery units above flood level</b></td><td class="r big">£400,000</td><td class="r big">£253,000</td><td class="r big">1.6 years</td><td><span class="tag t-quote">Consultant quote</span></td></tr>
+  <tr><td><span class="radio"></span>Improve site drainage</td><td class="r">£90,000</td><td class="r">£54,000</td><td class="r">1.7 years</td><td><span class="tag t-quote">Consultant quote</span></td></tr>
+  <tr><td><span class="radio"></span>Flood barrier around the battery compound</td><td class="r">£210,000</td><td class="r">£180,000</td><td class="r">1.2 years</td><td><span class="tag t-adapt">Adapt estimate</span></td></tr>
+  <tr><td><span class="radio"></span>No action</td><td class="r">£0</td><td class="r">£0</td><td class="r">—</td><td></td></tr>
+ </table>
+ <div style="margin-top:12px;display:flex;gap:24px"><span class="link">+ Add a quote</span><span class="link">Show how loss avoided is worked out</span></div>
+ </div>
+
+ <div class="cols">
+  <div class="card"><div class="lbl">Selected: raise the battery units</div><table class="kv">
+   <tr><td>Flood loss left a year (2030)</td><td>£108,100</td></tr>
+   <tr><td>Saved over 10 years</td><td>£2.13m</td></tr>
+   <tr><td>Rating after the measure (2050)</td><td>B</td></tr>
+   <tr><td>Cost source</td><td>Consultant quote, March 2026</td></tr></table></div>
+  <div class="card"><div class="lbl">What similar sites chose</div>
+   <div>6 battery sites by UK rivers, rated E–G for river flood</div>
+   <div style="margin-top:10px">Raised the units · 4 sites<div class="bar"><i style="width:67%"></i></div></div>
+   <div style="margin-top:10px">Drainage only · 2 sites<div class="bar"><i style="width:33%"></i></div></div>
+   <div class="note">Drainage alone leaves £307,100 a year of expected flood loss at this site.</div></div>
+ </div>
+</div>
+<div class="foot"><span class="btn">← Previous site</span><span class="btn p">Use this measure, next site →</span></div>
+</div>
+</body></html>
