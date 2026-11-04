@@ -47,6 +47,11 @@ th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0
 .list{font-size:13px;color:var(--mid);margin:4px 0 8px;max-height:120px;overflow:auto}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;display:none}
 .hidden{display:none}
+.kv{width:100%;border-collapse:collapse}.kv td{padding:8px 0;border-top:1px solid var(--line2);vertical-align:top}.kv td:first-child{color:var(--mid);width:34%}
+.att{border-left:5px solid var(--red);background:#fdf3f2}.att ul{margin:6px 0 0;padding-left:20px}.att li{margin:4px 0}
+.okbox{border-left:5px solid var(--green);background:#f2f8f3}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.loans{max-height:260px;overflow:auto;margin-top:8px;font-size:13px}.loans td,.loans th{padding:4px 6px 4px 0}
 @media (max-width:760px){.row,.ctl,.cols2,.trio{grid-template-columns:1fr}.kn{font-size:38px}.hdr2 .u,.hdr2 .jtbd{font-size:20px}}
 </style></head><body>
 
@@ -55,6 +60,7 @@ th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0
 <div class="hdr2"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><div><div class="u">User: Climate risk analyst</div><div class="jtbd">Job to be done: turn the question into an answer ready for approval</div></div></div>
 <div class="steps"><span class="on">Draft</span> ─ Review ─ Send</div>
 <div class="body"><h1>Draft</h1>
+<div id="returned"></div>
 <div class="card">
  <div class="row"><div class="k">Question</div><div style="grid-column:2/4">
    <div class="input" id="qView" tabindex="0" title="Click to edit"></div>
@@ -79,6 +85,25 @@ th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0
 <div class="card"><div class="lbl">Note to the approver (optional)</div><textarea class="input" id="note" rows="2" placeholder="Add a note"></textarea></div>
 </div>
 <div class="foot"><button class="btn" id="cancel">Cancel</button><button class="btn p" id="send">Send for approval →</button></div>
+</div>
+
+<!-- ============ Screen 2: Review ============ -->
+<div class="screen hidden" id="review">
+<div class="hdr2"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></svg></span><div><div class="u">User: Head of Climate Risk (approver)</div><div class="jtbd">Job to be done: approve the answer or send it back</div></div></div>
+<div class="body" style="background:#fff">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><div style="font-size:28px;font-weight:700;margin:6px 0 4px" id="rvHello"></div><div class="sub" id="rvQueue"></div></div>
+<div class="sub" style="font-size:17px;margin-bottom:14px" id="rvQ"></div>
+<div class="card" id="rvAttention"></div>
+<div class="card out" style="border:2px solid #222" id="rvAnswer"></div>
+<div class="cols2">
+ <div class="card"><div class="lbl">How it was calculated</div><table class="kv" id="rvMethod"></table>
+  <div style="margin-top:12px"><button class="src" style="font-size:15px" id="rvHzLink">Show how much flood, heat, subsidence and wind each add</button></div>
+  <table id="rvHz" class="hidden" style="margin-top:6px"></table>
+  <div style="margin-top:8px"><button class="src" style="font-size:15px" id="rvLoansLink"></button><span class="tipw"><i class="i" tabindex="0">i</i><span class="tip" id="rvLoansTip"></span></span></div>
+  <div id="rvLoans" class="loans hidden"></div></div>
+ <div class="card"><div class="lbl">Comment (needed to send back)</div><textarea class="input" id="rvComment" rows="4" placeholder="Add a comment"></textarea></div>
+</div></div>
+<div class="foot"><span></span><span><button class="btn" id="rvBack" disabled>Send back with comment</button> &nbsp; <button class="btn p" id="rvApprove">Approve</button></span></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -178,11 +203,13 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const fmtDate = d => new Date(d).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'});
 
+const APPROVER = {first: 'Sarah', full: 'Sarah Okafor', role: 'Head of Climate Risk'};   // the signed-in approver
 const S = {
   data: {spectra: null, book: null, spectraAsAt: null, bookAsAt: null, error: null},
   question: 'How much do expected losses rise from 2030 to 2050 under the severe scenario?',
   askers: ['Treasury', 'Credit committee', 'Risk committee', 'CRO', 'Mortgage pricing', 'Investor relations'],
   askedBy: 'Treasury', choices: null, sources: null, reading: null, open: {},
+  screen: 'draft', queue: [], returned: null,
 };
 
 function readQuestion() {
@@ -205,6 +232,9 @@ function pick(input, then) { input.onchange = () => { const f = input.files[0]; 
 function src2(kind) { return {question: 'From the question', default: 'Default', analyst: 'Changed by you'}[kind]; }
 
 function render() {
+  for (const id of ['draft', 'review']) $(id).classList.toggle('hidden', S.screen !== id);
+  if (S.screen === 'review') return renderReview();
+  $('returned').innerHTML = S.returned ? `<div class="card att"><b>Sent back by the approver:</b> “${esc(S.returned)}”</div>` : '';
   // Question with the parts we read highlighted
   const q = S.question, sp = S.reading.spans; let html = '', at = 0;
   for (const [a, b] of sp) { if (a < at) continue; html += esc(q.slice(at, a)) + `<span class="hl">${esc(q.slice(a, b))}</span>`; at = b; }
@@ -277,13 +307,84 @@ $('askMenu').onclick = e => {
 };
 document.addEventListener('click', e => { if (!e.target.closest('#askMenu') && e.target !== $('askBtn')) { $('askMenu').classList.add('hidden'); if (S.open.addAsker) { S.open.addAsker = false; render(); } } });
 $('answer').onclick = e => { const s = e.target.closest('[data-scen]')?.dataset.scen; if (!s || s === S.choices.scenario) return; S.choices.scenario = s; S.sources.scenario = s === S.reading.scenario ? 'question' : (!S.reading.scenario && s === 'central') ? 'default' : 'analyst'; render(); };
-$('loanSeg').onclick = e => { const l = e.target.closest('[data-loans]')?.dataset.loans; if (!l) return; S.choices.loans = l; render(); };
+$('loanSeg').onclick = e => { const l = e.target.closest('[data-loans]')?.dataset.loans; if (!l) return; S.choices.loans = l; S.sources.loans = l === (S.reading.loans || 'all') ? (S.reading.loans ? 'question' : 'default') : 'analyst'; render(); };
 $('excl').onclick = e => { const k = e.target.closest('[data-unex]')?.dataset.unex; if (!k) return; S.choices.exclusions = S.choices.exclusions.filter(x => x !== k); render(); };
 $('excl').onchange = e => { if (e.target.id === 'addEx' && e.target.value) { S.choices.exclusions.push(e.target.value); render(); } };
 $('notCounted').onclick = e => { const k = e.target.closest('[data-list]')?.dataset.list; if (!k) return; S.open[k] = !S.open[k]; render(); };
 $('balChange').onclick = () => $('balNote').classList.toggle('hidden');
 $('cancel').onclick = () => { readQuestion(); $('note').value = ''; render(); toast('Back to the reading of the question'); };
-$('send').onclick = () => { if (!S.data.spectra || !S.data.book) return toast('Load the data first'); toast('Sent for approval'); };
+$('send').onclick = () => {
+  if (!S.data.spectra || !S.data.book) return toast('Load the data first');
+  const c = structuredClone(S.choices);
+  S.queue = S.queue.filter(x => x.status !== 'waiting');
+  S.queue.push({question: S.question, askedBy: S.askedBy, choices: c, sources: {...S.sources}, reading: S.reading, note: $('note').value.trim(),
+    spectraAsAt: S.data.spectraAsAt, bookAsAt: S.data.bookAsAt, status: 'waiting', sentAt: new Date()});
+  S.returned = null; S.screen = 'review'; S.open = {}; $('rvComment').value = ''; $('rvComment').disabled = $('rvApprove').disabled = false; $('rvBack').disabled = true; render(); window.scrollTo(0, 0); toast('Sent for approval');
+};
+
+// What the approver should look at: anything that differs from the question or from the approver's standard
+function attention(a) {
+  const out = [], c = a.choices, r = a.reading, name = s => SCEN_TEXT[s][0].toLowerCase();
+  if (a.sources.scenario === 'analyst') out.push(r.scenario ? `Scenario: the question asks for ${name(r.scenario)}; the answer uses ${name(c.scenario)}.` : `Scenario: your standard is central; the answer uses ${name(c.scenario)}.`);
+  if (a.sources.loans === 'analyst') out.push(r.loans ? `Loans: the question asks about ${LOANS[r.loans]}; the answer covers ${LOANS[c.loans]}.` : `Loans: the answer covers ${LOANS[c.loans]} only; your standard is all loans.`);
+  const removed = DEFAULT_EXCLUSIONS.filter(k => !c.exclusions.includes(k)), added = c.exclusions.filter(k => !DEFAULT_EXCLUSIONS.includes(k));
+  if (removed.length) out.push(`Counts loans your standard leaves out: ${removed.map(k => exclusionRule(k).label.toLowerCase()).join(', ')}.`);
+  if (added.length) out.push(`Also leaves out: ${added.map(k => exclusionRule(k).label).join(', ')}.`);
+  for (const n of r.notes) out.push(n);
+  return out;
+}
+
+function renderReview() {
+  const a = S.queue.find(x => x.status === 'waiting') || S.queue[S.queue.length - 1], c = a.choices, D = S.data;
+  const R = rise(D.spectra, D.book, c), per = Object.fromEntries(['low', 'central', 'severe'].map(s => [s, rise(D.spectra, D.book, c, s).rise]));
+  const P = population(D.spectra, D.book, c), waiting = S.queue.filter(x => x.status === 'waiting').length;
+  $('rvHello').textContent = `${APPROVER.first}, here's the answer to review`;
+  $('rvQueue').textContent = `${waiting} waiting for you`;
+  $('rvQ').textContent = `“${a.question}” · ${a.askedBy} · from an analyst`;
+
+  // reconciliation check: every loan in the export is counted, left out by a rule, or not in the loan book
+  const adds = R.counted + R.excluded + R.notInBook.length === R.total;
+  const att = attention(a); if (!adds) att.push('The loan counts don\'t add up. Ask the analyst to refresh the data.');
+  const noteLine = a.note ? `<div class="sub" style="margin-top:4px">Analyst's note: “${esc(a.note)}”</div>` : '';
+  $('rvAttention').className = 'card ' + (att.length ? 'att' : 'okbox');
+  $('rvAttention').innerHTML = att.length ? `<b>${att.length === 1 ? '1 thing needs' : att.length + ' things need'} your attention</b><ul>${att.map(x => `<li>${esc(x)}</li>`).join('')}</ul>${noteLine}`
+    : `<b>Nothing needs your attention.</b> Your standard was used throughout and every check passed.${noteLine}`;
+
+  const others = ['central', 'low', 'severe'].filter(s => s !== c.scenario).map(s => `${s === 'low' ? 'low emissions (cut fast)' : s === 'central' ? "central (today's policies)" : 'severe (very high emissions)'} ${times(per[s])}`);
+  $('rvAnswer').innerHTML = `<div class="lbl">Expected loss, ${LOANS[c.loans]} · ${SCEN_TEXT[c.scenario][0].toLowerCase()} scenario</div>
+    <div class="kn" style="font-size:52px">${R.rise >= 1 ? `${times(R.rise)} higher by ${c.to}` : `${Math.round((1 - R.rise) * 100)}% lower by ${c.to}`}</div>
+    <div class="ks">${money(R.from)} a year in ${c.from} → ${money(R.to)} a year in ${c.to}</div>
+    <div class="sub" style="margin-top:12px">Other scenarios: ${others.join(' · ')}</div>`;
+
+  const loansText = {all: 'All: mortgages and CRE', 'Residential mortgage': 'Mortgages only', 'Commercial real estate': 'CRE only'}[c.loans];
+  $('rvMethod').innerHTML = [['Scenario', `${SCEN_TEXT[c.scenario][0]}: ${SCEN_TEXT[c.scenario][1]}`], ['Years', `${c.from} → ${c.to}`], ['Loans', loansText],
+    ['Leaves out', c.exclusions.map(k => exclusionRule(k).label).join(' · ') || 'Nothing'], ['Balances', "Held at today's level"],
+    ['Data', `Spectra export ${fmtDate(a.spectraAsAt)} · loan book ${fmtDate(a.bookAsAt)}`]].map(([k, v]) => `<tr><td>${k}</td><td>${esc(v)}</td></tr>`).join('');
+
+  $('rvHz').innerHTML = `<tr><th>Hazard</th><th class="r">${c.from}</th><th class="r">${c.to}</th><th class="r">Rise</th></tr>` +
+    R.byHazard.map(h => `<tr><td>${h.hazard[0].toUpperCase() + h.hazard.slice(1)}</td><td class="r">${money(h.from, 2)}</td><td class="r">${money(h.to, 2)}</td><td class="r">${times(h.rise)}</td></tr>`).join('');
+  $('rvHz').classList.toggle('hidden', !S.open.rvHz);
+
+  const what = c.loans === 'all' ? 'loans' : LOANS[c.loans];
+  $('rvLoansLink').textContent = `Show the ${R.counted.toLocaleString()} ${what} counted`;
+  $('rvLoansTip').textContent = `The export has ${R.total.toLocaleString()} ${what}. ${R.excluded.toLocaleString()} are left out by the rules above and ${R.notInBook.length.toLocaleString()} aren't in the loan book, which leaves ${R.counted.toLocaleString()}.` +
+    (R.missing.length ? ` ${R.missing.length} of them have no rating for one hazard and year, so that hazard isn't counted for them.` : '');
+  const sc = SCENARIOS[c.scenario], loss = (r, y) => HAZARDS.reduce((t, h) => t + (+r[`${h}_${sc}_${y}_loss_gbp`] || 0), 0);
+  $('rvLoans').innerHTML = S.open.rvLoans ? `<table><tr><th>Loan</th><th>Type</th><th>Property</th><th>Region</th><th class="r">${c.from}</th><th class="r">${c.to}</th></tr>` +
+    P.pop.map(r => `<tr><td>${r.loan_id}</td><td>${r.loan_type === 'Residential mortgage' ? 'Mortgage' : 'CRE'}</td><td>${esc(r.property_type)}</td><td>${esc(r.region)}</td><td class="r">£${Math.round(loss(r, c.from)).toLocaleString()}</td><td class="r">£${Math.round(loss(r, c.to)).toLocaleString()}</td></tr>`).join('') + '</table>' : '';
+  $('rvLoans').classList.toggle('hidden', !S.open.rvLoans);
+}
+
+$('rvHzLink').onclick = () => { S.open.rvHz = !S.open.rvHz; render(); };
+$('rvLoansLink').onclick = () => { S.open.rvLoans = !S.open.rvLoans; render(); };
+$('rvComment').oninput = () => { $('rvBack').disabled = !$('rvComment').value.trim(); };
+$('rvBack').onclick = () => {
+  const a = S.queue.find(x => x.status === 'waiting'); a.status = 'sent back'; a.comment = $('rvComment').value.trim();
+  S.returned = a.comment; S.screen = 'draft'; $('rvBack').disabled = true; render(); window.scrollTo(0, 0); toast('Sent back to the analyst');
+};
+$('rvApprove').onclick = () => {
+  const a = S.queue.find(x => x.status === 'waiting'); a.status = 'approved'; a.approvedAt = new Date(); $('rvApprove').disabled = $('rvBack').disabled = true; $('rvComment').disabled = true; toast('Approved');
+};
 
 readQuestion(); render(); loadData();
 </script>
