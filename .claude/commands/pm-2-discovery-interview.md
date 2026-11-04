@@ -47,11 +47,5 @@ No separate data section and no separate list of things to confirm. Take the fin
 
 Anything that needs clarifying is either worth asking in the call (put it in the walkthrough) or it isn't (drop it).
 
-## After the call
-Answer these from the notes before moving on:
-- Is this need common across customers like this one?
-- How big is it (money, time, deadline)?
-- Does it fit Climate X's products and strategy?
-
 ## Save
-Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: discovery questions (customer)", with the "After the call" questions and an empty Notes section at the end. The page holds only what I'd say in the interview: the ask and one list of questions. No notes to self (timing, instructions, reminders), except short in-line prompts in italics between `<>`, placed where they're needed. Highlight the recap so it isn't missed. Always give me the link to the new page, and add it to `RUN.md`.
+Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: discovery questions (customer)", with an empty Notes section at the end. The page holds only what I'd say in the interview: the ask and one list of questions. No notes to self (timing, instructions, reminders), except short in-line prompts in italics between `<>`, placed where they're needed. Highlight the recap so it isn't missed. Always give me the link to the new page, and add it to `RUN.md`.

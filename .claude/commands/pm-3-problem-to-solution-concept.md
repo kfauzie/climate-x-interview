@@ -23,6 +23,10 @@ Before writing anything, check the notes for gaps big enough to change which ide
 - **The real problem**, based on the interview notes: [user] needs to [job] but today [workaround], which causes [impact]. Quote their words where possible.
 - **Evidence:** 3–5 bullets, each a quote from the interview notes or a number calculated from the data, saying where it came from
 - **Impact:** one line per person affected (time, waiting, rework, risk to decisions). Mark estimates
+- **Is it worth solving?** One line each, marked as a judgement:
+  - Is this need common across customers like this one?
+  - How big is it (money, time, deadline)?
+  - Does it fit Climate X's products and strategy?
 
 ## 2. Solution ideas
 Two or three ideas that are genuinely different from each other. For each:
