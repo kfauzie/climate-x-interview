@@ -12,7 +12,7 @@
 
 **In the repo**
 - Screens: `design/`
-- Build (MVP): `prototype/` at the repo root, PR https://github.com/kfauzie/climate-x-interview/pull/1
+- Build (MVP): `build/mvp.html` (one file; open it from a local server in `runs/run-1/` so it can read `data/`). Older FastAPI version: `prototype/`, PR https://github.com/kfauzie/climate-x-interview/pull/1
 - Other notes: `notes/sarah-followup.md` (her email: example questions, a sent-back case, defaults), `notes/mock-feedback.md`
 
 Everything below applies to **run 1 only**. Do not carry it into any other run.
