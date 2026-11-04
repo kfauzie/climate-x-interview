@@ -12,7 +12,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role.
 ## Principles
 - **Problem, not solution.** Don't pitch. If they ask for a feature, ask what it would let them do.
 - **Be specific.** Ask about a real, recent example, not general habits.
-- **Anchor on the real user.** Focus on who actually does the work and feels the pain, which may not be the person asking.
+- **Anchor on the real user.** Focus on who actually does the work and feels the pain, which may not be the person asking. Check they can act on it: a portfolio limit isn't breached by one loan, so the person showing each loan the risk may not be the one who decides (e.g. credit committee tightening criteria).
 - **Plain language.** Use non-technical terms, in the language of Climate X's customers (e.g. risk appetite, stress test, provisions). Follow "Writing anything the customer sees" in climate-x-role: name the exact thing, no shorthand from our notes, explain only what's new to them.
 - **Open questions.** Ask every question open-ended, with no hint of the answer you expect and no belief built in (not "How do you make sure it's never wrong?").
 - **Clarify.** If anything is unclear, ask before moving on.
@@ -25,18 +25,21 @@ One question per line: ask it, listen, then ask the next. Never read two out tog
 1. **The ask.** Where is the need for X coming from?
    - What decision or report would it feed, and who sees it?
 2. **The last example.** Walk me through the last time you did it: who asked, who did what, in which tool, and how long it took. If X doesn't exist yet, ask about the last time they handled it the way they do today, not the moment X would appear (not "the last application where the rating came up" when it never comes up).
-   - Would the people asking use X themselves?
+   - Who would use X, and what would they do differently?
+   - *\<Names a person → "What exactly does [name] do?"\>*
    - *\<Unexpected step → "How did you decide that last time?"\>*
 3. **Pain points.** Where did most of the time go?
    - What made it painful?
    - *\<Vague, hedged or slow → "Why does that take two days? It seems simple."\>*
    - *\<Admits a gap → "What happens when that goes wrong?"\>*
+   - *\<Tempted to sum up the need → don't label it; ask "What would that let you do?"\>*
+   - **The data.** Your data suggests [the finding from pm-1-data-discovery]. Does that match what you see?
 4. **The value.** If this got better, how would it benefit you: in time, money, or better decisions?
    - How would you know it's working?
    - *\<Asks "Can you build it?" → "Possibly. First I want to understand what it would let you do."\>*
 5. **Trust.** What would you need to see to trust it?
    - Who else would need to approve it before your team could use it?
-6. **Close.** **\<Recap\>** Play it back in three points, biggest problem first, in their words and with their numbers. Anything I missed?
+6. **Close.** **\<Recap\>** Play it back in three points, starting with their biggest worry (not their ask), in their words and with their numbers. Anything I missed?
    - Can I email you short questions?
 
 Add the questions from pm-1-data-discovery into the flow where they fit naturally (e.g. into the last example). They're only there because the answer could change the product, so they're asked, not optional. Place each one early and on its own line, never under a question whose premise might not hold: if the premise fails, the questions under it get skipped.
