@@ -1,353 +1,260 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Answer With Its Method</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Climate answers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Layout: product-style shell (top bar, stepper, working column + settings side panel, sticky action bar).
-   Brand tokens from climate-x.com's CSS; look and feel from Spectra/Carta screenshots: white panels, hairline dividers,
-   small grey section labels, light-weight large numbers, rating letters in circles, pill buttons, red only for active/primary. */
-:root {
-  --brand:#e01e1a; --brand-strong:#a11b14; --brand-soft:#fdecec;
-  --ink:#343a40; --muted:#6c757d; --faint:#9aa1a8; --bg:#f9f9fa; --surface:#ffffff; --line:#e9ecef; --line-strong:#dee2e6; --hover:#f4f5f6;
-  --ok:#198754; --ok-soft:#e8f5ee; --fail:#b42318; --fail-soft:#fdeceb; --warn:#9a6700; --warn-soft:#fff6db; --info:#495057; --info-soft:#f1f3f5;
-  --r-a:#adb5bd; --r-b:#868e96; --r-c:#c9a227; --r-d:#d9480f; --r-e:#c92a2a; --r-f:#8b1a1a; --r-g:#2b2b2b;
-  --on-brand:#ffffff; --shadow:0 1px 2px rgba(33,37,41,.05);
-  --font:Graphik, Helvetica, Arial, sans-serif; --mono:ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --brand:#f0524e; --brand-strong:#ff7b77; --brand-soft:#3a1716; --ink:#e8eaed; --muted:#a0a7b0; --faint:#7d858e; --bg:#121416; --surface:#1b1e21; --line:#2a2e33; --line-strong:#353b41; --hover:#23272b;
-  --ok:#4cc38a; --ok-soft:#14291f; --fail:#ff8a7a; --fail-soft:#351b18; --warn:#e8b54d; --warn-soft:#2e2615; --info:#c9d1da; --info-soft:#22262a; --r-g:#d0d4d8; color-scheme:dark } }
-:root[data-theme="dark"] {
-  --brand:#f0524e; --brand-strong:#ff7b77; --brand-soft:#3a1716; --ink:#e8eaed; --muted:#a0a7b0; --faint:#7d858e; --bg:#121416; --surface:#1b1e21; --line:#2a2e33; --line-strong:#353b41; --hover:#23272b;
-  --ok:#4cc38a; --ok-soft:#14291f; --fail:#ff8a7a; --fail-soft:#351b18; --warn:#e8b54d; --warn-soft:#2e2615; --info:#c9d1da; --info-soft:#22262a; --r-g:#d0d4d8; color-scheme:dark }
-* { box-sizing:border-box }
-html, body { margin:0 }
-body { background:var(--bg); color:var(--ink); font:15px/1.55 var(--font); -webkit-font-smoothing:antialiased }
-.top { position:sticky; top:env(safe-area-inset-top, 0px); z-index:5; background:var(--surface); border-bottom:1px solid var(--line);
-  padding:10px max(20px, env(safe-area-inset-right, 0px)) 10px max(20px, env(safe-area-inset-left, 0px)); display:flex; gap:10px 20px; align-items:center; flex-wrap:wrap }
-.brand { font-weight:600; font-size:16px; letter-spacing:-.01em } .brand em { font-style:normal; color:var(--brand) }
-.datachip { font-size:12px; color:var(--muted) } .grow { flex:1 }
-.seg { display:inline-flex; border:1px solid var(--line-strong); border-radius:999px; overflow:hidden }
-.seg button { border:0; background:var(--surface); color:var(--muted); padding:6px 14px; font:inherit; font-size:13px; cursor:pointer; text-transform:uppercase; letter-spacing:.04em }
-.seg button[aria-pressed="true"] { background:var(--brand); color:var(--on-brand) }
-.page { max-width:1080px; margin:0 auto; padding:24px max(20px, env(safe-area-inset-right, 0px)) 120px max(20px, env(safe-area-inset-left, 0px)) }
-.stepper { display:flex; gap:8px; align-items:center; margin-bottom:22px; flex-wrap:wrap }
-.stepper .s { display:flex; align-items:center; gap:8px; color:var(--faint); font-size:14px }
-.stepper .n { width:24px; height:24px; border-radius:50%; border:1px solid var(--line-strong); display:grid; place-items:center; font-size:12px }
-.stepper .s.on { color:var(--ink); font-weight:500 } .stepper .s.on .n { background:var(--brand); border-color:var(--brand); color:var(--on-brand) }
-.stepper .s.done { color:var(--muted) } .stepper .s.done .n { background:var(--ink); border-color:var(--ink); color:var(--surface) } .stepper .bar { width:32px; height:1px; background:var(--line-strong) }
-h1 { font-size:24px; line-height:1.25; margin:0 0 4px; font-weight:500; letter-spacing:-.01em; text-wrap:balance } .sub { color:var(--muted); margin:0 0 20px }
-.layout { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:20px; align-items:start } .layout > * { min-width:0 }
-.card { background:var(--surface); border:1px solid var(--line); border-radius:8px; box-shadow:var(--shadow); margin-bottom:16px; min-width:0 }
-.card > .bd { padding:18px 20px } .sec { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:500; padding:14px 20px 0; margin:0 }
-.card .sec + .bd { padding-top:10px }
-.lbl { display:block; font-weight:500; font-size:14px; margin:0 0 6px } .hint { color:var(--muted); font-size:13px; margin-top:6px }
-textarea, input[type=text], select { width:100%; font:inherit; color:var(--ink); background:var(--surface); border:1px solid var(--line-strong); border-radius:6px; padding:10px 12px }
-select { border-radius:999px; padding:8px 14px } textarea { min-height:88px; resize:vertical }
-textarea:focus, input:focus, select:focus { outline:none; border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-soft) }
-.field + .field { margin-top:18px }
-.examples { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; align-items:center } .examples span { color:var(--muted); font-size:13px }
-.pill { border:1px solid var(--line-strong); background:var(--surface); color:var(--ink); border-radius:999px; padding:5px 14px; font:inherit; font-size:13px; cursor:pointer }
-.pill:hover { border-color:var(--brand); color:var(--brand) }
-.choices { display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:10px }
-.opt { position:relative; border:1px solid var(--line-strong); border-radius:8px; padding:12px 14px; cursor:pointer; display:grid; gap:2px; background:var(--surface) }
-.opt input { position:absolute; opacity:0; pointer-events:none } .opt b { font-weight:500 } .opt small { color:var(--muted) }
-.opt:has(input:checked) { border-color:var(--brand); box-shadow:inset 0 0 0 1px var(--brand) } .opt:has(input:focus-visible) { outline:2px solid var(--brand); outline-offset:2px }
-.rows .row { display:grid; grid-template-columns:170px minmax(0,1fr) auto; gap:16px; padding:14px 20px; border-top:1px solid var(--line); align-items:start }
-.rows .row:first-child { border-top:0 } .row .k { color:var(--muted); font-size:14px; padding-top:7px } .row .v { min-width:0 }
-.tag { font-size:12px; padding:3px 10px; border-radius:999px; white-space:nowrap; background:var(--info-soft); color:var(--info); display:inline-flex; gap:4px; align-items:center }
-.tag.question { background:var(--ok-soft); color:var(--ok) } .tag.analyst { background:var(--warn-soft); color:var(--warn) }
-.tag.fail { background:var(--fail-soft); color:var(--fail) } .tag.pass { background:var(--ok-soft); color:var(--ok) } .tag.brand { background:var(--brand); color:var(--on-brand) }
-.chips { display:flex; flex-wrap:wrap; gap:6px; align-items:center }
-.chk { display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line-strong); border-radius:999px; padding:5px 14px; cursor:pointer; font-size:14px; background:var(--surface) }
-.chk input { position:absolute; opacity:0; pointer-events:none } .chk:has(input:checked) { border-color:var(--brand); background:var(--brand); color:var(--on-brand) }
-.chk:has(input:focus-visible) { outline:2px solid var(--brand); outline-offset:2px }
-.rate { width:30px; height:30px; padding:0; justify-content:center; font-weight:600; color:#fff; border:0 }
-.rate:not(:has(input:checked)) { opacity:.35 } .rate:has(input:checked) { box-shadow:0 0 0 2px var(--surface), 0 0 0 4px var(--ink) }
-.flag { margin-top:8px; padding:9px 12px; border-radius:6px; font-size:14px; background:var(--warn-soft); display:flex; gap:8px }
-.flag::before { content:"!"; font-weight:700; color:var(--warn) } .flag.out_of_scope, .flag.not_in_data { background:var(--fail-soft) } .flag.out_of_scope::before, .flag.not_in_data::before { color:var(--fail) }
-.flag.suggestion { background:var(--info-soft) } .flag.suggestion::before { content:"i"; color:var(--info) }
-.dep { margin-top:8px; padding:10px 12px; border-radius:6px; background:var(--warn-soft); font-size:13px; display:grid; gap:6px }
-.add { display:flex; gap:10px; align-items:center; padding:14px 20px; border-top:1px dashed var(--line-strong); flex-wrap:wrap } .add select { max-width:240px }
-.x { border:0; background:none; color:var(--faint); cursor:pointer; font-size:18px; line-height:1; padding:2px 6px; border-radius:50% } .x:hover { background:var(--hover); color:var(--fail) }
-.btn { font:inherit; font-size:14px; font-weight:500; border-radius:999px; padding:9px 20px; cursor:pointer; border:1px solid transparent; display:inline-flex; gap:6px; align-items:center; text-decoration:none }
-.btn.primary { background:var(--brand); color:var(--on-brand) } .btn.primary:hover { background:var(--brand-strong) }
-.btn.secondary { background:var(--surface); color:var(--ink); border-color:var(--line-strong) } .btn.secondary:hover { background:var(--hover) }
-.btn.danger { background:var(--surface); color:var(--fail); border-color:var(--fail) } .btn.small { padding:4px 12px; font-size:13px }
-.btn:focus-visible, .pill:focus-visible, .seg button:focus-visible, .li:focus-visible { outline:2px solid var(--brand); outline-offset:2px }
-.actions { position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(--surface); border-top:1px solid var(--line);
-  padding:12px max(20px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px)) }
-.actions .in { max-width:1080px; margin:0 auto; display:flex; gap:8px; align-items:center } .actions .err { color:var(--fail); font-size:14px; flex:1; text-align:right }
-.kpi .big { font-size:30px; font-weight:300; line-height:1.25; letter-spacing:-.01em; font-variant-numeric:tabular-nums; text-wrap:balance; margin:8px 0 }
-.kpi .alt { color:var(--muted); font-variant-numeric:tabular-nums }
-.vers .vr { display:grid; grid-template-columns:150px minmax(0,1fr); gap:12px; padding:10px 0; border-top:1px solid var(--line); font-variant-numeric:tabular-nums; font-size:14px } .vers .vr:first-child { border-top:0 }
-.vers .vr b { font-weight:500; color:var(--muted) } .verdict { display:flex; gap:8px; align-items:flex-start; font-size:14px; padding-top:10px; border-top:1px solid var(--line); margin-top:4px }
-ol.note { margin:0; padding-left:20px; display:grid; gap:6px; font-size:14px }
-.checks .c { display:grid; grid-template-columns:70px minmax(0,1fr); gap:10px; padding:9px 0; border-top:1px solid var(--line); font-size:14px } .checks .c:first-child { border-top:0 } .checks .c > .tag, .verdict > .tag { align-self:start; justify-self:start }
-.foot { font-size:12px; color:var(--faint) }
-.side .kv { display:grid; grid-template-columns:auto 1fr; gap:6px 12px; font-size:14px } .side .kv dt { color:var(--muted) } .side .kv dd { margin:0; text-align:right }
-.list .li { display:grid; gap:4px; padding:14px 20px; border:0; border-top:1px solid var(--line); cursor:pointer; text-align:left; background:none; font:inherit; color:inherit; width:100% }
-.list .li:first-child { border-top:0 } .list .li:hover { background:var(--hover) } .li .meta { color:var(--muted); font-size:13px }
-.callout { border:1px solid var(--line); border-left:3px solid var(--fail); border-radius:8px; background:var(--surface); padding:16px 20px; margin-bottom:16px; display:grid; gap:8px }
-.callout.fast { border-left-color:var(--brand) } .callout h2 { margin:0; font-size:15px; font-weight:500 }
-.empty { color:var(--muted); padding:18px 20px } .note-demo { background:var(--info-soft); border-radius:8px; padding:10px 14px; font-size:13px; margin-bottom:16px }
-@media (max-width:860px) { .layout { grid-template-columns:1fr } }
-@media (max-width:640px) { .rows .row { grid-template-columns:1fr; gap:6px } .row .k { padding-top:0 } .vers .vr { grid-template-columns:1fr; gap:2px } .stepper .bar { display:none } h1 { font-size:20px } .kpi .big { font-size:23px } }
-@media (prefers-reduced-motion: reduce) { * { transition:none !important } }
-</style>
-</head>
+:root{--red:#e01e1a;--red-h:#a11b14;--ink:#343a40;--mid:#6c757d;--soft:#9aa0a6;--line:#e3e5e8;--bg:#f9f9fa;--panel:#fff;--sel:#fdecea;--warn:#fff6e0;--warnline:#e6c46a;--ok:#2f7a45}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e9ecef;--mid:#adb5bd;--soft:#868e96;--line:#3a3f45;--bg:#1d2024;--panel:#272b30;--sel:#4a2422;--warn:#3d3420;--warnline:#8a7130}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Graphik,Inter,Helvetica,Arial,sans-serif}
+button,select,textarea,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.ribbon{background:#343a40;color:#fff;padding:16px 28px;font-size:20px;font-weight:600}
+.ribbon .sep{color:#adb5bd;margin:0 10px;font-weight:400}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 28px 12px}
+.steps{display:flex;gap:10px;align-items:center;color:var(--soft);font-size:14px;margin-bottom:6px}
+.steps b{color:var(--ink)}.steps i{width:24px;height:1px;background:var(--line);display:inline-block}
+h1{font-size:28px;font-weight:600;margin:4px 0 16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:14px}
+.lbl{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mid);margin-bottom:10px}
+.row{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:8px 0}
+.row+.row{border-top:1px solid var(--line)}
+.k{color:var(--mid)}
+textarea,select,input[type=text]{width:100%;border:1px solid #c8ccd0;border-radius:8px;padding:9px 12px;background:var(--panel)}
+textarea{resize:vertical;min-height:44px}
+.ex{font-size:14px;color:var(--mid);margin-top:6px}.ex button{background:none;border:0;color:var(--red);padding:0 6px;cursor:pointer;text-decoration:underline}
+.out{text-align:center;padding:26px 20px}
+.big{font-size:54px;font-weight:700;line-height:1.1;letter-spacing:-.01em}
+.ctx{font-size:20px;color:var(--soft);margin-top:6px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.seg{display:inline-flex;border:1px solid #c8ccd0;border-radius:999px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:none;padding:7px 16px;cursor:pointer}.seg button+button{border-left:1px solid #c8ccd0}
+.seg button[aria-pressed=true]{background:var(--red);color:#fff}
+.tag{font-size:13px;color:var(--soft);margin-left:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid #c8ccd0;border-radius:999px;padding:4px 12px;margin:2px 6px 2px 0;background:var(--panel)}
+.chip button{border:0;background:none;color:var(--mid);cursor:pointer;padding:0 0 0 2px;font-size:16px;line-height:1}
+.add{border:0;background:none;color:var(--red);cursor:pointer;text-decoration:underline;padding:0}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0}
+td{padding:8px 0;border-top:1px solid var(--line)}.r{text-align:right}
+.rate{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:600;color:#fff;background:#b3261e}
+.alert{background:var(--warn);border:1px solid var(--warnline);border-radius:10px;padding:10px 14px;margin-bottom:12px}
+.alert button{margin-left:8px}
+.err{border-color:var(--red)}
+.foot{background:var(--panel);border-top:1px solid var(--line);padding:14px 28px;margin-top:8px}
+.foot .in{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.btn{border-radius:999px;padding:10px 22px;border:1px solid #c8ccd0;background:var(--panel);cursor:pointer;font-weight:500}
+.btn.p{background:var(--red);border-color:var(--red);color:#fff}.btn.p:hover{background:var(--red-h)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.ok{display:inline-block;border:1px solid var(--ok);color:var(--ok);border-radius:999px;padding:2px 12px;font-size:14px}
+.mail{white-space:pre-wrap;line-height:1.7;min-height:330px}
+a{color:var(--red)}
+.muted{color:var(--mid)}
+.demo{background:#fff8e1;color:#5a4a00;font-size:14px;padding:8px 28px}
+@media (max-width:760px){.cols{grid-template-columns:1fr}.row{grid-template-columns:1fr;gap:4px}.big{font-size:40px}.ribbon{font-size:17px}.wrap{padding:14px 16px 12px}.foot{padding:12px 16px}}
+</style></head>
 <body>
-<div class="top">
-  <span class="brand">Answer<em>.</em> with its method</span>
-  <span class="datachip" id="dates"></span>
-  <span class="grow"></span>
-  <span class="seg" role="group" aria-label="Who is using it"><button id="role-analyst" aria-pressed="true">Analyst</button><button id="role-sarah" aria-pressed="false">Reviewer</button></span>
-</div>
-<div class="page">
-  <div class="stepper" id="stepper"></div>
-  <div id="note"></div>
-  <main id="view"></main>
-</div>
-<div class="actions"><div class="in" id="actions"></div></div>
+<div id="app"></div>
 <script>
-let META = null, role = 'analyst';
-const freshAsk = () => ({question:'', asker:'', audience:'committee', audienceOther:''});
-let S = {ask:freshAsk(), interp:null, interpKey:'', choices:null, sources:null, reasons:{}, parent:null, flags:[], rec:null};
-const $ = s => document.querySelector(s);
-const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const clone = o => JSON.parse(JSON.stringify(o));
-const SCEN = {central:'Central', severe:'Severe', low:'Low emissions'};
-const AUD = {committee:['Committee', 'Central at 2050'], pra:['PRA / stress', 'Central and severe, 2030 and 2050'], other:['Other', 'Committee defaults apply']};
-const SRC = {question:'From the question', default:'Default', analyst:'Changed by analyst', added:'Added by analyst'};
-const DIMLABEL = {region:'Region', property_type:'Property type'};
-const DEFAULTED = ['scenarios','years','exclusions','unit','origination_source'];
-const RATE = ['A','B','C','D','E','F','G'];
-const EXAMPLES = [['How many CRE loans have a flood rating of E or worse by 2050?','Credit committee'], ["What's our total expected climate loss by 2050?",'CRO'],
-  ['How much of our 2024 and 2025 lending went into high subsidence areas?','Mortgage pricing'], ['How much do expected losses rise from 2030 to 2050 under the severe scenario?','Treasury']];
-
 async function api(path, body) {
   if (window.mockApi) return window.mockApi(path, body);
   const r = await fetch(path, body ? {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)} : {});
-  const j = await r.json(); if (!r.ok) throw new Error(j.detail || r.statusText); return j;
+  const j = await r.json(); if (!r.ok) throw new Error(j.detail || 'Something went wrong'); return j;
 }
-function fmt(v) {
-  if (Array.isArray(v)) return v.map(x => SCEN[x] || x).join(', ') || 'none';
-  if (v && typeof v === 'object') return Object.entries(v).filter(([,x]) => x && (!Array.isArray(x) || x.length)).map(([k,x]) => k.replace(/_/g,' ') + (x === true ? '' : ' ' + (Array.isArray(x) ? x.join(', ') : x))).join(', ') || 'none';
-  return SCEN[v] || String(v ?? 'none');
-}
-function stepper(cur) {
-  const steps = role === 'sarah' ? [['review','Review']] : [['ask','Ask'],['confirm','Confirm'],['answer','Answer'],['review','Review']];
-  const i = steps.findIndex(s => s[0] === cur);
-  $('#stepper').innerHTML = steps.map(([k,l], j) => `${j ? '<span class="bar"></span>' : ''}<span class="s ${j === i ? 'on' : j < i ? 'done' : ''}"><span class="n">${j < i ? '✓' : j + 1}</span>${l}</span>`).join('');
-}
-function actions(left, right) { $('#actions').innerHTML = `${left || ''}<span class="err" id="err" role="alert"></span>${right || ''}`; }
-function showErr(e) { $('#err').textContent = e.message || e; }
-function setRole(r) { role = r; $('#role-analyst').setAttribute('aria-pressed', r === 'analyst'); $('#role-sarah').setAttribute('aria-pressed', r === 'sarah'); r === 'sarah' ? renderQueue() : renderAsk(); }
-$('#role-analyst').onclick = () => setRole('analyst'); $('#role-sarah').onclick = () => setRole('sarah');
+const EXAMPLES = ['How many CRE loans have a flood rating of E or worse by 2050?', "What's our total expected climate loss by 2050?",
+  'How much of our 2024 and 2025 lending went into high subsidence areas?', 'How much do expected losses rise from 2030 to 2050 under the severe scenario?'];
+const ASKERS = [['Credit committee','committee'],['Risk committee','committee'],['CRO','other'],['PRA / stress test','pra'],['Mortgage pricing','other'],['Treasury','other'],['Investor relations','other']];
+const SCEN = [['low','Low'],['central','Central'],['severe','Severe']];
+const EXCL = [['in_default','Loans in default'],['redeemed','Redeemed since the export'],['maturing_before','Maturing before 2030']];
+const S = {view:'draft', question:'', asker:'Credit committee', interp:null, choices:null, sources:{}, rec:null, note:'', comment:'', error:'', sentBack:'', changedBySarah:false, mail:''};
+const $ = s => document.querySelector(s);
+const esc = t => String(t ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money = x => x == null ? '' : x >= 1e9 ? `£${(x/1e9).toFixed(1)}bn` : x >= 1e6 ? `£${(x/1e6).toFixed(1)}m` : x >= 1e3 ? `£${Math.round(x/1e3)}k` : `£${Math.round(x)}`;
+const fmtDate = d => new Date(d).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'});
+const audience = () => (ASKERS.find(a => a[0] === S.asker) || [0,'other'])[1];
+const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
-async function init() {
-  META = await api('/api/meta');
-  $('#dates').textContent = `Spectra export ${META.export_as_at} · Loan book ${META.book_as_at}`;
-  if (window.demoNote) $('#note').innerHTML = `<div class="note-demo">${window.demoNote}</div>`;
-  renderAsk();
-}
-
-// ---------- 1 Ask ----------
-async function renderAsk() {
-  stepper('ask'); const a = S.ask; const mine = (await api('/api/answers')).slice().reverse();
-  $('#view').innerHTML = `<h1>What was asked?</h1><p class="sub">Paste the question exactly as it came in. The audience sets Sarah's default scenario and years.</p>
-    <div class="card"><div class="bd">
-      <div class="field"><label class="lbl" for="q">Question</label><textarea id="q" placeholder="e.g. How many CRE loans have a flood rating of E or worse by 2050?">${esc(a.question)}</textarea>
-        <div class="examples"><span>Try an example:</span>${EXAMPLES.map((e, i) => `<button class="pill" data-ex="${i}">${esc(e[1])}</button>`).join('')}</div></div>
-      <div class="field"><label class="lbl" for="asker">Asked by</label><input type="text" id="asker" list="askers" value="${esc(a.asker)}" placeholder="e.g. Credit committee">
-        <datalist id="askers">${['CRO','Risk committee','Credit committee','Mortgage pricing','Treasury','Investor relations','Sustainability reporting','PRA'].map(x => `<option value="${x}">`).join('')}</datalist></div>
-      <div class="field"><span class="lbl">Audience</span><div class="choices">${Object.entries(AUD).map(([k,[l,h]]) => `<label class="opt"><input type="radio" name="aud" value="${k}" ${a.audience === k ? 'checked' : ''}><b>${l}</b><small>${h}</small></label>`).join('')}</div>
-        <input type="text" id="audOther" placeholder="Who is it for? e.g. Board ESG committee" value="${esc(a.audienceOther)}" style="margin-top:10px" ${a.audience === 'other' ? '' : 'hidden'}></div>
-    </div></div>
-    <div class="card"><p class="sec">My answers</p><div class="list">${mine.length ? mine.map(x => `<button class="li" data-open="${x.id}"><span><span class="tag ${x.status === 'approved' ? 'pass' : x.status === 'sent_back' ? 'fail' : ''}">${esc(x.status.replace('_',' '))}</span> ${x.fast_track ? '<span class="tag brand">Fast-track</span>' : ''}</span><span>${esc(x.question)}</span><span class="meta">${esc(x.result.headline)}</span></button>`).join('') : '<div class="empty">No answers yet.</div>'}</div></div>`;
-  const save = () => { a.question = $('#q').value; a.asker = $('#asker').value; a.audienceOther = $('#audOther').value; };
-  ['#q','#asker','#audOther'].forEach(s => $(s).oninput = save);
-  document.querySelectorAll('input[name=aud]').forEach(r => r.onchange = () => { a.audience = r.value; $('#audOther').hidden = r.value !== 'other'; });
-  document.querySelectorAll('[data-ex]').forEach(b => b.onclick = () => { const [q, w] = EXAMPLES[b.dataset.ex]; $('#q').value = q; $('#asker').value = w; save(); });
-  document.querySelectorAll('[data-open]').forEach(b => b.onclick = () => openMine(b.dataset.open));
-  actions('', `<button class="btn primary" id="next">Continue →</button>`);
-  $('#next').onclick = toConfirm;
-}
-async function toConfirm() {
-  const a = S.ask;
-  if (a.audience === 'other' && !a.audienceOther.trim()) return showErr('Say who the answer is for.');
-  const aud = a.audience === 'other' ? a.audienceOther.trim() : a.audience;
-  const k = JSON.stringify([a.question.trim(), aud]);
-  if (S.interp && S.interpKey === k && !S.parent) return renderConfirm();     // back, then forward again: keep every edit
+let qTimer, lastQ = '';
+function onQuestion(v) { S.question = v; clearTimeout(qTimer); qTimer = setTimeout(() => { if (S.question.trim() !== lastQ) interpretNow(); }, 500); }
+async function interpretNow() {
+  lastQ = S.question.trim(); S.error = ''; S.rec = null; S.interp = null;
+  if (S.question.trim().split(/\s+/).length < 3) { render(); return; }
   try {
-    const r = await api('/api/interpret', {question:a.question, audience:aud, asker:a.asker});
-    S = {...S, interp:r, interpKey:k, choices:clone(r.choices), sources:clone(r.sources), flags:r.flags, defaults:r.defaults, reasons:{}, parent:null, sentBack:null, audienceSent:aud};
-    renderConfirm();
-  } catch (e) { showErr(e); }
+    S.interp = await api('/api/interpret', {question:S.question, audience:audience(), asker:S.asker});
+    S.choices = JSON.parse(JSON.stringify(S.interp.choices)); S.sources = {...S.interp.sources};
+    await preview();
+  } catch (e) { S.error = e.message; render(); }
 }
-async function openMine(id) {
-  const x = await api('/api/answers/' + id); S.rec = x;
-  if (x.status === 'approved') return renderApproved(x);
-  if (x.status === 'sent_back') { S = {...S, choices:clone(x.choices), sources:clone(x.sources), reasons:clone(x.reasons || {}), flags:[], parent:x.parent_id, sentBack:x.comments.at(-1)?.text, audienceSent:x.audience,
-    ask:{...S.ask, question:x.question, asker:x.asker}, interp:{question_years:x.question_years}, interpKey:'', defaults:x.defaults || S.defaults}; return renderConfirm(); }
-  renderAnswer(x);
-}
-
-// ---------- 2 Confirm ----------
-function isDeparture(f) { return DEFAULTED.includes(f) && S.sources[f] === 'analyst' && S.defaults && JSON.stringify(S.choices[f]) !== JSON.stringify(S.defaults[f]); }
-function setC(f, v) { S.choices[f] = v; S.sources[f] = 'analyst'; renderConfirm(); }
-function tag(f) { const s = S.sources[f] || 'default'; return `<span class="tag ${s === 'added' ? 'analyst' : s}">${SRC[s]}</span>`; }
-function chk(group, val, on, label) { return `<label class="chk"><input type="checkbox" data-g="${group}" value="${esc(val)}" ${on ? 'checked' : ''}>${esc(label ?? val)}</label>`; }
-function rateChips(c) {
-  const lo = c.rating_min ? RATE.indexOf(c.rating_min) : -1, hi = c.rating_max ? RATE.indexOf(c.rating_max) : 6;
-  return `<div class="chips">${RATE.map((r, i) => `<label class="chk rate" style="background:var(--r-${r.toLowerCase()})" title="Rating ${r}"><input type="checkbox" data-rate="${r}" ${lo >= 0 && i >= lo && i <= hi ? 'checked' : ''}>${r}</label>`).join('')}</div>
-    <div class="hint">${lo >= 0 ? `Rated ${c.rating_min}${c.rating_max && c.rating_max !== 'G' ? ' to ' + c.rating_max : ' or worse'}. Click a letter to set where the band starts.` : 'Click a letter to set where the band starts.'}</div>`;
-}
-function row(name, f, control, opts = {}) {
-  const flags = (S.flags || []).filter(x => x.field === f);
-  const dep = isDeparture(f) ? `<div class="dep"><span>Changes Sarah's default, so it <b>needs her approval</b>.</span><input type="text" data-reason="${f}" placeholder="Why the change?" value="${esc(S.reasons[f] || '')}"></div>` : '';
-  return `<div class="row"><div class="k">${name}</div><div class="v">${control}${flags.map(x => `<div class="flag ${x.kind}">${esc(x.text)}</div>`).join('')}${dep}</div><div>${tag(opts.tagKey || f)}${opts.remove ? ` <button class="x" title="Remove ${esc(name)}" data-rm="${opts.remove}">×</button>` : ''}</div></div>`;
-}
-function renderConfirm() {
-  stepper('confirm'); const c = S.choices, ex = c.exclusions || {};
-  const general = (S.flags || []).filter(x => !x.field);
-  const dims = Object.keys(META.dims).filter(d => !(c.filters || {})[d]);
-  $('#view').innerHTML = `<h1>Confirm how to answer it</h1><p class="sub">“${esc(S.ask.question)}”${S.ask.asker ? ' · ' + esc(S.ask.asker) : ''}</p>
-    ${S.sentBack ? `<div class="callout"><h2>Sent back by Sarah</h2><span>${esc(S.sentBack)}</span></div>` : ''}
-    ${general.map(x => `<div class="flag ${x.kind}" style="margin:0 0 12px">${esc(x.text)}</div>`).join('')}
-    <div class="card"><p class="sec">What and who</p><div class="rows">
-      ${row('Measure', 'measure', `<select data-f="measure">${[['count','Count of loans, with their balance'],['loss','£ expected damage to properties'],['rise','Rise between two years'],['share','Share of lending']].map(([k,v]) => `<option value="${k}" ${c.measure === k ? 'selected' : ''}>${v}</option>`).join('')}</select>`)}
-      ${row('Loans', 'loan_type', `<select data-f="loan_type"><option value="">All loans</option>${META.loan_types.map(t => `<option ${c.loan_type === t ? 'selected' : ''}>${t}</option>`).join('')}</select>`)}
-      ${c.measure === 'share' ? row('Originated in', 'originated', `<input type="text" data-f="originated" value="${esc((c.originated || []).join(', '))}" placeholder="e.g. 2024, 2025">`) : ''}
-      ${Object.entries(c.filters || {}).map(([d, vals]) => row(DIMLABEL[d] || d, 'filter:' + d, `<div class="chips">${META.dims[d].map(v => chk('filter:' + d, v, vals.includes(v))).join('')}</div>`, {tagKey:'filter:' + d, remove:d})).join('')}
-      ${row('Hazards', 'hazards', `<div class="chips">${META.hazards.map(h => chk('hazards', h, c.hazards.includes(h), h[0].toUpperCase() + h.slice(1))).join('')}</div><div class="hint">None selected means all four hazards.</div>`)}
-      ${c.measure === 'count' || c.measure === 'share' ? row('Rating', 'rating', rateChips(c)) : ''}
-    </div>${dims.length ? `<div class="add"><span class="lbl" style="margin:0">+ Add a choice</span><select id="adddim"><option value="">Choose…</option>${dims.map(d => `<option value="${d}">${DIMLABEL[d] || d}</option>`).join('')}</select></div>` : ''}</div>
-    <div class="card"><p class="sec">Settings</p><div class="rows">
-      ${row('Scenario', 'scenarios', `<div class="chips">${Object.keys(META.scenarios).map(s => chk('scenarios', s, c.scenarios.includes(s), SCEN[s] + ' · ' + META.scenarios[s].toUpperCase())).join('')}</div>`)}
-      ${row('Years', 'years', `<div class="chips">${META.years.map(y => chk('years', y, c.years.includes(y))).join('')}</div>`)}
-      ${c.measure === 'count' ? row('Count per', 'unit', `<div class="chips">${chk('unit', 'loans', c.unit === 'loans', 'Loan')}${chk('unit', 'properties', c.unit === 'properties', 'Property')}</div>`) : ''}
-      ${row('Exclusions', 'exclusions', `<div class="chips">${chk('ex', 'in_default', ex.in_default, 'In default')}${chk('ex', 'redeemed', ex.redeemed, 'Redeemed since the export')}${chk('ex', 'maturing_before', ex.maturing_before, 'Maturing before 2030')}</div>`)}
-      ${c.originated ? row('Origination date', 'origination_source', `<div class="chips">${chk('osrc', 'loan_book', c.origination_source === 'loan_book', 'Loan system')}${chk('osrc', 'spectra', c.origination_source === 'spectra', 'Spectra export')}</div>`) : ''}
-    </div></div>`;
-  document.querySelectorAll('[data-f]').forEach(el => el.onchange = () => { const f = el.dataset.f;
-    const v = f === 'originated' ? el.value.split(',').map(x => parseInt(x)).filter(Boolean) : f === 'loan_type' ? (el.value || null) : el.value; setC(f, v); });
-  document.querySelectorAll('[data-rate]').forEach(el => el.onchange = () => { const r = el.dataset.rate;
-    if (c.rating_min === r && !el.checked) { c.rating_min = null; c.rating_max = null; } else { c.rating_min = r; c.rating_max = c.rating_max && RATE.indexOf(c.rating_max) >= RATE.indexOf(r) ? c.rating_max : null; }
-    S.sources.rating = 'analyst'; renderConfirm(); });
-  document.querySelectorAll('input[data-g]').forEach(el => el.onchange = () => {
-    const g = el.dataset.g;
-    if (g === 'ex') return setC('exclusions', {...c.exclusions, [el.value]: el.value === 'maturing_before' ? (el.checked ? 2030 : null) : el.checked});
-    if (g === 'unit') return setC('unit', el.value);
-    if (g === 'osrc') return setC('origination_source', el.value);
-    if (g.startsWith('filter:')) { const d = g.slice(7); let cur = c.filters[d] || []; cur = el.checked ? [...cur, el.value] : cur.filter(x => x !== el.value);
-      c.filters[d] = cur; S.sources[g] = S.sources[g] === 'question' ? 'analyst' : (S.sources[g] || 'added'); return renderConfirm(); }
-    let cur = [...(c[g] || [])]; cur = el.checked ? [...new Set([...cur, el.value])] : cur.filter(x => x !== el.value); cur.sort(); setC(g, cur);
-  });
-  document.querySelectorAll('[data-reason]').forEach(el => el.oninput = () => S.reasons[el.dataset.reason] = el.value);
-  document.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { delete c.filters[b.dataset.rm]; delete S.sources['filter:' + b.dataset.rm]; renderConfirm(); });
-  if ($('#adddim')) $('#adddim').onchange = e => { if (!e.target.value) return; c.filters = {...(c.filters || {}), [e.target.value]: []}; S.sources['filter:' + e.target.value] = 'added'; renderConfirm(); };
-  actions(`<button class="btn secondary" id="back">← Back</button>`, `<button class="btn primary" id="next">Confirm and calculate →</button>`);
-  $('#back').onclick = () => S.parent ? renderApproved(S.rec) : renderAsk();
-  $('#next').onclick = calculate;
-}
-async function calculate() {
-  const c = S.choices;
-  if (!c.scenarios.length) return showErr('Pick at least one scenario.');
-  if (!c.years.length) return showErr('Pick at least one year.');
-  const empty = Object.entries(c.filters || {}).filter(([,v]) => !v.length).map(([d]) => DIMLABEL[d] || d);
-  if (empty.length) return showErr(`Pick at least one value for ${empty.join(', ')}, or remove it.`);
+async function preview() {
   try {
-    const rec = await api('/api/compute', {question:S.ask.question, audience:S.audienceSent || S.ask.audience, asker:S.ask.asker, choices:c, sources:S.sources,
-      question_years:S.interp?.question_years || [], reasons:S.reasons, parent_id:S.parent});
-    S.rec = rec; renderAnswer(rec);
-  } catch (e) { showErr(e); }
+    S.rec = await api('/api/compute', {question:S.question, audience:audience(), asker:S.asker, choices:S.choices, sources:S.sources,
+      question_years:S.interp.question_years, reasons:{}, preview:true});
+    S.error = '';
+  } catch (e) { S.error = e.message; }
+  render();
+}
+function setChoice(field, value) { S.choices[field] = value; S.sources[field] = 'analyst'; if (S.view === 'review') S.changedBySarah = true; preview(); }
+
+// ---------- pieces ----------
+function bigNumber(res, c) {
+  const d = res.grid[0].detail || {};
+  if (c.measure === 'count') return [`${d.n} ${c.unit === 'properties' ? 'properties' : 'loans'} · ${money(d.balance)}`, `of ${d.of_n} · of ${money(d.of_balance)} balance`];
+  if (c.measure === 'share') return [`${money(d.balance)} · ${(d.share*100).toFixed(1)}%`, `of ${money(d.of_balance)} new lending · older book ${(d.older_share*100).toFixed(1)}%`];
+  if (c.measure === 'rise') return [`${res.grid[0].value.toFixed(2)}×`, res.grid[0].text.split(': ')[1].split(' = ')[0]];
+  return [money(d.loss), 'annual expected damage to properties'];
+}
+function countChips(c) {
+  const out = [];
+  out.push(c.loan_type === 'Commercial real estate' ? 'CRE loans' : c.loan_type === 'Residential mortgage' ? 'Mortgages' : 'All loans');
+  const hz = (c.hazards || []).length ? c.hazards.map(h => h[0].toUpperCase() + h.slice(1)).join(', ') : 'All hazards';
+  out.push(c.rating_min ? `${hz} rating ${c.rating_min}${c.rating_max && c.rating_max !== 'G' ? '–' + c.rating_max : ' or worse'}` : hz);
+  if (c.originated) out.push(`Lent in ${c.originated.join(' and ')}`);
+  return out.map(t => `<span class="chip">${esc(t)}</span>`).join('');
+}
+function controls(editable, asSelect) {
+  const c = S.choices, d = S.rec.defaults || {};
+  const scen = c.scenarios[0], isDef = same(c.scenarios, d.scenarios);
+  const yrs = S.rec ? (window.mockApi ? ['2030','2050'] : ['2030','2050']) : [];
+  const scenCtl = asSelect
+    ? `<select aria-label="Scenario" style="width:auto" onchange="setChoice('scenarios',[this.value])">${SCEN.map(([k,l]) => `<option value="${k}" ${k===scen?'selected':''}>${l}</option>`).join('')}</select>`
+    : `<span class="seg" role="group" aria-label="Scenario">${SCEN.map(([k,l]) => `<button aria-pressed="${k===scen}" onclick="setChoice('scenarios',['${k}'])">${l}</button>`).join('')}</span>`;
+  let yearCtl;
+  if (c.measure === 'rise') yearCtl = `<span>${c.years.join(' → ')}</span>`;
+  else yearCtl = asSelect
+    ? `<select aria-label="Horizon" style="width:auto" onchange="setChoice('years',[this.value])">${yrs.map(y => `<option ${c.years[0]===y?'selected':''}>${y}</option>`).join('')}</select>`
+    : `<span class="seg" role="group" aria-label="Horizon">${yrs.map(y => `<button aria-pressed="${c.years[0]===y}" onclick="setChoice('years',['${y}'])">${y}</button>`).join('')}</span>`;
+  const ex = c.exclusions || {};
+  const on = EXCL.filter(([k]) => ex[k]), off = EXCL.filter(([k]) => !ex[k]);
+  const exCtl = on.map(([k,l]) => `<span class="chip">${l}<button aria-label="Remove ${l}" onclick="toggleEx('${k}',false)">×</button></span>`).join('')
+    + (off.length ? off.map(([k,l]) => `<button class="add" onclick="toggleEx('${k}',true)">+ ${l}</button>`).join(' ') : '');
+  const yDef = same(c.years, d.years) && S.sources.years !== 'question';
+  return `<div class="panel">
+    <div class="row"><div class="k">${c.measure === 'count' ? 'Count' : 'Covers'}</div><div>${countChips(c)}</div></div>
+    <div class="row"><div class="k">Scenario</div><div>${scenCtl}${isDef ? '<span class="tag">Default</span>' : ''}</div></div>
+    <div class="row"><div class="k">Horizon</div><div>${yearCtl}${yDef && c.measure !== 'rise' ? '<span class="tag">Default</span>' : ''}</div></div>
+    <div class="row"><div class="k">Excludes</div><div>${exCtl || '<span class="muted">Nothing</span>'}</div></div>
+  </div>`;
+}
+function toggleEx(k, v) { const ex = {...S.choices.exclusions}; ex[k] = v ? (k === 'maturing_before' ? 2030 : true) : (k === 'maturing_before' ? null : false); setChoice('exclusions', ex); }
+function evidence(res) {
+  if (res.rows) {
+    return `<div class="panel"><div class="lbl">The ${res.rows_total} loan${res.rows_total === 1 ? '' : 's'}</div>
+      ${res.rows.length ? `<table><tr><th>Loan</th><th>Property</th><th>Region</th><th class="r">Balance</th><th class="r">Rating</th></tr>
+      ${res.rows.map(r => `<tr><td>${esc(r.loan_id)}</td><td>${esc(r.property_type)}</td><td>${esc(r.region.replace(' and the Humber',''))}</td><td class="r">${money(r.balance)}</td><td class="r"><span class="rate" aria-label="Rating ${r.rating}">${esc(r.rating)}</span></td></tr>`).join('')}</table>
+      ${res.rows_total > res.rows.length ? `<p class="muted">Showing the ${res.rows.length} largest. All ${res.rows_total} are in the file.</p>` : ''}` : '<p class="muted">No loans match. Try another scenario or horizon, or remove an exclusion.</p>'}</div>`;
+  }
+  const dr = res.drivers || {};
+  const tbl = (t, o) => `<table><tr><th>${t}</th><th class="r">Damage</th></tr>${Object.entries(o).sort((a,b) => b[1]-a[1]).slice(0,5).map(([k,v]) => `<tr><td>${esc(k[0].toUpperCase()+k.slice(1))}</td><td class="r">${money(v)}</td></tr>`).join('')}</table>`;
+  return `<div class="panel"><div class="lbl">Where it comes from</div>${dr.by_hazard ? tbl('Hazard', dr.by_hazard) : ''}${dr.by_region ? '<div style="height:12px"></div>' + tbl('Region', dr.by_region) : ''}</div>`;
+}
+function writeup(res) {
+  const skip = /^(Scenario|Population|Excludes|Counting|Hazards)/;
+  const extra = res.method_note.filter(l => !skip.test(l)).map(l => l.startsWith('Data:') ? (l.match(/(\d+ loans? didn't match.*)$/) || [,''])[1] : l).filter(Boolean).map(l => l[0].toUpperCase() + l.slice(1));
+  if ((S.choices.rating_min)) extra.unshift('Where a loan has more than one property, its worst rating is used.');
+  return `<div class="lbl">Also in the write-up</div>${extra.map(l => `<p style="margin:0 0 6px">${esc(l.replace(/ \(ssp\d+\)/,''))}</p>`).join('')}`;
+}
+function failed(res) { return res.checks.filter(c => !c.ok); }
+function header(user, job, step) {
+  const steps = ['Draft','Review','Send'].map(s => s === step ? `<b>${s}</b>` : s).join('<i></i>');
+  return `${window.demoNote ? `<div class="demo">${esc(window.demoNote)}</div>` : ''}<div class="ribbon">User: ${user}<span class="sep">·</span>Job to be done: ${job}</div>
+    <div class="wrap"><div class="steps" aria-label="Steps">${steps}</div>`;
+}
+const meta = () => window._meta ? `Spectra export, ${fmtDate(window._meta.export_as_at)} · Loan book, ${fmtDate(window._meta.book_as_at)}` : '';
+
+// ---------- screens ----------
+function draftView() {
+  const res = S.rec && S.rec.result, flags = (S.interp && S.interp.flags || []).filter(f => ['out_of_scope','not_in_data','split'].includes(f.kind));
+  let h = header('Analyst', 'turn the question into the right calculation', 'Draft') + `<h1>Draft</h1>`;
+  if (S.sentBack) h += `<div class="alert"><b>Sent back by Sarah:</b> ${esc(S.sentBack)}</div>`;
+  h += `<div class="panel">
+    <div class="row"><div class="k"><label for="q">Question</label></div><div><textarea id="q" rows="2" oninput="onQuestion(this.value)" placeholder="Paste the question as it was asked">${esc(S.question)}</textarea>
+      <div class="ex">Examples:${EXAMPLES.map((e,i) => `<button onclick="useExample(${i})">${i+1}</button>`).join('')}</div></div></div>
+    <div class="row"><div class="k"><label for="asker">Asked by</label></div><div><select id="asker" style="max-width:420px" onchange="S.asker=this.value;interpretNow()">${ASKERS.map(([a]) => `<option ${a===S.asker?'selected':''}>${a}</option>`).join('')}</select></div></div>
+    <div class="row"><div class="k">Data</div><div>${meta()}</div></div></div>`;
+  flags.forEach(f => h += `<div class="alert">${esc(f.text)}</div>`);
+  if (S.error) h += `<div class="alert">${esc(S.error)}</div>`;
+  if (res) {
+    const [b, ctx] = bigNumber(res, S.choices);
+    h += `<div class="panel out"><div class="big" aria-live="polite">${esc(b)}</div><div class="ctx">${esc(ctx)}</div></div>`;
+    failed(res).forEach(c => h += `<div class="alert">${esc(c.detail)}.</div>`);
+    h += `<div class="cols">${controls(true, false)}${evidence(res)}</div>
+      <div class="cols"><div class="panel">${writeup(res)}</div>
+      <div class="panel"><div class="lbl"><label for="note">Note to Sarah${failed(res).length ? ' (needed: explain the warning)' : ' (optional)'}</label></div><textarea id="note" rows="3" oninput="S.note=this.value">${esc(S.note)}</textarea></div></div>`;
+  } else if (!S.error) h += `<div class="panel muted">Paste a question to see the draft.</div>`;
+  h += `</div><div class="foot"><div class="in"><button class="btn" onclick="reset()">Cancel</button><button class="btn p" ${res ? '' : 'disabled'} onclick="sendToSarah()">Send draft to Sarah →</button></div></div>`;
+  return h;
+}
+function reviewView() {
+  const res = S.rec.result, [b, ctx] = bigNumber(res, S.choices);
+  let h = header('Sarah', 'approve the draft or send it back', 'Review') + `<h1>Review the draft</h1>
+    <div class="panel"><div class="row"><div class="k">Question</div><div>${esc(S.question)}</div></div>
+    <div class="row"><div class="k">Asked by</div><div>${esc(S.asker)}</div></div>
+    <div class="row"><div class="k">Data</div><div>${meta()}</div></div>
+    ${S.note ? `<div class="row"><div class="k">Analyst's note</div><div>“${esc(S.note)}”</div></div>` : ''}</div>`;
+  if (S.error) h += `<div class="alert">${esc(S.error)}</div>`;
+  h += `<div class="panel out"><div class="big" aria-live="polite">${esc(b)}</div><div class="ctx">${esc(ctx)}</div></div>
+    <div class="cols">${controls(true, true)}${evidence(res)}</div>
+    <div class="cols"><div class="panel">${writeup(res)}</div>
+    <div class="panel"><div class="lbl"><label for="cm">Comment to the analyst</label></div><textarea id="cm" rows="3" placeholder="Needed to send back" oninput="S.comment=this.value">${esc(S.comment)}</textarea></div></div>
+    </div><div class="foot"><div class="in"><button class="btn" onclick="sendBack()">Send back</button><button class="btn p" onclick="approve()">Approve</button></div></div>`;
+  return h;
+}
+function mailText() {
+  const res = S.rec.result; const sev = (res.versions || []).find(v => v.change === 'scenario → severe');
+  const head = res.headline.replace(/ \((central|severe|low-emissions)\)$/, ' under the $1 scenario');
+  return `Hi all,\n\n${head[0].toUpperCase() + head.slice(1)}.${sev ? `\n\nUnder the severe scenario: ${sev.text.replace(/ \(severe\)$/, '')}.` : ''}\n\nThe loans and how they were counted are in the attached file.\n\nApproved by Sarah Okafor, Head of Climate Risk.`;
+}
+function sendView() {
+  if (!S.mail) S.mail = mailText();
+  const subj = 'Re: ' + S.question.replace(/\?$/, '');
+  let h = header('Analyst', 'send the approved answer to whoever asked', 'Send') + `<h1>Send the answer</h1>
+    <p><span class="ok">Approved by Sarah · ${new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}</span></p>
+    <div class="panel"><div class="row"><div class="k">To</div><div><input type="text" value="${esc(S.asker)}"></div></div>
+    <div class="row"><div class="k">Subject</div><div><input type="text" value="${esc(subj)}"></div></div>
+    <textarea class="mail" style="margin-top:10px" aria-label="Reply" oninput="S.mail=this.value">${esc(S.mail)}</textarea>
+    <p style="margin:10px 0 0">Attached: ${window.mockApi ? '<b>answer.xlsx</b>' : `<a href="/api/answers/${S.rec.id}/export.xlsx"><b>answer.xlsx</b></a>`}</p></div>
+    </div><div class="foot"><div class="in"><span></span><button class="btn p" onclick="sendIt()">Send</button></div></div>`;
+  return h;
+}
+function sentView() {
+  return header('Analyst', 'send the approved answer to whoever asked', 'Send') + `<h1>Sent</h1>
+    <div class="panel">Sent to ${esc(S.asker)} and logged: who asked, who built it, Sarah's approval, the data dates.</div>
+    </div><div class="foot"><div class="in"><span></span><button class="btn p" onclick="reset()">New question</button></div></div>`;
 }
 
-// ---------- 3 Answer ----------
-function sidePanel(a) {
-  const c = a.choices; const f = Object.entries(c.filters || {}).filter(([,v]) => v.length);
-  return `<aside class="side"><div class="card"><p class="sec">Settings used</p><div class="bd"><dl class="kv">
-    <dt>Scenario</dt><dd>${esc(fmt(c.scenarios))}</dd><dt>Years</dt><dd>${esc(c.years.join(', '))}</dd>
-    <dt>Loans</dt><dd>${esc(c.loan_type || 'All')}</dd>${f.map(([d,v]) => `<dt>${DIMLABEL[d] || d}</dt><dd>${esc(v.join(', '))}</dd>`).join('')}
-    <dt>Hazards</dt><dd>${esc(c.hazards.length ? c.hazards.join(', ') : 'All')}</dd>${c.rating_min ? `<dt>Rating</dt><dd>${c.rating_min}${c.rating_max ? '–' + c.rating_max : '+'}</dd>` : ''}
-    <dt>Exclusions</dt><dd>${esc(fmt(c.exclusions))}</dd></dl></div></div>
-    <div class="card"><p class="sec">Data</p><div class="bd foot">${a.result.counts.included} included · ${a.result.counts.excluded} excluded<br>${a.result.counts.unmatched} unmatched · ${a.result.counts.unscored} unscored<br>Calculated by code from the loaded files</div></div>
-    ${window.mockApi ? '' : `<a class="btn secondary" style="width:100%;justify-content:center" href="/api/answers/${a.id}/export.xlsx">Download source rows (Excel)</a>`}</aside>`;
+// ---------- actions ----------
+function useExample(i) { S.question = EXAMPLES[i]; interpretNow(); }
+function reset() { Object.assign(S, {view:'draft', question:'', interp:null, choices:null, sources:{}, rec:null, note:'', comment:'', error:'', sentBack:'', changedBySarah:false, mail:''}); render(); }
+async function finalise(reasonText) {
+  const reasons = {}; (S.rec.departures || []).forEach(d => reasons[d.field] = reasonText);
+  return api('/api/compute', {question:S.question, audience:audience(), asker:S.asker, choices:S.choices, sources:S.sources, question_years:S.interp.question_years, reasons});
 }
-function resultMain(a) {
-  const r = a.result, v = Object.entries(r.verdicts || {}).filter(([,t]) => t); if (r.versions_verdict) v.push(['scenario', r.versions_verdict]);
-  const failed = r.checks.filter(c => !c.ok).length;
-  const drivers = Object.entries(r.drivers || {}).map(([k,d]) => { const t = Object.values(d).reduce((x,y) => x + y, 0);
-    return `<div class="vr"><b>${k === 'by_hazard' ? 'By hazard' : 'By ' + k.slice(3).replace('_',' ')}</b><span>${Object.entries(d).slice(0,3).map(([n,x]) => `${esc(n)} ${(100*x/t).toFixed(1)}%`).join(' · ')}</span></div>`; }).join('');
-  return `<div class="card kpi"><p class="sec">Answer</p><div class="bd">${failed ? `<span class="tag fail">✕ ${failed} failed check${failed > 1 ? 's' : ''}</span>` : '<span class="tag pass">✓ All checks pass</span>'}
-      <div class="big">${esc(r.headline)}</div>${r.grid.length > 1 ? r.grid.slice(1).map(g => `<div class="alt">${esc(g.text)}</div>`).join('') : ''}</div></div>
-    <div class="card"><p class="sec">If one choice changed</p><div class="bd vers">${r.versions.map(x => `<div class="vr"><b>${esc(x.change)}</b><span>${esc(x.text)}</span></div>`).join('')}${drivers}
-      ${v.map(([k,t]) => `<div class="verdict"><span class="tag">${esc(k)}</span><span>${esc(t)}</span></div>`).join('')}</div></div>
-    <div class="card"><p class="sec">Checks</p><div class="bd checks">${r.checks.map(c => `<div class="c"><span class="tag ${c.ok ? 'pass' : 'fail'}">${c.ok ? '✓ Pass' : '✕ Fail'}</span><span><b>${esc(c.name)}.</b> ${esc(c.detail)}</span></div>`).join('')}</div></div>
-    <div class="card"><p class="sec" style="display:flex;justify-content:space-between;align-items:center">Method note <button class="btn secondary small" id="copy">Copy</button></p><div class="bd"><ol class="note" id="notelist">${r.method_note.map(l => `<li>${esc(l)}</li>`).join('')}</ol></div></div>`;
+async function sendToSarah() {
+  try {
+    const f = failed(S.rec.result);
+    if (f.length && !S.note.trim()) { S.error = 'Add a note to Sarah explaining the warning, or fix it first.'; return render(); }
+    S.rec = await finalise(S.note.trim() || 'Changed by the analyst');
+    S.rec = await api(`/api/answers/${S.rec.id}/submit`, {comment:S.note});
+    S.view = 'review'; S.error = ''; S.sentBack = ''; S.comment = ''; render(); scrollTo(0,0);
+  } catch (e) { S.error = e.message; render(); }
 }
-function wireCopy(a) { const b = $('#copy'); if (!b) return; b.onclick = async () => { try { await navigator.clipboard.writeText(a.result.method_note.join('\n')); b.textContent = 'Copied'; } catch { const r = document.createRange(); r.selectNodeContents($('#notelist')); getSelection().removeAllRanges(); getSelection().addRange(r); } }; }
-function renderAnswer(a) {
-  stepper('answer'); const failed = a.result.checks.filter(c => !c.ok);
-  $('#view').innerHTML = `<h1>Answer</h1><p class="sub">“${esc(a.question)}” · <span class="tag">${esc(a.status.replace('_',' '))}</span></p>
-    <div class="layout"><div>${resultMain(a)}
-    ${a.status === 'draft' ? `<div class="card"><div class="bd"><label class="lbl" for="cm">Note for Sarah ${failed.length ? `<span class="tag fail">required: ${failed.length} failed</span>` : '<span class="hint">(optional)</span>'}</label><textarea id="cm">${esc(S.note || '')}</textarea></div></div>` : ''}
-    </div>${sidePanel(a)}</div>`;
-  wireCopy(a); if ($('#cm')) $('#cm').oninput = e => S.note = e.target.value;
-  actions(`<button class="btn secondary" id="back">← Back to choices</button>`, a.status === 'draft' ? `<button class="btn primary" id="next">Submit to Sarah →</button>` : `<button class="btn secondary" id="home">Done</button>`);
-  $('#back').onclick = () => { S.choices = clone(a.choices); S.sources = clone(a.sources); S.reasons = clone(a.reasons || {}); S.parent = a.parent_id; renderConfirm(); };
-  if ($('#home')) $('#home').onclick = renderAsk;
-  if ($('#next')) $('#next').onclick = async () => { try { await api(`/api/answers/${a.id}/submit`, {comment:$('#cm').value});
-    S = {ask:freshAsk(), interp:null, interpKey:'', choices:null, sources:null, reasons:{}, parent:null, flags:[], rec:null, note:''}; renderAsk(); } catch (e) { showErr(e); } };
+async function sendBack() {
+  if (!S.comment.trim()) { S.error = 'Add a comment so the analyst knows what to change.'; return render(); }
+  try { await api(`/api/answers/${S.rec.id}/review`, {decision:'send_back', comment:S.comment}); S.sentBack = S.comment; S.view = 'draft'; S.error = ''; render(); scrollTo(0,0); }
+  catch (e) { S.error = e.message; render(); }
 }
-function renderApproved(a) {
-  stepper('answer');
-  $('#view').innerHTML = `<h1>Approved, ready to send</h1><p class="sub">“${esc(a.question)}”</p>
-    <div class="layout"><div><div class="card kpi"><p class="sec">Answer</p><div class="bd"><span class="tag pass">✓ Approved by Sarah</span><div class="big">${esc(a.result.headline)}</div></div></div>
-    <div class="card"><div class="bd"><label class="lbl" for="fu">Follow-up from the asker</label><input type="text" id="fu" value="${esc(S.followText || '')}" placeholder="e.g. What about the severe scenario?">
-      <div class="examples"><span>Try:</span><button class="pill" data-fu="What about the severe scenario?">Severe scenario</button><button class="pill" data-fu="And by 2030?">2030</button><button class="pill" data-fu="Just the South East?">South East only</button></div></div></div></div>
-    ${sidePanel(a)}</div>`;
-  $('#fu').oninput = e => S.followText = e.target.value;
-  document.querySelectorAll('[data-fu]').forEach(b => b.onclick = () => { $('#fu').value = S.followText = b.dataset.fu; });
-  actions(`<button class="btn secondary" id="back">← Back</button>`, `<button class="btn primary" id="next">Answer the follow-up →</button>`);
-  $('#back').onclick = renderAsk;
-  $('#next').onclick = async () => { try { const r = await api(`/api/answers/${a.id}/followup`, {question:$('#fu').value});
-    S = {...S, choices:r.choices, sources:r.sources, flags:r.flags, parent:a.id, reasons:clone(a.reasons || {}), sentBack:null, ask:{...S.ask, question:r.question, asker:a.asker}, interp:{question_years:r.question_years}, interpKey:'', audienceSent:a.audience, rec:a};
-    renderConfirm(); } catch (e) { showErr(e); } };
+async function approve() {
+  try {
+    if (S.changedBySarah) { S.rec = await finalise('Changed by Sarah'); S.rec = await api(`/api/answers/${S.rec.id}/submit`, {comment:'Changed by Sarah at review'}); }
+    S.rec = await api(`/api/answers/${S.rec.id}/review`, {decision:'approve', comment:S.comment});
+    S.view = 'send'; S.error = ''; render(); scrollTo(0,0);
+  } catch (e) { S.error = e.message; render(); }
 }
-
-// ---------- 4 Review ----------
-async function renderQueue() {
-  stepper('review'); const all = await api('/api/answers'); const q = all.filter(a => a.status === 'submitted');
-  $('#view').innerHTML = `<h1>Waiting for your review</h1><p class="sub">${q.length} answer${q.length === 1 ? '' : 's'} to check before they go out.</p>
-    <div class="card"><div class="list">${q.map(a => { const f = a.result.checks.filter(c => !c.ok).length;
-      return `<button class="li" data-r="${a.id}"><span>${a.fast_track ? '<span class="tag brand">Fast-track</span> ' : ''}${f ? `<span class="tag fail">✕ ${f} failed</span> ` : '<span class="tag pass">✓ Checks pass</span> '}${a.departures.length ? '<span class="tag analyst">Changes your defaults</span>' : ''}</span><span><b>${esc(a.question)}</b></span><span class="meta">${esc(a.asker)} · ${esc(a.result.headline)}</span></button>`; }).join('') || '<div class="empty">Nothing waiting. Switch to Analyst and submit an answer.</div>'}</div></div>`;
-  document.querySelectorAll('[data-r]').forEach(b => b.onclick = async () => renderReview(await api('/api/answers/' + b.dataset.r)));
-  actions('', '');
+async function sendIt() { try { await api(`/api/answers/${S.rec.id}/send`, {}); S.view = 'sent'; render(); } catch (e) { alert(e.message); } }
+function render() {
+  const a = document.activeElement, id = a && a.id, st = a && a.selectionStart, en = a && a.selectionEnd;
+  $('#app').innerHTML = {draft:draftView, review:reviewView, send:sendView, sent:sentView}[S.view]();
+  if (id && $('#' + id)) { const e = $('#' + id); e.focus(); if (st != null && e.setSelectionRange) e.setSelectionRange(st, en); }
 }
-function diffText(d) { if (d.field === 'filters') { const k = Object.keys({...(d.from || {}), ...(d.to || {})}).find(k => JSON.stringify((d.from || {})[k]) !== JSON.stringify((d.to || {})[k]));
-  return `<b>${esc(DIMLABEL[k] || k)}</b> ${esc(((d.from || {})[k] || []).join(', ') || 'all')} → ${esc(((d.to || {})[k] || []).join(', ') || 'all')}`; }
-  return `<b>${esc({scenarios:'Scenario', years:'Years', exclusions:'Exclusions', unit:'Counting'}[d.field] || d.field)}</b> ${esc(fmt(d.from))} → ${esc(fmt(d.to))}`; }
-function renderReview(a) {
-  const failed = a.result.checks.filter(c => !c.ok);
-  const fast = a.fast_track ? `<div class="callout fast"><h2>Fast-track follow-up</h2><span>Only one thing changed from the answer you approved: ${diffText(a.diff[0])}.</span>
-      <span class="hint">Before: ${esc(a.parent_headline)}</span><span>Now: <b>${esc(a.result.headline)}</b></span><span class="hint">All checks pass and nothing departs from your defaults.</span></div>` : '';
-  const top = failed.length || a.departures.length ? `<div class="callout"><h2>Look at these first</h2><div class="checks">
-      ${failed.map(c => `<div class="c"><span class="tag fail">✕ Fail</span><span><b>${esc(c.name)}.</b> ${esc(c.detail)}</span></div>`).join('')}</div>
-      ${a.departures.map(d => `<div class="dep">Changed your default <b>${esc(d.field)}</b> from ${esc(fmt(d.default))} to ${esc(fmt(d.chosen))}. Reason: ${esc(a.reasons[d.field])}</div>`).join('')}
-      ${a.comments.filter(x => x.by === 'analyst' && x.text).map(x => `<span><b>Analyst:</b> ${esc(x.text)}</span>`).join('')}</div>` : '';
-  $('#view').innerHTML = `<h1>${a.fast_track ? 'Review the follow-up' : 'Review the answer'}</h1><p class="sub">“${esc(a.question)}” · asked by ${esc(a.asker)}</p>${fast}${top}
-    <div class="layout"><div>${resultMain(a)}<div class="card"><div class="bd"><label class="lbl" for="rc">Comment <span class="hint">(required to send back)</span></label><textarea id="rc"></textarea></div></div></div>${sidePanel(a)}</div>`;
-  wireCopy(a);
-  actions(`<button class="btn secondary" id="back">← Back to queue</button>`, `<button class="btn danger" id="no">Send back</button><button class="btn primary" id="ok">Approve</button>`);
-  $('#back').onclick = renderQueue;
-  $('#ok').onclick = async () => { try { await api(`/api/answers/${a.id}/review`, {decision:'approve', comment:$('#rc').value}); renderQueue(); } catch (e) { showErr(e); } };
-  $('#no').onclick = async () => { try { await api(`/api/answers/${a.id}/review`, {decision:'send_back', comment:$('#rc').value}); renderQueue(); } catch (e) { showErr(e); } };
-}
-init();
+(async () => { window._meta = await api('/api/meta'); render(); })();
 </script>
-</body>
-</html>
+</body></html>

@@ -57,9 +57,11 @@ def test_out_of_scope_and_not_in_data_flags():
 # ---- computed answers ----
 def test_cre_flood_answer_and_verdict():
     rec = run(CRE_Q).json(); r = rec['result']
-    assert r['grid'][0]['detail']['n'] == 4 and r['grid'][0]['detail']['of_n'] == 235
+    d = r['grid'][0]['detail']
+    assert (d['n'], d['of_n'], round(d['balance'] / 1e5) / 10) == (3, 144, 5.4)   # default exclusions incl. maturing before 2030
     assert all(c['ok'] for c in r['checks'])
-    sev = next(v for v in r['versions'] if 'severe' in v['change']); assert sev['value'] == 8
+    sev = next(v for v in r['versions'] if 'severe' in v['change']); assert sev['value'] == 5
+    assert [x['loan_id'] for x in r['rows']] == ['L101880', 'L101854', 'L100322']
     assert 'same answer' in r['verdicts']['scenario']           # central and low give the same count
     assert any('Spectra export as at 2026-06-30' in l for l in r['method_note'])
 
@@ -157,3 +159,19 @@ def test_followup_keeps_an_approved_departure_and_fast_tracks():
     x = client.post('/api/compute', json={'question': fu['question'], 'audience': 'committee', 'asker': 't', 'choices': fu['choices'], 'sources': fu['sources'],
                                           'question_years': fu['question_years'], 'reasons': {}, 'parent_id': rec['id']}).json()
     assert x['reasons']['scenarios'] == 'board wants stress view' and x['fast_track']
+
+
+def test_preview_skips_reasons_but_sending_needs_them():
+    def sev(r): r['choices']['scenarios'] = ['severe']; r['sources']['scenarios'] = 'analyst'
+    r = ask(CRE_Q); sev(r)
+    body = {'question': CRE_Q, 'audience': 'committee', 'asker': 'test', 'choices': r['choices'], 'sources': r['sources'], 'question_years': r['question_years']}
+    assert client.post('/api/compute', json={**body, 'preview': True}).status_code == 200
+    assert client.post('/api/compute', json=body).status_code == 400
+
+
+def test_draft_review_send():
+    rec = run(CRE_Q).json()
+    assert client.post(f"/api/answers/{rec['id']}/send").status_code == 400          # not approved yet
+    client.post(f"/api/answers/{rec['id']}/submit", json={'comment': ''})
+    client.post(f"/api/answers/{rec['id']}/review", json={'decision': 'approve', 'comment': ''})
+    assert client.post(f"/api/answers/{rec['id']}/send").json()['status'] == 'sent'

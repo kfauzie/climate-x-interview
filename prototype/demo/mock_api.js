@@ -33,7 +33,7 @@ window.mockApi = async (path, body) => {
     const reasons = {...body.reasons};
     if (p) deps.forEach(d => { if (p.departures.some(x => same(x, d)) && !reasons[d.field]) reasons[d.field] = p.reasons[d.field]; });
     const missing = deps.filter(d => !(reasons[d.field] || '').trim()).map(d => d.field);
-    if (missing.length) err(`Give a reason for each change from Sarah's defaults: ${missing.join(', ')}`);
+    if (missing.length && !body.preview) err(`Give a reason for each change from Sarah's defaults: ${missing.join(', ')}`);
     const fixed = D.presets[pid].by_audience.committee.choices;
     for (const f of ['measure','loan_type','hazards','rating_min','rating_max','originated','origination_source'])
       if (!same(c[f], fixed[f])) err('That change needs the full app: this demo can change scenario, years, counting, exclusions and one added region or property type.');
@@ -55,6 +55,7 @@ window.mockApi = async (path, body) => {
   if ((m = path.match(/^\/api\/answers\/(\w+)\/review$/))) { const r = STORE[m[1]];
     if (body.decision === 'send_back' && !body.comment.trim()) err('Say what needs changing');
     r.status = body.decision === 'approve' ? 'approved' : 'sent_back'; r.comments.push({by:'Sarah', text:body.comment}); return r; }
+  if ((m = path.match(/^\/api\/answers\/(\w+)\/send$/))) { const r = STORE[m[1]]; if (r.status !== 'approved') err('Only approved answers can be sent'); r.status = 'sent'; return r; }
   if ((m = path.match(/^\/api\/answers\/(\w+)\/followup$/))) {
     const p = STORE[m[1]]; const q = body.question.toLowerCase(); const c = cl(p.choices), s = cl(p.sources); let qy = [];
     const sc = []; if (/severe|stress|worst/.test(q)) sc.push('severe'); if (/central|base/.test(q)) sc.push('central'); if (/low[- ]emission/.test(q)) sc.push('low');

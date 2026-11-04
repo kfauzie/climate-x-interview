@@ -19,7 +19,7 @@ AUDIENCE_DEFAULTS = {
     'pra': {'scenarios': ['central', 'severe'], 'years': ['2030', '2050']},
     'other': {'scenarios': ['central'], 'years': ['2050']},
 }
-DEFAULT_EXCLUSIONS = {'in_default': True, 'redeemed': True, 'maturing_before': None}  # maturity exclusion is suggested per question, not a default
+DEFAULT_EXCLUSIONS = {'in_default': True, 'redeemed': True, 'maturing_before': 2030}  # Sarah's write-ups leave these out
 DEFAULTED_FIELDS = ['scenarios', 'years', 'exclusions', 'unit', 'origination_source']
 
 
@@ -263,6 +263,13 @@ def compute(bk: Book, c: Choices, question_years=None, question_text='') -> dict
     res['method_note'] = method_note(bk, c)
     pop, excl, unm = _population(bk, c)
     res['counts'] = {'included': int(len(pop)), 'excluded': int(len(excl)), 'unmatched': int(len(unm)), 'unscored': _unscored(bk, c, pop)}
+    if c.measure in ('count', 'share') and c.rating_min:
+        sel = source_rows(bk, c)['Counted']
+        rc = [x for x in sel.columns if x.endswith('_rating')]
+        worst = sel[rc].max(axis=1) if rc else None
+        res['rows'] = [{'loan_id': r.loan_id, 'property_type': r.property_type, 'region': r.region, 'balance': float(r.balance_gbp),
+                        'rating': (worst.loc[i] if worst is not None else '')} for i, r in sel.sort_values('balance_gbp', ascending=False).head(25).iterrows()]
+        res['rows_total'] = int(len(sel))
     return res
 
 

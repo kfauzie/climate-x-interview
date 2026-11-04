@@ -29,8 +29,10 @@ def key(pid, c):
 
 
 def slim(res):
-    keep = {k: res[k] for k in ('headline', 'versions', 'method_note', 'checks', 'counts', 'drivers')}
-    keep['grid'] = [{'text': g['text']} for g in res['grid']]
+    keep = {k: res[k] for k in ('headline', 'versions', 'method_note', 'checks', 'counts', 'drivers') if k in res}
+    for k in ('rows', 'rows_total'):
+        if k in res: keep[k] = res[k]
+    keep['grid'] = res['grid']
     keep['verdicts'] = res.get('verdicts') or {}
     if res.get('versions_verdict'): keep['versions_verdict'] = res['versions_verdict']
     return keep
@@ -68,6 +70,6 @@ title = re.search(r'<title>.*?</title>', ui, re.S).group(0)
 style = re.search(r'<style>.*?</style>', ui, re.S).group(0)
 body = re.search(r'<body>(.*)</body>', ui, re.S).group(1)
 body = body.replace('<script>', '<script>' + open(os.path.join(os.path.dirname(__file__), 'mock_api.js')).read().replace('/*__DATA__*/null', json.dumps(data, separators=(',', ':'))) + '\n', 1)
-page = f'{title}\n<meta name="claude:viewport-fit-sides" content="cover">\n{style}\n{body}'
+page = f'<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n{title}\n<meta name="claude:viewport-fit-sides" content="cover">\n{style}\n{body}'
 open(sys.argv[1], 'w').write(page)
 print(f"{len(data['answers'])} precomputed answers; {len(page)/1e6:.2f} MB")

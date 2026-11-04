@@ -36,6 +36,7 @@ class ComputeIn(BaseModel):
     question_years: list = []
     reasons: dict = {}
     parent_id: str | None = None
+    preview: bool = False
 
 
 class SubmitIn(BaseModel):
@@ -99,7 +100,7 @@ def api_compute(x: ComputeIn):
             if d in parent['departures'] and not x.reasons.get(d['field']):
                 x.reasons[d['field']] = parent['reasons'].get(d['field'], '')
     missing = [d['field'] for d in deps if not x.reasons.get(d['field'])]
-    if missing:
+    if missing and not x.preview:
         raise HTTPException(400, f"Give a reason for each change from Sarah's defaults: {', '.join(missing)}")
     res = compute(book, c, x.question_years, x.question)
     rid = uuid.uuid4().hex[:8]
@@ -138,6 +139,15 @@ def api_review(rid: str, r: ReviewIn):
         raise HTTPException(400, 'Say what needs changing')
     rec['status'] = 'approved' if r.decision == 'approve' else 'sent_back'
     rec['comments'].append({'by': 'Sarah', 'text': r.comment}); _log(rec['status'], rec, approved_by='Sarah' if r.decision == 'approve' else None)
+    return rec
+
+
+@app.post('/api/answers/{rid}/send')
+def api_send(rid: str):
+    rec = STORE.get(rid) or _404()
+    if rec['status'] != 'approved':
+        raise HTTPException(400, 'Only approved answers can be sent')
+    rec['status'] = 'sent'; _log('sent', rec)
     return rec
 
 
