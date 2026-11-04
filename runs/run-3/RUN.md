@@ -1,7 +1,8 @@
 # Run 3
 
-**Status:** solution design in progress (first screen: plan each site, `design/plan.png`)
+**Status:** screens designed (`design/`); MVP built (`build/mvp.html`); next: MVP review (pm-6)
 **Dataset:** `data/northwind_renewables_spectra_infra_2026-09.csv` (Spectra Infrastructure Screener export, September 2026)
+**Build (MVP):** `build/mvp.html` (open from a local server in `runs/run-3/`); tests `build/test_mvp.js`, quick check `build/check_mvp.js`. Measure costs and loss cuts are a SYNTHETIC placeholder for Adapt, inside the file
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
 **On Notion (2nd round prep)**
