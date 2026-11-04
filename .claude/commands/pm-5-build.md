@@ -5,7 +5,7 @@ description: "Turn the agreed screens into a working first version, fast: one HT
 
 # Build: the working first version
 
-Input: the agreed screens from pm-4-solution-design and the solution concept (workflow, success criteria, test cases). Before starting, read climate-x-role.
+Input: the agreed screens from pm-4-solution-design and the solution concept (workflow, success criteria, test cases). Before starting, read climate-x-products, climate-x-company and climate-x-role.
 
 ## How to build
 - One plain HTML file with inline JS and CSS. No framework, no build step.
