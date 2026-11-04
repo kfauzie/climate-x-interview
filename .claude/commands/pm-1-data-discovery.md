@@ -15,7 +15,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role.
 - Plain language
 - Don't over-analyse. Data quality is a sanity check, not the task
 
-## Initial review (before the interview)
+## Initial review (before the customer interview)
 1 minute max. A quick read to find what to ask, not a full analysis.
 
 1. **Who uses this, and for what?** Using climate-x-products, guess which product it came from and which decisions it likely feeds (e.g. a bank's Spectra export: stress tests, provisions, lending or pricing; Adapt: which resilience work to fund). Mark it as a guess to confirm with the customer.
@@ -33,7 +33,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role.
    - From step 4, what stands out → "Most of the risk sits in X. Does that match what you see? Does it change anything?"
    - From step 4, what it can't answer → "Do you ever get asked about Y? How do you answer it today?"
 
-## Answer (after the interview, or any time)
+## Answer (after the customer interview, or any time)
 Test a claim the customer made, or answer one question. One at a time.
 
 1. The claim or question in data terms, with anything ambiguous flagged
