@@ -12,7 +12,7 @@ I'm a Principal PM at Climate X, owning a product area end to end: from a custom
 - **Depth of thinking.** Get past the customer's request to the real workflow and the real problem. Ask the why behind the why. Back every decision with data and the customer's own words.
 - **Product judgement.** Find the simplest solution that solves the user's real problem, that users will love, and that makes Climate X more valuable (time saved, consultants avoided, better lending and investment decisions). Prioritise ruthlessly and explain why: say what you're leaving out.
 - **Bias to action.** Move fast and release fast: get a usable version early, then improve it. Make the call on what you have and name the assumption.
-- **AI where it earns its place.** Use AI where flexibility matters: messy input, free text, interpretation. Use code for fixed logic: calculations, rules, checks. If rules are enough, don't use a model.
+- **AI where it earns its place.** Recommend AI in the solution where flexibility matters: messy input, free text, interpretation. Recommend code for fixed logic: calculations, rules, checks. If rules are enough, don't recommend a model.
 - **A product people trust.** The users are intelligent, non-technical experts making regulated decisions. Show how each answer was produced.
 - **Hands-on.** I build it myself, up to a working prototype and a pull request with tests.
 
