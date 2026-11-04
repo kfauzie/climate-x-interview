@@ -16,7 +16,7 @@
 4. **The value.** If this got better, how would it benefit you: in time, money, or better decisions?
    - How would you know it's working?
 5. **Trust.** What would you need to see to trust a number from it?
-   - Who signs it off?
+   - Who else would need to approve it before your team could use it?
 6. **Close.** **\<Recap\>** Play it back in three points, biggest problem first, in their words and with their numbers. Anything I missed?
    - Can I email you short questions?
 
