@@ -18,7 +18,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role.
 - **Stay generic.** Look for patterns, not a known story.
 
 ## The questions (10 minutes)
-X is what they asked for. Fill it in from the case context.
+X is what they asked for. Fill it in from the case context. No padding: every line must earn its place, and the questions to ask in the call fit on one screen.
 
 1. **Source of the need.**
    - Could you tell me where the need for X is coming from?
@@ -32,17 +32,26 @@ X is what they asked for. Fill it in from the case context.
      - What makes it painful?
      - *\<Vague, hedged or suspiciously slow → "Why does that happen? It seems simple."\>*
      - *\<Admits a gap → "What happens when that goes wrong?"\>*
-3. **Key data findings (optional).** Only if pm-1-data-discovery found something relevant to the customer's need; otherwise skip this section rather than forcing a question. These questions are about the customer's own data, not about what to build, so they come after the user journey, once the customer has described the problem, and open with a short line that marks the switch. Pull the findings and clarifications from pm-1 (in `RUN.md`):
-   - I looked at [the data, named exactly] before the call.
-   - The data questions from pm-1, as written there (open, e.g. "The data shows X. What's behind that?", with a follow-up that names the thing)
-4. **Success criteria.**
+3. **Success criteria.**
    - If this worked, how would you know?
    - What would the impact be: time saved, money, better decisions?
    - What would you need to see to trust the output?
-5. **Close.**
+4. **Close.**
    - **\<Recap\>** Three points, biggest problem first, in the customer's words and with their numbers.
    - Anything I missed?
    - Can I email you short questions?
 
+## Data findings
+No separate data section and no separate list of things to confirm. Take the findings from pm-1-data-discovery (in `RUN.md`) and include one only if its answer could change what gets built. If none do, include none. Weave each into the walkthrough where it fits naturally, as the way into the customer's story:
+- Your data shows [finding in plain words, with a number]. Walk me through the last time that came up.
+
+Anything that needs clarifying is either worth asking in the call (put it in the walkthrough) or it isn't (drop it).
+
+## After the call
+Answer these from the notes before moving on:
+- Is this need common across customers like this one?
+- How big is it (money, time, deadline)?
+- Does it fit Climate X's products and strategy?
+
 ## Save
-Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: discovery questions (customer)", with an empty Notes section at the end. The page holds only what I'd say in the interview: the ask, the key data findings (with the clarifications to confirm) when there are any, and the questions. No notes to self (timing, instructions, reminders), except short in-line prompts in italics between `<>`, placed where they're needed. Highlight the recap so it isn't missed. Always give me the link to the new page, and add it to `RUN.md`.
+Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: discovery questions (customer)", with the "After the call" questions and an empty Notes section at the end. The page holds only what I'd say in the interview: the ask and one list of questions. No notes to self (timing, instructions, reminders), except short in-line prompts in italics between `<>`, placed where they're needed. Highlight the recap so it isn't missed. Always give me the link to the new page, and add it to `RUN.md`.
