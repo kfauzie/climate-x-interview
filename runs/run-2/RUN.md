@@ -27,34 +27,24 @@ Everything below applies to **run 2 only**. Do not carry it into any other run.
 - **"The broker portal" may not be theirs.** Unknown: who runs it, whether brokers would also see the rating, and what that means for customers
 - **Why now:** PRA SS5/25 expects property-level climate data in risk management (climate-x-company). Unknown: whether this is driven by the regulator, by losses, or by the board
 
-## Data notes
-- **What it is (guess, to confirm):** a Spectra export of the whole mortgage book, scored after the loans completed. Likely used for risk reporting and the PRA's climate expectations, not for decisions on applications
-- **One row = one loan.** 2,406 rows, 2,400 loans, £442m balance, completed Jan 2015 to Oct 2026. 81% came through brokers. About 27 loans a month completed in the last 12 months
-- **Columns:** loan ID, completion date, postcode district (e.g. RG30, not the full postcode), region, property type, new build, channel, product, property value, balance, LTV; then rating (A–G), damage % and £ loss a year for each hazard, scenario and year
-- **Hazards:** river flood, coastal flood, surface water flood, subsidence. **Scenarios:** SSP2-4.5 (central, roughly today's policies), SSP5-8.5 (very high emissions). **Years:** 2030, 2050. So 16 ratings per loan
-- **Not scored:** the 118 loans completed since 3 Jul 2026 have no Spectra scores; every loan up to 30 Jun 2026 has them
-- **Duplicates:** 6 loan IDs appear twice, with different completion dates and balances (guess: a further advance or a product switch)
-- **No property value or LTV:** 11 loans
-- **Usable:** yes, for the book up to 30 Jun 2026
+## Initial review (pm-1)
+Code: `notebooks/initial_review.py`. Rated E–G means in 2050; central = SSP2-4.5, severe = SSP5-8.5.
 
-## Findings (initial review)
-- **Rated E–G on at least one hazard by 2050 (central):** 329 loans (13.7%), £69m balance. Under very high emissions: 668 (27.8%)
-- **Newer lending is riskier:** 17.3% of loans completed since 2024 are rated E–G, against 11.7% before
-- **Subsidence drives it:** 173 of the E–G ratings, and £2.4m of the £4.9m expected loss a year (central, 2050)
-- **The rating depends on the scenario and year:** for 405 loans, the worst rating moves by 2 bands or more
-- **Concentrated:** 42% of the E–G loans sit in 5 postcode districts (RG30, ME14, PE1, LU1, CM1)
-- **High LTV and poor rating together:** only 18 loans (£6.6m) are over 85% LTV and rated E–G
-- **What this data can't tell us:** applications (including ones declined or not completed), what underwriters decided, buildings insurance, loss to the society rather than damage to the property
-
-## Questions for Helen (from the data)
-| Question | Why ask | How the answer would change the product |
+| Finding | Why it might matter (guess) | The question it becomes |
 |---|---|---|
-| If an application came in rated E or worse, what should the underwriter do differently? | 13.7% of the book (329 loans, £69m) is rated E–G on at least one hazard by 2050; 17.3% of lending since 2024 | If there's a set action (refer it, lend less, ask for a survey), the screen shows the rating with that action. If there's none, a rating alone changes nothing, and the policy comes first |
-| Which rating should the underwriter see: the risk now or by 2050, and under which scenario? Who decides? | Each loan has 16 ratings; for 405 loans the worst one moves by 2 bands or more depending on the scenario and year | Decides what appears on each application: one rating or several, and which is the default |
-| How do new loans get their Spectra scores today, and how long after completion? | The 118 loans completed since 3 Jul 2026 have no scores; every loan before 30 Jun 2026 has them | If scores arrive in batches months later, getting a score at application is the core build. If they're already near-instant, the work is only showing them |
+| **Newer lending is riskier.** 16% of the balance lent since 2024 is rated E–G for subsidence, against 6% before. It jumped from 4% in 2023 to 15% in 2024. Under the severe scenario: 29% against 13% | Something changed in 2024 in where or what they lend; may push against any limit they set | The data shows 16% of your lending since 2024 is rated E–G for subsidence, against 6% before. Does that match what you see? What do you do about it? |
+| **It's concentrated.** 71% of the subsidence-risk balance (£40m, 173 loans) sits in 5 postcode districts (RG30, ME14, LU1, CM1, PE1), which hold 14% of all lending | A few areas, perhaps new estates, drive the risk; acting on a few areas may be enough | The data shows most of your subsidence risk sits in five postcode districts. Does that match what you see? What do you do about it? |
+| **The newest lending can't be seen.** The 118 loans completed since 3 Jul 2026 (£23m) have no scores; everything up to 30 Jun has them. And 6 loan IDs appear on two rows with different dates and balances, so adding up rows counts £1.4m twice | Scores arrive in batches months after lending; the duplicates suggest a manual step that can double count | The data shows your last 4 months of lending have no scores. Does that match what you see? What do you do about it? |
 
-## Defaults
-(none yet)
+**Checked, nothing found:** £ loss matches damage % × property value; ratings match their bands; no LTV over 100%; river and coastal flood aren't rising in newer lending; broker and direct lending look similar (9% and 12%)
+
+**Follow-ups to ask me**
+- What changed in 2024: split the jump by postcode district, new build and product
+- Rerun every finding under the severe scenario and for 2030
+- Compare by number of loans instead of balance
+
+**The data:** 2,406 rows, one per loan (2,400 loans, £442m, completed Jan 2015 to Oct 2026). Columns: loan ID, completion date, postcode district, region, property type, new build, channel, product, value, balance, LTV; then rating A–G, damage % and £ loss a year for river, coastal and surface water flood and subsidence, under central and severe, for 2030 and 2050
+**Usable:** yes, up to 30 Jun 2026; take the latest row for the 6 repeated loan IDs. Guess: a Spectra export of the book, used for risk reporting
 
 ## From the interview (claims to test)
 - **Her risk appetite:** no more than 10% of new lending rated E–G (her board limit). She told the board in September she was within it, using June data
