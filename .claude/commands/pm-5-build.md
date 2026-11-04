@@ -5,7 +5,7 @@ description: "Turn the agreed solution design into a working first version (MVP)
 
 # Build: the working first version
 
-Input: `solution-design.md` (agreed screens, checks, test set). Output: `runs/run-N/build.md` and a PR. This is where the screens get full visual polish. Layout and content follow the principles and checklist in `pm-4-solution-design`; polish never adds elements.
+Input: the agreed screens from `pm-4-solution-design` and `solution-concept.md` (workflow, success criteria, test cases). Output: `runs/run-N/build.md` and a PR. This is where the screens get full visual polish. Layout and content follow the principles in `pm-4-solution-design`; polish never adds elements.
 
 ## Look
 - Clean B2B SaaS: generous spacing, clear hierarchy, consistent components, restrained colour
@@ -29,7 +29,7 @@ Input: `solution-design.md` (agreed screens, checks, test set). Output: `runs/ru
 - `build.md`: how it's built, how to run it, check results, the PR and demo links, feedback rounds, open items
 
 ## After the build
-- **Test with users** (`pm-6-mvp-review`): they think aloud while I watch. Feedback goes back into the file it changes (a screen's content, inputs or checks → `solution-design.md`, its look → the build), logged as a round in `build.md`
+- **Test with users** (`pm-6-mvp-review`): they think aloud while I watch. Feedback goes back into the file it changes (a screen's content → the screens, its look → the build), logged as a round in `build.md`
 - **Hand-off:** I turn the approved version into the PR myself, with tests: that PR is the spec. One PR per screen, behind a feature flag. The engineer reviews it and hardens it for production (sign-in, storage, monitoring); check in staging
 - **Release and measure** against targets agreed in advance; iterate if it misses, scale if it hits
 
