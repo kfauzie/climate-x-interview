@@ -41,13 +41,12 @@ Test a claim the customer made, or answer one question. One at a time.
 - If cx.load raises ShapeError, the file doesn't fit; analyse by hand
 
 ## Output (one page, for the PM to react to)
-1. **Findings.** Each a plain-words headline with one number and what it's compared against.
-2. **Why it might matter.** One line each, labelled as a guess.
-3. **The question it becomes.** It names the problem, never the requested solution or who would use it. One question per line:
+1. **The data.** The first five rows, as a table (if the file is wide, the identifiers, the descriptors and one set of risk measures, saying how many columns are left out). Then the data in two lines, and whether it's usable in one line.
+2. **Findings.** Each a plain-words headline with one number and what it's compared against.
+3. **Why it might matter.** One line each, labelled as a guess.
+4. **The question it becomes.** It names the problem, never the requested solution or who would use it. One question per line:
    - "The data shows X. Does that match what you see?"
    - "What do you do about it?"
-4. **Clarifications to confirm.** Ambiguities such as which scenario or year, units, what a blank means.
-5. **Checked, nothing found.** One line.
-6. **Follow-ups the PM can ask Claude Code.** Two or three ways to dig further.
-7. **The data in two lines,** and whether it's usable in one line.
-8. **The first five rows,** as a table. If the file is wide, show the identifiers, the descriptors and one set of risk measures, and say how many columns are left out.
+5. **Clarifications to confirm.** Ambiguities such as which scenario or year, units, what a blank means.
+6. **Checked, nothing found.** One line.
+7. **Follow-ups the PM can ask Claude Code.** Two or three ways to dig further.
