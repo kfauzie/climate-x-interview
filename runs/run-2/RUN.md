@@ -5,7 +5,8 @@
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
 **On Notion (2nd round prep)**
-- Discovery questions v3 (current): https://app.notion.com/p/40e8f31ef05f8145b55cdde0fe8edc41
+- Discovery questions v4 (current): https://app.notion.com/p/40e8f31ef05f815f9dafcc2ff5b02503
+- Discovery questions v3: https://app.notion.com/p/40e8f31ef05f8145b55cdde0fe8edc41
 - Discovery questions v2: https://app.notion.com/p/40e8f31ef05f819e9d1ee2d8a4e0c209
 - Discovery questions v1 and call notes: https://app.notion.com/p/40e8f31ef05f8129964ec33de404a680
 
@@ -31,6 +32,18 @@ Everything below applies to **run 2 only**. Do not carry it into any other run.
 
 ## Initial review (pm-1)
 Code: `notebooks/initial_review.py`. "Rated E–G" means in 2050, central scenario (SSP2-4.5) unless stated.
+
+**The data** (first five rows; 11 of 59 columns shown, the other 48 are the other hazards, scenarios and years, region, product and property value)
+| Loan | Completed | District | Property | New build | Channel | Balance | LTV | Subsidence rating, central 2050 | Damage % | £ loss a year |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ML100000 | 2021-12-11 | L1 | Semi-detached | Y | Direct | £95,981 | 0.61 | A | 0.04 | £68 |
+| ML100001 | 2025-05-28 | NR1 | Detached | Y | Broker | £225,922 | 0.64 | B | 0.08 | £279 |
+| ML100002 | 2017-05-24 | HU5 | Semi-detached | N | Broker | £95,733 | 0.38 | A | 0.01 | £25 |
+| ML100003 | 2025-07-13 | BS1 | Detached | Y | Broker | £269,282 | 0.68 | B | 0.06 | £233 |
+| ML100004 | 2024-08-23 | G1 | Terraced | N | Broker | £92,938 | 0.41 | C | 0.49 | £1,114 |
+
+**In two lines:** 2,406 rows, one per mortgage (2,400 mortgages, £442m, completed Jan 2015 to Oct 2026). Columns: loan ID, completion date, postcode district, region, property type, new build, channel, product, value, balance, LTV; then rating A–G, damage % and £ loss a year for river, coastal and surface water flood and subsidence, under central and severe, for 2030 and 2050
+**Usable:** yes, up to 30 Jun 2026, taking the latest row for the 6 repeated loan IDs. Guess: a Spectra export of the mortgage book, used for risk reporting
 
 **Findings**
 | # | Finding | Why it might matter (guess) |
@@ -61,9 +74,6 @@ Code: `notebooks/initial_review.py`. "Rated E–G" means in 2050, central scenar
 - What changed in 2024: split the jump by postcode district, new build and product
 - Rerun each finding for 2030 and under the severe scenario
 - Compare by number of mortgages instead of balance
-
-**The data:** 2,406 rows, one per mortgage (2,400 mortgages, £442m, completed Jan 2015 to Oct 2026). Columns: loan ID, completion date, postcode district, region, property type, new build, channel, product, value, balance, LTV; then rating A–G, damage % and £ loss a year for river, coastal and surface water flood and subsidence, under central and severe, for 2030 and 2050
-**Usable:** yes, up to 30 Jun 2026, taking the latest row for the 6 repeated loan IDs. Guess: a Spectra export of the mortgage book, used for risk reporting
 
 ## From the interview (claims to test)
 - **Her risk appetite:** no more than 10% of new lending rated E–G (her board limit). She told the board in September she was within it, using June data
