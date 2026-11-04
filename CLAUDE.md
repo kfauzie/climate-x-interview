@@ -3,7 +3,7 @@
 Used over several **runs**. Each run brings its own data, customer and interview notes.
 
 ## Active run
-**run-1** (`runs/run-1/`). Change this line when a new run starts.
+**run-2** (`runs/run-2/`). Change this line when a new run starts.
 
 ## Rules
 - Company, role and product facts come from the skills (`climate-x-company`, `climate-x-products`, `climate-x-role`), not memory
