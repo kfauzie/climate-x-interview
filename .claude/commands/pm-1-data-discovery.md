@@ -25,7 +25,7 @@ About a minute. Find what to ask, not everything.
    - **What's concentrated:** one hazard, area, segment or asset carrying most of the risk or value.
    - **What's missing or odd:** gaps, duplicates, stale or unscored records, and what the data can't answer. Treat each oddity as a clue to a past mistake or a manual workaround.
    For each, check whether the scenario or year choice changes the picture materially.
-3. **Pick the two or three findings most likely to matter to the customer.** Prefer findings that are large, surprising, or that the customer could act on.
+3. **Pick the two or three findings most likely to matter to the customer.** Prefer findings that are large, surprising, or that the customer could act on, and that test the ask: findings the ask would fix, and findings it wouldn't reach.
 
 ## Answer (after the interview, or any time)
 Test a claim the customer made, or answer one question. One at a time.
@@ -42,7 +42,7 @@ Test a claim the customer made, or answer one question. One at a time.
 ## Output (one page, for the PM to react to)
 1. **Findings (three at most).** Each as a headline in plain words with one number and what it's compared against. E.g. "Recent records are riskier: 17% rated E–G, against 12% before."
 2. **Why it might matter.** One line per finding, labelled as a guess.
-3. **The question it becomes.** One per finding, in the form: "The data shows X. Does that match what you see? What do you do about it?"
+3. **The question it becomes.** One per finding, tied to what the customer asked for, so the answer tells you whether the ask solves what the data shows. In the form: "The data shows X. Does that match what you see? How would [the ask] have changed that?" Keep it open: no hint of the answer you expect.
 4. **Checked, nothing found.** One line, so gaps aren't mistaken for things skipped.
 5. **Follow-ups to ask me.** Two or three ways to dig further (e.g. split by area, rerun under the severe scenario, compare by value instead of count).
 6. **The data in two lines.** Rows and what one row is; key columns; hazards, scenarios and years. Then whether it's usable, in one line.

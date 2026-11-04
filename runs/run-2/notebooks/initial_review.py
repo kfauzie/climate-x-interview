@@ -1,52 +1,39 @@
-"""Run 2 initial review: every number in RUN.md comes from this script."""
+"""Run 2 initial review (pm-1): changed, concentrated, missing or odd. Every number in RUN.md comes from here."""
 import pandas as pd
-d = pd.read_csv('data/harbourside_mortgage_book_spectra_2026-10.csv', parse_dates=['origination_date'])
-H = ['flood_river', 'flood_coastal', 'flood_surface', 'subsidence']; S = ['ssp245', 'ssp585']; Y = ['2030', '2050']
-print('rows', len(d), 'unique loans', d.loan_id.nunique(), 'columns', d.shape[1])
-dup = d[d.loan_id.duplicated(keep=False)]
-print('duplicate loan ids', dup.loan_id.nunique(), '| identical rows:', d.duplicated().sum())
-print('origination', d.origination_date.min().date(), 'to', d.origination_date.max().date())
-print('postcode_district examples', d.postcode_district.drop_duplicates().head(5).tolist(), 'unique', d.postcode_district.nunique())
-miss = d[[c for c in d.columns if c.endswith('_rating')]].isna().all(axis=1)
-print('loans with no Spectra scores at all:', int(miss.sum()), '| no property value / LTV:', int(d.ltv.isna().sum()))
-print('no scores, by origination year:', d[miss].origination_date.dt.year.value_counts().sort_index().to_dict())
-print('duplicate rows differ in:', [c for c in d.columns if d[d.loan_id.duplicated(keep=False)].groupby('loan_id')[c].nunique(dropna=False).max() > 1])
-u = d.drop_duplicates('loan_id')
-print('balance £m', round(u.balance_gbp.sum() / 1e6, 1), '| broker share', round((u.channel == 'Broker').mean(), 3))
-# recent lending: proxy for applications that reach offer
-for p in ['2025-11-01', '2026-04-01']:
-    r = u[u.origination_date >= p]; print(f'originated since {p}:', len(r))
-print('loans per month, last 12 months:', round(len(u[u.origination_date >= '2025-11-01']) / 12, 1))
-# ratings an underwriter could see: worst rating across hazards, per scenario and year
-order = {c: i for i, c in enumerate('ABCDEFG')}
-def worst(s, y): return u[[f'{h}_{s}_{y}_rating' for h in H]].apply(lambda r: max((x for x in r if isinstance(x, str)), key=order.get, default=None), axis=1)
-for s in S:
-    for y in Y:
-        w = worst(s, y); poor = w.isin(list('EFG'))
-        print(f'{s} {y}: worst rating E-G on any hazard: {poor.sum()} loans ({poor.mean():.1%}), £{u.balance_gbp[poor].sum()/1e6:.0f}m balance')
-w = worst('ssp245', '2050'); u = u.assign(worst245_2050=w)
-print('which hazard drives E-G (ssp245 2050):', {h: int(u[f'{h}_ssp245_2050_rating'].isin(list('EFG')).sum()) for h in H})
-print('loss £ a year by hazard, ssp245 2050:', {h: round(u[f'{h}_ssp245_2050_loss_gbp'].sum()) for h in H})
-print('loss £ a year by hazard, ssp585 2050:', {h: round(u[f'{h}_ssp585_2050_loss_gbp'].sum()) for h in H})
-# do the 4 hazards x 2 scenarios x 2 years give one loan different answers?
-lo = pd.concat([worst(s, y) for s in S for y in Y], axis=1).dropna()
-spread = lo.apply(lambda r: max(order[x] for x in r if isinstance(x, str)) - min(order[x] for x in r if isinstance(x, str)), axis=1)
-print('loans whose worst rating differs by 2+ bands across scenario/year:', int((spread >= 2).sum()))
-# recent vs older lending, and new build
-rec = u.origination_date >= '2024-01-01'
-for name, m in [('since 2024', rec), ('before 2024', ~rec), ('new build', u.new_build == 'Y'), ('not new build', u.new_build == 'N')]:
-    print(f'{name}: {m.sum()} loans, E-G (ssp245 2050) {u.worst245_2050[m].isin(list("EFG")).mean():.1%}')
-hi = (u.ltv > 0.85) & u.worst245_2050.isin(list('EFG'))
-print('LTV over 85% and rated E-G (ssp245 2050):', int(hi.sum()), f'£{u.balance_gbp[hi].sum()/1e6:.1f}m')
-top = u.groupby('postcode_district').agg(n=('loan_id', 'size'), poor=('worst245_2050', lambda x: x.isin(list('EFG')).sum())).sort_values('poor', ascending=False).head(5)
-print('districts with most E-G loans:', top.to_dict('index'))
-print('share of E-G loans in top 5 districts:', round(top.poor.sum() / u.worst245_2050.isin(list('EFG')).sum(), 3))
-sc = u[[c for c in u.columns if c.endswith('_rating')]].notna().any(axis=1)
-print('2026 originations:', int((u.origination_date.dt.year == 2026).sum()), '| of them unscored:', int(((u.origination_date.dt.year == 2026) & ~sc).sum()))
-print('latest scored origination:', u[sc].origination_date.max().date(), '| earliest unscored:', u[~sc].origination_date.min().date())
-# Headline candidate: share of new lending (by balance) rated E-G for subsidence, central vs severe, 2050
-for since in ['2024-01-01', '2026-03-01']:
-    n = u[u.origination_date >= since]
+d = pd.read_csv('runs/run-2/data/harbourside_mortgage_book_spectra_2026-10.csv', parse_dates=['origination_date'])
+H = ['flood_river', 'flood_coastal', 'flood_surface', 'subsidence']; S = {'central': 'ssp245', 'severe': 'ssp585'}; BAD = list('EFG')
+u = d.sort_values('origination_date').drop_duplicates('loan_id', keep='last')      # latest row per loan
+scored = u[f'subsidence_ssp245_2050_rating'].notna()
+print(f'rows {len(d)}, loans {len(u)}, balance £{u.balance_gbp.sum()/1e6:.0f}m, completed {u.origination_date.min():%b %Y} to {u.origination_date.max():%b %Y}')
+
+def share(frame, hz, s, y='2050'):
+    f = frame[frame[f'{hz[0]}_{S[s]}_{y}_rating'].notna()]
+    bad = f[[f'{h}_{S[s]}_{y}_rating' for h in hz]].isin(BAD).any(axis=1)
+    return bad.mean(), f.balance_gbp[bad].sum() / f.balance_gbp.sum()
+
+print('\n# What has changed: completed since 2024 vs before (rated E-G in 2050)')
+rec, old = u[u.origination_date >= '2024-01-01'], u[u.origination_date < '2024-01-01']
+for hz in [[h] for h in H] + [H]:
     for s in S:
-        poor = n[f'subsidence_{s}_2050_rating'].isin(list('EFG'))
-        print(f'since {since}, {s} 2050: subsidence E-G {poor.sum()} loans, {n.balance_gbp[poor].sum() / n.balance_gbp[n[f"subsidence_{s}_2050_rating"].notna()].sum():.1%} of scored balance')
+        (rc, rv), (oc, ov) = share(rec, hz, s), share(old, hz, s)
+        print(f'{"+".join(hz) if len(hz) < 4 else "any hazard":14} {s:8} recent {rc:5.1%} of loans / {rv:5.1%} of balance | before {oc:5.1%} / {ov:5.1%}')
+print('by year completed, subsidence E-G share of balance (central 2050):',
+      {y: f'{share(u[u.origination_date.dt.year == y], ["subsidence"], "central")[1]:.0%}' for y in range(2019, 2027)})
+
+print('\n# What is concentrated (central 2050)')
+loss = {h: u[f'{h}_ssp245_2050_loss_gbp'].sum() for h in H}; tot = sum(loss.values())
+print('share of expected loss a year by hazard:', {h: f'{v/tot:.0%}' for h, v in loss.items()}, f'total £{tot/1e6:.1f}m')
+sub = u[u.subsidence_ssp245_2050_rating.isin(BAD)]
+by = sub.groupby('postcode_district').balance_gbp.sum().sort_values(ascending=False)
+print(f'subsidence E-G: {len(sub)} loans, £{sub.balance_gbp.sum()/1e6:.0f}m; top 5 districts hold {by.head(5).sum()/by.sum():.0%} of it: {list(by.head(5).index)}')
+print('top 5 districts share of all lending balance:', f'{u[u.postcode_district.isin(by.head(5).index)].balance_gbp.sum()/u.balance_gbp.sum():.0%}')
+print('subsidence E-G share of balance by channel:', {c: f'{share(u[u.channel == c], ["subsidence"], "central")[1]:.0%}' for c in ['Broker', 'Direct']})
+print('by new build:', {c: f'{share(u[u.new_build == c], ["subsidence"], "central")[1]:.0%}' for c in ['Y', 'N']})
+
+print('\n# What is missing or odd')
+print('loans with no Spectra scores:', int((~scored).sum()), f'(£{u.balance_gbp[~scored].sum()/1e6:.0f}m); completed from', u[~scored].origination_date.min().date(), '| last scored completion', u[scored].origination_date.max().date())
+dup = d[d.loan_id.duplicated(keep=False)].sort_values(['loan_id', 'origination_date'])
+print('loan IDs on two rows:', dup.loan_id.nunique(), '| differ in:', [c for c in d.columns if dup.groupby('loan_id')[c].nunique(dropna=False).max() > 1])
+print('balance counted twice if rows are summed: £', round(d.balance_gbp.sum() - u.balance_gbp.sum()))
+print('no property value or LTV:', int(u.ltv.isna().sum()))
+print('columns:', [c for c in d.columns if not any(c.startswith(h) for h in H)])
