@@ -28,7 +28,7 @@ One question per line: ask it, listen, then ask the next. Never read two out tog
    - *\<Unexpected step → "How did you decide that last time?"\>*
 3. **Pain points.** Where did most of the time go?
    - What made it painful?
-   - *\<Push when it's vague, hedged or suspiciously slow: "Why does that take two days? It seems simple."\>*
+   - *\<Vague, hedged or slow → "Why does that take two days? It seems simple."\>*
    - *\<Admits a gap → "What happens when that goes wrong?"\>*
 4. **The value.** If this got better, how would it benefit you: in time, money, or better decisions?
    - How would you know it's working?
