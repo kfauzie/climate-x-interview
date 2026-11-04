@@ -66,6 +66,7 @@ body{font-family:Graphik,Helvetica,Arial,sans-serif;color:#343a40}
 .hdr2{background:#1f5fa8 !important;color:#fff;padding:20px 28px;font-size:26px;font-weight:700;display:flex;align-items:center;gap:16px}
 .hdr2 .sep{color:#8a6d1a}.hdr2 .ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);display:inline-flex;align-items:center;justify-content:center;flex:none}
 .hdr2 .u{font-size:26px;font-weight:700}.hdr2 .jtbd{font-size:21px;font-weight:500;margin-top:2px}
+.menu{position:absolute;left:0;right:0;top:46px;background:#fff;border:1px solid #c8ccd0;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:5;padding:6px 0}.mi{padding:8px 14px}.mi.on{font-weight:600}.mi.add{border-top:1px solid #eef0f2;margin-top:4px;padding-top:10px;font-weight:600;text-decoration:underline}
 </style></head><body>
 
 <div class="screen" id="draft">
@@ -74,7 +75,8 @@ body{font-family:Graphik,Helvetica,Arial,sans-serif;color:#343a40}
 <div class="body"><h1>Draft</h1>
 <div class="card">
  <div class="row"><div class="k">Question</div><div class="input" style="grid-column:2/4">How much do <span class="hl">expected losses rise from 2030 to 2050</span> under the <span class="hl">severe scenario</span>?</div></div>
- <div class="row"><div class="k">Asked by</div><div class="input">Treasury ▾</div><div></div></div>
+ <div class="row"><div class="k">Asked by</div><div style="position:relative"><div class="input">Treasury ▾</div>
+  </div><div></div></div>
  <div class="row"><div class="k">Data</div><div style="grid-column:2/4">Spectra export, 30 Jun 2026 <span class="src" style="margin:0 18px 0 6px">Refresh</span> Loan book, 30 Sep 2026 <span class="src" style="margin-left:6px">Upload new</span></div></div>
 </div>
 <div class="card out">
@@ -139,9 +141,12 @@ body{font-family:Graphik,Helvetica,Arial,sans-serif;color:#343a40}
 <div class="q"><span class="tag" style="color:#2a7a3a;border-color:#2a7a3a">✓ Approved by Sarah · 14:10</span> &nbsp; Asked this morning, ready the same day</div>
 <div class="card">
  <div class="row"><div class="k">To</div><div class="input" style="grid-column:2/4">Treasury</div></div>
+ <div class="row"><div class="k">Cc</div><div class="input" style="grid-column:2/4">Sarah Okafor <span class="sub">(approver)</span></div></div>
  <div class="row"><div class="k">Subject</div><div class="input" style="grid-column:2/4">Re: How much expected losses rise from 2030 to 2050, severe scenario</div></div>
  <div class="input" style="margin-top:10px;line-height:1.7">Hi,<br><br>Under the severe scenario, our expected climate losses rise <b>2.81×</b> from 2030 to 2050: from £1.7m a year to £4.7m a year.<br><br>For comparison: 1.58× under the central scenario (today's policies) and 1.19× with emissions cut fast. Most of the rise comes from subsidence.<br><br>How it was calculated, and the loans, are in the attached file.<br><br>Approved by Sarah Okafor, Head of Climate Risk.</div>
  <div style="margin-top:10px">Attached: <b>Expected loss rise 2030 to 2050.xlsx</b></div></div>
 </div>
 <div class="foot"><span class="btn">← Back</span><span class="btn p">Send to Treasury</span></div></div>
+<div class="screen" id="askedby" style="width:900px;padding:24px 24px 300px">
+<div class="card"><div class="row"><div class="k">Asked by</div><div style="position:relative;grid-column:2/4"><div class="input">Treasury ▾</div><div class="menu"><div class="mi on">✓ Treasury</div><div class="mi">Credit committee</div><div class="mi">Risk committee</div><div class="mi">CRO</div><div class="mi">Mortgage pricing</div><div class="mi">Investor relations</div><div class="mi add">+ Add new asker</div></div></div></div></div></div>
 </body></html>
