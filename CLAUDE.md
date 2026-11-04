@@ -11,7 +11,7 @@ Used over several **runs**. Each run brings its own data, customer and interview
 - Nothing carries over between runs: numbers, findings, defaults, customer context. New data is profiled from scratch
 - Skills hold general knowledge only. Run-specific findings go in the run's `RUN.md`
 - Runs are trials with dummy data. When feedback changes a skill, turn it into a general principle: the reason behind the feedback, so the skill builds a way of thinking that works for any customer, data or product. Never the case itself: no names, numbers, field values or the specific mistake from a run. If an example is needed, use a placeholder
-- Documents I read or annotate (questions, interview notes, solution concept, review) live in Notion only; the repo holds data, code, screen images and `RUN.md` with the links
+- Documents I read or annotate (questions, interview notes, solution concept, review) live in Notion only; the repo holds data, code, screen images and `RUN.md` with the links. When a skill produces one, create the page and give me the link; don't summarise it in chat
 - Unsure which run something belongs to → ask
 - Everything I show gets screen-shared to someone following along: lead with the point, tables and short lines over paragraphs, no detail that doesn't change a decision
 - Setup at the start of every session: `pip install -q -r requirements.txt && python3 -m ipykernel install --user`
@@ -36,7 +36,7 @@ runs/run-N/
 | 7. Build | Claude | `pm-5-mvp-build` | the working first version (MVP): one HTML file, all screens at once, then one change at a time; branch and PR only if I ask |
 | 8. MVP review | me + Claude | `pm-6-mvp-review` | new Notion page; feedback back into the screens and the build |
 
-Keep each step quick: about 15 minutes of the session is interview; the rest is synthesis, design and the build. Show results in chat first, commit once per step.
+Keep each step quick: about 15 minutes of the session is interview; the rest is synthesis, design and the build. Show results in chat first, commit once per step. Exception: when the output is a Notion page for me to read or edit, just create the page and give me the link, with no chat summary.
 
 ## Other files
 - `tools/cxlens.py`: fast analysis for wide climate-risk exports (general code, no run data); self-test `tools/test_cxlens.py`
