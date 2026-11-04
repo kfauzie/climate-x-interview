@@ -21,7 +21,8 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
-RISK_RE = re.compile(r'^(?P<hazard>[a-z]+)_(?P<scenario>[a-z]+\d*|[a-z0-9]+)_(?P<year>\d{4})_(?P<metric>[a-z_]+)$')
+# Hazards can be one word or several (flood, flood_river, flood_surface); scenarios are one token (ssp245, central).
+RISK_RE = re.compile(r'^(?P<hazard>[a-z]+(?:_[a-z]+)*)_(?P<scenario>[a-z]+\d*|[a-z0-9]+)_(?P<year>\d{4})_(?P<metric>[a-z_]+)$')
 
 
 class ShapeError(ValueError):
@@ -67,6 +68,9 @@ def load(path, **override) -> Data:
     risk = [c for c in df.columns if RISK_RE.match(c)]
     if len(risk) < 4:
         raise ShapeError(f'Only {len(risk)} columns match <hazard>_<scenario>_<year>_<metric>. Write this analysis by hand.')
+    unread = [c for c in df.columns if re.search(r'_\d{4}_', c) and c not in risk]
+    if unread:  # never silently misread risk columns as categories
+        raise ShapeError(f'{len(unread)} columns look like risk columns but do not match the layout (e.g. {unread[:3]}). Write this analysis by hand.')
     parts = pd.DataFrame([RISK_RE.match(c).groupdict() for c in risk])
     scen, ordered = _order_scenarios(sorted(parts.scenario.unique()))
     other = [c for c in df.columns if c not in risk]

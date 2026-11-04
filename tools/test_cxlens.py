@@ -48,4 +48,16 @@ with tempfile.TemporaryDirectory() as tmp:
         cx.load(bad); raise AssertionError('expected ShapeError')
     except cx.ShapeError:
         pass
+    # multi-word hazards (flood_river, flood_surface) are read as hazards, not categories
+    mw = pd.DataFrame({'loan_id': ['a', 'b'], 'property_value_gbp': [100.0, 200.0],
+                       **{f'{h}_ssp245_{y}_{m}': [1.0, 2.0] if m != 'rating' else ['A', 'B']
+                          for h in ['flood_river', 'flood_surface', 'subsidence'] for y in ['2030', '2050'] for m in ['rating', 'loss_gbp']}})
+    p2 = os.path.join(tmp, 'mw.csv'); mw.to_csv(p2, index=False)
+    assert sorted(cx.load(p2).hazards) == ['flood_river', 'flood_surface', 'subsidence']
+    # a risk-looking column that doesn't fit the layout stops the analysis instead of being misread
+    odd = mw.assign(**{'Flood-River_2050_x': [1, 2]}); p3 = os.path.join(tmp, 'odd.csv'); odd.to_csv(p3, index=False)
+    try:
+        cx.load(p3); raise AssertionError('expected ShapeError')
+    except cx.ShapeError:
+        pass
 print('cxlens self-test: all passed')
