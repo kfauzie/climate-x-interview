@@ -1,0 +1,38 @@
+---
+name: pm-5-clickable-prototype
+description: "Turn the agreed solution design into a polished, working clickable prototype on a branch: the customer's brand and product look, engine separate from the AI interpreter, synthetic data, tests from the test set, a check in a real browser, a PR and a no-install demo. Use when building or changing the prototype."
+---
+
+# Clickable prototype
+
+Input: `solution-design.md` (agreed screens, checks, test set). Output: `runs/run-N/clickable-prototype.md` and a PR. This is where the screens get full visual polish.
+
+## Look
+- Clean B2B SaaS: generous spacing, clear hierarchy, consistent components, restrained colour
+- Looks like part of their product: copy conventions from real product screenshots, and real brand values from the source, never guessed
+- Accessible: never colour alone, visible focus, works in light and dark and on a phone
+- A page shared outside the company doesn't present itself as the company's product
+
+## Build and check
+- **Build** on a branch:
+  - The engine (numbers, checks, method, rows) separate from the interpreter (input → choices, never a number)
+  - No real data yet: a seeded synthetic file in the run, labelled as synthetic
+  - Tests from the test set; run them after every change
+  - Labels and verdicts generated from the numbers, never typed by hand
+- **Check before showing anyone:** walk it end to end in a real browser and look at the screenshots. Then ask:
+  - Can a first-time user tell in five seconds what the screen is for and what to do next?
+  - Do the principles in `pm-4-solution-design` and the look above hold on the real screens?
+  - Are the numbers right, and are the limits stated?
+- **PR** with screenshots, how to run it and the test results
+- For people who can't run it: a clickable demo built from the real UI that replays precomputed answers, with a note on what it can't do
+- `clickable-prototype.md`: how it's built, how to run it, check results, the PR and demo links, feedback rounds, open items
+
+## After the prototype
+- **Test with users** (`pm-6-prototype-review`): they think aloud while I watch. Feedback goes back into the file it changes (a screen's content, inputs or checks → `solution-design.md`, its look → the prototype), logged as a round in `clickable-prototype.md`
+- **Hand-off:** the solution design plus the prototype are the spec. Rebuild with real components, one PR per screen with tests, behind a feature flag; an engineer reviews; check in staging
+- **Release and measure** against targets agreed in advance; iterate if it misses, scale if it hits
+
+## Under time pressure
+- Get a usable version in front of people early, then improve it
+- Narrate what I'm building, what I'm leaving out, and why
+- Leave time to finish: check the numbers and walk the flow once

@@ -1,5 +1,5 @@
 ---
-name: pm-7-prototype-review
+name: pm-6-prototype-review
 description: "Run a prototype review with the customer and their gatekeepers: what to test, a 15-minute script built on the customer's own example, questions, what to measure, and the per-run review page. Use before showing a prototype, or when turning review feedback into the next design round."
 ---
 
@@ -7,7 +7,7 @@ description: "Run a prototype review with the customer and their gatekeepers: wh
 
 Not to sell it. To learn whether it solves the problem for the people who'd use and approve it.
 
-Inputs (active run): `RUN.md`, `solution-concept.md` (the riskiest assumption), `solution-detail.md`, `visual-design.md`, `clickable-prototype.md`, `notes/`, the prototype. Output: `runs/run-N/prototype-review.md`, published to Notion.
+Inputs (active run): `RUN.md`, `solution-concept.md` (the riskiest assumption), `solution-design.md`, `clickable-prototype.md`, `notes/`, the prototype. Output: `runs/run-N/prototype-review.md`, published to Notion.
 
 ## What I'm testing, in order
 1. Problem fit: does it remove the pain, in their workflow?
