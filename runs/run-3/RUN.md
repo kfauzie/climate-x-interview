@@ -1,11 +1,11 @@
 # Run 3
 
-**Status:** initial data review done; next: discovery questions (pm-2)
+**Status:** discovery questions ready; next: the interview
 **Dataset:** `data/northwind_renewables_spectra_infra_2026-09.csv` (Spectra Infrastructure Screener export, September 2026)
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
 **On Notion (2nd round prep)**
-- (none yet)
+- Discovery questions and call notes: https://app.notion.com/p/40e8f31ef05f81658eb1c6a31ed1de35
 
 Everything below applies to **run 3 only**. Do not carry it into any other run.
 
@@ -22,10 +22,10 @@ Everything below applies to **run 3 only**. Do not carry it into any other run.
 *This is a solution (an Adapt plan for every site), not a problem. Discovery should find what the plans are for, who acts on them, and what goes wrong today without them.*
 
 ## Initial review (pm-1)
-"Rated E–G" means in 2050, central scenario (SSP2-4.5) unless stated. Severe = SSP5-8.5. Loss = £ expected loss a year.
+**Scenarios:** central = SSP2-4.5 (middle of the road, roughly today's policies); severe = SSP5-8.5 (very high emissions). **Years:** 2030 and 2050. **Hazards:** river flood, surface water flood, extreme heat, wildfire, windstorm. **Rating:** A (lowest risk) to G (highest); "high risk" below means rated E, F or G. **Expected loss:** Spectra's average damage per year, in £.
 
 **The data** (first five rows; 11 of 49 columns shown, the other 38 are the other hazards, scenarios and years)
-| Site | Country | Region | Type | MW | Commissioned | Value | Location | Debt facility | River flood rating | River flood loss a year |
+| Site | Country | Region | Type | Capacity (MW) | Commissioned | Value | Location | Debt facility | River flood rating, central 2050 | River flood expected loss a year, central 2050 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | S001 | UK | Teesside | battery | 38.0 | 2021 | £21.4m | footprint | A | E | £216,600 |
 | S002 | UK | Scottish Borders | wind | 52.8 | 2023 | £69.0m | footprint | A | B | £64,300 |
@@ -33,33 +33,32 @@ Everything below applies to **run 3 only**. Do not carry it into any other run.
 | S004 | UK | Essex | battery | 22.9 | 2015 | £13.8m | footprint | B | C | £42,100 |
 | S005 | UK | Essex | battery | 39.8 | 2021 | £20.4m | point | B | C | £46,500 |
 
-**In two lines:** 62 rows, one per site (38 UK, 24 Spain; 30 solar, 19 wind, 13 battery; £2.9bn, 3.2 GW, commissioned 2014–2024). Columns: site ID, country, region, type, capacity, year commissioned, value, location type (footprint or point), debt facility (A or B); then rating A–G and £ loss a year for river flood, surface water flood, extreme heat, wildfire and windstorm, under central and severe, for 2030 and 2050
-**Usable:** yes. No duplicates; 3 sites have no wildfire scores. Guess: an Infrastructure Screener export, used for asset management and lender reporting
+**In two lines:** 62 sites, one per row: 30 solar farms, 19 onshore wind farms and 13 battery sites (large batteries that store electricity from the grid and release it later); 38 in the UK, 24 in Spain; worth £2.9bn in total, commissioned 2014–2024. Capacity is in MW (megawatts: the most power a site can deliver at once). Each site also has its location type (footprint = scored over the site's outline, point = scored at one spot), its debt facility (A or B), and a rating and expected loss for each hazard, scenario and year.
+**Data quality check:** no duplicate sites; 3 sites have no wildfire scores (S001, S010, S032); 16 sites are scored at one spot rather than their outline. Neither changes the findings: wildfire is a small part of the UK risk, and spot and outline sites show a similar level of risk.
 
 **Findings**
 | # | Finding | Why it might matter (guess) |
 |---|---|---|
-| 1 | **A few sites carry the serious risk.** 8 of 62 sites are rated E–G, all for river flood. 7 of them are UK battery sites (7 of Northwind's 12 in the UK), in Teesside, Lincolnshire and Humberside. Together: 21% of the expected loss, 9% of the value | The risk that needs action may sit in a handful of sites, not across all 62 |
-| 2 | **The scenario changes the picture.** Under the severe scenario, 24 sites are rated E–G (32% of the value), against 8 (9%). Extreme heat brings in 8 Spanish solar sites, which have no E–G rating under central. Expected loss: £46.6m a year against £24.1m | Which sites need attention depends on the scenario Northwind plans for |
-| 3 | **Some scores are missing.** 3 sites have no wildfire scores: S001 and S010 (Teesside battery) and S032 (Scottish Borders wind). S001 and S010 are also among the 8 rated E–G | A blank could mean "no risk" or "not assessed"; any plan built on it inherits the gap |
+| 1 | **A few sites carry the high risk.** Under the central scenario in 2050, 8 of 62 sites are high risk, all for river flood. 7 of the 8 are UK battery sites (out of 12 UK battery sites), in Teesside, Lincolnshire and Humberside. Together they're 21% of Northwind's expected loss but 9% of its value | The risk that needs action may sit in a handful of sites, not across all 62 |
+| 2 | **The scenario changes which sites are high risk.** In 2050, 24 sites are high risk under the severe scenario, against 8 under central. Extreme heat adds 8 Spanish solar farms that aren't high risk under central. Expected loss: £46.6m a year under severe, £24.1m under central | Which sites need attention depends on the scenario Northwind plans for |
 
 **The questions they become**
-1. The data shows 8 of your 62 sites are rated E–G, all for river flood, and 7 of them are UK battery sites. Does that match what you see?
-   - What do you do about it?
-2. The data shows 24 sites rated E–G under the severe scenario, against 8 under central. Does that match what you see?
-   - What do you do about it?
-3. The data shows three sites with no wildfire scores. Does that match what you see?
-   - What do you do about it?
+1. The data shows 8 of your 62 sites at high risk of river flooding by 2050, and 7 of them are UK battery sites. What's behind that?
+   - How do you handle the flood risk at those sites today?
+2. The data shows 24 sites at high risk by 2050 under the severe scenario, against 8 under central. How do you decide which scenario to plan for?
+   - What would change for you if it were the severe one?
 
 **Clarifications to confirm**
-- Which scenario and year Northwind plans for, and whether the lenders ask for a particular one
-- Whether E–G is the cut-off they use for "needs action"
-- What a blank wildfire score means: no risk, or not assessed
-- What "point" means for 16 sites (scored at one location, not the site's outline) and whether that's intended
+- Which scenario and year do you use for planning, and do your lenders ask for a particular one?
+- Which rating counts as "needs action" for you?
+- For the three sites with no wildfire score: does a blank mean no risk, or not assessed?
 
-**Checked, nothing found:** no duplicate sites; values per MW are consistent within each type; newer and older sites have similar loss rates (0.7–0.9% of value); point and footprint sites have similar loss rates; debt facility A holds 6 of the 8 E–G sites (£200m of £266m), but its loss rate is close to facility B's (0.87% against 0.76%)
+**Looked at, nothing to ask about**
+- Newer and older sites have a similar level of risk.
+- Sites in debt facilities A and B have a similar level of risk.
+- Site values are in line with their size for each type of site.
 
 **Follow-ups to ask Claude Code**
-- Split the 8 E–G sites by debt facility and show what each facility's lenders would see
-- Rerun each finding for 2030
-- Rank all 62 sites by expected loss as a share of value, to see where a cut-off would fall
+- Show the 8 high-risk sites under central, with which debt facility each is in
+- Rerun the findings for 2030
+- List all 62 sites from highest to lowest expected loss compared with what each site is worth, to see where a sensible cut-off for action would fall
