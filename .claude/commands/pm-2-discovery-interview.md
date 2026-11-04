@@ -31,7 +31,7 @@ One question per line: ask it, listen, then ask the next. Never read two out tog
    - How would you know it's working?
 5. **Trust.** What would you need to see to trust it?
    - Who signs it off?
-6. **Close.** Recap in three points, biggest problem first. Anything I missed?
+6. **Close.** **\<Recap\>** Play it back in three points, biggest problem first. Anything I missed?
    - Can I email you short questions?
 
 Push when it's vague, hedged, or suspiciously slow ("Why does that take two days? It seems simple.").
@@ -39,4 +39,4 @@ Push when it's vague, hedged, or suspiciously slow ("Why does that take two days
 Add the questions from pm-1-data-discovery into the flow where they fit naturally (e.g. into the last example). They're only there because the answer could change the product, so they're asked, not optional.
 
 ## Save
-Save to runs/run-N/discovery-questions.md and publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: discovery questions (customer)", with an empty Notes section at the end. The page holds only what I'd say in the interview: the ask and the questions. No notes to self (timing, instructions, reminders), except the one "Push when…" line. Always give me the link to the new page, and add it to `RUN.md`.
+Save to runs/run-N/discovery-questions.md and publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: discovery questions (customer)", with an empty Notes section at the end. The page holds only what I'd say in the interview: the ask and the questions. No notes to self (timing, instructions, reminders), except the one "Push when…" line. Highlight the recap so it isn't missed. Always give me the link to the new page, and add it to `RUN.md`.
