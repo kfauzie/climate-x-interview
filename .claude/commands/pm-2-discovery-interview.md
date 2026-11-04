@@ -33,7 +33,7 @@ One question per line: ask it, listen, then ask the next. Never read two out tog
    - *\<Vague, hedged or slow → "Why does that take two days? It seems simple."\>*
    - *\<Admits a gap → "What happens when that goes wrong?"\>*
    - *\<Tempted to sum up the need → don't label it; ask "What would that let you do?"\>*
-   - **The data.** The data shows [a finding from pm-1-data-discovery]. Does that match what you see? What do you do about it?
+   - **The data.** [The strongest data question from pm-1-data-discovery, as written there]
 4. **The value.** If this got better, how would it benefit you: in time, money, or better decisions?
    - How would you know it's working?
    - *\<Asks "Can you build it?" → "Possibly. First I want to understand what it would let you do."\>*
@@ -42,7 +42,12 @@ One question per line: ask it, listen, then ask the next. Never read two out tog
 6. **Close.** **\<Recap\>** Play it back in three points, starting with their biggest worry (not their ask), in their words and with their numbers. Anything I missed?
    - Can I email you short questions?
 
-Add the questions from pm-1-data-discovery into the flow where they fit naturally (e.g. into the last example). They're only there because the answer could change the product, so they're asked, not optional. Place each one early and on its own line, never under a question whose premise might not hold: if the premise fails, the questions under it get skipped.
+## Data questions
+pm-1-data-discovery leaves candidate questions in `RUN.md`, each built on a finding and tied to the ask. Before writing the page:
+- **Rank them against the questions above** by how much the answer could change what we build. A data question beats a general one when it tests the ask with the customer's own numbers.
+- **Keep only what fits in 10 minutes:** usually the strongest one or two. Use the wording from pm-1; don't rewrite it.
+- **Place them where they land best:** the strongest after the pain points, when the customer has described the problem in their own words. Each on its own line, never under a question whose premise might not hold: if the premise fails, the questions under it get skipped.
+- **Tell me in chat which data questions were dropped and why,** so I can swap one in.
 
 ## Save
 Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: discovery questions (customer)", with an empty Notes section at the end. The page holds only what I'd say in the interview: the ask and the questions. No notes to self (timing, instructions, reminders), except short in-line prompts in italics between `<>`, placed where they're needed. Highlight the recap so it isn't missed. Always give me the link to the new page, and add it to `RUN.md`.
