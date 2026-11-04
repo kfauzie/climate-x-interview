@@ -32,7 +32,7 @@ runs/run-N/
 | 4. Summarise the problem | Claude | `pm-1-data-discovery` (Answer: test each claim) | claims from the Notion interview notes tested against the data, results in `RUN.md` |
 | 5. Solution concept | Claude | `pm-3-problem-to-solution-concept` | new Notion page, linked in `RUN.md` |
 | 6. Solution design | Claude | `pm-4-solution-design` | screen images in Climate X's brand in `runs/run-N/design/`, one per workflow step, most important first; reviewed live and agreed with me |
-| 7. Build | Claude | `pm-5-build` | the working first version (MVP): one HTML file, one screen at a time; branch and PR only if I ask |
+| 7. Build | Claude | `pm-5-mvp-build` | the working first version (MVP): one HTML file, all screens at once, then one change at a time; branch and PR only if I ask |
 | 8. MVP review | me + Claude | `pm-6-mvp-review` | new Notion page; feedback back into the screens and the build |
 
 Keep each step quick: about 15 minutes of the session is interview; the rest is synthesis, design and the build. Show results in chat first, commit once per step.
