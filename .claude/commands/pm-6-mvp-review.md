@@ -1,54 +1,26 @@
 ---
 name: pm-6-mvp-review
-description: "Run an MVP review with the customer and their gatekeepers: what to test, a 15-minute script built on the customer's own example, questions, what to measure, and the per-run review page. Use before showing the working version, or when turning review feedback into the next design round."
+description: "Generate quick follow-up questions to confirm the working version solves the customer's problem: checks on the assumptions and on data scenarios it must handle. Use before showing the working version to the customer."
 ---
 
 # MVP review
 
-Not to sell it. To learn whether it solves the problem for the people who'd use and approve it.
+The goal is to confirm the solution works for the customer, not to sell it.
 
-Inputs (active run): `RUN.md`, the solution concept on Notion (the riskiest assumption), the agreed screens, the working version. Output: a Notion page.
+Before starting, read climate-x-products, climate-x-company and climate-x-role. Use the solution concept (problem, workflow, assumptions) and the working version.
 
-## What I'm testing, in order
-1. Problem fit: does it remove the pain, in their workflow?
-2. Trust: would the owner and the gatekeepers sign off an answer from it?
-3. Adoption: who would use it, how often, and what they'd stop doing
-4. The riskiest assumption: confirmed, refuted or still open
+## Generate the questions
+Keep it to 5 questions at most, each open and specific to this case.
 
-Invite the decision owner, a day-to-day user, and the gatekeeper behind the riskiest assumption. Ask who else should come; they often name the real blocker.
+1. **Does it solve the problem?** One question tying the main screen to the pain they named, e.g. "If you'd had this for the last request, what would have been different?"
+2. **Assumptions.** For each assumption in the solution concept that could still be wrong, one question that would confirm or disprove it, e.g. "Would your model risk team accept a number with this method note attached?"
+3. **Data scenarios.** One or two cases the product must handle that the demo didn't show, e.g. a question the data can't answer, missing data, a different scenario or year. Ask how they'd expect it to behave: "If someone asked about loss to the bank, what would you want to see?"
+4. **Trust and sign-off.** "Would you send an answer from this screen? What would you need first?"
 
-## 15 minutes
-1. **Recap** (1–2 min): their words, biggest pain first. "Have I got that right?"
-2. **Walkthrough** (4–5 min): one of their own examples, end to end
-3. **Hands on** (3 min): they try a second example and think aloud. I don't help unless they're stuck
-4. **Questions** (4–5 min): 5–6 at most, fit and trust first
-5. **Next steps** (1–2 min): what a pilot would need, with whom, on what data
+## Rules
+- Open questions, with no hint of the answer you expect
+- Plain language, in the customer's own terms
+- Only ask what could change the solution
 
-## Script
-- Start from their problem: "Last time you said… so we built something to test one idea"
-- One line on what it does and doesn't do, and what data it runs on (say if it's synthetic)
-- Use their example, their terms and their defaults
-- Tie each moment to a pain: "this is the check you said takes half a day"
-- Show a failure being caught on purpose. It builds more trust than a perfect run
-- Say plainly where AI is used: "it reads the question; every number is calculated from the file"
-- Pause after each key moment and let them react
-
-## Questions
-- Fit: "If this had existed last time, what would have been different?"
-- Trust: "Would you sign off from this screen? What would you need first?" To the gatekeeper: "What would you need to approve this?"
-- Adoption: "Who would use it, for what? What would you stop doing?"
-- Gaps: "What would stop you using it?" Then: must-have or nice-to-have?
-- Value: "How would you know in three months that it was worth it?"
-- Next: "What would a pilot need for you to say yes? Who has to agree?"
-- Follow-ups: "What makes you say that?" "What did you expect to happen?"
-
-## Watch, don't just listen
-- During hands-on: did they finish unaided, how long did it take, where did they hesitate or misread, what would they change before sending?
-- In later rounds, compare options on completion and speed, not on which they say they prefer
-- Don't defend. A criticism is data: ask why and write it down
-- No jargon, no promises ("let me take that back")
-
-## Per run
-1. Write the page: who's coming, link to the working version, data used, riskiest assumption, the recap line, a walkthrough table (what I show, what I say, the pain it addresses; one row is a failure being caught), the AI line, the hands-on example, the questions with my hypotheses, the pilot I'll propose, and a `## Notes` section
-2. Publish it as a new Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled `Run N: MVP review (<customer>)`. Link it in `RUN.md`
-3. After the review: the notes stay on that Notion page; update the screens or the build, and update the riskiest assumption on the solution concept page
+## Save
+Add the questions to runs/run-N/mvp-review.md and to a Notion page under 2nd round prep, titled "Run N: MVP review (customer)", with an empty Notes section at the end.
