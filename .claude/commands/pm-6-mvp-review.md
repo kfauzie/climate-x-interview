@@ -7,7 +7,7 @@ description: "Run an MVP review with the customer and their gatekeepers: what to
 
 Not to sell it. To learn whether it solves the problem for the people who'd use and approve it.
 
-Inputs (active run): `RUN.md`, the solution concept on Notion (the riskiest assumption), the agreed screens, the PR, the working version. Output: a Notion page.
+Inputs (active run): `RUN.md`, the solution concept on Notion (the riskiest assumption), the agreed screens, the working version. Output: a Notion page.
 
 ## What I'm testing, in order
 1. Problem fit: does it remove the pain, in their workflow?
@@ -51,4 +51,4 @@ Invite the decision owner, a day-to-day user, and the gatekeeper behind the risk
 ## Per run
 1. Write the page: who's coming, link to the working version, data used, riskiest assumption, the recap line, a walkthrough table (what I show, what I say, the pain it addresses; one row is a failure being caught), the AI line, the hands-on example, the questions with my hypotheses, the pilot I'll propose, and a `## Notes` section
 2. Publish it as a new Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled `Run N: MVP review (<customer>)`. Link it in `RUN.md`
-3. After the review: the notes stay on that Notion page; log a feedback round in the PR description, update the screens or the build, and update the riskiest assumption on the solution concept page
+3. After the review: the notes stay on that Notion page; update the screens or the build, and update the riskiest assumption on the solution concept page
