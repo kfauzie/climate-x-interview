@@ -1,5 +1,5 @@
 ---
-name: pm-5-build
+name: pm-5-mvp-build
 description: "Turn the agreed screens into a working first version, fast: one HTML file, numbers calculated by code, AI only for interpreting input. Use when building or changing the prototype."
 ---
 
