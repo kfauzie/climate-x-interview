@@ -1,11 +1,11 @@
 # Run 2
 
-**Status:** initial data review done; next: discovery questions (pm-2)
+**Status:** discovery questions ready; next: the interview
 **Dataset:** `data/harbourside_mortgage_book_spectra_2026-10.csv` (Spectra export of the mortgage book, October 2026)
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
 **On Notion (2nd round prep)**
-- (none yet)
+- Discovery questions and call notes: https://app.notion.com/p/40e8f31ef05f8129964ec33de404a680
 
 Everything below applies to **run 2 only**. Do not carry it into any other run.
 
