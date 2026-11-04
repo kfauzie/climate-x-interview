@@ -10,10 +10,10 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role. 
 Output: the screen images, saved in runs/run-N/design/.
 
 ## Principles
-1. **Know the user.** Put yourself in their shoes. They're intelligent and expert in their domain, but not technical. Use their own terms from the interview notes; don't invent labels. No technical or AI terms on screen.
+1. **Know the user.** Put yourself in their shoes. They're intelligent and expert in their domain, but not technical. Use their own terms from the interview notes; don't invent labels. No technical or AI terms on screen. Explain domain terms wherever they appear, in a few words (e.g. "central (today's policies)").
 2. **One step per screen.** Each screen does exactly one step of the workflow.
 3. **Show only what matters.** Sensible defaults wherever possible, and a few clear options. Each fact appears once.
-4. **Information hierarchy and progressive disclosure.** The key information is big and up front. Detail sits lower and smaller, or appears only when the user asks for it.
+4. **Information hierarchy and progressive disclosure.** The key information is big and up front. Detail sits lower and smaller, or appears only when the user asks for it. Details go in a table, one fact per row (label | value), never a paragraph. Links and buttons say exactly what they open or do ("Show the rise by hazard", not "See where it comes from").
 5. **Trust.** The user can see how each number was produced.
 6. **Handle edge cases.** Missing data, unclear input, or something the product can't do: say so where it happens, and let the user clarify or pick the closest alternative.
 7. **Make it enjoyable.** Serious, but with a little personality: friendly wording, a clear sense of progress, small moments of feedback (e.g. a short loading message, a clear "done").
