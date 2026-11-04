@@ -30,7 +30,7 @@ runs/run-N/
 | 2. Discovery questions | Claude | `pm-2-discovery-interview` | `discovery-questions.md` + new Notion page |
 | 3. Interview | me | | notes in that Notion page |
 | 4. Summarise the problem | Claude | `pm-1-data-discovery` (Answer: test each claim) | `notes/interview.md` (one fetch of the meeting notes with transcript, saved as is), problem statement in `RUN.md` |
-| 5. Solution concept | Claude | `pm-3-problem-to-solution-concept` | `solution-concept.md` |
+| 5. Solution concept | Claude | `pm-3-problem-to-solution-concept` | `solution-concept.md` + new Notion page |
 | 6. Solution design | Claude | `pm-4-solution-design` | `solution-design.md`: walkthrough, then one medium-fidelity screen per step (most important first) with its inputs and checks; reviewed live and agreed with me |
 | 7. Clickable prototype | Claude | `pm-5-clickable-prototype` | `clickable-prototype.md`, the polished prototype on a branch + PR |
 | 8. Prototype review | me + Claude | `pm-6-prototype-review` | `prototype-review.md` + new Notion page; feedback back into the files above |

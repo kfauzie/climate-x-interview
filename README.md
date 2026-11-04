@@ -8,7 +8,7 @@ How I go from a customer's data and a short interview to a prototype they'd trus
 |---|---|
 | [`pm-1-data-discovery`](.claude/commands/pm-1-data-discovery.md) | What the data is, what to trust, which choices change the answer |
 | [`pm-2-discovery-interview`](.claude/commands/pm-2-discovery-interview.md) | Finding the problem behind the ask, in 10 minutes |
-| [`pm-3-problem-to-solution-concept`](.claude/commands/pm-3-problem-to-solution-concept.md) | Solution concept: what's worth building, and the narrowest slice |
+| [`pm-3-problem-to-solution-concept`](.claude/commands/pm-3-problem-to-solution-concept.md) | The problem, two or three solution ideas, and the recommended one's workflow end to end |
 | [`pm-4-solution-design`](.claude/commands/pm-4-solution-design.md) | Medium-fidelity screens with their inputs and checks, reviewed live. Design principles |
 | [`pm-5-clickable-prototype`](.claude/commands/pm-5-clickable-prototype.md) | Polished working prototype on a branch, tested, checked in a browser, PR |
 | [`pm-6-prototype-review`](.claude/commands/pm-6-prototype-review.md) | Testing the prototype with the people who'd use and approve it |
