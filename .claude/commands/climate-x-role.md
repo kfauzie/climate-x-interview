@@ -1,58 +1,22 @@
 ---
 name: climate-x-role
-description: "The Principal PM role at Climate X and how I fit it: the seat, the interview process, the live build session, what I learned in round 1, my evidence, positioning and gaps. Use when preparing for or running the Climate X interviews."
+description: "The role I'm working in: Principal PM at Climate X, Customer & UX. Sets the standard for discovery, design and building. Use for any product work on Climate X: discovery, data analysis, solution concepts, design and prototypes."
 ---
 
 # The role
 
-Sources: the recruiter's role brief, my round-1 prep notes, and what Kevin said in round 1. Confidential: keep this repo private. Recruiter feedback lives in my private Notion, not here.
+I'm a Principal PM at Climate X, owning a product area end to end: from a customer's problem to a shipped product that earns revenue. I work in a pod with one engineer. The seat is Customer & UX: discovery-led, with AI fluency expected.
 
-## The seat
-- Senior hands-on IC: owns a product area end to end, from customer problem to a shipped product that earns revenue. Works in a pod of one PM and one engineer, releasing monthly
-- Spends time with customers, builds work up to a pull request, and sets how the team uses AI
-- Must-haves: has built inside a startup, has taken something from zero to revenue, and wants to stay an IC
-- Two seats are open: Customer & UX / Discovery (mine) and Agentic AI
-- London, three days a week; base up to £150k+, plus options
+## What good looks like
 
-## Process
-1. 45 minutes with Kevin Luo, VP Product (done)
-2. Live build with Kevin (below)
-3. Kamil Kluza, co-founder, if the build goes well: commercial impact and strategy
-4. Lukky Ahmed, CEO
+- **Depth of thinking.** Get past the customer's request to the real workflow and the real problem. Ask why, and back claims with their data and their words.
+- **Product judgement.** Find the simplest solution that solves the user's real problem, that users will love, and that makes Climate X more valuable (time saved, consultants avoided, better lending and investment decisions), while staying practical to build and run. Say what you're leaving out and why.
+- **AI where it earns its place.** Use AI where flexibility matters: messy input, free text, interpretation. Use code for fixed logic: calculations, rules, checks. If rules are enough, don't use a model.
+- **A product people trust.** The users are intelligent, non-technical experts making regulated decisions. Show how each answer was produced.
+- **Hands-on.** I build it myself, up to something an engineer can review: a working prototype, a spec, a pull request with tests.
 
-## Live build
-- Kevin sends real Climate X data shortly before; I build a new feature live, sharing my screen
-- He plays an enterprise customer, so I run discovery first and keep asking as I build, so every trade-off traces back to something he said
-- It's a conversation: he'll nudge, and I narrate as I go. Judged on thinking and outcome, not polish
-- What lands: explaining my choices; getting to something an engineer can review; numbers from code with AI only for interpretation; keeping the commercial thread
+## How to work with me
 
-## What I learned in round 1
-- I'm being considered for the Customer & UX seat; fluency with AI is still expected
-- The role is discovery-heavy; he asked about UI and UX as well as my AI and evaluation work
-- The PM steers the science team from what customers need. His example was hail: when do customers start to care, why, and does it differ by customer?
-- Value is framed as time saved, consultants avoided and better decisions
-- Lead with commercial use cases such as lending and investment, not safety
-
-## My evidence
-| They want | Me |
-|---|---|
-| A startup builder | Savvy, which I co-founded: from customer problem to an agent I built and tested myself |
-| Zero to revenue | Savvy: chose agent development over training → 12 contracts, $252k |
-| Discovery and UX | Multiverse: ~25 interviews → 3 fixes; retention up from 87% to 97%, about $9.5m |
-| AI people can trust | ExaCare: 99.7% precision in production, a 1,000-case test set, shadow mode, a kill switch |
-| Work up to a PR | Design prompt → prototype → spec → one pull request per screen, with tests |
-| Regulated decisions | ExaCare's hospital admissions are a close match for lending decisions |
-
-## Positioning
-- Lead with discovery, product judgement and UX: from what the customer says, to the real workflow, to a product they'd trust and use
-- Use evaluation and the AI-versus-code split as supporting proof, not the headline
-
-## Gaps, and my answer
-- No climate or finance background → in hindsight I'd have focused Savvy on finance; this repo shows how fast I ramp up
-- My "why Climate X" led with saving lives → reframe around better lending and investment decisions
-- Savvy's revenue is small → Multiverse's ~$9.5m
-
-## Still open
-- How time splits between discovery, analysis and building
-- What success looks like for a pod PM
-- How the "better decisions" value is measured for customers today
+- Narrate trade-offs: what you're doing, what you're leaving out, and why.
+- Small steps, fast. Get a usable version early, then improve it.
+- Challenge me when a choice doesn't trace back to the customer or the data.

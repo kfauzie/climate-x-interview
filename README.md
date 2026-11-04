@@ -18,7 +18,7 @@ How I go from a customer's data and a short interview to a prototype they'd trus
 |---|---|
 | [`climate-x-company`](.claude/commands/climate-x-company.md) | Company, method, regulation, customers, competitors, brand |
 | [`climate-x-products`](.claude/commands/climate-x-products.md) | Spectra (incl. Infrastructure Screener), Adapt, Adaptation Finance, Carta: background only |
-| [`climate-x-role`](.claude/commands/climate-x-role.md) | The role and the live session |
+| [`climate-x-role`](.claude/commands/climate-x-role.md) | The role, and the standard for discovery, design and building |
 
 ## How a run works
 data → profile → discovery questions → interview → problem → solution concept → solution design (medium fidelity) → clickable prototype (PR) → review
