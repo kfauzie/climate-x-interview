@@ -1,6 +1,6 @@
 # Run 1: prototype review with Sarah Okafor
 
-Made with the `pm-7-prototype-review` skill from `RUN.md`, `solution-concept.md`, `solution-detail.md`, `visual-design.md` and `notes/sarah-followup.md`. About 15 minutes.
+Made with the `pm-6-prototype-review` skill from `RUN.md`, `solution-concept.md`, `solution-detail.md`, `visual-design.md` and `notes/sarah-followup.md`. About 15 minutes.
 
 **Who:** Sarah Okafor (Head of Climate Risk, decision owner), one of her analysts (day-to-day user), someone from model risk (gatekeeper; Sarah: "if it involves AI, someone from model risk should hear it early")
 **Prototype:** the app on the `prototype/answer-with-method` branch, or the clickable demo (share the link before the session, or screen-share)
