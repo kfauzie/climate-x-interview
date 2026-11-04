@@ -216,7 +216,7 @@ md("""## 7. Product implications (requirements, solution-neutral)
 - **Normalise postcodes before any join,** and report records that don't match""")
 
 md("""## 8. Discovery questions
-In `../discovery-questions.md`, built with the `pm-2-discovery-interview` skill (15-minute budget) and published to Notion. Each data-informed question is tagged with the finding above that it comes from.""")
+In the run 1 discovery questions on Notion (linked in `../RUN.md`), built with the `pm-2-discovery-interview` skill (15-minute budget) and published to Notion. Each data-informed question is tagged with the finding above that it comes from.""")
 
 nb.cells = C
 nb.metadata['kernelspec'] = {'name': 'python3', 'display_name': 'Python 3', 'language': 'python'}

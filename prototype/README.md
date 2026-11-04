@@ -1,6 +1,6 @@
 # Prototype: answer with its method
 
-A web app where an analyst turns a plain-English question into confirmed choices, code computes the answer with its method note and checks, and the reviewer approves it, with fast-track review for one-change follow-ups. Spec (newer than this build): `runs/run-1/solution-design.md`.
+A web app where an analyst turns a plain-English question into confirmed choices, code computes the answer with its method note and checks, and the reviewer approves it, with fast-track review for one-change follow-ups. Screens: `runs/run-1/design/`.
 
 ## Run it
 ```bash

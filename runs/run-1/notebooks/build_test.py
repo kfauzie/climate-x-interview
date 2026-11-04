@@ -12,7 +12,7 @@ md = lambda s: C.append(nbf.v4.new_markdown_cell(s))
 code = lambda s: C.append(nbf.v4.new_code_cell(s))
 
 md("""# Run 1 · Test (pm-1-data-discovery)
-Tests what Sarah Okafor said in discovery (`../notes/interview.md`) against this run's data. Every number comes from a code cell.
+Tests what Sarah Okafor said in discovery (the Notion interview notes linked in `../RUN.md`) against this run's data. Every number comes from a code cell.
 **Defaults unless stated** (from `RUN.md`): SSP245, 2050, all four hazards, each property counted once for £ loss. Only one choice is changed at a time.""")
 
 code("""import pandas as pd, numpy as np
