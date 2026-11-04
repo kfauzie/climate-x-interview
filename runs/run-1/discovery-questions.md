@@ -14,7 +14,7 @@
    - How would you know it's working?
 5. **Trust.** What would you need to see to trust a number from it?
    - Who signs it off?
-6. **Close.** Recap in three points, biggest problem first. Anything I missed?
+6. **Close.** **\<Recap\>** Play it back in three points, biggest problem first. Anything I missed?
    - Can I email you short questions?
 
 Push when it's vague, hedged, or suspiciously slow ("Why does that take two days? It seems simple.").
