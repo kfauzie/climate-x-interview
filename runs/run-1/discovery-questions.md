@@ -1,8 +1,6 @@
 # Run 1: discovery questions (Sarah Okafor, Head of Climate Risk)
 
-**What she asked for (X):** "a customised report builder to help her team produce custom reports to answer any questions that the team may have." Find the problem behind it before discussing any builder.
-
-**10 minutes, six questions.**
+**What she asked for (X):** "a customised report builder to help her team produce custom reports to answer any questions that the team may have."
 
 ## Questions
 1. **The ask.** Where is the need for a report builder coming from? Tell me about the most recent request your team had to answer.
