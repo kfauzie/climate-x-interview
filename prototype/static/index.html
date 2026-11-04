@@ -37,7 +37,17 @@ textarea{resize:vertical;min-height:44px}
 table{width:100%;border-collapse:collapse}th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0}
 td{padding:8px 0;border-top:1px solid var(--line)}.r{text-align:right}
 .rate{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:600;color:#fff;background:#b3261e}
-.alert{background:var(--warn);border:1px solid var(--warnline);border-radius:10px;padding:10px 14px;margin-bottom:12px}
+.alert{background:#fdecea;border:1px solid var(--red);color:#7d1410;border-radius:10px;padding:10px 14px;margin-bottom:12px}
+.info{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:12px}
+.flag{border-left:4px solid var(--red);background:#fdf3f2;color:#5c1310;padding:8px 12px;margin-top:8px;border-radius:0 8px 8px 0}
+.flag input{margin-top:6px}
+mark{background:#fde3e1;color:inherit;border-radius:3px;padding:0 2px}
+.src{font-size:13px;color:var(--soft);display:block;margin-top:4px}
+.qx button{border:1px solid #c8ccd0;background:var(--panel);border-radius:999px;padding:3px 12px;margin:6px 6px 0 0;cursor:pointer;font-size:14px}
+.grid{border-collapse:collapse;margin:0 auto;width:auto}.grid th,.grid td{border:1px solid var(--line);padding:12px 30px;text-align:center}.grid td b{font-size:32px}.grid .s{color:var(--soft);font-size:14px}
+.sarah{background:var(--panel)}.hello{font-size:30px;font-weight:700;margin:6px 0 4px}
+.att{border-left:5px solid var(--red);background:#fdf3f2;color:#3a1110;border-radius:0 10px 10px 0;padding:12px 18px;margin:14px 0}.att li{margin:6px 0}
+.linkbtn{border:0;background:none;color:var(--red);cursor:pointer;text-decoration:underline;padding:0;font:inherit}
 .alert button{margin-left:8px}
 .err{border-color:var(--red)}
 .foot{background:var(--panel);border-top:1px solid var(--line);padding:14px 28px;margin-top:8px}
@@ -60,24 +70,28 @@ async function api(path, body) {
   const r = await fetch(path, body ? {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)} : {});
   const j = await r.json(); if (!r.ok) throw new Error(j.detail || 'Something went wrong'); return j;
 }
-const EXAMPLES = ['How many CRE loans have a flood rating of E or worse by 2050?', "What's our total expected climate loss by 2050?",
-  'How much of our 2024 and 2025 lending went into high subsidence areas?', 'How much do expected losses rise from 2030 to 2050 under the severe scenario?'];
-const ASKERS = [['Credit committee','committee'],['Risk committee','committee'],['CRO','other'],['PRA / stress test','pra'],['Mortgage pricing','other'],['Treasury','other'],['Investor relations','other']];
+const EXAMPLES = ['For the stress test, how many CRE loans have a flood rating of E or worse?', 'How many CRE loans have a flood rating of E or worse by 2050?',
+  "What's our total expected climate loss by 2050?", 'How much of our 2024 and 2025 lending went into high subsidence areas?'];
+let ASKERS = [['Credit committee','committee'],['Risk committee','committee'],['PRA / stress test','pra'],['CRO','other'],['Mortgage pricing','other'],['Treasury','other'],['Investor relations','other']];
+const AUD_LABEL = {committee:'committees', pra:'stress tests', other:'other requests'};
 const SCEN = [['low','Low'],['central','Central'],['severe','Severe']];
-const EXCL = [['in_default','Loans in default'],['redeemed','Redeemed since the export'],['maturing_before','Maturing before 2030']];
-const S = {view:'draft', question:'', asker:'Credit committee', interp:null, choices:null, sources:{}, rec:null, note:'', comment:'', error:'', sentBack:'', changedBySarah:false, mail:''};
+const S = {view:'draft', question:'', asker:'PRA / stress test', interp:null, choices:null, sources:{}, reasons:{}, rec:null, note:'', comment:'',
+  error:'', info:'', sentBack:'', mail:'', open:{}, exText:''};
 const $ = s => document.querySelector(s);
 const esc = t => String(t ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const money = x => x == null ? '' : x >= 1e9 ? `£${(x/1e9).toFixed(1)}bn` : x >= 1e6 ? `£${(x/1e6).toFixed(1)}m` : x >= 1e3 ? `£${Math.round(x/1e3)}k` : `£${Math.round(x)}`;
 const fmtDate = d => new Date(d).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'});
 const audience = () => (ASKERS.find(a => a[0] === S.asker) || [0,'other'])[1];
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const cap = t => t ? t[0].toUpperCase() + t.slice(1) : t;
+const scenName = k => ({low:'low', central:'central', severe:'severe'}[k] || k);
 
+// ---------- data flow ----------
 let qTimer, lastQ = '';
 function onQuestion(v) { S.question = v; clearTimeout(qTimer); qTimer = setTimeout(() => { if (S.question.trim() !== lastQ) interpretNow(); }, 500); }
 async function interpretNow() {
-  lastQ = S.question.trim(); S.error = ''; S.rec = null; S.interp = null;
-  if (S.question.trim().split(/\s+/).length < 3) { render(); return; }
+  lastQ = S.question.trim(); S.error = ''; S.info = ''; S.rec = null; S.interp = null; S.reasons = {};
+  if (S.question.trim().split(/\s+/).length < 3) return render();
   try {
     S.interp = await api('/api/interpret', {question:S.question, audience:audience(), asker:S.asker});
     S.choices = JSON.parse(JSON.stringify(S.interp.choices)); S.sources = {...S.interp.sources};
@@ -87,173 +101,231 @@ async function interpretNow() {
 async function preview() {
   try {
     S.rec = await api('/api/compute', {question:S.question, audience:audience(), asker:S.asker, choices:S.choices, sources:S.sources,
-      question_years:S.interp.question_years, reasons:{}, preview:true});
+      question_years:S.interp.question_years, reasons:S.reasons, preview:true});
     S.error = '';
   } catch (e) { S.error = e.message; }
   render();
 }
-function setChoice(field, value) { S.choices[field] = value; S.sources[field] = 'analyst'; if (S.view === 'review') S.changedBySarah = true; preview(); }
+function setChoice(field, value) { S.choices[field] = value; S.sources[field] = 'analyst'; preview(); }
+function toggleMulti(field, v) {
+  const cur = S.choices[field].slice(); const i = cur.indexOf(v);
+  if (i >= 0) { if (cur.length === 1) return; cur.splice(i, 1); } else cur.push(v);
+  setChoice(field, field === 'years' ? cur.sort() : SCEN.map(s => s[0]).filter(s => cur.includes(s)));
+}
+function removeEx(k) { const ex = {...S.choices.exclusions}; ex[k] = k === 'maturing_before' ? null : false; setChoice('exclusions', ex); }
+async function addEx() {
+  const t = S.exText.trim(); if (!t) return;
+  try { const r = await api('/api/exclusion', {text:t}); S.exText = ''; S.info = ''; setChoice('exclusions', {...S.choices.exclusions, [r.key]: r.value}); }
+  catch (e) { S.info = e.message; render(); }
+}
+function addPerson() {
+  const n = prompt('Who asked? e.g. Head of Treasury'); if (!n || !n.trim()) return;
+  ASKERS.push([n.trim(), /committee/i.test(n) ? 'committee' : /pra|stress/i.test(n) ? 'pra' : 'other']); S.asker = n.trim(); interpretNow();
+}
 
 // ---------- pieces ----------
-function bigNumber(res, c) {
-  const d = res.grid[0].detail || {};
-  if (c.measure === 'count') return [`${d.n} ${c.unit === 'properties' ? 'properties' : 'loans'} · ${money(d.balance)}`, `of ${d.of_n} · of ${money(d.of_balance)} balance`];
-  if (c.measure === 'share') return [`${money(d.balance)} · ${(d.share*100).toFixed(1)}%`, `of ${money(d.of_balance)} new lending · older book ${(d.older_share*100).toFixed(1)}%`];
-  if (c.measure === 'rise') return [`${res.grid[0].value.toFixed(2)}×`, res.grid[0].text.split(': ')[1].split(' = ')[0]];
-  return [money(d.loss), 'annual expected damage to properties'];
+const isCount = c => c.measure === 'count';
+function val(c, g) {
+  const d = g.detail || {};
+  if (c.measure === 'count') return [`${d.n}`, ` ${c.unit === 'properties' ? 'properties' : 'loans'}`, money(d.balance)];
+  if (c.measure === 'share') return [money(d.balance), '', `${(d.share*100).toFixed(1)}% of new lending`];
+  if (c.measure === 'rise') return [`${g.value.toFixed(2)}×`, '', g.year];
+  return [money(d.loss), '', 'annual damage'];
 }
+function plain(c, g) { const [a, b, s] = val(c, g); return `${a}${b}${s ? ', ' + s : ''}`; }
+function answer(res, c) {
+  const g = res.grid, d = g[0].detail || {};
+  const ctx = c.measure === 'count' ? `of ${d.of_n} ${loanWord(c)} · ${money(d.of_balance)} balance` : c.measure === 'share' ? `of ${money(d.of_balance)} new lending` : c.measure === 'loss' ? 'annual expected damage to properties' : '';
+  if (g.length === 1) { const [a, b, s] = val(c, g[0]); return `<div class="panel out"><div class="big" aria-live="polite">${esc(a + b)}${s && c.measure !== 'loss' ? ' · ' + esc(s) : ''}</div><div class="ctx">${esc(ctx)}</div></div>`; }
+  const ys = [...new Set(g.map(x => x.year))], ss = [...new Set(g.map(x => x.scenario))];
+  const cell = (s, y) => { const x = g.find(q => q.scenario === s && q.year === y); if (!x) return '<td></td>'; const [a, b, t] = val(c, x); return `<td><b>${esc(a)}</b>${esc(b)}<div class="s">${esc(t)}</div></td>`; };
+  return `<div class="panel out"><table class="grid" aria-live="polite"><tr><th></th>${ys.map(y => `<th>${y}</th>`).join('')}</tr>
+    ${ss.map(s => `<tr><th>${cap(scenName(s))}</th>${ys.map(y => cell(s, y)).join('')}</tr>`).join('')}</table><div class="ctx">${esc(ctx)}</div></div>`;
+}
+const loanWord = c => c.loan_type === 'Commercial real estate' ? 'CRE loans' : c.loan_type === 'Residential mortgage' ? 'mortgages' : 'loans';
 function countChips(c) {
-  const out = [];
-  out.push(c.loan_type === 'Commercial real estate' ? 'CRE loans' : c.loan_type === 'Residential mortgage' ? 'Mortgages' : 'All loans');
-  const hz = (c.hazards || []).length ? c.hazards.map(h => h[0].toUpperCase() + h.slice(1)).join(', ') : 'All hazards';
+  const out = [cap(loanWord(c))];
+  const hz = (c.hazards || []).length ? c.hazards.map(cap).join(', ') : 'All hazards';
   out.push(c.rating_min ? `${hz} rating ${c.rating_min}${c.rating_max && c.rating_max !== 'G' ? '–' + c.rating_max : ' or worse'}` : hz);
   if (c.originated) out.push(`Lent in ${c.originated.join(' and ')}`);
   return out.map(t => `<span class="chip">${esc(t)}</span>`).join('');
 }
-function controls(editable, asSelect) {
-  const c = S.choices, d = S.rec.defaults || {};
-  const scen = c.scenarios[0], isDef = same(c.scenarios, d.scenarios);
-  const yrs = S.rec ? (window.mockApi ? ['2030','2050'] : ['2030','2050']) : [];
-  const scenCtl = asSelect
-    ? `<select aria-label="Scenario" style="width:auto" onchange="setChoice('scenarios',[this.value])">${SCEN.map(([k,l]) => `<option value="${k}" ${k===scen?'selected':''}>${l}</option>`).join('')}</select>`
-    : `<span class="seg" role="group" aria-label="Scenario">${SCEN.map(([k,l]) => `<button aria-pressed="${k===scen}" onclick="setChoice('scenarios',['${k}'])">${l}</button>`).join('')}</span>`;
-  let yearCtl;
-  if (c.measure === 'rise') yearCtl = `<span>${c.years.join(' → ')}</span>`;
-  else yearCtl = asSelect
-    ? `<select aria-label="Horizon" style="width:auto" onchange="setChoice('years',[this.value])">${yrs.map(y => `<option ${c.years[0]===y?'selected':''}>${y}</option>`).join('')}</select>`
-    : `<span class="seg" role="group" aria-label="Horizon">${yrs.map(y => `<button aria-pressed="${c.years[0]===y}" onclick="setChoice('years',['${y}'])">${y}</button>`).join('')}</span>`;
+const srcLabel = f => S.sources[f] === 'question' ? 'From the question' : S.sources[f] === 'analyst' ? 'Changed by you' : `Sarah's standard for ${AUD_LABEL[audience()]}`;
+function departureFlag(field, what) {
+  const d = (S.rec.departures || []).find(x => x.field === field); if (!d) return '';
+  return `<div class="flag"><b>Changed from Sarah's standard:</b> ${esc(what)}. Reason (shown to Sarah):
+    <input type="text" id="r-${field}" value="${esc(S.reasons[field] || '')}" placeholder="Why this differs" oninput="S.reasons['${field}']=this.value"></div>`;
+}
+function exWhat() {
+  const d = (S.rec.defaults || {}).exclusions || {}, c = S.choices.exclusions || {}, out = [];
+  if (d.in_default && !c.in_default) out.push('loans in default are included');
+  if (d.redeemed && !c.redeemed) out.push('loans redeemed since the export are included');
+  if (d.maturing_before && !c.maturing_before) out.push(`loans maturing before ${d.maturing_before} are included`);
+  if (c.maturing_before && c.maturing_before !== d.maturing_before) out.push(`loans maturing before ${c.maturing_before} are left out`);
+  return out.join('; ') || 'exclusions differ';
+}
+function controls() {
+  const c = S.choices, res = S.rec.result;
+  const multi = (field, opts) => `<span class="seg" role="group">${opts.map(([k, l]) => `<button aria-pressed="${c[field].includes(k)}" onclick="toggleMulti('${field}','${k}')">${l}</button>`).join('')}</span>`;
+  const years = (window._meta && window._meta.years) || ['2030','2050'];
   const ex = c.exclusions || {};
-  const on = EXCL.filter(([k]) => ex[k]), off = EXCL.filter(([k]) => !ex[k]);
-  const exCtl = on.map(([k,l]) => `<span class="chip">${l}<button aria-label="Remove ${l}" onclick="toggleEx('${k}',false)">×</button></span>`).join('')
-    + (off.length ? off.map(([k,l]) => `<button class="add" onclick="toggleEx('${k}',true)">+ ${l}</button>`).join(' ') : '');
-  const yDef = same(c.years, d.years) && S.sources.years !== 'question';
+  const chips = [['in_default','Loans in default'],['redeemed','Redeemed since the export'],['maturing_before', `Maturing before ${ex.maturing_before}`]]
+    .filter(([k]) => ex[k]).map(([k, l]) => `<span class="chip">${esc(l)}<button aria-label="Remove ${esc(l)}" onclick="removeEx('${k}')">×</button></span>`).join('');
   return `<div class="panel">
-    <div class="row"><div class="k">${c.measure === 'count' ? 'Count' : 'Covers'}</div><div>${countChips(c)}</div></div>
-    <div class="row"><div class="k">Scenario</div><div>${scenCtl}${isDef ? '<span class="tag">Default</span>' : ''}</div></div>
-    <div class="row"><div class="k">Horizon</div><div>${yearCtl}${yDef && c.measure !== 'rise' ? '<span class="tag">Default</span>' : ''}</div></div>
-    <div class="row"><div class="k">Excludes</div><div>${exCtl || '<span class="muted">Nothing</span>'}</div></div>
+    <div class="row"><div class="k">${isCount(c) ? 'Count' : 'Covers'}</div><div>${countChips(c)}<span class="src">From the question</span></div></div>
+    <div class="row"><div class="k">Scenarios</div><div>${multi('scenarios', SCEN)}<span class="src">${srcLabel('scenarios')}</span>${departureFlag('scenarios', `scenarios are ${c.scenarios.map(scenName).join(' and ')}`)}</div></div>
+    <div class="row"><div class="k">Horizons</div><div>${c.measure === 'rise' ? esc(c.years.join(' → ')) : multi('years', years.map(y => [y, y]))}<span class="src">${srcLabel('years')}</span>${departureFlag('years', `horizons are ${c.years.join(' and ')}`)}</div></div>
+    <div class="row"><div class="k">Excludes</div><div>${chips || '<span class="muted">Nothing</span>'}
+      <div style="display:flex;gap:8px;margin-top:8px"><input type="text" id="exin" placeholder="+ Add exclusion, e.g. maturing before 2035" value="${esc(S.exText)}" oninput="S.exText=this.value" onkeydown="if(event.key==='Enter')addEx()"><button class="btn" onclick="addEx()">Add</button></div>
+      ${S.info ? `<div class="alert" style="margin:8px 0 0">${esc(S.info)}</div>` : ''}${departureFlag('exclusions', exWhat())}</div></div>
+    <div class="row"><div class="k">Method</div><div>Count per ${c.unit === 'properties' ? 'property' : 'loan'} · worst rating · current balances
+      ${isCount(c) ? `<button class="linkbtn" style="margin-left:6px" onclick="setChoice('unit','${c.unit === 'properties' ? 'loans' : 'properties'}')">Count per ${c.unit === 'properties' ? 'loan' : 'property'} instead</button>` : ''}
+      ${departureFlag('unit', `counted per ${c.unit === 'properties' ? 'property' : 'loan'}`)}</div></div>
   </div>`;
 }
-function toggleEx(k, v) { const ex = {...S.choices.exclusions}; ex[k] = v ? (k === 'maturing_before' ? 2030 : true) : (k === 'maturing_before' ? null : false); setChoice('exclusions', ex); }
 function evidence(res) {
+  const c = S.choices;
   if (res.rows) {
-    return `<div class="panel"><div class="lbl">The ${res.rows_total} loan${res.rows_total === 1 ? '' : 's'}</div>
+    const cell = res.rows_cell, many = res.grid.length > 1;
+    const title = `The ${res.rows_total} loan${res.rows_total === 1 ? '' : 's'}${many ? ` in the worst case (${scenName(cell.scenario)}, ${cell.year})` : ''}`;
+    const nc = res.not_counted || {unmatched:[], unscored:[]}, cnt = res.counts || {};
+    const list = (k, rows) => S.open[k] ? `<table style="margin:6px 0 10px">${rows.map(r => `<tr><td>${esc(r.loan_id)}</td><td>${esc(r.property_type || r.loan_type || '')}</td><td>${esc(r.region || '')}</td><td class="r">${money(r.balance_gbp)}</td></tr>`).join('')}</table>` : '';
+    return `<div class="panel"><div class="lbl">${esc(title)}</div>
       ${res.rows.length ? `<table><tr><th>Loan</th><th>Property</th><th>Region</th><th class="r">Balance</th><th class="r">Rating</th></tr>
-      ${res.rows.map(r => `<tr><td>${esc(r.loan_id)}</td><td>${esc(r.property_type)}</td><td>${esc(r.region.replace(' and the Humber',''))}</td><td class="r">${money(r.balance)}</td><td class="r"><span class="rate" aria-label="Rating ${r.rating}">${esc(r.rating)}</span></td></tr>`).join('')}</table>
-      ${res.rows_total > res.rows.length ? `<p class="muted">Showing the ${res.rows.length} largest. All ${res.rows_total} are in the file.</p>` : ''}` : '<p class="muted">No loans match. Try another scenario or horizon, or remove an exclusion.</p>'}</div>`;
+      ${res.rows.map(r => `<tr><td>${esc(r.loan_id)}</td><td>${esc(r.property_type)}</td><td>${esc(r.region.replace(' and the Humber',''))}</td><td class="r">${money(r.balance)}</td><td class="r"><span class="rate">${esc(r.rating)}</span></td></tr>`).join('')}</table>
+      ${res.rows_total > res.rows.length ? `<p class="muted">Showing the ${res.rows.length} largest. All ${res.rows_total} are in the file.</p>` : ''}` : '<p class="muted">No loans match. Try another scenario or horizon, or remove an exclusion.</p>'}
+      ${cnt.unmatched || cnt.unscored ? `<div class="lbl" style="margin-top:16px">Not counted</div>` : ''}
+      ${cnt.unmatched ? `<div><button class="linkbtn" onclick="S.open.u=!S.open.u;render()">${cnt.unmatched} loan${cnt.unmatched === 1 ? '' : 's'}</button> ${cnt.unmatched === 1 ? 'is' : 'are'} in the Spectra export but not in the loan book.</div>${list('u', nc.unmatched)}` : ''}
+      ${cnt.unscored ? `<div><button class="linkbtn" onclick="S.open.s=!S.open.s;render()">${cnt.unscored} loan${cnt.unscored === 1 ? '' : 's'}</button> ${cnt.unscored === 1 ? 'has' : 'have'} no ${(c.hazards || [])[0] || ''} rating.</div>${list('s', nc.unscored)}` : ''}</div>`;
   }
   const dr = res.drivers || {};
-  const tbl = (t, o) => `<table><tr><th>${t}</th><th class="r">Damage</th></tr>${Object.entries(o).sort((a,b) => b[1]-a[1]).slice(0,5).map(([k,v]) => `<tr><td>${esc(k[0].toUpperCase()+k.slice(1))}</td><td class="r">${money(v)}</td></tr>`).join('')}</table>`;
+  const tbl = (t, o) => `<table><tr><th>${t}</th><th class="r">Damage</th></tr>${Object.entries(o).sort((a,b) => b[1]-a[1]).slice(0,5).map(([k,v]) => `<tr><td>${esc(cap(k))}</td><td class="r">${money(v)}</td></tr>`).join('')}</table>`;
   return `<div class="panel"><div class="lbl">Where it comes from</div>${dr.by_hazard ? tbl('Hazard', dr.by_hazard) : ''}${dr.by_region ? '<div style="height:12px"></div>' + tbl('Region', dr.by_region) : ''}</div>`;
 }
-function writeup(res) {
-  const skip = /^(Scenario|Population|Excludes|Counting|Hazards)/;
-  const extra = res.method_note.filter(l => !skip.test(l)).map(l => l.startsWith('Data:') ? (l.match(/(\d+ loans? didn't match.*)$/) || [,''])[1] : l).filter(Boolean).map(l => l[0].toUpperCase() + l.slice(1));
-  if ((S.choices.rating_min)) extra.unshift('Where a loan has more than one property, its worst rating is used.');
-  return `<div class="lbl">Also in the write-up</div>${extra.map(l => `<p style="margin:0 0 6px">${esc(l.replace(/ \(ssp\d+\)/,''))}</p>`).join('')}`;
+function highlighted() {
+  let h = esc(S.question);
+  (S.interp.matched || []).sort((a, b) => b.length - a.length).forEach(m => { const e = esc(m); if (h.includes(e) && !h.includes('<mark>' + e)) h = h.replace(e, `<mark>${e}</mark>`); });
+  return h;
 }
+const meta = () => window._meta ? `Spectra export, ${fmtDate(window._meta.export_as_at)}` : '';
+const meta2 = () => window._meta ? `Loan book, ${fmtDate(window._meta.book_as_at)}` : '';
 function failed(res) { return res.checks.filter(c => !c.ok); }
-function header(user, job, step) {
-  const steps = ['Draft','Review','Send'].map(s => s === step ? `<b>${s}</b>` : s).join('<i></i>');
-  return `${window.demoNote ? `<div class="demo">${esc(window.demoNote)}</div>` : ''}<div class="ribbon">User: ${user}<span class="sep">·</span>Job to be done: ${job}</div>
-    <div class="wrap"><div class="steps" aria-label="Steps">${steps}</div>`;
+function ribbon(user, job) { return `${window.demoNote ? `<div class="demo">${esc(window.demoNote)}</div>` : ''}<div class="ribbon">User: ${user}<span class="sep">·</span>Job to be done: ${job}</div>`; }
+const steps = step => `<div class="steps" aria-label="Steps">${['Draft','Review','Send'].map(s => s === step ? `<b>${s}</b>` : s).join('<i></i>')}</div>`;
+function effectText(e) {
+  const c = S.choices;
+  return e.cells.map(x => { const g = {value:x.standard, detail:null, year:x.year};
+    const v = c.measure === 'count' ? `${x.standard} ${c.unit === 'properties' ? 'properties' : 'loans'}, not ${x.value}` : c.measure === 'rise' ? `${(+x.standard).toFixed(2)}×, not ${x.value.toFixed(2)}×` : `${money(x.standard)}, not ${money(x.value)}`;
+    return `${scenName(x.scenario)} ${x.year} would be ${v}`; }).join('; ');
 }
-const meta = () => window._meta ? `Spectra export, ${fmtDate(window._meta.export_as_at)} · Loan book, ${fmtDate(window._meta.book_as_at)}` : '';
+function howText() {
+  const c = S.choices, ex = c.exclusions || {}, out = [];
+  out.push(`${c.scenarios.map(scenName).map(cap).join(' and ')}, ${c.years.join(' and ')}. Count per ${c.unit === 'properties' ? 'property' : 'loan'}, worst rating, current balances.`);
+  const exs = [ex.in_default && 'loans in default', ex.redeemed && 'loans redeemed since the export', ex.maturing_before && `loans maturing before ${ex.maturing_before}`].filter(Boolean);
+  if (exs.length) out.push(`Excludes ${exs.join(', ')}.`);
+  out.push(`Data: ${meta()}; ${meta2()}.`);
+  return out.join(' ');
+}
 
 // ---------- screens ----------
 function draftView() {
   const res = S.rec && S.rec.result, flags = (S.interp && S.interp.flags || []).filter(f => ['out_of_scope','not_in_data','split'].includes(f.kind));
-  let h = header('Analyst', 'turn the question into the right calculation', 'Draft') + `<h1>Draft</h1>`;
+  let h = ribbon('Analyst', 'turn the question into the right calculation') + `<div class="wrap">${steps('Draft')}<h1>Draft</h1>`;
   if (S.sentBack) h += `<div class="alert"><b>Sent back by Sarah:</b> ${esc(S.sentBack)}</div>`;
   h += `<div class="panel">
     <div class="row"><div class="k"><label for="q">Question</label></div><div><textarea id="q" rows="2" oninput="onQuestion(this.value)" placeholder="Paste the question as it was asked">${esc(S.question)}</textarea>
-      <div class="ex">Examples:${EXAMPLES.map((e,i) => `<button onclick="useExample(${i})">${i+1}</button>`).join('')}</div></div></div>
-    <div class="row"><div class="k"><label for="asker">Asked by</label></div><div><select id="asker" style="max-width:420px" onchange="S.asker=this.value;interpretNow()">${ASKERS.map(([a]) => `<option ${a===S.asker?'selected':''}>${a}</option>`).join('')}</select></div></div>
-    <div class="row"><div class="k">Data</div><div>${meta()}</div></div></div>`;
+      ${S.interp && S.interp.matched && S.interp.matched.length ? `<div class="src">Read as: ${highlighted()}</div>` : ''}
+      <div class="qx">${EXAMPLES.map((e, i) => `<button onclick="useExample(${i})">${esc(e)}</button>`).join('')}</div></div></div>
+    <div class="row"><div class="k"><label for="asker">Asked by</label></div><div style="display:flex;gap:12px;align-items:center"><select id="asker" style="max-width:420px" onchange="S.asker=this.value;interpretNow()">${ASKERS.map(([a]) => `<option ${a===S.asker?'selected':''}>${esc(a)}</option>`).join('')}</select><button class="linkbtn" onclick="addPerson()">+ Add person</button></div></div>
+    <div class="row"><div class="k">Data</div><div>${meta()} <button class="linkbtn" style="margin:0 18px 0 6px" onclick="S.error='';S.info2='This is the latest Spectra export.';render()">Refresh from Spectra</button>
+      ${meta2()} <button class="linkbtn" style="margin-left:6px" onclick="S.info2='Uploading a new loan book isn\\'t in this prototype: it uses the synthetic loan book.';render()">Upload new</button>
+      ${S.info2 ? `<div class="src">${esc(S.info2)}</div>` : ''}</div></div></div>`;
   flags.forEach(f => h += `<div class="alert">${esc(f.text)}</div>`);
   if (S.error) h += `<div class="alert">${esc(S.error)}</div>`;
   if (res) {
-    const [b, ctx] = bigNumber(res, S.choices);
-    h += `<div class="panel out"><div class="big" aria-live="polite">${esc(b)}</div><div class="ctx">${esc(ctx)}</div></div>`;
+    h += answer(res, S.choices);
     failed(res).forEach(c => h += `<div class="alert">${esc(c.detail)}.</div>`);
-    h += `<div class="cols">${controls(true, false)}${evidence(res)}</div>
-      <div class="cols"><div class="panel">${writeup(res)}</div>
-      <div class="panel"><div class="lbl"><label for="note">Note to Sarah${failed(res).length ? ' (needed: explain the warning)' : ' (optional)'}</label></div><textarea id="note" rows="3" oninput="S.note=this.value">${esc(S.note)}</textarea></div></div>`;
-  } else if (!S.error) h += `<div class="panel muted">Paste a question to see the draft.</div>`;
+    h += `<div class="cols">${controls()}${evidence(res)}</div>
+      <div class="panel"><div class="lbl"><label for="note">Note to Sarah${failed(res).length ? ' (needed: explain the warning)' : ' (optional)'}</label></div><textarea id="note" rows="2" oninput="S.note=this.value">${esc(S.note)}</textarea></div>`;
+  } else if (!S.error && !flags.length) h += `<div class="panel muted">Paste a question, or pick one above, to see the draft.</div>`;
   h += `</div><div class="foot"><div class="in"><button class="btn" onclick="reset()">Cancel</button><button class="btn p" ${res ? '' : 'disabled'} onclick="sendToSarah()">Send draft to Sarah →</button></div></div>`;
   return h;
 }
 function reviewView() {
-  const res = S.rec.result, [b, ctx] = bigNumber(res, S.choices);
-  let h = header('Sarah', 'approve the draft or send it back', 'Review') + `<h1>Review the draft</h1>
-    <div class="panel"><div class="row"><div class="k">Question</div><div>${esc(S.question)}</div></div>
-    <div class="row"><div class="k">Asked by</div><div>${esc(S.asker)}</div></div>
-    <div class="row"><div class="k">Data</div><div>${meta()}</div></div>
-    ${S.note ? `<div class="row"><div class="k">Analyst's note</div><div>“${esc(S.note)}”</div></div>` : ''}</div>`;
-  if (S.error) h += `<div class="alert">${esc(S.error)}</div>`;
-  h += `<div class="panel out"><div class="big" aria-live="polite">${esc(b)}</div><div class="ctx">${esc(ctx)}</div></div>
-    <div class="cols">${controls(true, true)}${evidence(res)}</div>
-    <div class="cols"><div class="panel">${writeup(res)}</div>
-    <div class="panel"><div class="lbl"><label for="cm">Comment to the analyst</label></div><textarea id="cm" rows="3" placeholder="Needed to send back" oninput="S.comment=this.value">${esc(S.comment)}</textarea></div></div>
+  const res = S.rec.result, deps = S.rec.departures || [], fl = failed(res);
+  const what = {scenarios: () => `scenarios are ${S.choices.scenarios.map(scenName).join(' and ')}`, years: () => `horizons are ${S.choices.years.join(' and ')}`,
+    exclusions: exWhat, unit: () => `counted per ${S.choices.unit === 'properties' ? 'property' : 'loan'}`};
+  const items = deps.map(d => { const e = (S.rec.effects || []).find(x => x.field === d.field);
+      return `<li><b>Changed from your standard:</b> ${esc((what[d.field] || (() => d.field))())}. Analyst's reason: “${esc(S.rec.reasons[d.field] || '')}”.${e && e.cells.length ? ' With your standard, ' + esc(effectText(e)) + '.' : ' The answer is the same with your standard.'}</li>`; })
+    .concat(fl.map(c => `<li><b>Warning:</b> ${esc(c.detail)}.</li>`))
+    .concat(S.note ? [`<li><b>Analyst's note:</b> “${esc(S.note)}”</li>`] : []);
+  return ribbon('Sarah', 'approve the answer or send it back') + `<div class="wrap sarah">
+    <div class="hello">Sarah, here's the answer to review</div>
+    <div class="muted" style="font-size:17px">“${esc(S.question)}” · ${esc(S.asker)} · from an analyst</div>
+    ${items.length ? `<div class="att"><div class="lbl" style="color:#8a1410">Needs your attention</div><ul style="margin:0;padding-left:20px">${items.join('')}</ul></div>` : `<div class="info" style="margin-top:14px">Nothing needs your attention: your standard was used and every check passed.</div>`}
+    ${S.error ? `<div class="alert">${esc(S.error)}</div>` : ''}
+    ${answer(res, S.choices)}
+    <div class="cols"><div class="panel"><div class="lbl">How it was calculated</div>${esc(howText())} <button class="linkbtn" onclick="S.open.l=!S.open.l;render()">${S.open.l ? 'Hide' : 'See'} the loans</button></div>
+    <div class="panel"><div class="lbl"><label for="cm">Comment (needed to send back)</label></div><textarea id="cm" rows="3" oninput="S.comment=this.value">${esc(S.comment)}</textarea></div></div>
+    ${S.open.l ? evidence(res) : ''}
     </div><div class="foot"><div class="in"><button class="btn" onclick="sendBack()">Send back</button><button class="btn p" onclick="approve()">Approve</button></div></div>`;
-  return h;
 }
 function mailText() {
-  const res = S.rec.result; const sev = (res.versions || []).find(v => v.change === 'scenario → severe');
-  const head = res.headline.replace(/ \((central|severe|low-emissions)\)$/, ' under the $1 scenario');
-  return `Hi all,\n\n${head[0].toUpperCase() + head.slice(1)}.${sev ? `\n\nUnder the severe scenario: ${sev.text.replace(/ \(severe\)$/, '')}.` : ''}\n\nThe loans and how they were counted are in the attached file.\n\nApproved by Sarah Okafor, Head of Climate Risk.`;
+  const res = S.rec.result, c = S.choices, g = res.grid, d = g[0].detail || {};
+  const what = `${cap(loanWord(c))} with a ${countChips(c).replace(/<[^>]+>/g, '|').split('|').filter(Boolean)[1] || ''}`.replace('rating', 'rating of');
+  let body;
+  if (g.length === 1) body = `${cap(res.headline.replace(/ \((central|severe|low-emissions)\)$/, ' under the $1 scenario'))}.`;
+  else {
+    const ys = [...new Set(g.map(x => x.year))], ss = [...new Set(g.map(x => x.scenario))];
+    body = `${what}${c.measure === 'count' ? `, out of ${d.of_n} (${money(d.of_balance)} balance)` : ''}:\n\n` +
+      `            ${ys.join('              ')}\n` + ss.map(s => `${cap(scenName(s)).padEnd(10)}  ${ys.map(y => plain(c, g.find(x => x.scenario === s && x.year === y)).padEnd(16)).join('')}`).join('\n');
+  }
+  const why = (S.rec.departures || []).map(x => S.rec.reasons[x.field]).filter(Boolean);
+  return `Hi all,\n\n${body}\n\n${why.length ? `Note: ${why.join('; ')}.\n\n` : ''}The loans and how they were counted are in the attached file.\n\nApproved by Sarah Okafor, Head of Climate Risk.`;
 }
 function sendView() {
   if (!S.mail) S.mail = mailText();
-  const subj = 'Re: ' + S.question.replace(/\?$/, '');
-  let h = header('Analyst', 'send the approved answer to whoever asked', 'Send') + `<h1>Send the answer</h1>
+  return ribbon('Analyst', 'send the approved answer to whoever asked') + `<div class="wrap">${steps('Send')}<h1>Send the answer</h1>
     <p><span class="ok">Approved by Sarah · ${new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}</span></p>
     <div class="panel"><div class="row"><div class="k">To</div><div><input type="text" value="${esc(S.asker)}"></div></div>
-    <div class="row"><div class="k">Subject</div><div><input type="text" value="${esc(subj)}"></div></div>
-    <textarea class="mail" style="margin-top:10px" aria-label="Reply" oninput="S.mail=this.value">${esc(S.mail)}</textarea>
+    <div class="row"><div class="k">Subject</div><div><input type="text" value="${esc('Re: ' + S.question.replace(/\?$/, ''))}"></div></div>
+    <textarea class="mail" style="margin-top:10px;font-family:inherit" aria-label="Reply" oninput="S.mail=this.value">${esc(S.mail)}</textarea>
     <p style="margin:10px 0 0">Attached: ${window.mockApi ? '<b>answer.xlsx</b>' : `<a href="/api/answers/${S.rec.id}/export.xlsx"><b>answer.xlsx</b></a>`}</p></div>
     </div><div class="foot"><div class="in"><span></span><button class="btn p" onclick="sendIt()">Send</button></div></div>`;
-  return h;
 }
 function sentView() {
-  return header('Analyst', 'send the approved answer to whoever asked', 'Send') + `<h1>Sent</h1>
+  return ribbon('Analyst', 'send the approved answer to whoever asked') + `<div class="wrap">${steps('Send')}<h1>Sent</h1>
     <div class="panel">Sent to ${esc(S.asker)} and logged: who asked, who built it, Sarah's approval, the data dates.</div>
     </div><div class="foot"><div class="in"><span></span><button class="btn p" onclick="reset()">New question</button></div></div>`;
 }
 
 // ---------- actions ----------
-function useExample(i) { S.question = EXAMPLES[i]; interpretNow(); }
-function reset() { Object.assign(S, {view:'draft', question:'', interp:null, choices:null, sources:{}, rec:null, note:'', comment:'', error:'', sentBack:'', changedBySarah:false, mail:''}); render(); }
-async function finalise(reasonText) {
-  const reasons = {}; (S.rec.departures || []).forEach(d => reasons[d.field] = reasonText);
-  return api('/api/compute', {question:S.question, audience:audience(), asker:S.asker, choices:S.choices, sources:S.sources, question_years:S.interp.question_years, reasons});
-}
+function useExample(i) { S.question = EXAMPLES[i]; if (i === 0) S.asker = 'PRA / stress test'; else if (i === 1) S.asker = 'Credit committee'; interpretNow(); }
+function reset() { Object.assign(S, {view:'draft', question:'', interp:null, choices:null, sources:{}, reasons:{}, rec:null, note:'', comment:'', error:'', info:'', info2:'', sentBack:'', mail:'', open:{}, exText:''}); lastQ = ''; render(); }
 async function sendToSarah() {
   try {
-    const f = failed(S.rec.result);
-    if (f.length && !S.note.trim()) { S.error = 'Add a note to Sarah explaining the warning, or fix it first.'; return render(); }
-    S.rec = await finalise(S.note.trim() || 'Changed by the analyst');
+    const missing = (S.rec.departures || []).filter(d => !(S.reasons[d.field] || '').trim());
+    if (missing.length) { S.error = "Give a reason for each change from Sarah's standard."; return render(); }
+    if (failed(S.rec.result).length && !S.note.trim()) { S.error = 'Add a note to Sarah explaining the warning, or fix it first.'; return render(); }
+    S.rec = await api('/api/compute', {question:S.question, audience:audience(), asker:S.asker, choices:S.choices, sources:S.sources, question_years:S.interp.question_years, reasons:S.reasons});
     S.rec = await api(`/api/answers/${S.rec.id}/submit`, {comment:S.note});
-    S.view = 'review'; S.error = ''; S.sentBack = ''; S.comment = ''; render(); scrollTo(0,0);
+    S.view = 'review'; S.error = ''; S.sentBack = ''; S.comment = ''; S.open = {}; render(); scrollTo(0,0);
   } catch (e) { S.error = e.message; render(); }
 }
 async function sendBack() {
   if (!S.comment.trim()) { S.error = 'Add a comment so the analyst knows what to change.'; return render(); }
-  try { await api(`/api/answers/${S.rec.id}/review`, {decision:'send_back', comment:S.comment}); S.sentBack = S.comment; S.view = 'draft'; S.error = ''; render(); scrollTo(0,0); }
+  try { await api(`/api/answers/${S.rec.id}/review`, {decision:'send_back', comment:S.comment}); S.sentBack = S.comment; S.view = 'draft'; S.error = ''; await preview(); scrollTo(0,0); }
   catch (e) { S.error = e.message; render(); }
 }
 async function approve() {
-  try {
-    if (S.changedBySarah) { S.rec = await finalise('Changed by Sarah'); S.rec = await api(`/api/answers/${S.rec.id}/submit`, {comment:'Changed by Sarah at review'}); }
-    S.rec = await api(`/api/answers/${S.rec.id}/review`, {decision:'approve', comment:S.comment});
-    S.view = 'send'; S.error = ''; render(); scrollTo(0,0);
-  } catch (e) { S.error = e.message; render(); }
+  try { S.rec = await api(`/api/answers/${S.rec.id}/review`, {decision:'approve', comment:S.comment}); S.view = 'send'; S.error = ''; render(); scrollTo(0,0); }
+  catch (e) { S.error = e.message; render(); }
 }
 async function sendIt() { try { await api(`/api/answers/${S.rec.id}/send`, {}); S.view = 'sent'; render(); } catch (e) { alert(e.message); } }
 function render() {
   const a = document.activeElement, id = a && a.id, st = a && a.selectionStart, en = a && a.selectionEnd;
   $('#app').innerHTML = {draft:draftView, review:reviewView, send:sendView, sent:sentView}[S.view]();
-  if (id && $('#' + id)) { const e = $('#' + id); e.focus(); if (st != null && e.setSelectionRange) e.setSelectionRange(st, en); }
+  if (id && $('#' + id)) { const e = $('#' + id); e.focus(); if (st != null && e.setSelectionRange) try { e.setSelectionRange(st, en); } catch (_) {} }
 }
 (async () => { window._meta = await api('/api/meta'); render(); })();
 </script>

@@ -264,11 +264,16 @@ def compute(bk: Book, c: Choices, question_years=None, question_text='') -> dict
     pop, excl, unm = _population(bk, c)
     res['counts'] = {'included': int(len(pop)), 'excluded': int(len(excl)), 'unmatched': int(len(unm)), 'unscored': _unscored(bk, c, pop)}
     if c.measure in ('count', 'share') and c.rating_min:
-        sel = source_rows(bk, c)['Counted']
+        worst = max(res['grid'], key=lambda g: g['value'] or 0)          # loans behind the largest cell
+        cw = copy.deepcopy(c); cw.scenarios = [worst['scenario']]; cw.years = [worst['year']]
+        res['rows_cell'] = {'scenario': worst['scenario'], 'year': worst['year']}
+        sr = source_rows(bk, cw); sel = sr['Counted']
+        res['not_counted'] = {'unmatched': sr['Unmatched'][['loan_id', 'loan_type', 'balance_gbp']].head(20).to_dict('records'),
+                              'unscored': sr['Unscored'][['loan_id', 'property_type', 'region', 'balance_gbp']].head(20).to_dict('records')}
         rc = [x for x in sel.columns if x.endswith('_rating')]
-        worst = sel[rc].max(axis=1) if rc else None
+        wr = sel[rc].max(axis=1) if rc else None
         res['rows'] = [{'loan_id': r.loan_id, 'property_type': r.property_type, 'region': r.region, 'balance': float(r.balance_gbp),
-                        'rating': (worst.loc[i] if worst is not None else '')} for i, r in sel.sort_values('balance_gbp', ascending=False).head(25).iterrows()]
+                        'rating': (wr.loc[i] if wr is not None else '')} for i, r in sel.sort_values('balance_gbp', ascending=False).head(25).iterrows()]
         res['rows_total'] = int(len(sel))
     return res
 

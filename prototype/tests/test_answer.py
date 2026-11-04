@@ -175,3 +175,30 @@ def test_draft_review_send():
     client.post(f"/api/answers/{rec['id']}/submit", json={'comment': ''})
     client.post(f"/api/answers/{rec['id']}/review", json={'decision': 'approve', 'comment': ''})
     assert client.post(f"/api/answers/{rec['id']}/send").json()['status'] == 'sent'
+
+
+STRESS_Q = 'For the stress test, how many CRE loans have a flood rating of E or worse?'
+
+
+def test_stress_test_question_uses_pra_standard_and_one_answer_with_four_cells():
+    r = ask(STRESS_Q, 'pra')
+    assert r['choices']['scenarios'] == ['central', 'severe'] and r['choices']['years'] == ['2030', '2050']
+    assert 'stress test' in r['matched'] and 'CRE loans' in r['matched']
+    res = run(STRESS_Q, 'pra').json()['result']
+    cells = {(g['scenario'], g['year']): g['value'] for g in res['grid']}
+    assert cells == {('central', '2030'): 4, ('central', '2050'): 3, ('severe', '2030'): 4, ('severe', '2050'): 5}
+    assert res['rows_cell'] == {'scenario': 'severe', 'year': '2050'} and res['rows_total'] == 5
+
+
+def test_departure_shows_its_effect_on_the_answer():
+    def incl_maturing(r): r['choices']['exclusions'] = {'in_default': True, 'redeemed': True, 'maturing_before': None}; r['sources']['exclusions'] = 'analyst'
+    rec = run(STRESS_Q, 'pra', edit=incl_maturing, reasons={'exclusions': 'The stress test covers the whole book'}).json()
+    eff = next(e for e in rec['effects'] if e['field'] == 'exclusions')
+    sev = next(c for c in eff['cells'] if c['scenario'] == 'severe' and c['year'] == '2050')
+    assert (sev['value'], sev['standard']) == (8, 5)
+
+
+def test_typed_exclusions():
+    assert client.post('/api/exclusion', json={'text': 'loans maturing before 2035'}).json() == {'key': 'maturing_before', 'value': 2035, 'label': 'Maturing before 2035'}
+    r = client.post('/api/exclusion', json={'text': 'loans in arrears'})
+    assert r.status_code == 400 and 'Closest: loans in default' in r.json()['detail']

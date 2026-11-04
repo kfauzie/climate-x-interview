@@ -82,7 +82,7 @@ def interpret(question: str, audience: str, hazards: list, years_available: list
 
     # scenario
     sc = []
-    if re.search(r'severe|stress|worst|ssp585|high[- ]emission', ql): sc.append('severe')
+    if re.search(r'severe|stressed scenario|worst|ssp585|high[- ]emission', ql): sc.append('severe')
     if re.search(r'central|base|ssp245|middle', ql): sc.append('central')
     if re.search(r'low[- ]emission|ssp126|net zero', ql): sc.append('low')
     if sc:
@@ -94,4 +94,7 @@ def interpret(question: str, audience: str, hazards: list, years_available: list
     for f in ('exclusions', 'unit', 'origination_source'):
         src[f] = 'default'
     understood = bool(hz or c.measure != 'count' or re.search(r'how many', ql))
-    return {'choices': c.__dict__, 'sources': src, 'flags': flags, 'question_years': qy, 'understood': understood}
+    pats = [r'\bCRE loans?\b|\bcommercial real estate( loans)?\b|\bmortgages?\b', r'\b(?:' + '|'.join(hazards) + r')(?: rating)?(?: of)? [A-G](?: to [A-G]| or worse)?',
+            r'\b(?:by |in |from )?20[3-9]\d(?: to 20[3-9]\d)?\b', r'\b(?:severe|central|low[- ]emissions?)(?: scenario)?\b', r'\bstress test\b', r'\b20\d\d and 20\d\d lending\b|\bhigh \w+ areas\b']
+    matched = [m.group(0) for p_ in pats for m in re.finditer(p_, q, re.I)]
+    return {'choices': c.__dict__, 'sources': src, 'flags': flags, 'question_years': qy, 'understood': understood, 'matched': matched}

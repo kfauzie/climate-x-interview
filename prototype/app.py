@@ -3,7 +3,7 @@
     python3 -m uvicorn prototype.app:app --port 8000      # RUN_DIR defaults to runs/run-1
 """
 from __future__ import annotations
-import copy, io, json, os, time, uuid
+import copy, io, json, os, re, time, uuid
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, StreamingResponse
@@ -104,10 +104,17 @@ def api_compute(x: ComputeIn):
     if missing and not x.preview:
         raise HTTPException(400, f"Give a reason for each change from Sarah's defaults: {', '.join(missing)}")
     res = compute(book, c, x.question_years, x.question)
+    dflt = defaults_for(aud); effects = []
+    for d in deps:                      # what the answer would be with Sarah's standard for that choice
+        c2 = Choices.from_dict({**c.__dict__, d['field']: dflt[d['field']]})
+        alt = {(g['scenario'], g['year']): g['value'] for g in compute(book, c2, x.question_years, x.question)['grid']}
+        cells = [{'scenario': g['scenario'], 'year': g['year'], 'value': g['value'], 'standard': alt.get((g['scenario'], g['year']))}
+                 for g in res['grid'] if alt.get((g['scenario'], g['year'])) != g['value']]
+        effects.append({'field': d['field'], 'cells': cells})
     rid = uuid.uuid4().hex[:8]
     rec = {'id': rid, 'question': x.question, 'audience': x.audience, 'asker': x.asker, 'choices': c.__dict__, 'sources': x.sources,
            'question_years': x.question_years, 'reasons': x.reasons, 'departures': deps, 'result': res, 'status': 'draft',
-           'parent_id': x.parent_id, 'comments': [], 'fast_track': False, 'diff': [], 'defaults': defaults_for(aud)}
+           'parent_id': x.parent_id, 'comments': [], 'fast_track': False, 'diff': [], 'defaults': defaults_for(aud), 'effects': effects}
     if x.parent_id and x.parent_id in STORE:
         p = STORE[x.parent_id]
         rec['diff'] = [{'field': k, 'from': p['choices'][k], 'to': v} for k, v in c.__dict__.items() if p['choices'].get(k) != v]
@@ -119,6 +126,23 @@ def api_compute(x: ComputeIn):
         rec['parent_headline'] = p['result']['headline']
     STORE[rid] = rec; _log('computed', rec)
     return rec
+
+
+class ExclIn(BaseModel):
+    text: str
+
+
+@app.post('/api/exclusion')
+def api_exclusion(e: ExclIn):
+    """Read a typed exclusion into one the data supports. Never guesses: anything else is refused with the closest option."""
+    t = e.text.lower()
+    m = re.search(r'matur\w*\s*(?:before|by|pre)?\s*(20\d\d)', t)
+    if m: return {'key': 'maturing_before', 'value': int(m.group(1)), 'label': f'Maturing before {m.group(1)}'}
+    if re.search(r'\bdefault', t): return {'key': 'in_default', 'value': True, 'label': 'Loans in default'}
+    if re.search(r'redeem|repaid|paid off', t): return {'key': 'redeemed', 'value': True, 'label': 'Redeemed since the export'}
+    if re.search(r'arrear|late|missed payment', t):
+        raise HTTPException(400, "The loan book has no arrears field, so arrears can't be left out. Closest: loans in default")
+    raise HTTPException(400, "Can't leave that out with this data. Options: loans in default, redeemed since the export, maturing before a year")
 
 
 @app.post('/api/answers/{rid}/submit')
