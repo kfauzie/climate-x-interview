@@ -20,21 +20,21 @@ Askers (CRO, committees, pricing, treasury, IR) never touch it: they email the q
 ![Draft](design/draft.png)
 
 - **Removes:** choosing scenario, horizon and loans by hand, the write-up, and "what about severe?" restarting it
-- **Inputs:** question, asked by and data. Scenario, horizon and exclusions start on Sarah's standard for that asker, so the analyst only confirms; the horizon follows the question. Note to Sarah is optional
-- **Edge cases, said where they happen:**
-  - No year in the question → horizon starts on the asker's default, marked "Default"
-  - A year not in the data ("present-day") → "This data has 2030 and 2050. Use 2030?"
-  - Horizon or data doesn't match the question → shown on this screen, so the analyst fixes it before Sarah sees it
-  - Nothing matches → "0 loans" with the controls still visible to widen it
-  - Loss to the bank → "Can't calculate loss to the bank from this data. Show damage to properties instead?"
-- **Ends in:** Send draft to Sarah. The number updates as the controls change
+- **Inputs:** the question, typed loosely; AI reads it into choices, highlights the words it used and fills the rest from Sarah's defaults. AI never produces a number. Real example questions to start from. Asked by, with "+ Add person". Data: refresh the Spectra export, or upload a new loan book
+- **Choices:** scenario, horizon, exclusions (common ones, or typed and read by AI) and method. Each shows its source; a change from Sarah's defaults is flagged for her
+- **Not counted, in plain words, linked to the list:** loans in the Spectra export but not in the loan book; loans with no rating for that hazard and year
+- **Edge cases:** warnings in red, where they happen: year doesn't match the question, stale data, a year not in the data, nothing matches, loss to the bank (refused, with the closest alternative)
+- **Ends in:** Send draft to Sarah
 
 ## 2. Review the draft
 ![Review](design/review.png)
 
+Shown with the stress-test version of the question, which needs more than one scenario and year.
 - **Removes:** half a day of checking someone else's numbers
-- **Inputs:** scenario, year and leave-out can be changed; a comment is required to send back
-- **Ends in:** Approve, or Send back to the analyst with the comment. Nothing goes out without her approval
+- **Looks different from the draft:** addressed to Sarah, with what needs her attention first: changes from her standard (with their effect on the answer), flags and the analyst's note
+- **More than one scenario or year:** one answer with a small table (central and severe × 2030 and 2050), reviewed once and sent as one email
+- **Inputs:** a comment, required to send back
+- **Ends in:** Approve, or Send back. Nothing goes out without her approval
 
 ## 3. Send the answer
 ![Send](design/send.png)
