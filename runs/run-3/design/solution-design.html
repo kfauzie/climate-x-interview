@@ -1,0 +1,139 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Run 3 screens</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#e8e8e8;font:15px/1.45 Graphik,Helvetica,Arial,sans-serif;color:#343a40}
+.screen{width:1100px;margin:30px auto;background:#f9f9fa;border:1px solid #e3e5e8;border-radius:14px;overflow:hidden}
+.hdr2{background:#1f5fa8;color:#fff;padding:20px 28px;display:flex;align-items:center;gap:16px}
+.hdr2 .ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;flex:none}
+.hdr2 .u,.hdr2 .j{font-size:26px;font-weight:700}.hdr2 .j{margin-top:4px}
+.steps{padding:14px 24px 0;color:#999;font-size:13px}.steps .on{color:#343a40;font-weight:600}
+.body{padding:10px 24px 20px}
+.top{display:flex;justify-content:space-between;align-items:baseline}
+h1{font-size:24px;margin:6px 0 2px}.sub{color:#6c757d}
+.card{background:#fff;border:1px solid #e3e5e8;border-radius:12px;padding:16px 18px;margin-top:12px}
+.lbl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#6c757d;margin-bottom:8px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fact .n{font-size:22px;font-weight:700}.fact .s{font-size:13px;color:#6c757d}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px}
+.t-adapt{background:#eef0f2;color:#5a6168}.t-quote{background:#efe8f8;color:#5b2d91}.t-ok{background:#e6f3e9;color:#1f6b32}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-weight:500;color:#6c757d;font-size:13px;padding:8px 10px;border-bottom:1px solid #e3e5e8}
+td{padding:14px 10px;border-bottom:1px solid #eef0f2;vertical-align:middle}td.r,th.r{text-align:right}
+tr.sel td{background:#f6f8fb}tr.sel td:first-child{box-shadow:inset 4px 0 0 #343a40}
+.big{font-size:20px;font-weight:700}.radio{display:inline-block;width:18px;height:18px;border-radius:50%;border:2px solid #9aa0a6;vertical-align:middle;margin-right:10px}
+tr.sel .radio{border:6px solid #343a40}
+.link{text-decoration:underline;font-size:14px}
+.i{display:inline-block;width:16px;height:16px;border-radius:50%;border:1px solid #888;font-size:11px;text-align:center;line-height:15px;color:#666;margin-left:6px}
+.tip{display:inline-block;background:#343a40;color:#fff;font-size:13px;padding:7px 11px;border-radius:6px;margin-left:8px;max-width:430px;vertical-align:middle}
+.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+.kv td{padding:7px 0;border-bottom:1px solid #eef0f2}.kv td:first-child{color:#6c757d;width:44%}
+.note{border-left:4px solid #c9a227;background:#fff8e6;color:#6b4a00;font-style:italic;padding:8px 12px;font-size:14px;margin-top:10px}
+.bar{height:10px;border-radius:5px;background:#eef0f2;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:#343a40}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:#fff;border-top:1px solid #e3e5e8}
+.btn{display:inline-block;padding:9px 18px;border:1px solid #c8ccd0;background:#fff;border-radius:999px}.btn.p{background:#e01e1a;border-color:#e01e1a;color:#fff}
+.doc{background:#fff;border:1px solid #d9dce0;border-radius:6px;padding:28px 32px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.doc h2{font-size:22px;margin:0 0 4px}.doc h3{font-size:15px;margin:22px 0 8px;text-transform:uppercase;letter-spacing:.05em;color:#6c757d;font-weight:600}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}.sum>div{border:1px solid #eef0f2;border-radius:10px;padding:12px}.sum .n{font-size:24px;font-weight:700}.sum .s{font-size:13px;color:#6c757d}
+.rule{border:1px solid #e3e5e8;border-radius:10px;padding:12px 14px;background:#f9f9fa}
+.warn{border-left:4px solid #c9a227;background:#fff8e6;color:#6b4a00;padding:10px 14px;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.small td,.small th{padding:9px 8px;font-size:14px}
+.src3{font-size:12px;color:#8a9097;font-weight:400;margin-top:2px}.bench{font-size:12px;color:#5b2d91;margin-top:3px}
+.t-warn{background:#fff1d6;color:#8a5a00}tr.click td{cursor:pointer}tr.click:hover td{background:#f6f8fb}.chev{color:#9aa0a6;font-size:20px;text-align:right;width:20px}
+</style></head><body>
+
+<div class="screen" id="plan">
+<div class="hdr2"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><div><div class="u">User: Head of Asset Management</div><div class="j">Job to be done: decide which measure is worth paying for at each site</div></div></div>
+<div class="steps">Screen sites ─ Check locations ─ <span class="on">Plan each site</span> ─ Bank document</div>
+<div class="body">
+ <div class="top"><div><h1>S010 · Teesside battery site</h1><div class="sub">Needs a plan: river flood rated E by 2050 (today's policies). E–G are the worst three of seven bands.</div></div><div class="sub">Site 3 of 24 · <span class="tag t-ok">✓ Location confirmed</span></div></div>
+
+ <div class="card" style="border:2px solid #343a40;margin-top:14px"><div style="font-size:24px;font-weight:700">Recommended: flood barrier around the battery compound. £210,000, pays back in about 1.2 years.</div>
+  <div class="sub" style="margin-top:4px">It avoids £180,000 of the £361,100 expected river flood loss a year by 2030, the most for its cost of the measures below.</div></div>
+
+ <div class="card"><div class="facts">
+  <div class="fact"><div class="n">£361,100</div><div class="s">expected river flood loss a year by 2030, today's policies</div><div class="src3">From Spectra, September 2026</div></div>
+  <div class="fact"><div class="n">£505,500</div><div class="s">a year by 2050, today's policies</div><div class="src3">From Spectra, September 2026</div></div>
+  <div class="fact"><div class="n">£866,600</div><div class="s">a year by 2050, if emissions stay very high</div><div class="src3">From Spectra, September 2026</div></div>
+  <div class="fact"><div class="n">£27.5m</div><div class="s">site value · 52 MW battery storage</div><div class="src3">From your site list</div></div>
+ </div></div>
+
+ <div class="card"><div class="lbl">All measures for this site · compared on 2030 expected loss</div>
+ <table>
+  <tr><th>Measure</th><th class="r">Cost</th><th class="r">Loss avoided a year</th><th class="r">Pays back in</th></tr>
+  <tr class="sel"><td><span class="tag t-ok" style="margin-right:8px">Recommended</span><b>Flood barrier around the battery compound</b></td><td class="r"><span class="big">£210,000</span><div class="src3">Adapt cost estimate</div></td><td class="r"><span class="big">£180,000</span><div class="src3">Spectra expected loss, before vs after</div></td><td class="r big">1.2 years</td></tr>
+  <tr><td>Raise the battery units above flood level<div class="bench">Your consultant quoted £400,000</div></td><td class="r">£340,000<div class="src3">Adapt cost estimate</div></td><td class="r">£253,000<div class="src3">Spectra expected loss, before vs after</div></td><td class="r">1.3 years</td></tr>
+  <tr><td>Improve site drainage<div class="bench">Your consultant quoted £90,000</div></td><td class="r">£85,000<div class="src3">Adapt cost estimate</div></td><td class="r">£54,000<div class="src3">Spectra expected loss, before vs after</div></td><td class="r">1.6 years</td></tr>
+  <tr><td>No action</td><td class="r">£0</td><td class="r">£0</td><td class="r">—</td></tr>
+ </table>
+ <div style="margin-top:12px"><span class="link">Show how loss avoided is worked out</span></div>
+ </div>
+
+ <div class="card"><div class="lbl">What similar sites chose</div>
+  <div>6 battery sites by UK rivers, rated E–G for river flood</div>
+  <div style="margin-top:10px">Raised the units · 4 sites<div class="bar"><i style="width:67%"></i></div></div>
+  <div style="margin-top:10px">Drainage only · 2 sites<div class="bar"><i style="width:33%"></i></div></div>
+  <div class="note">Drainage alone leaves £307,100 a year of expected flood loss at this site.</div></div>
+</div>
+<div class="foot"><span class="btn">← Previous site</span><span class="btn p">Use the recommended measure, next site →</span></div>
+</div>
+<div class="screen" id="doc">
+<div class="hdr2"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><div><div class="u">User: Head of Asset Management</div><div class="j">Job to be done: show the bank climate risk is managed across every site</div></div></div>
+<div class="steps">Screen sites ─ Check locations ─ Plan each site ─ <span class="on">Bank document</span></div>
+<div class="body">
+ <div class="top"><div><h1>Your document for the bank's credit team</h1><div class="sub">This is what the bank receives. Climate figures come from Spectra results dated September 2026.</div></div></div>
+ <div class="warn" style="margin-top:12px"><span>4 sites need their location confirmed before sending. Their plans stay drafts until then.</span><span class="link" style="font-style:normal">Confirm locations</span></div>
+
+ <div class="doc" style="margin-top:12px">
+  <h2>Northwind Renewables · Climate resilience across 62 sites</h2><div class="sub">Prepared for the Facility A refinancing · November 2026 · Updated yearly</div>
+  <div style="text-align:center;margin:26px 0 8px"><div style="font-size:52px;font-weight:700;line-height:1.1">£25.03m → £14.72m a year</div>
+   <div style="font-size:17px;color:#6c757d;margin-top:6px">Expected loss across the 24 sites, before and after the plans · severe scenario (very high emissions), 2050</div></div>
+  <div class="sum">
+   <div><div class="n">62</div><div class="s">sites checked</div></div>
+   <div><div class="n">38</div><div class="s">need no action</div></div>
+   <div><div class="n">24</div><div class="s">have a plan</div></div>
+   <div><div class="n">8</div><div class="s">of the 24 would need one under today's policies too</div></div>
+  </div>
+
+  <h3>How we chose these sites</h3>
+  <div class="rule">A site gets a plan if Spectra rates any of its hazards E, F or G (the worst three of seven bands) by 2050 under the severe scenario, very high emissions. Under today's policies, 8 sites would qualify.</div>
+
+  <h3>The 24 sites with a plan</h3>
+  <table class="small">
+   <tr><th>Site</th><th>Rated E–G for (severe, 2050)</th><th>Recommended measure</th><th class="r">Cost</th><th class="r">Expected loss a year, severe 2050</th><th></th></tr>
+<tr class="click"><td>S001 · Teesside battery</td><td>River flood<div class="src3">also under today's policies</div></td><td>Flood barrier around the compound</td><td class="r">£170,000</td><td class="r">£482,000 → £259,200</td><td class="chev">›</td></tr>
+<tr class="click"><td>S010 · Teesside battery</td><td>River flood<div class="src3">also under today's policies</div></td><td>Flood barrier around the compound</td><td class="r">£210,000</td><td class="r">£1.03m → £509,600</td><td class="chev">›</td></tr>
+<tr class="click"><td>S032 · Scottish Borders wind</td><td>Windstorm</td><td>Strengthen turbines for high winds</td><td class="r">£380,000</td><td class="r">£1.67m → £1.03m</td><td class="chev">›</td></tr>
+<tr class="click"><td>S052 · Aragon wind</td><td>Windstorm</td><td>Strengthen turbines for high winds</td><td class="r">£380,000</td><td class="r">£2.44m → £1.78m</td><td class="chev">›</td></tr>
+<tr class="click"><td>S021 · Humberside battery</td><td>River flood<div class="src3">also under today's policies</div></td><td>Flood barrier around the compound</td><td class="r">£420,000</td><td class="r">£2.12m → £1.22m</td><td class="chev">›</td></tr>
+<tr class="click"><td>S056 · Valencia battery</td><td>Wildfire</td><td>Firebreak and vegetation clearance</td><td class="r">£110,000</td><td class="r">£1.71m → £1.07m</td><td class="chev">›</td></tr>
+<tr class="click"><td>S017 · Teesside battery <span class="tag t-warn">Confirm location</span></td><td>River flood<div class="src3">also under today's policies</div></td><td><span style="font-style:italic;color:#6b4a00">Flood barrier around the compound</span><div class="src3">Draft until the location is confirmed</div></td><td class="r">£420,000</td><td class="r">£1.60m → £846,800</td><td class="chev">›</td></tr>
+<tr class="click"><td>S043 · Andalusia solar</td><td>Extreme heat, wildfire</td><td>Heat-tolerant inverters</td><td class="r">£340,000</td><td class="r">£1.58m → £808,400</td><td class="chev">›</td></tr>
+<tr class="click"><td>S006 · Lincolnshire battery</td><td>River flood<div class="src3">also under today's policies</div></td><td>Flood barrier around the compound</td><td class="r">£370,000</td><td class="r">£1.35m → £798,900</td><td class="chev">›</td></tr>
+<tr class="click"><td>S046 · Andalusia solar</td><td>Extreme heat</td><td>Heat-tolerant inverters</td><td class="r">£320,000</td><td class="r">£1.15m → £813,800</td><td class="chev">›</td></tr>
+<tr class="click"><td>S038 · Lincolnshire battery <span class="tag t-warn">Confirm location</span></td><td>River flood<div class="src3">also under today's policies</div></td><td><span style="font-style:italic;color:#6b4a00">Flood barrier around the compound</span><div class="src3">Draft until the location is confirmed</div></td><td class="r">£130,000</td><td class="r">£1.13m → £510,700</td><td class="chev">›</td></tr>
+<tr class="click"><td>S044 · Extremadura solar</td><td>Extreme heat</td><td>Heat-tolerant inverters</td><td class="r">£250,000</td><td class="r">£992,900 → £692,600</td><td class="chev">›</td></tr>
+<tr class="click"><td>S045 · Murcia solar</td><td>Extreme heat</td><td>Heat-tolerant inverters</td><td class="r">£280,000</td><td class="r">£948,700 → £501,600</td><td class="chev">›</td></tr>
+<tr class="click"><td>S018 · Essex battery</td><td>River flood</td><td>Flood barrier around the compound</td><td class="r">£400,000</td><td class="r">£889,200 → £489,100</td><td class="chev">›</td></tr>
+<tr class="click"><td>S048 · Extremadura solar</td><td>Extreme heat, wildfire</td><td>Heat-tolerant inverters</td><td class="r">£190,000</td><td class="r">£814,800 → £394,700</td><td class="chev">›</td></tr>
+<tr class="click"><td>S014 · Teesside battery <span class="tag t-warn">Confirm location</span></td><td>River flood<div class="src3">also under today's policies</div></td><td><span style="font-style:italic;color:#6b4a00">Flood barrier around the compound</span><div class="src3">Draft until the location is confirmed</div></td><td class="r">£240,000</td><td class="r">£774,200 → £385,500</td><td class="chev">›</td></tr>
+<tr class="click"><td>S060 · Extremadura solar</td><td>Extreme heat</td><td>Heat-tolerant inverters</td><td class="r">£170,000</td><td class="r">£755,500 → £515,600</td><td class="chev">›</td></tr>
+<tr class="click"><td>S040 · Extremadura solar</td><td>Extreme heat</td><td>Heat-tolerant inverters</td><td class="r">£180,000</td><td class="r">£686,600 → £415,900</td><td class="chev">›</td></tr>
+<tr class="click"><td>S024 · Yorkshire solar</td><td>River flood</td><td>Raise inverters and switchgear</td><td class="r">£240,000</td><td class="r">£667,300 → £388,400</td><td class="chev">›</td></tr>
+<tr class="click"><td>S061 · Andalusia solar</td><td>Extreme heat</td><td>Heat-tolerant inverters</td><td class="r">£220,000</td><td class="r">£624,000 → £390,900</td><td class="chev">›</td></tr>
+<tr class="click"><td>S007 · Somerset solar</td><td>River flood</td><td>Raise inverters and switchgear</td><td class="r">£210,000</td><td class="r">£528,600 → £302,200</td><td class="chev">›</td></tr>
+<tr class="click"><td>S011 · Lincolnshire solar</td><td>River flood<div class="src3">also under today's policies</div></td><td>Raise inverters and switchgear</td><td class="r">£110,000</td><td class="r">£489,300 → £238,000</td><td class="chev">›</td></tr>
+<tr class="click"><td>S037 · Yorkshire solar</td><td>River flood</td><td>Raise inverters and switchgear</td><td class="r">£100,000</td><td class="r">£317,300 → £188,700</td><td class="chev">›</td></tr>
+<tr class="click"><td>S027 · Humberside battery <span class="tag t-warn">Confirm location</span></td><td>River flood</td><td><span style="font-style:italic;color:#6b4a00">Flood barrier around the compound</span><div class="src3">Draft until the location is confirmed</div></td><td class="r">£100,000</td><td class="r">£289,700 → £165,700</td><td class="chev">›</td></tr>
+  </table>
+  <div style="margin-top:10px"><span class="link">Show the 38 sites that need no action, with each one's worst rating</span></div>
+
+  <h3>Method and sources</h3>
+  <table class="kv">
+   <tr><td>Climate ratings and expected loss</td><td>Spectra Infrastructure Screener, September 2026</td></tr>
+   <tr><td>Scenarios</td><td>Today's policies (SSP2-4.5) and very high emissions (SSP5-8.5)</td></tr>
+   <tr><td>Measure costs</td><td>Consultant quotes where Northwind has them, otherwise Adapt estimates; marked per site</td></tr>
+   <tr><td>Site locations</td><td>Confirmed by Northwind for all 24 sites with a plan</td></tr>
+  </table>
+ </div>
+</div>
+<div class="foot"><span class="btn">← Back to plans</span><span><span class="btn">Download PDF</span> &nbsp; <span class="btn p" style="opacity:.45">Send to the bank's credit team</span></span></div>
+</div>
+</body></html>

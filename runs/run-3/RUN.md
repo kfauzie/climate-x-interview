@@ -1,6 +1,6 @@
 # Run 3
 
-**Status:** interview done; solution concept ready; next: solution design (pm-4)
+**Status:** solution design in progress (first screen: plan each site, `design/plan.png`)
 **Dataset:** `data/northwind_renewables_spectra_infra_2026-09.csv` (Spectra Infrastructure Screener export, September 2026)
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
