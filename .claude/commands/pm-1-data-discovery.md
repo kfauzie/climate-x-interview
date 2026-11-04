@@ -1,6 +1,6 @@
 ---
 name: pm-1-data-discovery
-description: Look at a customer's data before and during discovery to find the findings worth putting in front of them, and turn each into an interview question. Two modes: Initial review (before the interview) and Answer (test a claim or answer one question).
+description: "Look at a customer's data before and during discovery to find the findings worth putting in front of them, and turn each into an interview question. Two modes: Initial review (before the interview) and Answer (test a claim or answer one question)."
 ---
 
 # Data discovery
