@@ -71,29 +71,49 @@ th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0
 </div>
 </div>
 <div class="foot"><span class="btn">Cancel</span><span class="btn p">Send draft to Sarah →</span></div></div>
-<div class="job" id="job-review"><b>Sarah</b> · Approve the answer, or send it back</div>
-<div class="screen" id="review"><div class="top"><b>Climate answers</b><span>Sarah Okafor</span></div>
-<div class="body"><h1>Review</h1><div class="q">“How many CRE loans have a flood rating of E or worse by 2050?” · Credit committee · built by an analyst</div>
-<div class="cols"><div>
- <div class="card"><div class="big">3 of 144 CRE loans</div><div class="sub">£5.4m of £351.8m balance · flood E or worse · 2050 · central scenario</div></div>
- <div class="card"><div class="lbl">Other scenarios and years</div><div class="sub" style="color:var(--ink)">Severe: 5 loans, £9.6m · Low: 3 loans, £5.4m · 2030: 4 loans, £6.2m</div></div>
- <div class="card"><div class="lbl">How it was calculated</div>Central scenario, 2050. Flood rating E or worse. Commercial real estate loans, leaving out loans in default, redeemed or maturing before 2030. Spectra data as at 30 Jun 2026.</div>
- <div class="card"><div class="lbl">Comment (needed to send back)</div><div class="input" style="color:#999">Add a comment</div></div>
-</div><div>
+<div class="screen" id="review">
+<div class="hdr2">User: Sarah<span class="sep">·</span>Job to be done: approve the draft or send it back</div>
+<div class="steps">Draft ─ <span class="on">Review</span> ─ Send</div>
+<div class="body"><h1>Review the draft</h1>
+<div class="card">
+ <div class="row"><div class="k">Question</div><div style="grid-column:2/4">How many CRE loans have a flood rating of E or worse by 2050?</div></div>
+ <div class="row"><div class="k">Asked by</div><div style="grid-column:2/4">Credit committee</div></div>
+ <div class="row"><div class="k">Data</div><div style="grid-column:2/4">Spectra export, 30 Jun 2026 · Loan book, 30 Sep 2026</div></div>
+ <div class="row"><div class="k">Analyst's note</div><div style="grid-column:2/4">“For Thursday's committee pack.”</div></div>
+</div>
+<div class="card out">
+ <div class="kn" style="font-size:52px">3 loans · £5.4m</div>
+ <div style="margin-top:10px;font-size:18px;color:var(--mid)">3 of our 144 CRE loans (£5.4m of £351.8m balance) have a flood rating of E or worse by 2050.</div>
+</div>
+<div class="cols2">
+ <div class="card">
+  <div class="ctl"><div class="k">Count</div><div><span class="chip">CRE loans</span><span class="chip">Flood rating E or worse</span></div></div>
+  <div class="ctl"><div class="k">Scenario</div><div><span class="input" style="padding:6px 12px">Central ▾</span><span class="mini">Default</span></div></div>
+  <div class="ctl"><div class="k">Year</div><div><span class="input" style="padding:6px 12px">2050 ▾</span></div></div>
+  <div class="ctl"><div class="k">Leave out</div><div><span class="chip">Loans in default<i>×</i></span><span class="chip">Redeemed since the export<i>×</i></span><span class="chip">Maturing before 2030<i>×</i></span><span class="src">+ Add</span></div></div>
+ </div>
  <div class="card"><div class="lbl">The 3 loans</div><table>
-  <tr><td>Hotel · Yorkshire</td><td class="r">£3.1m</td></tr><tr><td>Mixed use · North West</td><td class="r">£1.2m</td></tr><tr><td>Hotel · East of England</td><td class="r">£1.1m</td></tr></table></div>
-</div></div></div>
+  <tr><th>Loan</th><th>Property</th><th>Region</th><th style="text-align:right">Balance</th><th style="text-align:right">Rating</th></tr>
+  <tr><td>L101880</td><td>Hotel</td><td>Yorkshire</td><td class="r">£3.1m</td><td class="r">E</td></tr>
+  <tr><td>L101854</td><td>Mixed use</td><td>North West</td><td class="r">£1.2m</td><td class="r">E</td></tr>
+  <tr><td>L100322</td><td>Hotel</td><td>East of England</td><td class="r">£1.1m</td><td class="r">E</td></tr></table></div>
+</div>
+<div class="cols2">
+ <div class="card"><div class="lbl">Method note</div>We counted commercial real estate loans whose property has a flood rating of E or worse in 2050, under the central scenario. Where a loan has more than one property, we used the worst rating. Loans in default, redeemed since 30 Jun 2026 or maturing before 2030 are left out. Balances are as at 30 Sep 2026.</div>
+ <div class="card"><div class="lbl">Comment to the analyst</div><div class="input" style="color:#999;min-height:96px">Needed to send back</div></div>
+</div>
+</div>
 <div class="foot"><span class="btn">Send back</span><span class="btn p">Approve</span></div></div>
-
-<div class="job" id="job-send"><b>Analyst</b> · Send the approved answer to whoever asked</div>
-<div class="screen" id="send"><div class="top"><b>Climate answers</b><span>Analyst</span></div>
-<div class="steps">Build ─ Answer ─ Review ─ <span class="on">Send</span></div>
-<div class="body"><h1>Send the reply</h1><div class="q"><span class="tag" style="color:#2a7a3a;border-color:#2a7a3a">Approved by Sarah · 14:10</span></div>
+<div class="screen" id="send">
+<div class="hdr2">User: Analyst<span class="sep">·</span>Job to be done: send the approved answer to whoever asked</div>
+<div class="steps">Draft ─ Review ─ <span class="on">Send</span></div>
+<div class="body"><h1>Send the answer</h1>
+<div class="q"><span class="tag" style="color:#2a7a3a;border-color:#2a7a3a">Approved by Sarah · 14:10</span></div>
 <div class="card">
  <div class="row"><div class="k">To</div><div class="input" style="grid-column:2/4">Credit committee</div></div>
  <div class="row"><div class="k">Subject</div><div class="input" style="grid-column:2/4">Re: CRE loans with a flood rating of E or worse by 2050</div></div>
  <div class="input" style="margin-top:10px;line-height:1.7">Hi all,<br><br>3 of our 144 commercial real estate loans (£5.4m of £351.8m balance) have a flood rating of E or worse by 2050 under the central climate scenario. Under the severe scenario it's 5 loans (£9.6m).<br><br>The loans and how they were counted are in the attached file.<br><br>Approved by Sarah Okafor, Head of Climate Risk.</div>
  <div style="margin-top:10px">Attached: <b>CRE flood E or worse 2050.xlsx</b></div></div>
 </div>
-<div class="foot"><span class="btn">← Back</span><span class="btn p">Copy reply and download file</span></div></div>
+<div class="foot"><span class="btn">← Back</span><span class="btn p">Send</span></div></div>
 </body></html>

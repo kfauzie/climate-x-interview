@@ -2,51 +2,41 @@
 
 A report builder with Sarah's defaults, a method note it writes itself, her approval and a drafted reply. No AI in this version. Medium fidelity; numbers from the practice data and synthetic loan book. Source: `design/solution-design.html`.
 
+## Walkthrough
+- **Analyst:** I've just received an email from the credit committee: "How many CRE loans have a flood rating of E or worse by 2050?" I paste it in and pick who asked. The scenario, year and exclusions are already set to Sarah's standard, and the answer is there: 3 loans, £5.4m. I check the loans behind it, try severe to see if it matters, add a note and send the draft to Sarah
+- **Sarah:** a draft is waiting. I read the question and the answer, glance at the loans and the method, and approve. If something's off, I change it or send it back with a comment
+- **Analyst:** it's approved. The reply and the file are drafted; I read it and send
+
 ## Flow
 | Step | Who | Screen | Ends in |
 |---|---|---|---|
-| 1 | Analyst | New question | Calculate |
-| 2 | Analyst | Answer | Send to Sarah |
-| 3 | Sarah | Review | Approve, or send back |
-| 4 | Analyst | Send the reply | Reply copied and file downloaded, logged |
+| 1 | Analyst | Draft | Send draft to Sarah |
+| 2 | Sarah | Review the draft | Approve, or send back |
+| 3 | Analyst | Send the answer | Send |
 
 Askers (CRO, committees, pricing, treasury, IR) never touch it: they email the question and get the reply.
 
-**Decisions to agree**
-1. Question and options on one screen: **recommend yes**
-2. No AI in this version: **yes** (agreed in the concept)
-3. Fast-track review: a follow-up with one changed option and all checks passing shows Sarah only the change: **recommend yes**, confirm with her
-4. The product drafts the reply; the analyst sends it from their own email: **recommend yes**
+## 1. Draft
+![Draft](design/draft.png)
 
-## 1. New question
-![New question](design/build.png)
+- **Removes:** choosing scenario, horizon and loans by hand, the write-up, and "what about severe?" restarting it
+- **Inputs:** question, asked by and data (required). Scenario, year and leave-out start on Sarah's standard for that asker; the year follows the question. Note to Sarah is optional
+- **Checks:** year differs from the question, or the data is stale → shown here, so the analyst fixes it before Sarah sees it. Loss to the bank → refused, with why
+- **Ends in:** Send draft to Sarah. The number updates live as the toggles change
 
-- **For:** analyst, to turn the question into the right calculation
-- **Inputs:** the question and who asked (required). Who asked sets Sarah's defaults: for committees, central scenario, 2050, leaving out loans in default, redeemed or maturing before 2030
-- **Shows:** one sentence of what will be calculated, and only what needs attention. Everything else is under "Change options"
-- **Checks:** no scenario in the question → **notes** the default used. Year picked differs from the question → **warns** "The question says 2050; you picked 2030". Departing from Sarah's defaults → reason required. Loss to the bank → **refused**, with why
-
-## 2. Answer
-![Answer](design/answer.png)
-
-- **For:** analyst, to check the answer before it goes to Sarah
-- **Shows:** the answer, the same count by scenario and by year, the loans, and how it was calculated
-- **Checks:** shown here only when one fails, so the analyst fixes it before Sarah sees it (e.g. stale data: "Loans redeemed since the export are included")
-- **Inputs:** a note to Sarah (optional)
-
-## 3. Review
+## 2. Review the draft
 ![Review](design/review.png)
 
-- **For:** Sarah, to approve the answer or send it back
-- **Shows:** what the analyst sent: the answer, other scenarios and years, how it was calculated, the loans, and their note if any
-- **Inputs:** approve, or send back with a comment (required to send back)
+- **Removes:** half a day of checking someone else's numbers
+- **Inputs:** scenario, year and leave-out can be changed; a comment is required to send back
+- **Ends in:** Approve, or Send back to the analyst with the comment. Nothing goes out without her approval
 
-## 4. Send the reply
+## 3. Send the answer
 ![Send](design/send.png)
 
-- **For:** analyst, to send the approved answer to whoever asked
-- **Shows:** a drafted reply and the Excel file with the loans and the method
-- **Ends in:** copy the reply and download the file; logged with who asked, built and approved
+- **Removes:** writing the reply and building the Excel by hand
+- **Inputs:** the drafted reply, editable
+- **Ends in:** Send. Logged with who asked, built and approved, the data dates and the version
 
 ## Test set
 | Case | Expected |
@@ -55,12 +45,10 @@ Askers (CRO, committees, pricing, treasury, IR) never touch it: they email the q
 | CRO: total by 2050, by hazard and region | £3.31m central, £6.10m severe · subsidence and South East top under both |
 | Mortgage pricing: 2024–25 lending, subsidence E to G | £52.3m, 24.3% of new lending vs 8.6% older · origination-source check flagged |
 | Treasury: rise 2030 → 2050, severe | 2.74× (1.57× central) |
-| Sent-back draft rebuilt | 2 failed checks · 4 of 145, £6.2m vs fixed 3 of 144, £5.4m |
+| Sent-back draft rebuilt (2030, redeemed loans included) | Analyst warned on Draft before sending: wrong year, stale data · 4 of 145, £6.2m vs 3 of 144, £5.4m when fixed |
 | "Loss to the bank" | Refused with the reason |
 
 The CRO, pricing and treasury figures are from the Spectra file alone; recompute them with the default exclusions when the prototype is rebuilt.
 
-## Limits shown in the product
-- Damage to properties, not loss to the bank
-- Practice data and a synthetic loan book until procurement signs
-- Central = SSP2-4.5, severe = SSP5-8.5 (to confirm with Sarah)
+## Not yet tested
+- Main flow walked once as the analyst and as Sarah. Next: the Draft screen with a handful of edge cases (no year in the question, a hazard not in the data, zero loans), then with Sarah and an analyst
