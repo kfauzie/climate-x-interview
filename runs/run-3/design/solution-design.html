@@ -37,7 +37,55 @@ tr.sel .radio{border:6px solid #343a40}
 .small td,.small th{padding:9px 8px;font-size:14px}
 .src3{font-size:12px;color:#8a9097;font-weight:400;margin-top:2px}.bench{font-size:12px;color:#5b2d91;margin-top:3px}
 .t-warn{background:#fff1d6;color:#8a5a00}tr.click td{cursor:pointer}tr.click:hover td{background:#f6f8fb}.chev{color:#9aa0a6;font-size:20px;text-align:right;width:20px}
+.pick{border-bottom:2px solid #343a40;font-weight:600;padding:0 2px}
 </style></head><body>
+
+
+<div class="screen" id="screen">
+<div class="hdr2"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><div><div class="u">User: Head of Asset Management</div><div class="j">Job to be done: find which sites need a plan, with a reason the bank accepts</div></div></div>
+<div class="steps"><span class="on">Screen sites</span> ─ Check locations ─ Plan each site ─ Bank document</div>
+<div class="body">
+ <h1>Which of your 62 sites need a plan?</h1><div class="sub">Climate figures from Spectra, September 2026</div>
+ <div class="card"><div class="lbl">The rule</div>
+  <div style="font-size:18px">A site needs a plan if any hazard is rated <span class="pick">E or worse ▾</span> under <span class="pick">the severe scenario ▾</span> by <span class="pick">2050 ▾</span></div>
+  <div style="margin-top:8px"><span class="tag t-adapt">Default</span> <span class="sub" style="font-size:13px">E–G are the worst three of Spectra's seven bands. Severe = very high emissions (SSP5-8.5).</span></div></div>
+ <div class="card" style="text-align:center;padding:26px"><div style="font-size:52px;font-weight:700">24 need a plan · 38 don't</div>
+  <div class="sub" style="margin-top:6px">Under today's policies instead, 8 would need a plan</div></div>
+ <div class="cols">
+  <div class="card"><div class="lbl">24 sites that need a plan</div><table class="small">
+   <tr><th>Site</th><th>Worst rating</th><th>For</th></tr>
+   <tr><td>S038 · Lincolnshire battery</td><td><b>G</b></td><td>River flood</td></tr>
+   <tr><td>S010 · Teesside battery</td><td><b>F</b></td><td>River flood</td></tr>
+   <tr><td>S052 · Aragon wind</td><td><b>E</b></td><td>Windstorm</td></tr>
+   <tr><td>S043 · Andalusia solar</td><td><b>E</b></td><td>Extreme heat, wildfire</td></tr>
+   <tr><td colspan="3"><span class="link">Show all 24</span></td></tr></table></div>
+  <div class="card"><div class="lbl">38 sites that don't</div><table class="small">
+   <tr><th>Site</th><th>Worst rating</th><th>For</th></tr>
+   <tr><td>S028 · Cumbria wind</td><td>D</td><td>Surface water flood</td></tr>
+   <tr><td>S058 · Galicia wind</td><td>D</td><td>River flood</td></tr>
+   <tr><td>S009 · Wiltshire solar</td><td>B</td><td>River flood</td></tr>
+   <tr><td colspan="3"><span class="link">Show all 38</span></td></tr></table></div>
+ </div>
+</div>
+<div class="foot"><span></span><span class="btn p">Check the 24 sites' locations →</span></div>
+</div>
+
+<div class="screen" id="locations">
+<div class="hdr2"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><div><div class="u">User: Head of Asset Management</div><div class="j">Job to be done: make sure each plan is for the right place</div></div></div>
+<div class="steps">Screen sites ─ <span class="on">Check locations</span> ─ Plan each site ─ Bank document</div>
+<div class="body">
+ <h1>4 sites are scored at a single point</h1><div class="sub">The other 20 sites that need a plan are scored over their full outline. A single point can miss part of the site, so confirm or correct each one.</div>
+ <div class="card"><table>
+  <tr><th>Site</th><th>Scored at</th><th></th></tr>
+  <tr><td><b>S017 · Teesside battery</b><div class="src3">80 MW · rated F for river flood</div></td><td>54.58, -1.18 · <span class="link">Show on map</span></td><td class="r"><span class="tag t-ok">✓ Confirmed</span></td></tr>
+  <tr class="sel"><td><b>S014 · Teesside battery</b><div class="src3">46 MW · rated F for river flood</div></td><td>54.57, -1.21 · <span class="link">Show on map</span></td><td class="r"><span class="btn">Point is right</span> &nbsp;<span class="btn">Correct it</span></td></tr>
+  <tr><td><b>S038 · Lincolnshire battery</b><div class="src3">31 MW · rated G for river flood</div></td><td>53.21, -0.54 · <span class="link">Show on map</span></td><td class="r"><span class="btn">Point is right</span> &nbsp;<span class="btn">Correct it</span></td></tr>
+  <tr><td><b>S027 · Humberside battery</b><div class="src3">24 MW · rated E for river flood</div></td><td>53.74, -0.33 · <span class="link">Show on map</span></td><td class="r"><span class="btn">Point is right</span> &nbsp;<span class="btn">Correct it</span></td></tr>
+ </table>
+ <div class="note">Not sure? The site's operations contractor holds the drawings showing where the equipment sits.</div></div>
+</div>
+<div class="foot"><span class="btn">← Back</span><span class="btn p">Plan the 24 sites →</span></div>
+</div>
 
 <div class="screen" id="plan">
 <div class="hdr2"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><div><div class="u">User: Head of Asset Management</div><div class="j">Job to be done: decide which measure is worth paying for at each site</div></div></div>
