@@ -37,3 +37,8 @@ print('loan IDs on two rows:', dup.loan_id.nunique(), '| differ in:', [c for c i
 print('balance counted twice if rows are summed: £', round(d.balance_gbp.sum() - u.balance_gbp.sum()))
 print('no property value or LTV:', int(u.ltv.isna().sum()))
 print('columns:', [c for c in d.columns if not any(c.startswith(h) for h in H)])
+
+print('\n# First five rows (key columns)')
+cols = ['loan_id', 'origination_date', 'postcode_district', 'property_type', 'new_build', 'channel', 'balance_gbp', 'ltv',
+        'subsidence_ssp245_2050_rating', 'subsidence_ssp245_2050_damage_pct', 'subsidence_ssp245_2050_loss_gbp']
+print(d[cols].head(5).to_string(index=False), f'\n{d.shape[1] - len(cols)} columns left out')
