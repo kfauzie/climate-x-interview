@@ -21,7 +21,7 @@ Output: the screen images, saved in runs/run-N/design/.
 ## How to work
 - Look: clean, delightful B2B SaaS in Climate X's brand: font Graphik (Helvetica, Arial as fallbacks); red #e01e1a, charcoal #343a40, off-white #f9f9fa, white panels. Red only for the main action. Don't rely on colour alone: pair it with text or an icon.
 - Don't calculate anything for these static screens. Use realistic placeholder numbers. The real numbers are calculated with code in pm-5-build.
-- Show only what a real user would see. No design notes on screen. The only exception is a ribbon at the top: "User: [role] · Job to be done: [job]".
+- Show only what a real user would see. No design notes on screen. The only exception is a ribbon at the top: large, in its own colour (not the brand red) so it reads as a label, with an icon for the user, "User: [role]" on top and "Job to be done: [job]" underneath.
 - One screen first, the most important one. Get feedback before making the rest.
 - If a screen takes more than a few minutes, it's too detailed.
 - Before showing me, walk the flow once as the user and fix anything confusing.
