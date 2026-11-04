@@ -25,7 +25,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role.
    - The dimensions packed into column names: which hazards, scenarios and years
    - Anything ambiguous: units, yearly or cumulative, what a blank means
 3. **Is it usable?** A quick sanity check only: missing values, duplicates, anything obviously wrong. Note only issues that would change an answer.
-4. **What stands out, and what can't it answer?** Two or three patterns worth asking about (e.g. where the risk is concentrated, a segment that looks different), plus what this data can't tell you (e.g. loss to the bank, change since last quarter).
+4. **What stands out, and what can't it answer?** Two or three patterns worth asking about (e.g. where the risk is concentrated, a segment that looks different), plus what this data can't tell you (e.g. loss to the bank, change since last quarter, how balances change over time).
 5. **What should I ask?** Turn each finding from steps 1–4 into a question about the customer's real work. Pass these to pm-2-discovery-interview.
    - From step 1 (likely use) → "When did you last use this for a decision? What happened?"
    - From step 2 (anything ambiguous) → "When someone asks for a number, which scenario and year do you use, and who decided?"

@@ -9,7 +9,7 @@ Start from the problem. Recommend the simplest thing that solves it.
 
 ## Inputs
 - Read climate-x-products, climate-x-company and climate-x-role for background.
-- The interview notes: the Notes section of the Notion page "Run N: discovery questions (customer)" under 2nd round prep. Quote from it.
+- The interview notes: the Notes section of the Notion page "Run N: discovery questions (customer)" under 2nd round prep. Quote from the transcript, not the AI summary, which can get details wrong.
 - Any answers from pm-1-data-discovery. Don't re-analyse the data.
 
 ## Output

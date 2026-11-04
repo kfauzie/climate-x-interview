@@ -16,6 +16,10 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role.
 - **Plain language.** Use non-technical terms, in the language of Climate X's customers (e.g. risk appetite, stress test, provisions).
 - **Open questions.** Ask every question open-ended, with no hint of the answer you expect.
 - **Clarify.** If anything is unclear, ask before moving on.
+- **No assumptions in the question.** Don't build a belief into it ("How do you make sure the number is never wrong?"). Ask what they need, and let them set the bar.
+- **Don't ask what they've already answered.** Listen, and skip or shorten a question they've covered ("You mentioned traceability. Anything else you'd need to see?"). Asking again sounds like you weren't listening.
+- **Follow the new detail.** When they name a choice or step you didn't expect, ask how it was decided last time before moving on.
+- **Read the question as written.** Short and plain beats improvised.
 
 ## The questions (10 minutes)
 X is what they asked for. Fill it in from the case context, or as the user provides it.
@@ -31,7 +35,7 @@ One question per line: ask it, listen, then ask the next. Never read two out tog
    - How would you know it's working?
 5. **Trust.** What would you need to see to trust it?
    - Who signs it off?
-6. **Close.** **\<Recap\>** Play it back in three points, biggest problem first. Anything I missed?
+6. **Close.** **\<Recap\>** Play it back in three points, biggest problem first, in their words and with their numbers. Anything I missed?
    - Can I email you short questions?
 
 Push when it's vague, hedged, or suspiciously slow ("Why does that take two days? It seems simple.").
