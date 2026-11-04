@@ -46,6 +46,22 @@ th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0
 .grid2{border-collapse:collapse;margin:0 auto}.grid2 th,.grid2 td{padding:12px 28px;text-align:center;border:1px solid #ddd}.grid2 td b{font-size:30px}.grid2 .s{color:#888;font-size:14px}
 .seg2{display:inline-flex;gap:6px}.seg2 span{padding:6px 14px;border:1px solid #999;border-radius:6px;background:#fff}.seg2 .on{background:var(--acc);color:#fff;border-color:var(--acc)}
 .flag{display:block;margin-top:8px;border-left:4px solid #e01e1a;background:#fdf3f2;padding:6px 10px;font-size:14px}
+
+/* Climate X brand */
+:root{--acc:#343a40;--accbg:#eef0f2;--ink:#343a40}
+body{font-family:Graphik,Helvetica,Arial,sans-serif;color:#343a40}
+.screen{background:#f9f9fa;border:1px solid #e3e5e8;border-radius:14px;overflow:hidden}
+.card{background:#fff;border:1px solid #e3e5e8;border-radius:12px}
+.hdr2{background:#343a40}
+.btn{border-radius:999px;border-color:#c8ccd0}
+.btn.p{background:#e01e1a;border-color:#e01e1a;color:#fff}
+.seg{border-radius:999px;border-color:#c8ccd0}.seg span{border-color:#c8ccd0}.seg .on{background:#343a40;color:#fff}
+.opt{border-radius:10px;background:#fff}.opt.on{border:2px solid #343a40}
+.chip{border-color:#c8ccd0}
+.hl{background:#eef0f2}
+.src{color:#343a40}
+.input{border-color:#c8ccd0;border-radius:8px}
+.kv{width:100%;border-collapse:collapse}.kv td{padding:8px 0;border-top:1px solid #eef0f2;vertical-align:top}.kv td:first-child{color:#6c757d;width:34%}
 </style></head><body>
 
 <div class="screen" id="draft">
@@ -97,11 +113,17 @@ th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0
  <div class="lbl">Expected loss, all loans · severe scenario</div>
  <div class="kn" style="font-size:52px">2.81× higher by 2050</div>
  <div class="ks" style="margin-top:6px">£1.7m a year in 2030 → £4.7m a year in 2050</div>
- <div class="sub" style="margin-top:12px">Central 1.58× · Low emissions 1.19×</div>
+ <div class="sub" style="margin-top:12px">Other scenarios: central (today's policies) 1.58× · low emissions (cut fast) 1.19×</div>
 </div>
 <div class="cols2">
- <div class="card"><div class="lbl">How it was calculated</div>Severe scenario (very high emissions), 2030 to 2050, all loans. Leaves out loans in default, redeemed since the export or maturing before 2030. Balances held at today's level. Data: Spectra 30 Jun 2026, loan book 30 Sep 2026.
-  <div style="margin-top:10px"><span class="src">See where the rise comes from</span> &nbsp; <span class="src">See the loans</span></div></div>
+ <div class="card"><div class="lbl">How it was calculated</div><table class="kv">
+  <tr><td>Scenario</td><td>Severe: very high emissions</td></tr>
+  <tr><td>Years</td><td>2030 → 2050</td></tr>
+  <tr><td>Loans</td><td>All: mortgages and CRE</td></tr>
+  <tr><td>Leaves out</td><td>Loans in default · redeemed since the export · maturing before 2030</td></tr>
+  <tr><td>Balances</td><td>Held at today's level</td></tr>
+  <tr><td>Data</td><td>Spectra export 30 Jun 2026 · loan book 30 Sep 2026</td></tr></table>
+  <div style="margin-top:12px"><span class="src">Show the rise by hazard</span> &nbsp;·&nbsp; <span class="src">Show the 1,832 loans counted</span></div></div>
  <div class="card"><div class="lbl">Comment (needed to send back)</div><div class="input" style="color:#999;min-height:96px">Add a comment</div></div>
 </div></div>
 <div class="foot"><span class="btn">Send back</span><span class="btn p">Approve</span></div></div>
