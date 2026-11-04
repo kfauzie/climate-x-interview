@@ -22,6 +22,7 @@ X is what they asked for. Fill it in from the case context. No padding: every li
 
 1. **Source of the need.**
    - Could you tell me where the need for X is coming from?
+   - Is it just [whoever is asking] asking for this, or do others like you get the same request?
 2. **User journey.**
    - **Walkthrough**
      - Walk me through the last time you used [the data, named exactly: which file, export or report] for a decision or a report: who did what, in which tool, how long it took.
