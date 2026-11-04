@@ -23,4 +23,4 @@ Keep it to 5 questions at most, each open and specific to this case.
 - Only ask what could change the solution
 
 ## Save
-Add the questions to runs/run-N/mvp-review.md and to a Notion page under 2nd round prep, titled "Run N: MVP review (customer)", with an empty Notes section at the end.
+Publish the questions as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: MVP review (customer)", with an empty Notes section at the end. Always give me the link to the new page, and add it to `RUN.md`.
