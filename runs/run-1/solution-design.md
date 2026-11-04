@@ -20,9 +20,14 @@ Askers (CRO, committees, pricing, treasury, IR) never touch it: they email the q
 ![Draft](design/draft.png)
 
 - **Removes:** choosing scenario, horizon and loans by hand, the write-up, and "what about severe?" restarting it
-- **Inputs:** question, asked by and data (required). Scenario, year and leave-out start on Sarah's standard for that asker; the year follows the question. Note to Sarah is optional
-- **Checks:** year differs from the question, or the data is stale → shown here, so the analyst fixes it before Sarah sees it. Loss to the bank → refused, with why
-- **Ends in:** Send draft to Sarah. The number updates live as the toggles change
+- **Inputs:** question, asked by and data. Scenario, horizon and exclusions start on Sarah's standard for that asker, so the analyst only confirms; the horizon follows the question. Note to Sarah is optional
+- **Edge cases, said where they happen:**
+  - No year in the question → horizon starts on the asker's default, marked "Default"
+  - A year not in the data ("present-day") → "This data has 2030 and 2050. Use 2030?"
+  - Horizon or data doesn't match the question → shown on this screen, so the analyst fixes it before Sarah sees it
+  - Nothing matches → "0 loans" with the controls still visible to widen it
+  - Loss to the bank → "Can't calculate loss to the bank from this data. Show damage to properties instead?"
+- **Ends in:** Send draft to Sarah. The number updates as the controls change
 
 ## 2. Review the draft
 ![Review](design/review.png)
@@ -50,5 +55,8 @@ Askers (CRO, committees, pricing, treasury, IR) never touch it: they email the q
 
 The CRO, pricing and treasury figures are from the Spectra file alone; recompute them with the default exclusions when the prototype is rebuilt.
 
-## Not yet tested
-- Main flow walked once as the analyst and as Sarah. Next: the Draft screen with a handful of edge cases (no year in the question, a hazard not in the data, zero loans), then with Sarah and an analyst
+## Tested briefly
+- **Main flow,** walked once as the analyst and as Sarah: each screen is one step; nothing asks for something the user doesn't have
+- **Draft screen edge cases, checked against the engine:** no year in the question (falls back to 2050, 3 loans) · zero result (wind G at 2030: 0 of 144, £0) · years in the data (2030 and 2050 only)
+- **Personas on the Draft screen:** a new analyst (does "Default" make clear it can be changed? likely yes, it sits beside the toggle) · Sarah (would she trust 3 loans without the full write-up on screen? test with her)
+- **With real users later:** time from question to draft for an analyst; whether Sarah approves without opening Excel
