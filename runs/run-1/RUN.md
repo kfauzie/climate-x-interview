@@ -4,8 +4,7 @@
 **Dataset:** `data/spectra_portfolio_export.csv` (Spectra-style UK loan portfolio export)
 **Interview notes:** `notes/interview.md` (from Notion), `notes/sarah-followup.md` (her example questions, a sent-back case, defaults), `notes/mock-feedback.md`
 **Solution concept:** `solution-concept.md` (recommended: answer with its method)
-**Solution detail:** `solution-detail.md` (each screen, its inputs and checks)
-**Visual design:** `visual-design.md` (images in `design/`)
+**Solution design:** `solution-design.md` (medium-fidelity screens in `design/`, with inputs and checks)
 **Clickable prototype:** `clickable-prototype.md` (PR https://github.com/kfauzie/climate-x-interview/pull/1)
 **Prototype:** `prototype/` at the repo root; synthetic loan book from `data/make_loan_book.py`
 **Prototype review:** `prototype-review.md` (script and questions, made with `pm-6-prototype-review`)

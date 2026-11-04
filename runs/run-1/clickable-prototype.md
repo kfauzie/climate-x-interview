@@ -1,12 +1,12 @@
 # Run 1: clickable prototype
 
-From `solution-detail.md` and `visual-design.md`. Status: **built; PR open**: https://github.com/kfauzie/climate-x-interview/pull/1
+From `solution-design.md`. Status: **built; PR open**: https://github.com/kfauzie/climate-x-interview/pull/1
 
 ## How it's built
 Code in `prototype/` (see its README for how to run and test it).
 - `engine.py` computes every number, check, method note and source row; `interpret.py` reads the question into choices and never produces a number
 - Practice data, plus a synthetic loan book (`data/make_loan_book.py`), labelled as such
-- 21 tests from the test set in `solution-detail.md`
+- 21 tests from the earlier test set
 - Clickable demo for people who can't run it: `prototype/demo/build_demo.py`, replaying answers precomputed by the engine
 
 ## Feedback round 1 (from my review of the demo, 2026-11-01)
@@ -36,4 +36,4 @@ Status: **all 7 implemented**. Also fixed while testing: a follow-up keeps a cha
 | Numbers right | Pass: 21 tests, browser walk-through |
 
 ## Open items
-- Bring the prototype in line with `visual-design.md`: the loans on screen, "About this answer", as drafted vs with the checks fixed, pre-filled send back (closes both partial checks)
+- Rebuild to `solution-design.md`: the builder instead of AI reading the question, the Send screen with the drafted reply, the loans on screen, "About this answer", as built vs fixed, pre-filled send back

@@ -1,4 +1,4 @@
-"""Test set from runs/run-1/solution-detail.md, plus the review flow.  Run:  python3 -m pytest prototype/tests -q"""
+"""Test set from runs/run-1 (see solution-design.md), plus the review flow.  Run:  python3 -m pytest prototype/tests -q"""
 import os
 import pytest
 from fastapi.testclient import TestClient
