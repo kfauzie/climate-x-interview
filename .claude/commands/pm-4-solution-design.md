@@ -1,6 +1,6 @@
 ---
 name: pm-4-solution-design
-description: "Turn the solution concept into medium-fidelity screens a reviewer can follow live: a walkthrough in the user's shoes, one screen per workflow step, each a static mock with real numbers and a few lines on its inputs and checks. Most important screen first. Use after the solution concept, before the clickable prototype."
+description: "Turn the solution concept into medium-fidelity screens a reviewer can follow live: a walkthrough in the user's shoes, one screen per step, sensible defaults, the key number big and up front, edge cases handled where they happen. Each screen is a static mock with real numbers and a few lines on its inputs and checks. Most important screen first. Use after the solution concept, before the clickable prototype."
 ---
 
 # Solution design
@@ -8,19 +8,18 @@ description: "Turn the solution concept into medium-fidelity screens a reviewer 
 Input: `solution-concept.md`. Output: `runs/run-N/solution-design.md` plus the screen images, reviewed live and agreed before `pm-5-clickable-prototype`.
 
 ## Principles
-1. **Put yourself in the user's shoes.** Before designing, write a short walkthrough: "I'm the [user], I've just received [trigger]. First I…, then I…". The screens follow it
-2. **One screen, one workflow step.** Each screen does exactly one step of the walkthrough
-3. **Guide, don't overwhelm.** Small steps. Ask one thing at a time, and offer a few real options rather than a blank field or everything at once
-4. **Just enough.** Only what that step needs; everything else is gone or one click away. Every element earns its place
-5. **Information hierarchy.** What the user most needs to see or check comes first, at the top and largest. Detail sits lower or one click away
-6. **Smart, not technical.** The user is intelligent and expert in their domain, but not technical. Use their words, don't over-explain, hide the technical and AI machinery entirely
-7. **Trust.** Every number comes from code and shows where it came from. When the product can't do something, it says so in its own voice, at the moment it matters
-8. **Test it, briefly.** Walk the main flow once as the user (a minute). Run AI personas and edge cases only on the most important screen, with a handful of cases. Note what you'd test with real users later
+1. **Know the user.** Put yourself in their shoes: write a short walkthrough ("I'm the [user], I've just received [trigger]. First I…, then I…"). They're intelligent and expert in their domain, but not technical. Use the language from the interview notes and their role. No technical or AI terms on screen
+2. **One step per screen.** Each screen does exactly one step of the walkthrough
+3. **Show only what matters.** Only what the user needs to provide or confirm for that step; everything else is gone or one click away. Sensible defaults wherever possible, so the user only confirms. A few sensible options, not a blank field or everything at once
+4. **Information hierarchy.** The key information is big and up front. Details and supporting information sit lower, smaller and less prominent
+5. **Trust.** Numbers are calculated, never written by the AI, and the user can see how each one was produced
+6. **Handle edge cases.** Missing data, unclear input, or something the product can't do: say so where it happens, and let the user clarify or pick the closest alternative
+7. **Test it, briefly.** Walk the main flow once as the user (a minute). Run AI personas and edge cases only on the most important screen, with a handful of cases. Note what you'd test with real users later
 
 ## Separate the product from the explanation
 - The screen shows only what a real user would see in the real product. No design commentary, annotations or notes on how the AI works
 - The only meta element on screen is the ribbon at the top: "User: [role] · Job to be done: [job]"
-- Everything that explains the design goes in a few lines under the image
+- Everything that explains the design goes in a few lines under the image: the pain it removes, inputs, checks, edge cases
 
 ## Screen checklist
 - Inputs the user can see and check are at the top
