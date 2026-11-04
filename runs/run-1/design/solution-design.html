@@ -62,15 +62,16 @@ body{font-family:Graphik,Helvetica,Arial,sans-serif;color:#343a40}
 .src{color:#343a40}
 .input{border-color:#c8ccd0;border-radius:8px}
 .kv{width:100%;border-collapse:collapse}.kv td{padding:8px 0;border-top:1px solid #eef0f2;vertical-align:top}.kv td:first-child{color:#6c757d;width:34%}
+.tip{display:block;background:#343a40;color:#fff;font-size:13px;line-height:1.4;padding:7px 11px;border-radius:6px;margin-top:6px;max-width:420px}.i{display:inline-block;width:16px;height:16px;border-radius:50%;border:1px solid #888;font-size:11px;text-align:center;line-height:15px;color:#666;margin-left:6px}
 </style></head><body>
 
 <div class="screen" id="draft">
-<div class="hdr2">User: Analyst<span class="sep">·</span>Job to be done: turn the question into an answer Sarah can approve</div>
+<div class="hdr2">User: Analyst<span class="sep">·</span>Job to be done: turn the question into an answer ready for approval</div>
 <div class="steps"><span class="on">Draft</span> ─ Review ─ Send</div>
 <div class="body"><h1>Draft</h1>
 <div class="card">
  <div class="row"><div class="k">Question</div><div class="input" style="grid-column:2/4">How much do <span class="hl">expected losses rise from 2030 to 2050</span> under the <span class="hl">severe scenario</span>?</div></div>
- <div class="row"><div class="k">Asked by</div><div class="input">Treasury ▾</div><div class="sub" style="font-size:13px">The reply goes here</div></div>
+ <div class="row"><div class="k">Asked by</div><div class="input">Treasury ▾</div><div></div></div>
  <div class="row"><div class="k">Data</div><div style="grid-column:2/4">Spectra export, 30 Jun 2026 <span class="src" style="margin:0 18px 0 6px">Refresh</span> Loan book, 30 Sep 2026 <span class="src" style="margin-left:6px">Upload new</span></div></div>
 </div>
 <div class="card out">
@@ -87,8 +88,8 @@ body{font-family:Graphik,Helvetica,Arial,sans-serif;color:#343a40}
  <div class="card">
   <div class="ctl"><div class="k">Loans</div><div><span class="seg"><span class="on">All</span><span>Mortgages · 2.70×</span><span>CRE · 2.88×</span></span></div></div>
   <div class="ctl"><div class="k">Years</div><div>2030 → 2050<span class="src2">From the question</span></div></div>
-  <div class="ctl"><div class="k">Excludes</div><div><span class="chip">Loans in default<i>×</i></span><span class="chip">Redeemed since the export<i>×</i></span><span class="chip">Maturing before 2030<i>×</i></span><br><span class="input" style="display:inline-block;margin-top:8px;padding:5px 10px;color:#999;min-width:300px">+ Add exclusion</span><span class="src2">Sarah's standard</span></div></div>
-  <div class="ctl"><div class="k">Balances</div><div>Held at today's level <span class="src" style="margin-left:6px">Change</span><span class="src2">Sarah's standard</span></div></div>
+  <div class="ctl"><div class="k">Excludes</div><div><span class="chip">Loans in default<i>×</i></span><span class="chip">Redeemed since the export<i>×</i></span><span class="chip">Maturing before 2030<i>×</i></span><br><span class="input" style="display:inline-block;margin-top:8px;padding:5px 10px;color:#999;min-width:300px">+ Add exclusion</span><span class="src2">Default</span></div></div>
+  <div class="ctl"><div class="k">Balances</div><div>Held at today's level<span class="i">i</span> <span class="src" style="margin-left:6px">Change</span><span class="src2">Default</span><span class="tip">Each loan keeps today's balance in every year. We don't assume loans are paid down or new ones are added by 2050.</span></div></div>
  </div>
  <div class="card"><div class="lbl">Where the rise comes from · severe</div><table>
   <tr><th>Hazard</th><th style="text-align:right">2030</th><th style="text-align:right">2050</th><th style="text-align:right">Rise</th></tr>
@@ -100,11 +101,11 @@ body{font-family:Graphik,Helvetica,Arial,sans-serif;color:#343a40}
   <div><span class="src">20 loans</span> are in the Spectra export but not in the loan book.</div>
   <div><span class="src">40 loans</span> have no rating for one hazard and year.</div></div>
 </div>
-<div class="card"><div class="lbl">Note to Sarah (optional)</div><div class="input" style="color:#999">Add a note</div></div>
+<div class="card"><div class="lbl">Note to the approver (optional)</div><div class="input" style="color:#999">Add a note</div></div>
 </div>
-<div class="foot"><span class="btn">Cancel</span><span class="btn p">Send draft to Sarah →</span></div></div>
+<div class="foot"><span class="btn">Cancel</span><span class="btn p">Send for approval →</span></div></div>
 <div class="screen" id="review">
-<div class="hdr2">User: Sarah<span class="sep">·</span>Job to be done: approve the answer or send it back</div>
+<div class="hdr2">User: Approver (Head of Climate Risk)<span class="sep">·</span>Job to be done: approve the answer or send it back</div>
 <div class="body" style="background:#fff">
 <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:28px;font-weight:700;margin:6px 0 4px">Sarah, here's the answer to review</div><div class="sub">1 of 3 waiting for you</div></div>
 <div class="q" style="font-size:17px">“How much do expected losses rise from 2030 to 2050 under the severe scenario?” · Treasury · from an analyst</div>
@@ -123,10 +124,11 @@ body{font-family:Graphik,Helvetica,Arial,sans-serif;color:#343a40}
   <tr><td>Leaves out</td><td>Loans in default · redeemed since the export · maturing before 2030</td></tr>
   <tr><td>Balances</td><td>Held at today's level</td></tr>
   <tr><td>Data</td><td>Spectra export 30 Jun 2026 · loan book 30 Sep 2026</td></tr></table>
-  <div style="margin-top:12px"><span class="src">Show the rise by hazard</span> &nbsp;·&nbsp; <span class="src">Show the 1,832 loans counted</span></div></div>
+  <div style="margin-top:12px"><span class="src">Show how much flood, heat, subsidence and wind each add</span></div>
+  <div style="margin-top:8px"><span class="src">Show the 1,832 loans counted</span><span class="i">i</span><span class="tip">The export has 2,000 loans. 148 are left out by the rules above and 20 aren't in the loan book, which leaves 1,832.</span></div></div>
  <div class="card"><div class="lbl">Comment (needed to send back)</div><div class="input" style="color:#999;min-height:96px">Add a comment</div></div>
 </div></div>
-<div class="foot"><span class="btn">Send back</span><span class="btn p">Approve</span></div></div>
+<div class="foot"><span></span><span><span class="btn">Send back with comment</span> &nbsp; <span class="btn p">Approve</span></span></div></div>
 <div class="screen" id="send">
 <div class="hdr2">User: Analyst<span class="sep">·</span>Job to be done: send the approved answer to whoever asked</div>
 <div class="steps">Draft ─ Review ─ <span class="on">Send</span></div>
