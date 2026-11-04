@@ -1,11 +1,11 @@
 ---
 name: pm-4-solution-design
-description: "Turn the solution concept into medium-fidelity screens a reviewer can follow live: a walkthrough in the user's shoes, one screen per step, sensible defaults, the key number big and up front, edge cases handled where they happen. Each screen is a static mock with real numbers and a few lines on its inputs and checks. Most important screen first. Use after the solution concept, before the clickable prototype."
+description: "Turn the solution concept into medium-fidelity screens a reviewer can follow live: a walkthrough in the user's shoes, one screen per step, sensible defaults, the key number big and up front, edge cases handled where they happen. Each screen is a static mock with real numbers and a few lines on its inputs and checks. Most important screen first. Use after the solution concept, before the build."
 ---
 
 # Solution design
 
-Input: `solution-concept.md`. Output: `runs/run-N/solution-design.md` plus the screen images, reviewed live and agreed before `pm-5-clickable-prototype`.
+Input: `solution-concept.md`. Output: `runs/run-N/solution-design.md` plus the screen images, reviewed live and agreed before `pm-5-build`.
 
 ## Principles
 1. **Know the user.** Put yourself in their shoes: write a short walkthrough ("I'm the [user], I've just received [trigger]. First I…, then I…"). They're intelligent and expert in their domain, but not technical. Use the language from the interview notes and their role. No technical or AI terms on screen

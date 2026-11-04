@@ -1,13 +1,13 @@
 ---
-name: pm-6-prototype-review
-description: "Run a prototype review with the customer and their gatekeepers: what to test, a 15-minute script built on the customer's own example, questions, what to measure, and the per-run review page. Use before showing a prototype, or when turning review feedback into the next design round."
+name: pm-6-mvp-review
+description: "Run an MVP review with the customer and their gatekeepers: what to test, a 15-minute script built on the customer's own example, questions, what to measure, and the per-run review page. Use before showing the working version, or when turning review feedback into the next design round."
 ---
 
-# Prototype review
+# MVP review
 
 Not to sell it. To learn whether it solves the problem for the people who'd use and approve it.
 
-Inputs (active run): `RUN.md`, `solution-concept.md` (the riskiest assumption), `solution-design.md`, `clickable-prototype.md`, `notes/`, the prototype. Output: `runs/run-N/prototype-review.md`, published to Notion.
+Inputs (active run): `RUN.md`, `solution-concept.md` (the riskiest assumption), `solution-design.md`, `build.md`, `notes/`, the working version. Output: `runs/run-N/mvp-review.md`, published to Notion.
 
 ## What I'm testing, in order
 1. Problem fit: does it remove the pain, in their workflow?
@@ -49,6 +49,6 @@ Invite the decision owner, a day-to-day user, and the gatekeeper behind the risk
 - No jargon, no promises ("let me take that back")
 
 ## Per run
-1. Write `prototype-review.md`: who's coming, prototype link, data used, riskiest assumption, the recap line, a walkthrough table (what I show, what I say, the pain it addresses; one row is a failure being caught), the AI line, the hands-on example, the questions with my hypotheses, the pilot I'll propose, and a `## Notes` section
-2. Publish it as a new Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled `Run N: prototype review (<customer>)`. Link it in `RUN.md`
-3. After the review: save the notes to `notes/prototype-review-notes.md` as they are; log a feedback round in `clickable-prototype.md` and update the file each change belongs to; update the riskiest assumption in `solution-concept.md`
+1. Write `mvp-review.md`: who's coming, link to the working version, data used, riskiest assumption, the recap line, a walkthrough table (what I show, what I say, the pain it addresses; one row is a failure being caught), the AI line, the hands-on example, the questions with my hypotheses, the pilot I'll propose, and a `## Notes` section
+2. Publish it as a new Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled `Run N: MVP review (<customer>)`. Link it in `RUN.md`
+3. After the review: save the notes to `notes/mvp-review-notes.md` as they are; log a feedback round in `build.md` and update the file each change belongs to; update the riskiest assumption in `solution-concept.md`
