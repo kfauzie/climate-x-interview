@@ -29,13 +29,15 @@ From the discovery call transcript (Notion, "Run 1: discovery questions (Sarah O
 | Effort | Medium | Medium | Small |
 
 ## 3. The recommended solution
-**Recommendation: B.** It goes at the days of judgement, write-up and review, not the hour of slicing. It still gives her the builder she asked for, with her defaults built in. For later: projected balances (run-off), more data sources, PowerPoint.
+**Recommendation: B.** It goes at the days of judgement, write-up and review, not the hour of slicing. It still gives her the builder she asked for, with her defaults built in, and answers any scenario, year or loan group in one click, not just the defaults, so a follow-up takes seconds instead of restarting the clock. For later: projected balances (run-off), more data sources, PowerPoint.
+
+**Climate scenarios, in plain words:** low = emissions cut fast (SSP1-2.6); **central** = middle of the road, roughly today's policies (SSP2-4.5); severe = very high emissions (SSP5-8.5).
 
 **Workflow, with Treasury's question from the call** ("how much expected losses rise from 2030 to 2050 under the severe scenario")
 - Treasury emails the climate risk team the question.
-- The analyst pastes it into the product and picks "Treasury" as the asker.
+- The analyst pastes it into the product and notes who asked, so the reply goes back to Treasury. (Who asks only changes the answer where Sarah has a standard for them, like committees or stress tests. Treasury has none, and its question names the scenario and years.)
 - The product reads it as: expected loss, severe scenario, 2030 to 2050, all loans. Sarah's defaults fill the rest (exclusions, balances held flat).
-- The product calculates: **£1.7m in 2030 → £4.7m in 2050, 2.81×** under severe. Central is shown next to it: 1.58×. Mortgages (2.70×) and CRE (2.88×) are one click away for the follow-up.
+- The product calculates: **£1.7m in 2030 → £4.7m in 2050, 2.81×** under severe, with the other scenarios next to it: central 1.58×, low 1.19×. Mortgages (2.70×) and CRE (2.88×) are one click away for the follow-up.
 - The analyst checks, adds a note, and sends the draft to Sarah.
 - Sarah sees what needs her attention first (any change from her defaults), checks the number and the method, and approves.
 - The product drafts the reply and file; the analyst sends it to Treasury.
@@ -53,7 +55,7 @@ From the discovery call transcript (Notion, "Run 1: discovery questions (Sarah O
 - **Approvers need to see:** model risk, that "the numbers are computed by code, not made up by a model"; then IT, procurement and the CRO
 - **Test cases:** Treasury's rise (2.81× severe, 1.58× central), plus her earlier example questions, with answers calculated by code
 
-**Assumptions**
-- Sarah's defaults can be written down well enough for the product to pre-set them
-- Seeing the method and the changes from her defaults is enough for her to stop "reading every line"
-- Balances held flat and mortgages and CRE combined by default are acceptable for a first version
+**Assumptions, as questions for the review session**
+- Are these the right defaults? Is anything missing that your methodology paper says? *(Assumes her defaults can be written down well enough to pre-set.)*
+- Could you approve this from this screen, without reading every line? What would you still check? *(Assumes the method and the changes from her defaults are enough.)*
+- Balances are held flat, and mortgages and CRE are combined unless you split them. Is that fine for most questions? *(Assumes those are acceptable defaults for a first version.)*
