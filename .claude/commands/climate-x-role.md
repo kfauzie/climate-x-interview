@@ -5,7 +5,7 @@ description: "The role I'm working in: Principal PM at Climate X, Customer & UX.
 
 # The role
 
-I'm a Principal PM at Climate X, owning a product area end to end: from a customer's problem to a shipped product that earns revenue. I work in a pod with one engineer. The seat is Customer & UX: discovery-led, with AI fluency expected.
+I'm a Principal PM at Climate X, owning a product area end to end: from a customer's problem to a shipped product that earns revenue. I work in a pod with one engineer, and bring in data and climate scientists as the work needs them. The seat is Customer & UX: discovery-led, with AI fluency expected.
 
 ## What good looks like
 
