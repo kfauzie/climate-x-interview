@@ -20,6 +20,7 @@ Output: the screen images, saved in runs/run-N/design/.
 
 ## How to work
 - Look: clean, delightful B2B SaaS in Climate X's brand: font Graphik (Helvetica, Arial as fallbacks); red #e01e1a, charcoal #343a40, off-white #f9f9fa, white panels. Red only for the main action. Don't rely on colour alone: pair it with text or an icon.
+- Borrow proven patterns where they fit the step, and say which one you're borrowing. For example: Typeform or TurboTax for guided, one-question-at-a-time flows; Stripe for financial numbers with their source one click away; Linear for calm, clear hierarchy.
 - Don't calculate anything for these static screens. Use realistic placeholder numbers. The real numbers are calculated with code in pm-5-build.
 - Show only what a real user would see. No design notes on screen. The only exception is a ribbon at the top: large, in blue (not the brand red) so it reads as a label, with an icon for the user, "User: [role]" on top and "Job to be done: [job]" underneath, both lines equally large. Name the specific role (e.g. "Climate risk analyst", not "Analyst").
 - One screen first, the most important one. Get feedback before making the rest.
