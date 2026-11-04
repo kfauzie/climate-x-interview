@@ -5,10 +5,10 @@ A report builder with Sarah's defaults, a method note it writes itself, her appr
 ## Flow
 | Step | Who | Screen | Ends in |
 |---|---|---|---|
-| 1 | Analyst | Build the answer | Calculate |
-| 2 | Analyst | Answer | Submit to Sarah |
+| 1 | Analyst | New question | Calculate |
+| 2 | Analyst | Answer | Send to Sarah |
 | 3 | Sarah | Review | Approve, or send back |
-| 4 | Analyst | Send the reply | Sent from their own email, logged |
+| 4 | Analyst | Send the reply | Reply copied and file downloaded, logged |
 
 Askers (CRO, committees, pricing, treasury, IR) never touch it: they email the question and get the reply.
 
@@ -17,49 +17,36 @@ Askers (CRO, committees, pricing, treasury, IR) never touch it: they email the q
 2. No AI in this version: **yes** (agreed in the concept)
 3. Fast-track review: a follow-up with one changed option and all checks passing shows Sarah only the change: **recommend yes**, confirm with her
 4. The product drafts the reply; the analyst sends it from their own email: **recommend yes**
-5. Numbers in the reply can't be edited: **recommend yes**
 
-## 1. Build the answer
-![Build](design/build.png)
+## 1. New question
+![New question](design/build.png)
 
-- **For:** analyst, to turn the asker's question into the right choices
-- **Removes:** choosing scenario, horizon and loans case by case, and the hour of filtering
-- **Shows:** one sentence of what will be calculated, then only what needs attention. All options sit behind "Change options", collapsed
-- **Inputs:** question and who it's for are required. Who it's for sets her defaults (committee: central, 2050, leaving out loans in default, redeemed since the export and maturing before 2030). Words in the question are matched to options by rules, not AI, and tagged "From the question"; those need no reason. A reason is needed only to depart from her defaults
-- **Checks:**
-  - Asker didn't name a scenario → **notes**: "The asker didn't say which scenario. Using central, your committee default"
-  - Year picked doesn't match the question → **warns**: "The question asks about 2050; you've picked 2030"
-  - A departure from her defaults without a reason → **blocks** Calculate
-  - Not in the data → **blocks**: "Present-day ratings aren't in this export: 2030 and 2050 only"
-  - Loss to the bank → **blocks**: "Needs default-loss and insurance data that isn't loaded"
-- **Ends in:** Calculate. Back from the Answer keeps every option
+- **For:** analyst, to turn the question into the right calculation
+- **Inputs:** the question and who asked (required). Who asked sets Sarah's defaults: for committees, central scenario, 2050, leaving out loans in default, redeemed or maturing before 2030
+- **Shows:** one sentence of what will be calculated, and only what needs attention. Everything else is under "Change options"
+- **Checks:** no scenario in the question → **notes** the default used. Year picked differs from the question → **warns** "The question says 2050; you picked 2030". Departing from Sarah's defaults → reason required. Loss to the bank → **refused**, with why
 
 ## 2. Answer
 ![Answer](design/answer.png)
 
 - **For:** analyst, to check the answer before it goes to Sarah
-- **Removes:** the write-up, and "what about severe?" starting it all again
-- **Inputs:** a note to Sarah, required only if a check failed
-- **Checks:** horizon matches the question and data is fresh → **warn**, shown first to Sarah. Unmatched and unscored loans are always listed. The method note always names the scenario, so that slip can't happen
-- **Ends in:** Submit to Sarah. Same options, same number, every time; any number clicks through to its rows
+- **Shows:** the answer, the same count by scenario and by year, the loans, and how it was calculated
+- **Checks:** shown here only when one fails, so the analyst fixes it before Sarah sees it (e.g. stale data: "Loans redeemed since the export are included")
+- **Inputs:** a note to Sarah (optional)
 
-## 3. Review (Sarah)
+## 3. Review
 ![Review](design/review.png)
 
-Shown with her sent-back case, rebuilt: 2030 picked, redeemed loans included.
-- **For:** Sarah, to approve or send back in minutes
-- **Removes:** half a day of checking
-- **Inputs:** approve or send back (required); a comment, required to send back or to approve with a failed check, pre-filled with the failed checks
-- **Checks:** data changed since it was built → **warns**: "The Spectra export has changed since this was built. Rebuild?"
-- **Ends in:** Approve, or send back to Build with her comment. Nothing reaches Send without her approval
+- **For:** Sarah, to approve the answer or send it back
+- **Shows:** what the analyst sent: the answer, other scenarios and years, how it was calculated, the loans, and their note if any
+- **Inputs:** approve, or send back with a comment (required to send back)
 
 ## 4. Send the reply
 ![Send](design/send.png)
 
-- **For:** analyst, to send the approved answer to the asker
-- **Removes:** writing the reply and building the Excel by hand
-- **Inputs:** the reply (drafted; words editable, numbers locked)
-- **Ends in:** Copy reply, Download Excel, Mark as sent → logged: who asked, built and approved, data dates, version
+- **For:** analyst, to send the approved answer to whoever asked
+- **Shows:** a drafted reply and the Excel file with the loans and the method
+- **Ends in:** copy the reply and download the file; logged with who asked, built and approved
 
 ## Test set
 | Case | Expected |
