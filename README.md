@@ -29,3 +29,11 @@ Each run lives in [`runs/`](runs/); run 1 is practice on synthetic Spectra-style
 ```bash
 pip install -q -r requirements.txt && python3 -m ipykernel install --user
 ```
+
+## Open a run's prototype
+From any folder inside the repo:
+```bash
+"$(git rev-parse --show-toplevel)/tools/open_run.sh" 3
+```
+It gets the latest version, picks a free port and opens the browser. Control+C stops it.
+
