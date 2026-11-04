@@ -44,3 +44,9 @@ print('share of E-G loans in top 5 districts:', round(top.poor.sum() / u.worst24
 sc = u[[c for c in u.columns if c.endswith('_rating')]].notna().any(axis=1)
 print('2026 originations:', int((u.origination_date.dt.year == 2026).sum()), '| of them unscored:', int(((u.origination_date.dt.year == 2026) & ~sc).sum()))
 print('latest scored origination:', u[sc].origination_date.max().date(), '| earliest unscored:', u[~sc].origination_date.min().date())
+# Headline candidate: share of new lending (by balance) rated E-G for subsidence, central vs severe, 2050
+for since in ['2024-01-01', '2026-03-01']:
+    n = u[u.origination_date >= since]
+    for s in S:
+        poor = n[f'subsidence_{s}_2050_rating'].isin(list('EFG'))
+        print(f'since {since}, {s} 2050: subsidence E-G {poor.sum()} loans, {n.balance_gbp[poor].sum() / n.balance_gbp[n[f"subsidence_{s}_2050_rating"].notna()].sum():.1%} of scored balance')

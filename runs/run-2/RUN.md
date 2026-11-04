@@ -1,6 +1,6 @@
 # Run 2
 
-**Status:** discovery questions ready; next: the interview
+**Status:** interview done; next: test her claims against the data (pm-1 Answer), then the solution concept (pm-3)
 **Dataset:** `data/harbourside_mortgage_book_spectra_2026-10.csv` (Spectra export of the mortgage book, October 2026)
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
@@ -55,3 +55,17 @@ Everything below applies to **run 2 only**. Do not carry it into any other run.
 
 ## Defaults
 (none yet)
+
+## From the interview (claims to test)
+- **Her risk appetite:** no more than 10% of new lending rated E–G (her board limit). She told the board in September she was within it, using June data
+- **The blind spot:** Spectra ratings arrive quarterly; Tom (analyst) joins the export to the loan book by loan ID in Excel, about a week each quarter, and flags new lending since March rated E–G for flood or subsidence under the central scenario. New loans go unseen for up to 3 months
+- **Her worry:** she may already be over 10%, before the PRA review of climate risk management next spring. "I need to know where we stand now"
+- **Trust:** total balance must match finance's figure to the pound; the method written down for the board and the PRA
+- **Sign-off:** IT for anything touching the broker portal (about a 6-month queue); credit committee for any change to lending
+
+## Missed in the call (from feedback, to follow up)
+- **Who acts on it:** underwriters follow the lending policy, and no single loan breaches a portfolio limit. The real lever is likely credit committee tightening criteria, or capping a broker or an area
+- **The data finding (calculated):** since 2024, 16.0% of the lending balance is rated E–G for subsidence (central, 2050), against her 10% limit; 28.6% under the severe scenario. Since March 2026: 9.7% (only loans scored so far)
+- **Scenario:** which one and who decided; a non-executive director has already asked about the severe scenario
+- **What she can't see:** broker firm isn't in the file, only the channel
+- **When it went wrong:** last quarter further advances were double counted; matches the 6 duplicate loan IDs
