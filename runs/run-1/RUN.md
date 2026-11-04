@@ -5,9 +5,9 @@
 **Interview notes:** `notes/interview.md` (from Notion), `notes/sarah-followup.md` (her example questions, a sent-back case, defaults), `notes/mock-feedback.md`
 **Solution concept:** `solution-concept.md` (recommended: answer with its method)
 **Solution design:** `solution-design.md` (medium-fidelity screens in `design/`, with inputs and checks)
-**Clickable prototype:** `clickable-prototype.md` (PR https://github.com/kfauzie/climate-x-interview/pull/1)
+**Build (MVP):** `build.md` (PR https://github.com/kfauzie/climate-x-interview/pull/1)
 **Prototype:** `prototype/` at the repo root; synthetic loan book from `data/make_loan_book.py`
-**Prototype review:** `prototype-review.md` (script and questions, made with `pm-6-prototype-review`)
+**MVP review:** `mvp-review.md` (script and questions, made with `pm-6-mvp-review`)
 **Notion review:** https://app.notion.com/p/40b8f31ef05f814e815fc95807769b0b (take review notes here)
 **Test:** `notebooks/spectra_test.ipynb` (built by `notebooks/build_test.py`), chart `notebooks/test_cre_flood_by_scenario.png`
 **Discovery questions:** `discovery-questions.md` (customised for Sarah and this dataset, 15-min version)

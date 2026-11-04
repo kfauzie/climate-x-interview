@@ -1,4 +1,4 @@
-# Run 1: clickable prototype
+# Run 1: build (working first version)
 
 From `solution-design.md`. Status: **rebuilt to the agreed three screens; PR open**: https://github.com/kfauzie/climate-x-interview/pull/1
 
