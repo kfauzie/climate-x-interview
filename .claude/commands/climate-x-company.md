@@ -13,7 +13,7 @@ From climate-x.com (read November 2026) unless marked (web) for press or third p
 - $18m Series A in June 2024, led by GV (web); about $24.9m raised in total (web). Other investors: WTI, PropTech1, Unconventional Ventures, CommerzVentures, noa
 - Advisers include Bob Wigley (Chair of UK Finance) and David Carlin (UNEP FI); science partner CCRM, which started at Oxford
 - Claims clients with over $13.5tn in assets, including G-SIBs. ISO certified; works to the PRA's model risk framework
-- Products: Spectra, Adapt, Carta, Infrastructure Screener (see `climate-x-products`)
+- Products: Spectra (incl. the Infrastructure Screener module), Adapt and Adaptation Finance, Carta (see `climate-x-products`)
 
 ## Mission and values
 - Vision: "Make every location on Earth resilient." Mission: "Drive resilient capital, asset by asset"
