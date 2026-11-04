@@ -7,7 +7,7 @@ description: "Run an MVP review with the customer and their gatekeepers: what to
 
 Not to sell it. To learn whether it solves the problem for the people who'd use and approve it.
 
-Inputs (active run): `RUN.md`, `solution-concept.md` (the riskiest assumption), `solution-design.md`, `build.md`, `notes/`, the working version. Output: `runs/run-N/mvp-review.md`, published to Notion.
+Inputs (active run): `RUN.md`, `solution-concept.md` (the riskiest assumption), the agreed screens, `build.md`, `notes/`, the working version. Output: `runs/run-N/mvp-review.md`, published to Notion.
 
 ## What I'm testing, in order
 1. Problem fit: does it remove the pain, in their workflow?

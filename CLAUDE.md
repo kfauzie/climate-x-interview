@@ -19,7 +19,7 @@ Used over several **runs**. Each run brings its own data, customer and interview
 runs/run-N/
   RUN.md                  status, customer, the ask, data notes, defaults, links
   data/  notes/  notebooks/
-  discovery-questions.md  solution-concept.md  solution-design.md
+  discovery-questions.md  solution-concept.md  design/ (screen images)
   build.md  mvp-review.md
 ```
 
@@ -31,7 +31,7 @@ runs/run-N/
 | 3. Interview | me | | notes in that Notion page |
 | 4. Summarise the problem | Claude | `pm-1-data-discovery` (Answer: test each claim) | claims from the Notion interview notes tested against the data, results in `RUN.md` |
 | 5. Solution concept | Claude | `pm-3-problem-to-solution-concept` | `solution-concept.md` + new Notion page |
-| 6. Solution design | Claude | `pm-4-solution-design` | `solution-design.md`: walkthrough, then one medium-fidelity screen per step (most important first) with its inputs and checks; reviewed live and agreed with me |
+| 6. Solution design | Claude | `pm-4-solution-design` | medium-fidelity screen images in `runs/run-N/`, one per workflow step, most important first; reviewed live and agreed with me |
 | 7. Build | Claude | `pm-5-build` | `build.md`, the working first version (MVP) on a branch + PR |
 | 8. MVP review | me + Claude | `pm-6-mvp-review` | `mvp-review.md` + new Notion page; feedback back into the files above |
 
