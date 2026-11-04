@@ -19,8 +19,8 @@ Used over several **runs**. Each run brings its own data, customer and interview
 runs/run-N/
   RUN.md                  status, customer, the ask, data notes, defaults, links
   data/  notes/  notebooks/
-  discovery-questions.md  solution-concept.md  solution-detail.md
-  visual-design.md  clickable-prototype.md  prototype-review.md
+  discovery-questions.md  solution-concept.md  solution-design.md
+  clickable-prototype.md  prototype-review.md
 ```
 
 ## Workflow
@@ -31,10 +31,9 @@ runs/run-N/
 | 3. Interview | me | | notes in that Notion page |
 | 4. Summarise the problem | Claude | `pm-1-data-discovery` (Test) | `notes/interview.md` (one fetch of the meeting notes with transcript, saved as is), problem statement in `RUN.md` |
 | 5. Solution concept | Claude | `pm-3-problem-to-solution-concept` | `solution-concept.md` |
-| 6. Solution detail | Claude | `pm-4-solution-detail` | `solution-detail.md`: each screen, its inputs (mandatory or not), checks, edge cases |
-| 7. Visual design | Claude | `pm-5-visual-design` | `visual-design.md` + static images of the key screens, one shown first; agreed with me |
-| 8. Clickable prototype | Claude | `pm-6-clickable-prototype` | `clickable-prototype.md`, the prototype on a branch + PR |
-| 9. Prototype review | me + Claude | `pm-7-prototype-review` | `prototype-review.md` + new Notion page; feedback back into the files above |
+| 6. Solution design | Claude | `pm-4-solution-design` | `solution-design.md`: medium-fidelity screens (one shown first) with each screen's inputs and checks; reviewed live and agreed with me |
+| 7. Clickable prototype | Claude | `pm-5-clickable-prototype` | `clickable-prototype.md`, the polished prototype on a branch + PR |
+| 8. Prototype review | me + Claude | `pm-6-prototype-review` | `prototype-review.md` + new Notion page; feedback back into the files above |
 
 Keep each step quick: about 15 minutes of the session is interview; the rest is synthesis, design and the build. Show results in chat first, commit once per step.
 
