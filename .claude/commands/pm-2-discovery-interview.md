@@ -13,7 +13,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role.
 - **Problem, not solution.** Don't pitch. If they ask for a feature, ask what it would let them do.
 - **Be specific.** Ask about a real, recent example, not general habits.
 - **Anchor on the real user.** Focus on who actually does the work and feels the pain, which may not be the person asking.
-- **Plain language.** Use non-technical terms, in the language of Climate X's customers (e.g. risk appetite, stress test, provisions).
+- **Plain language.** Use non-technical terms, in the language of Climate X's customers (e.g. risk appetite, stress test, provisions). Follow "Writing anything the customer sees" in climate-x-role: name the exact thing, no shorthand from our notes, explain only what's new to them.
 - **Open questions.** Ask every question open-ended, with no hint of the answer you expect and no belief built in (not "How do you make sure it's never wrong?").
 - **Clarify.** If anything is unclear, ask before moving on.
 

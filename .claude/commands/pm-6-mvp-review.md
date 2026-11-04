@@ -15,7 +15,7 @@ Three questions, plus one optional, in this order. Each specific to this case.
 1. **Does it solve the problem?** Whether the team could have used it for their last real request (one request, not all of them), e.g. "Could your team have used this for the last question you got?"
 2. **Trust and sign-off.** What the approver needs before an answer goes out, e.g. "What would you need to see before you'd approve an answer from this and send it out?"
 3. **Real examples for testing.** "Could you send us a sample of recent [requests], with the answers your team sent? We'd use them to test it."
-4. **Defaults (optional, last).** Whether the choices it made for them are the ones their team would make, marked *(Optional)*, e.g. "Would your team have picked the same default scenario, years and loans?"
+4. **Defaults (optional, last).** Whether the choices it made for them are the ones their team would make, marked *(Optional)*, naming them, e.g. "Every answer starts from the same rules: mortgages and CRE together, leaving out loans in default, redeemed or maturing before 2030. Are those the rules your team would start from?"
 
 Only add another question for an assumption if it would change the main workflow.
 
@@ -26,7 +26,7 @@ When the sample arrives, test it against the working version and check:
 
 ## Rules
 - Open questions, with no hint of the answer you expect
-- Plain language, in the customer's own terms
+- Plain language, in the customer's own terms. Follow "Writing anything the customer sees" in climate-x-role: name the exact thing, no shorthand from our notes, explain only what's new to them
 - Only ask what could change the solution
 - Short and easy to follow on first hearing: one idea per question
 - No overlap: value, method and sign-off questions easily ask the same thing. Keep one question per area and merge the rest
