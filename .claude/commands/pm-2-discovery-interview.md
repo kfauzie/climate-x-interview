@@ -60,7 +60,7 @@ Output: `runs/run-N/discovery-questions.md` (the template below, customised), pu
 
 ## Per run
 1. Quick research: the vendor's and customer's public material and the rules they answer to. For hypotheses and vocabulary only, never to pitch
-2. Read the run's `RUN.md` and Profile findings
+2. Read the run's `RUN.md` and the questions from the data's initial review
 3. Fill the template: X is the task; add their audiences, cadence, tools and regulator; add the 1–2 strongest data questions
 4. Save it, then publish a new Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled `Run N: discovery questions (<customer>)`, with an empty `## Notes` section at the end. Link it in `RUN.md`
 5. After the call, save the notes to `notes/interview.md` as they are, with the page link

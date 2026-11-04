@@ -7,7 +7,7 @@ description: "Turn discovery notes and data findings into a solution concept in 
 
 Start from the problem, not the feature request. Build the simplest thing that solves it, and only go more complex once that's been tested and falls short.
 
-Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/interview.md`, the `pm-1-data-discovery` Test results; the company and product skills for background. Output: `runs/run-N/solution-concept.md`, shown in chat first. It gets screen-shared and narrated: three parts, two tables, short bullets.
+Inputs (active run only): `RUN.md` (customer, the ask word for word), `notes/interview.md`, the claims tested with `pm-1-data-discovery` (Answer); the company and product skills for background. Output: `runs/run-N/solution-concept.md`, shown in chat first. It gets screen-shared and narrated: three parts, two tables, short bullets.
 
 ## 1. Problem
 - **The ask**, word for word, and why it's a solution rather than the problem
@@ -40,4 +40,4 @@ One table, options as columns: what it is (one line) · fixes the top pain? · v
 - Bold only the decision and the key numbers
 - Don't just build the ask, and don't dismiss it
 - Tag outside facts with their source
-- Minutes, not tens of minutes: reuse the Test and Profile, don't re-analyse
+- Minutes, not tens of minutes: reuse the data review and tested claims, don't re-analyse
