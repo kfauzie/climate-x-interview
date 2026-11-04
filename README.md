@@ -17,7 +17,7 @@ How I go from a customer's data and a short interview to a prototype they'd trus
 | Skill | |
 |---|---|
 | [`climate-x-company`](.claude/commands/climate-x-company.md) | Company, method, regulation, customers, competitors, brand |
-| [`climate-x-products`](.claude/commands/climate-x-products.md) | Spectra (incl. Infrastructure Screener), Adapt, Carta: background only |
+| [`climate-x-products`](.claude/commands/climate-x-products.md) | Spectra (incl. Infrastructure Screener), Adapt, Adaptation Finance, Carta: background only |
 | [`climate-x-role`](.claude/commands/climate-x-role.md) | The role and the live session |
 
 ## How a run works
