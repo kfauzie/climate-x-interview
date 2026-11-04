@@ -29,44 +29,40 @@ ol{margin:0;padding-left:20px}li{margin:3px 0}
 .job{width:1100px;margin:30px auto -30px;background:#222;color:#fff;padding:12px 24px;font-size:18px}.job b{font-weight:700}
 .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.duo{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .opt{border:1px solid var(--line);padding:10px 12px}.opt.on{border:2px solid var(--acc)}.opt .n{font-size:20px;font-weight:600}
+.hdr{display:flex;justify-content:space-between;align-items:center;background:#222;color:#fff;padding:14px 24px;font-size:17px}.hdr span{color:#ccc;font-size:14px}
+.seg{display:inline-flex;border:1px solid #999;border-radius:6px;overflow:hidden}.seg span{padding:7px 16px;border-left:1px solid #999;background:#fff}.seg span:first-child{border-left:0}.seg .on{background:var(--acc);color:#fff}
+.chip{display:inline-block;padding:5px 10px;border:1px solid #999;border-radius:14px;background:#fff;margin-right:6px}.chip i{font-style:normal;color:#888;margin-left:6px}
+.ctl{display:grid;grid-template-columns:130px 1fr;gap:12px;align-items:center;padding:9px 0;border-top:1px solid #eee}.ctl:first-child{border-top:0}.ctl .k{color:var(--mid)}
+.kn{font-size:44px;font-weight:700;line-height:1.1}.ks{font-size:20px;color:#888;font-weight:400}.mini{font-size:13px;color:#888;margin-left:8px}
+th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0}
 </style></head><body>
-<div class="job" id="job-build"><b>Analyst</b> · Turn the question into the right calculation</div>
-<div class="screen" id="build"><div class="top"><b>Climate answers</b><span>Analyst</span></div>
-<div class="steps"><span class="on">Build</span> ─ Answer ─ Review ─ Send</div>
-<div class="body"><h1>New question</h1>
+
+<div class="screen" id="answer">
+<div class="hdr"><div><b>User: Analyst</b> · Job to be done: turn the question into the right calculation</div><span>Spectra 30 Jun 2026 · Loan book 30 Sep 2026</span></div>
+<div class="steps"><span class="on">Answer</span> ─ Review ─ Send</div>
+<div class="body">
 <div class="card">
  <div class="row"><div class="k">Question</div><div class="input" style="grid-column:2/4">How many CRE loans have a flood rating of E or worse by 2050?</div></div>
  <div class="row"><div class="k">Asked by</div><div class="input">Credit committee ▾</div><div></div></div>
 </div>
-<div class="card"><div class="lbl">We'll calculate</div>
- <div style="font-size:19px">The number of commercial real estate loans with a flood rating of E or worse in 2050, under the central climate scenario.</div>
- <div class="sub" style="margin-top:8px">Leaves out loans in default, redeemed or maturing before 2030.</div></div>
-<div class="warn">The question doesn't name a climate scenario, so we've used <b>central</b>: Sarah's standard for committee answers.</div>
-<div class="src" style="margin-top:12px">Change options</div>
-</div>
-<div class="foot"><span class="btn">Cancel</span><span class="btn p">Calculate →</span></div></div>
-
-<div class="job" id="job-answer"><b>Analyst</b> · Check the answer before it goes to Sarah</div>
-<div class="screen" id="answer"><div class="top"><b>Climate answers</b><span>Analyst</span></div>
-<div class="steps">Build ─ <span class="on">Answer</span> ─ Review ─ Send</div>
-<div class="body"><h1>Answer</h1><div class="q">“How many CRE loans have a flood rating of E or worse by 2050?” · Credit committee</div>
-<div class="cols"><div>
- <div class="card"><div class="big">3 of 144 CRE loans</div><div class="sub">£5.4m of £351.8m balance · flood E or worse · 2050 · central scenario</div></div>
- <div class="card"><div class="lbl">By scenario, 2050</div><div class="trio">
-  <div class="opt"><div class="sub">Low</div><div class="n">3 loans</div><div class="sub">£5.4m</div></div>
-  <div class="opt on"><div class="sub">Central</div><div class="n">3 loans</div><div class="sub">£5.4m</div></div>
-  <div class="opt"><div class="sub">Severe</div><div class="n">5 loans</div><div class="sub">£9.6m</div></div></div></div>
- <div class="card"><div class="lbl">By year, central scenario</div><div class="duo">
-  <div class="opt"><div class="sub">2030</div><div class="n">4 loans</div><div class="sub">£6.2m</div></div>
-  <div class="opt on"><div class="sub">2050</div><div class="n">3 loans</div><div class="sub">£5.4m</div></div></div></div>
+<div class="cols" style="grid-template-columns:1.25fr 1fr"><div>
+ <div class="card">
+  <div class="ctl"><div class="k">Count</div><div><span class="chip">CRE loans</span><span class="chip">Flood rating E or worse</span></div></div>
+  <div class="ctl"><div class="k">Scenario</div><div><span class="seg"><span>Low</span><span class="on">Central</span><span>Severe</span></span><span class="mini">Default</span></div></div>
+  <div class="ctl"><div class="k">Year</div><div><span class="seg"><span>2030</span><span class="on">2050</span></span></div></div>
+  <div class="ctl"><div class="k">Leave out</div><div><span class="chip">Loans in default<i>×</i></span><span class="chip">Redeemed since the export<i>×</i></span><span class="chip">Maturing before 2030<i>×</i></span><span class="src">+ Add</span></div></div>
+ </div>
+ <div class="card"><div class="kn">3 loans <span class="ks">of 144</span></div><div class="kn" style="font-size:32px;margin-top:4px">£5.4m <span class="ks">of £351.8m balance</span></div></div>
  <div class="card"><div class="lbl">Note to Sarah (optional)</div><div class="input" style="color:#999">Add a note</div></div>
 </div><div>
  <div class="card"><div class="lbl">The 3 loans</div><table>
-  <tr><td>Hotel · Yorkshire</td><td class="r">£3.1m</td></tr><tr><td>Mixed use · North West</td><td class="r">£1.2m</td></tr><tr><td>Hotel · East of England</td><td class="r">£1.1m</td></tr></table></div>
- <div class="card"><div class="lbl">How it was calculated</div>Central scenario, 2050. Flood rating E or worse. Commercial real estate loans, leaving out loans in default, redeemed or maturing before 2030. Spectra data as at 30 Jun 2026.</div>
+  <tr><th>Loan</th><th>Property</th><th>Region</th><th style="text-align:right">Balance</th><th style="text-align:right">Rating</th></tr>
+  <tr><td>L101880</td><td>Hotel</td><td>Yorkshire</td><td class="r">£3.1m</td><td class="r">E</td></tr>
+  <tr><td>L101854</td><td>Mixed use</td><td>North West</td><td class="r">£1.2m</td><td class="r">E</td></tr>
+  <tr><td>L100322</td><td>Hotel</td><td>East of England</td><td class="r">£1.1m</td><td class="r">E</td></tr></table></div>
+ <div class="card"><div class="lbl">Method note</div>Worst flood rating per loan. Current balances, no allowance for repayment.</div>
 </div></div></div>
-<div class="foot"><span class="btn">← Back</span><span class="btn p">Send to Sarah →</span></div></div>
-
+<div class="foot"><span class="btn">Cancel</span><span class="btn p">Send to Sarah →</span></div></div>
 <div class="job" id="job-review"><b>Sarah</b> · Approve the answer, or send it back</div>
 <div class="screen" id="review"><div class="top"><b>Climate answers</b><span>Sarah Okafor</span></div>
 <div class="body"><h1>Review</h1><div class="q">“How many CRE loans have a flood rating of E or worse by 2050?” · Credit committee · built by an analyst</div>
