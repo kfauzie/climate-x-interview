@@ -1,11 +1,11 @@
 # Run 3
 
-**Status:** initial data review done; next: discovery questions (pm-2)
+**Status:** discovery questions ready; next: the interview
 **Dataset:** `data/northwind_renewables_spectra_infra_2026-09.csv` (Spectra Infrastructure Screener export, September 2026)
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
 **On Notion (2nd round prep)**
-- (none yet)
+- Discovery questions and call notes: https://app.notion.com/p/40e8f31ef05f81658eb1c6a31ed1de35
 
 Everything below applies to **run 3 only**. Do not carry it into any other run.
 

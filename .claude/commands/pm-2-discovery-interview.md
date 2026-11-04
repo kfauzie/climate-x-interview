@@ -34,7 +34,7 @@ X is what they asked for. Fill it in from the case context.
      - *\<Admits a gap → "What happens when that goes wrong?"\>*
 3. **Key data findings (optional).** Only if pm-1-data-discovery found something relevant to the customer's need; otherwise skip this section rather than forcing a question. These questions are about the customer's own data, not about what to build, so they come after the user journey, once the customer has described the problem, and open with a short line that marks the switch. Pull the findings and clarifications from pm-1 (in `RUN.md`):
    - I looked at [the data, named exactly] before the call.
-   - Your data shows X. Does that match what you see?
+   - The data questions from pm-1, as written there (open, e.g. "The data shows X. What's behind that?", with a follow-up that names the thing)
 4. **Success criteria.**
    - If this worked, how would you know?
    - What would the impact be: time saved, money, better decisions?
