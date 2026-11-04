@@ -3,7 +3,7 @@
 **Status:** practice run. The data is synthetic, not real Climate X data
 **Dataset:** `data/spectra_portfolio_export.csv` (Spectra-style UK loan portfolio export)
 **Interview notes:** `notes/interview.md` (from Notion), `notes/sarah-followup.md` (her example questions, a sent-back case, defaults), `notes/mock-feedback.md`
-**Solution concept:** `solution-concept.md` (recommended: answer with its method)
+**Solution concept:** `solution-concept.md` (Notion: https://app.notion.com/p/40e8f31ef05f816983a9e4d46a223671)
 **Solution design:** `solution-design.md` (medium-fidelity screens in `design/`, with inputs and checks)
 **Build (MVP):** `build.md` (PR https://github.com/kfauzie/climate-x-interview/pull/1)
 **Prototype:** `prototype/` at the repo root; synthetic loan book from `data/make_loan_book.py`

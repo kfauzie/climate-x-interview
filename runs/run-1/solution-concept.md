@@ -1,80 +1,59 @@
-# Run 1: problem and recommended solution (Sarah Okafor)
+# Run 1: solution concept (Sarah Okafor)
 
-From the discovery call, Sarah's follow-up email and our analysis of her (practice) data. Numbers use central scenario, 2050, unless stated.
+From the discovery call transcript (Notion, "Run 1: discovery questions (Sarah Okafor) v2") and the run 1 practice data.
 
-## 1. Problem
-- **The ask:** "customized report builder to help her team product custom reports to answer any questions that the team may have". In the call: "I want my analysts configuring reports in Spectra directly rather than wrestling with a spreadsheet of hundreds of columns." This is a solution, and it targets the hour of filtering, not the days around it
-- **The problem, in her words:** "It all runs through me, so I'm the bottleneck."
+## 1. The problem
+**What she asked for:** "If we could configure reports in Spectra ourselves, we'd be much quicker. Simple as that."
 
-**Evidence**
-- "The filtering itself took maybe an hour. The rest went on deciding which scenario and horizon to use, whether to include loans in arrears, and then writing up how we got the number" (discovery call; about 3 days end to end)
-- "Every answer comes through me… one subtly wrong scenario choice and the number means something different"; checking "can take me half a day when it's a big one and I'm doing several a week" (discovery call)
-- "Someone always comes back with, what about the severe scenario? And we start again" (discovery call); her CRO question took another 2 days
-- The scenario matters for some questions and not others: CRE flood E or worse is **4 loans** central and **8** severe; the treasury rise is 1.57× central and 2.74× severe (our analysis of her data)
-- A draft she sent back had a wrong horizon, a stale export and no scenario stated (her follow-up email)
+**The real problem:** Sarah's analysts need to answer ~15 plain-English questions a month from senior people, but today every answer needs judgement calls, a write-up, and Sarah's personal check, which makes each one take 3–4 days and makes her the bottleneck.
 
-**Problem statement:** Sarah needs each of her team's ~15 answers a month to be right and defensible before it leaves the team, but each is built by hand in Excel, with choices made case by case and written up by hand, then queued for her check. Answers take 2–5 days, follow-ups restart the clock, and everything depends on her.
+**Evidence** (discovery call)
+- The slicing isn't the problem: "Not the slicing, that's an hour or so. It's deciding those choices, writing up how the number was produced so it stands up, and then waiting for me to review it."
+- She's the bottleneck: "Everything has to come past my desk before it goes out, and there are about 15 of these a month."
+- The askers won't use a tool: "They're senior. They ask in plain English by email or in meetings, and they'd never log into Spectra. It'd be my analysts using it."
+- Choices aren't consistent: "We have defaults in a methodology paper I own, but every question's a bit different… And no, it's not perfectly consistent. That's partly why I check everything."
+- It doesn't end at one answer: "Someone always comes back with, what about commercial property? Or what about the severe scenario? And we start the whole thing again."
 
-Behind it: every audience (CRO, committees, pricing, treasury, IR, the PRA) should get numbers built the same way, but today each rests on one-off choices.
+**Impact**
+- **Analysts:** "around 45 analyst days a month" (her estimate)
+- **Sarah:** "a big chunk of mine", reading every line
+- **Askers:** "decisions wait on us, so climate risk gets seen as a blocker"
+- **The bank:** "a wrong number reaching the board or the PRA" is what worries her most
 
-**Impact on each user** (her estimates)
-- **Analysts:** 2–5 days per answer, roughly **45 days a month**; a follow-up means starting again
-- **Sarah:** up to **half a day** per check, several a week; nothing leaves without her
-- **Askers:** wait 2–5 days, about 2 more per follow-up; their decisions wait too
-- **The bank:** a wrong scenario or stale export could reach a committee or the PRA
-
-**Why now:** none stated. The PRA can ask banks for evidence from June 2026.
-
-## 2. Options, and which I recommend
-How the analyst enters the choices (dropdowns or AI reading the question) is a detail. What separates the options is what happens after the number.
-
-| | A. Report builder with her defaults, a method note it writes, and her approval | B. Report builder (the ask as stated) | C. Her defaults and write-up as a template |
+## 2. Solution ideas
+| | A. Report builder (the ask) | B. Answer builder with Sarah's defaults and a write-up | C. Defaults checklist |
 |---|---|---|---|
-| What it is | Analyst picks loans, hazard, rating, scenario and year, pre-set to her defaults; code computes the answer, method note, checks and the severe and 2030 versions; Sarah approves on one screen; the product drafts the reply | Analysts pick filters and groupings in Spectra instead of Excel, and get a table | A one-page template of her defaults and write-up fields, filled in by hand |
-| Fixes the top pain? | **Yes:** her check, the follow-ups and the write-up | Partly: the hour of filtering; not the write-up or her check | Partly: fewer slips; still manual |
-| Value | Her review in minutes; "what about severe?" answered up front; same defaults every time | Some analyst hours; may lengthen her queue | Fewer send-backs |
-| Adoption | Analysts daily; Sarah approves; askers stay on email | Analysts learn a new interface | A form to fill in |
-| What model risk needs | Every number from code, with a method note and a log per answer | Numbers from code, but no method or log | A documented method; nothing reproducible |
-| Revenue (hypothesis) | Keeps an 18-month customer; more seats and audiences; repeatable for any bank on Spectra | Table stakes | None |
-| Effort and risk | Medium. Risk: analysts still pick the wrong options | Medium. Risk: faster reports, longer queue on her desk | Small. Risk: too small to matter |
-
-**Recommendation: A.** It's the builder she asked for, plus what turns its output into an answer she can approve in minutes: her defaults pre-set, the method written for her, checks that catch the slips she catches today, and one screen to approve. Every number is computed by code and traceable, which is model risk's condition.
+| What it is | Analysts filter and group the Spectra data in Spectra instead of Excel | Analysts build an answer with Sarah's defaults pre-set; the product writes the method, shows the other scenarios up front, and Sarah approves on one screen | Sarah's methodology as a one-page checklist and write-up template |
+| How it solves the problem | Saves the hour of slicing | Removes the choosing, the write-up and most of her checking; follow-ups are already answered | Fewer inconsistent choices; still manual |
+| User experience | A new tool for analysts; Sarah still checks everything | Analysts paste the question and confirm; Sarah reviews a draft in minutes; askers stay on email | A form to fill in |
+| Effort | Medium | Medium | Small |
 
 ## 3. The recommended solution
-**Workflow**, with her credit committee question: "How many CRE loans have a flood rating of E or worse by 2050?"
+**Recommendation: B.** It goes at the days of judgement, write-up and review, not the hour of slicing. It still gives her the builder she asked for, with her defaults built in. For later: projected balances (run-off), more data sources, PowerPoint.
 
-| Step | Who | What they do | What the product does | In the example (practice data) |
-|---|---|---|---|---|
-| 1. Ask | CRO, committees, pricing, treasury, IR | Email or Teams, as today. Never touch the product | | Credit committee emails the question |
-| 2. Build | **Analyst** | Pastes the question, picks the audience, adjusts the options, submits | Pre-sets her defaults for the audience; computes the answer, method note, checks and the other versions | "Credit committee" → central, 2050 (her paper); picks CRE, flood, E or worse. **4 of 235 CRE loans, £7.1m of £580.3m**; severe 8 loans, £17.0m |
-| 3. Review | **Sarah** | Approves, or sends back with a comment | Shows failed checks first; logs her decision | 6 of 6 checks pass; approves in minutes. The slipped draft would show its 3 failed checks first |
-| 4. Send | Analyst | Sends it | **Drafts the reply email and the Excel file** | Email text plus the 4 loans |
+**Workflow, with Treasury's question from the call** ("how much expected losses rise from 2030 to 2050 under the severe scenario")
+- Treasury emails the climate risk team the question.
+- The analyst pastes it into the product and picks "Treasury" as the asker.
+- The product reads it as: expected loss, severe scenario, 2030 to 2050, all loans. Sarah's defaults fill the rest (exclusions, balances held flat).
+- The product calculates: **£1.7m in 2030 → £4.7m in 2050, 2.81×** under severe. Central is shown next to it: 1.58×. Mortgages (2.70×) and CRE (2.88×) are one click away for the follow-up.
+- The analyst checks, adds a note, and sends the draft to Sarah.
+- Sarah sees what needs her attention first (any change from her defaults), checks the number and the method, and approves.
+- The product drafts the reply and file; the analyst sends it to Treasury.
 
-Model risk, IT, procurement and the CRO sign off the product once.
+*(Practice data; balances held flat.)*
 
-**Scope**
-- Covers: counts, £ totals, shares and rises, by loans, hazard and rating, for a scenario and year. All of her example questions
-- Refuses, with the reason: "loss to the bank" (needs default and insurance data that isn't loaded)
-- Not yet: real loan data until procurement signs (a synthetic loan book stands in), PowerPoint, the quarterly pack
-- Could go: one set of defaults behind every audience's numbers
+**What AI, code and people do**
+- **AI** reads the plain-English question into choices (scenario, years, loans), each shown and editable
+- **Code** calculates every number, writes the method from the choices, and checks them against Sarah's defaults
+- **People:** the analyst confirms the choices; Sarah approves before anything goes out
 
-**Sources and where AI fits**
-- Every value shows its source, one click away: a default and the paragraph of her methodology paper, or the analyst's change and their reason. Clicking a number shows the loan rows behind it
-- Checks are rules, not AI: e.g. the years in the pasted question must match the horizon picked, which catches the 2030-for-2050 slip
-- No AI in the first version. Later, AI can pre-fill the builder from the question, each pre-filled option showing the words it came from. It never produces a number
-- A person checks twice: the analyst picks the options, Sarah approves the answer
+**Success criteria**
+- **Target:** "answers going out in a day rather than most of a week"
+- **Mustn't get worse:** no wrong number reaches the board or the PRA; every figure traces back ("If I can't trace it, I won't use it")
+- **Approvers need to see:** model risk, that "the numbers are computed by code, not made up by a model"; then IT, procurement and the CRO
+- **Test cases:** Treasury's rise (2.81× severe, 1.58× central), plus her earlier example questions, with answers calculated by code
 
-**Model risk's conditions** (her follow-up email)
-- Documented method: a method note per answer, in her write-up fields
-- Reproducible: each answer logged with its choices, file dates and version; rebuilding it gives the same number
-- Independent validation: **partly**. They get the code and a test set to run; the validation is theirs
-- Named owner: Sarah, for each answer. **Not yet:** who owns the product itself
-
-**Success** (to validate with her)
-- Target: a question goes from asked to approved in a day; her review takes minutes, not half a day
-- Guardrail: nothing is sent unapproved; every figure rebuilds the same
-- Test cases: her three example questions, the treasury rise, the sent-back draft (must fail 3 checks), "loss to the bank" (refused)
-
-**Riskiest assumption:** with defaults pre-set and the checks running, Sarah's review really drops to minutes. The prototype tests it by giving an analyst the sent-back case and timing Sarah's review. Second: whether a method note and source rows are enough for model risk, tested by showing them one figure's trace.
-
-**Next step:** a working prototype on her own examples with Sarah, an analyst and someone from model risk. Ask: "Would you sign off this answer from this screen? What's missing?"
+**Assumptions**
+- Sarah's defaults can be written down well enough for the product to pre-set them
+- Seeing the method and the changes from her defaults is enough for her to stop "reading every line"
+- Balances held flat and mortgages and CRE combined by default are acceptable for a first version
