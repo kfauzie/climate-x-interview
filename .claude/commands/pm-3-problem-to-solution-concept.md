@@ -16,7 +16,7 @@ Start from the problem. Recommend the simplest thing that solves it.
 Save to runs/run-N/solution-concept.md and publish it as a Notion page under 2nd round prep, titled "Run N: solution concept (customer)". Show it in chat first. It will be shared on screen, so keep it short.
 
 ## 0. Check for gaps first
-Before writing anything, list what's missing or unclear in the notes that could change which idea is recommended or how it works. If there's anything, show me the questions for the customer and wait. Leave out nice-to-know detail.
+Before writing anything, check the notes for gaps big enough to change which idea is recommended or the main workflow (e.g. who the user is, what the job is). Only then, show me the questions for the customer and wait. Detail choices (defaults, settings, methodology options) don't stop the work: make a sensible assumption, state it, and move on. It's a first prototype.
 
 ## 1. The problem
 - **What they asked for**, in their words
@@ -45,6 +45,6 @@ Two or three ideas that are genuinely different from each other. For each:
 
 ## Rules
 - No claim without evidence: a quote or a calculated number
-- Only ask the customer what could change the solution. Leave out nice-to-know detail.
+- Only ask the customer what could change which idea or the main workflow. Everything else is a stated assumption.
 - Say how, not that: never "seamless" or "met by design"
 - Plain words a stranger could follow
