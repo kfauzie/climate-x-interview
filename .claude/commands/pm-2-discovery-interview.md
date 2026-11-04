@@ -28,7 +28,7 @@ X is what they asked for. Fill it in from the case context. No padding: every li
   - Name the job, not our product or the data file; they come up in the answer if they matter.
   - If pm-1 found something whose answer could change what gets built, add one line here, stated plainly as an observation: "I noticed [finding in plain words, with a number]." Optionally follow with a short open prompt such as "What's behind that?" Never a fixed tag like "Does that match what you see?". Leave it out if nothing is relevant.
 - **Pain points:** Where does most of the time go? · What makes it painful? · *\<Vague, hedged or suspiciously slow → "Why does that happen? It seems simple."\>* · *\<Admits a gap → "What happens when that goes wrong?"\>*
-- **Success criteria** (trust sits here): If this worked, how would you know? · What would you need to see to trust the output?
+- **Success criteria** (trust sits here): If this worked, how would you know? · What would the impact be: money, time, or better decisions? · What would you need to see to trust the output?
 - **Closing:** **\<Recap\>** three points, biggest problem first, in their words and with their numbers. · Anything I missed? · Can I email you short questions?
 
 **Last, an empty Notes section** for the call.
