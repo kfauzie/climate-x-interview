@@ -34,24 +34,18 @@ ol{margin:0;padding-left:20px}li{margin:3px 0}
 <div class="steps"><span class="on">Build</span> ─ Answer ─ Review ─ Send</div>
 <div class="body">
 <h1>Build the answer</h1>
+<div class="q">For: Analyst · Job: turn the asker's question into the right choices</div>
 <div class="card">
  <div class="row"><div class="k">Question <span class="req">Required</span></div><div class="input" style="grid-column:2/4">How many CRE loans have a flood rating of E or worse by 2050?</div></div>
  <div class="row"><div class="k">Who asked</div><div class="input" style="grid-column:2/4">Credit committee</div></div>
- <div class="row"><div class="k">Who it's for <span class="req">Required</span></div><div><span class="pill on">Committee</span><span class="pill">PRA / stress</span><span class="pill">Other</span></div><div class="sub" style="font-size:13px">Sets the defaults below</div></div>
+ <div class="row"><div class="k">Who it's for <span class="req">Required</span></div><div><span class="pill on">Committee</span><span class="pill">PRA / stress</span><span class="pill">Other</span></div><div class="sub" style="font-size:13px">Sets your defaults</div></div>
 </div>
-<div class="card"><div class="lbl">Options · uses your committee defaults: central scenario, 2050</div>
- <div class="row"><div class="k">Measure</div><div><span class="pill on">Count of loans, with balance</span><span class="pill">£ damage</span><span class="pill">Share</span><span class="pill">Rise</span></div><div class="src">Default</div></div>
- <div class="row"><div class="k">Loans</div><div><span class="pill on">Commercial real estate</span><span class="pill">Mortgages</span><span class="pill">All</span></div><div class="src">Changed by you</div></div>
- <div class="row"><div class="k">Hazard <span class="req">Required</span></div><div><span class="pill on">Flood</span><span class="pill">Subsidence</span><span class="pill">Heat</span><span class="pill">Wind</span></div><div class="src">Picked by you</div></div>
- <div class="row"><div class="k">Rating</div><div><span class="pill">A</span><span class="pill">B</span><span class="pill">C</span><span class="pill">D</span><span class="pill on">E</span><span class="pill on">F</span><span class="pill on">G</span> E or worse</div><div class="src">Default</div></div>
- <div class="row"><div class="k">Scenario</div><div><span class="pill on">Central</span><span class="pill">Severe</span><span class="pill">Low</span></div><div class="src">Methodology paper · committee</div></div>
- <div class="row"><div class="k">Year</div><div><span class="pill">2030</span><span class="pill on">2050</span> <span class="ok" style="font-size:13px">Matches “by 2050” in the question</span></div><div class="src">Methodology paper · committee</div></div>
- <div class="row"><div class="k">Leave out</div><div><span class="pill on">In default</span><span class="pill on">Redeemed since the export</span><span class="pill">Maturing before 2030</span></div><div class="src">Methodology paper</div></div>
- <div class="row"><div class="k">Count per</div><div><span class="pill on">Loan</span><span class="pill">Property</span></div><div class="src">Default</div></div>
- <div class="row"><div class="k">Group by</div><div><span class="pill">Hazard</span><span class="pill">Region</span><span class="pill">Property type</span></div><div class="sub" style="font-size:13px">Optional</div></div>
- <div class="row"><div class="k">Reason for change</div><div class="input">Question asks about CRE only</div><div class="src">Needed for “Loans”</div></div>
+<div class="card"><div class="lbl">What will be calculated</div>
+ <div style="font-size:18px">Counting CRE loans rated flood E or worse at 2050, central scenario, excluding loans in default, loans redeemed since the export and loans maturing before 2030.</div>
+ <div class="sub" style="margin-top:10px;font-size:13px"><span class="src">From the question</span>: CRE · flood · E or worse · 2050 &nbsp;&nbsp; <span class="src">Your committee defaults</span>: central · the three exclusions</div>
 </div>
-<div class="card">Can't answer “loss to the bank”: it needs default-loss and insurance data that isn't loaded. Damage to properties is available.</div>
+<div class="warn">The asker didn't say which scenario. Using central, your committee default.</div>
+<div class="src" style="margin-top:12px">Change options</div>
 </div>
 <div class="foot"><span class="btn">Clear</span><span class="btn p">Calculate →</span></div>
 </div>
@@ -62,26 +56,26 @@ ol{margin:0;padding-left:20px}li{margin:3px 0}
 <div class="body">
 <h1>Answer</h1>
 <div class="q">“How many CRE loans have a flood rating of E or worse by 2050?” · Credit committee</div>
+<div class="q" style="margin-top:-10px">For: Analyst · Job: check the answer before it goes to Sarah</div>
 <div class="cols"><div>
  <div class="card"><div class="lbl">Answer · uses your committee defaults: central scenario, 2050</div>
-  <div class="big"><u>4 of 235 CRE loans</u></div>
-  <div class="sub">£7.1m of £580.3m balance · rated flood E or worse · 2050 · central</div></div>
+  <div class="big"><u>3 of 144 CRE loans</u></div>
+  <div class="sub">£5.4m of £351.8m balance · rated flood E or worse · 2050 · central</div></div>
  <div class="card"><div class="lbl">If one option changed</div><table>
-  <tr><td>Severe scenario</td><td>8 loans · £17.0m</td><td class="r"><span class="tag acc">Doubles the answer</span></td></tr>
-  <tr><td>Low-emissions scenario</td><td>4 loans · £7.1m</td><td class="r"><span class="tag">Same answer</span></td></tr>
-  <tr><td>Year 2030</td><td>4 loans · £6.2m</td><td class="r"><span class="tag">Same count, different loans</span></td></tr>
-  <tr><td>Count per property</td><td>4 properties · £7.1m</td><td class="r"><span class="tag">Same answer</span></td></tr></table></div>
+  <tr><td>Severe scenario</td><td>5 loans · £9.6m</td><td class="r"><span class="tag acc">2 more loans</span></td></tr>
+  <tr><td>Low-emissions scenario</td><td>3 loans · £5.4m</td><td class="r"><span class="tag">Same answer</span></td></tr>
+  <tr><td>Year 2030</td><td>4 loans · £6.2m</td><td class="r"><span class="tag">1 more loan</span></td></tr>
+  <tr><td>Count per property</td><td>3 properties · £5.4m</td><td class="r"><span class="tag">Same answer</span></td></tr></table></div>
  <div class="card"><div class="lbl">Method note · as it will be sent</div><ol>
   <li>Scenario: central (SSP2-4.5). Horizon: 2050.</li>
   <li>Hazard: flood; rated E or worse.</li>
-  <li>Loans: commercial real estate. Excludes loans in default and 6 loans redeemed since the export.</li>
+  <li>Loans: commercial real estate. Excludes loans in default, loans redeemed since the export and loans maturing before 2030 (97 loans).</li>
   <li>Counted per loan.</li>
   <li>Spectra export as at 30 Jun 2026, joined to the loan book as at 30 Sep 2026 on loan ID; 2 loans didn't match and are listed separately.</li>
   <li>Current balances, no allowance for repayment.</li></ol></div>
 </div><div>
- <div class="card"><div class="lbl">The 4 loans</div><table>
+ <div class="card"><div class="lbl">The 3 loans</div><table>
   <tr><td>Hotel · Yorkshire</td><td class="r">£3.1m · E</td></tr>
-  <tr><td>Warehouse · South West</td><td class="r">£1.8m · E</td></tr>
   <tr><td>Mixed use · North West</td><td class="r">£1.2m · E</td></tr>
   <tr><td>Hotel · East of England</td><td class="r">£1.1m · E</td></tr></table>
   <div style="margin-top:8px" class="src">All rows, excluded and unmatched (Excel)</div></div>
@@ -101,14 +95,14 @@ ol{margin:0;padding-left:20px}li{margin:3px 0}
 <div class="body">
 <h1>Review</h1>
 <div class="q">“How many CRE loans have a flood rating of E or worse by 2050?” · Credit committee · built by an analyst</div>
+<div class="q" style="margin-top:-10px">For: Sarah · Job: approve or send back in minutes</div>
 <div class="card" style="border-left:4px solid #b02a2a"><div class="lbl">2 checks failed · look at these first</div><table>
  <tr><td class="x">✕</td><td><b>Wrong horizon.</b> The question asks about 2050; this uses 2030.</td><td class="r"><span class="tag">Changes the answer</span></td></tr>
  <tr><td class="x">✕</td><td><b>Stale data.</b> The export is older than the loan book; loans redeemed since then are included.</td><td class="r"><span class="tag">Changes the answer</span></td></tr></table>
  <div class="sub" style="margin-top:6px">Analyst's note: “Needed for tomorrow's committee.”</div></div>
 <div class="card"><div class="lbl">What this changes</div><div class="versus">
- <div class="a"><div class="lbl">As built</div><div class="big" style="font-size:24px">4 of 236 loans · £6.2m</div><div class="sub">2030 · central · redeemed loans included</div></div>
- <div><div class="lbl">With the checks fixed</div><div class="big" style="font-size:24px">4 of 235 loans · £7.1m</div><div class="sub">2050 · central · redeemed loans left out</div></div></div></div>
-<div class="card"><div class="lbl">Changes from your defaults</div>Loans: commercial real estate · reason: “Question asks about CRE only”</div>
+ <div class="a"><div class="lbl">As built</div><div class="big" style="font-size:24px">4 of 145 loans · £6.2m</div><div class="sub">2030 · central · redeemed loans included</div></div>
+ <div><div class="lbl">With the checks fixed</div><div class="big" style="font-size:24px">3 of 144 loans · £5.4m</div><div class="sub">2050 · central · redeemed loans left out</div></div></div></div>
 <div class="card"><div class="lbl">Comment to the analyst</div><div class="input">Please rebuild: (1) use 2050, as asked; (2) leave out loans redeemed since the export.</div></div>
 <div class="src">Method note, the loans and all rows</div>
 </div>
@@ -121,14 +115,15 @@ ol{margin:0;padding-left:20px}li{margin:3px 0}
 <div class="body">
 <h1>Send the reply</h1>
 <div class="q">Approved by Sarah Okafor, 4 Nov 2026, 14:10</div>
+<div class="q" style="margin-top:-10px">For: Analyst · Job: send the approved answer to the asker</div>
 <div class="card"><div class="lbl">Reply · words can be edited, numbers can't</div>
  <div class="row"><div class="k">To</div><div class="input" style="grid-column:2/4">Credit committee</div></div>
  <div class="row"><div class="k">Subject</div><div class="input" style="grid-column:2/4">Re: CRE loans with a flood rating of E or worse by 2050</div></div>
  <div class="input" style="margin-top:10px;line-height:1.7">Hi all,<br><br>
- <span style="background:var(--accbg)">4</span> of our <span style="background:var(--accbg)">235</span> commercial real estate loans (<span style="background:var(--accbg)">£7.1m</span> of <span style="background:var(--accbg)">£580.3m</span> balance) have a flood rating of E or worse by 2050 under the central scenario. Under the severe scenario it's <span style="background:var(--accbg)">8</span> loans (<span style="background:var(--accbg)">£17.0m</span>).<br><br>
- Method: central scenario (SSP2-4.5), 2050; leaves out loans in default and loans redeemed since the 30 Jun 2026 export. The loans are listed in the attached file.<br><br>
+ <span style="background:var(--accbg)">3</span> of our <span style="background:var(--accbg)">144</span> commercial real estate loans (<span style="background:var(--accbg)">£5.4m</span> of <span style="background:var(--accbg)">£351.8m</span> balance) have a flood rating of E or worse by 2050 under the central scenario. Under the severe scenario it's <span style="background:var(--accbg)">5</span> loans (<span style="background:var(--accbg)">£9.6m</span>).<br><br>
+ Method: central scenario (SSP2-4.5), 2050; leaves out loans in default, loans redeemed since the 30 Jun 2026 export and loans maturing before 2030. The loans are listed in the attached file.<br><br>
  Approved by Sarah Okafor, Head of Climate Risk.</div></div>
-<div class="card"><div class="lbl">Attachment</div><b>CRE flood E or worse 2050.xlsx</b> <span class="sub">· Answer · Loans counted (4) · Left out (6) · Unmatched (2) · Unscored (1) · Method</span></div>
+<div class="card"><div class="lbl">Attachment</div><b>CRE flood E or worse 2050.xlsx</b> <span class="sub">· Answer · Loans counted (3) · Left out (97) · Unmatched (2) · Unscored (1) · Method</span></div>
 </div>
 <div class="foot"><span><span class="btn">Copy reply</span> <span class="btn">Download Excel</span></span><span class="btn p">Mark as sent</span></div>
 </div>
