@@ -49,6 +49,7 @@ Two or three ideas that are genuinely different from each other. For each:
 
 ## Rules
 - No claim without evidence: a quote or a calculated number
+- For money decisions today (cost, payback), use the nearest year in the data, and show how it changes later; a far-off year alone suggests the problem can wait
 - Only ask the customer what could change which idea or the main workflow. Everything else is a stated assumption.
 - Say how, not that: never "seamless" or "met by design"
 - Plain words a stranger could follow. Explain any domain term the first time it appears (e.g. what a climate scenario means)
