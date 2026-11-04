@@ -25,7 +25,7 @@ X is what they asked for. Fill it in from the case context. No padding: every li
    - Is it just [whoever is asking] asking for this, or do others like you get the same request?
 2. **User journey.**
    - **Walkthrough**
-     - Walk me through the last time you used [the data, named exactly: which file, export or report] for a decision or a report: who did what, in which tool, how long it took.
+     - Walk me through the last time you [did the job behind the ask, in their words]: who did what, in which tool, how long it took. Name the job, not our product or the data file; they come up in the answer if they matter.
      - Who would actually use X?
      - *\<Unexpected step → "How did you decide that last time?"\>*
    - **Pain points**
