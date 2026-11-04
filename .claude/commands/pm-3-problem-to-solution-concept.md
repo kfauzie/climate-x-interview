@@ -38,13 +38,13 @@ Two or three ideas that are genuinely different from each other. For each:
   - The analyst pastes the question into the product.
   - The product suggests the scenario, year and loans; the analyst confirms.
   - ...
-  Use a real request from the interview notes if available, with real numbers calculated from the data.
+  Use a real request from the interview notes if available, with real numbers calculated from the data. Show it handles the range of requests and follow-ups, not just the example or the defaults. Every input has a reason: it changes the answer, or it's needed to send it.
 - **What AI, code and people do:** decide who does each step based on what each does best. AI for flexibility (messy input, free text, interpretation), code for fixed logic (every number, rules, checks), and people for judgement and approval. Keep people in control: what AI and code do is visible and editable, and a person checks before anything goes out.
 - **Success criteria:** how we'll know it works: a target, what mustn't get worse, what the people who approve it need to see, and test cases with known answers
-- **Assumptions:** any belief that, if wrong, would make the solution fail
+- **Assumptions:** any belief that, if wrong, would make the solution fail, each written as a question to ask in the MVP review
 
 ## Rules
 - No claim without evidence: a quote or a calculated number
 - Only ask the customer what could change which idea or the main workflow. Everything else is a stated assumption.
 - Say how, not that: never "seamless" or "met by design"
-- Plain words a stranger could follow
+- Plain words a stranger could follow. Explain any domain term the first time it appears (e.g. what a climate scenario means)
