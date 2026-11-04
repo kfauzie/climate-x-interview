@@ -1,39 +1,44 @@
 # Run 1: clickable prototype
 
-From `solution-design.md`. Status: **built; PR open**: https://github.com/kfauzie/climate-x-interview/pull/1
+From `solution-design.md`. Status: **rebuilt to the agreed three screens; PR open**: https://github.com/kfauzie/climate-x-interview/pull/1
+
+## What it does
+**Draft** (analyst) → **Review** (Sarah) → **Send** (analyst)
+- **Draft:** paste the question and pick who asked. Scenario, horizon and exclusions start on Sarah's standard for that asker; the answer (e.g. **3 loans · £5.4m**) updates live as the toggles change, with the loans behind it. Warnings (year doesn't match the question, stale data) show here, and need a note to Sarah
+- **Review:** Sarah sees the question, the analyst's note, the answer, the loans and what the write-up adds. She can change scenario, horizon or exclusions, then approves or sends back with a comment
+- **Send:** the reply and the Excel file are drafted from the approved answer; Send logs who asked, built and approved, and the data dates
 
 ## How it's built
-Code in `prototype/` (see its README for how to run and test it).
-- `engine.py` computes every number, check, method note and source row; `interpret.py` reads the question into choices and never produces a number
-- Practice data, plus a synthetic loan book (`data/make_loan_book.py`), labelled as such
-- 21 tests from the earlier test set
-- Clickable demo for people who can't run it: `prototype/demo/build_demo.py`, replaying answers precomputed by the engine
+Code in `prototype/` (its README says how to run and test it).
+- `engine.py` computes every number, check, write-up line and loan row. Default exclusions now include loans maturing before 2030
+- `interpret.py` reads the question into the starting options by rules, not AI. It never produces a number
+- `app.py`: preview mode (recalculates without asking for reasons, for the live toggles) and a send step
+- Practice data plus a synthetic loan book (`data/make_loan_book.py`), labelled as such
+- 23 tests, all passing
 
-## Feedback round 1 (from my review of the demo, 2026-11-01)
-1. Ask is free text; examples only pre-fill it. Audience is a list plus "Other"
-2. Confirm can add choices the AI didn't pick up (region, property type, origination year, balance band)
-3. Back keeps everything
-4. Back bottom left, forward bottom right, on every step
-5. Modern B2B SaaS look: cleaner layout, clear hierarchy, consistent components
-6. Climate X colours and type
-7. Look of Climate X's own products
+## Run it
+```bash
+python3 -m uvicorn prototype.app:app --port 8000
+```
+Then open http://localhost:8000. Tests: `python3 -m pytest prototype/tests -q`.
 
-Status: **all 7 implemented**. Also fixed while testing: a follow-up keeps a change Sarah already approved and can still fast-track; a follow-up naming a year uses it for the horizon check; the scenario verdict lists the selected scenarios; "infx" for a zero answer now reads "ranges from 0 to N".
-
-## Check before showing anyone (2026-11-03)
+## Checks (2026-11-04)
 | Check | Result |
 |---|---|
-| Purpose and next step clear in five seconds | Pass |
-| Every screen tied to a pain; ends in an action | Pass |
-| One headline, detail on demand | Pass |
-| Every number traceable from the screen | **Partial:** loans only in the Excel download |
-| Limits stated at the decision | **Partial:** what it won't do isn't in the app |
-| Unstated, ambiguous, out of scope flagged, not guessed | Pass |
-| Their language, no AI jargon | Pass |
-| Back keeps everything; actions in the same place | Pass |
-| Errors and empty states say what to do | Pass |
-| Belongs in the product | Pass |
-| Numbers right | Pass: 21 tests, browser walk-through |
+| Main flow end to end in a browser | Pass: Draft → Review → Approve → Send → Sent, no page errors |
+| Toggles update the answer | Pass: severe 5 loans · £9.6m; 2030 4 loans · £6.2m |
+| Edge cases | Pass: "loss to the bank" refused with the reason; total-loss question shows hazards and regions; zero result shows 0 |
+| Each fact once; their words | Pass: Horizon, Excludes, write-up; data dates shown once |
+| Phone width | Pass |
+| Numbers right | Pass: 23 tests |
+
+Fixed during the check: clicking "Send draft to Sarah" while still in the question box lost the click; the write-up box repeated the data dates.
+
+## Feedback rounds
+- **Round 1 (2026-11-01, my review of the old demo):** free text, add choices, back keeps state, button placement, B2B look, Climate X colours and type. Carried into the rebuild
+- **Round 2 (2026-11-04, solution design):** builder instead of AI reading the question; Build and Answer merged into Draft; checks shown to the analyst; Sarah reviews the answer, not a checklist; one Send button
 
 ## Open items
-- Rebuild to `solution-design.md`: the builder instead of AI reading the question, the Send screen with the drafted reply, the loans on screen, "About this answer", as built vs fixed, pre-filled send back
+- Rebuild the no-install demo (`prototype/demo/build_demo.py`); the fixed version isn't published yet
+- Recompute the CRO, pricing and treasury figures in the test set with the new default exclusions
+- Fast-track review for one-change follow-ups is still in the API but not on screen
