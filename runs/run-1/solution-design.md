@@ -3,9 +3,10 @@
 A report builder with Sarah's defaults, a method note it writes itself, her approval and a drafted reply. No AI in this version. Medium fidelity; numbers from the practice data and synthetic loan book. Source: `design/solution-design.html`.
 
 ## Walkthrough
-- **Analyst:** I've just received an email from the credit committee: "How many CRE loans have a flood rating of E or worse by 2050?" I paste it in and pick who asked. The scenario, year and exclusions are already set to Sarah's standard, and the answer is there: 3 loans, £5.4m. I check the loans behind it, try severe to see if it matters, add a note and send the draft to Sarah
-- **Sarah:** a draft is waiting. I read the question and the answer, glance at the loans and the method, and approve. If something's off, I change it or send it back with a comment
-- **Analyst:** it's approved. The reply and the file are drafted; I read it and send
+One question all the way through: "For the stress test, how many CRE loans have a flood rating of E or worse?"
+- **Analyst:** the stress-test team emails the question. I paste it in. It's read as CRE loans, flood E or worse; Sarah's stress-test standard fills in central and severe, 2030 and 2050. I see all four answers at once and the loans behind the worst case. The stress test covers the whole book, so I include loans maturing before 2030, give my reason, add a note and send the draft to Sarah
+- **Sarah:** a draft is waiting. What needs my attention comes first: the analyst changed my standard, and with it severe 2050 is 8 loans rather than 5. I check the table and approve
+- **Analyst:** it's approved. The reply with the table and the file are drafted; I send it
 
 ## Flow
 | Step | Who | Screen | Ends in |
@@ -29,7 +30,6 @@ Askers (CRO, committees, pricing, treasury, IR) never touch it: they email the q
 ## 2. Review the draft
 ![Review](design/review.png)
 
-Shown with the stress-test version of the question, which needs more than one scenario and year.
 - **Removes:** half a day of checking someone else's numbers
 - **Looks different from the draft:** addressed to Sarah, with what needs her attention first: changes from her standard (with their effect on the answer), flags and the analyst's note
 - **More than one scenario or year:** one answer with a small table (central and severe × 2030 and 2050), reviewed once and sent as one email

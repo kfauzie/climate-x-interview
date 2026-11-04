@@ -44,6 +44,8 @@ th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0
 .sarah{background:#fff;border:2px solid #222}.sarah .hello{font-size:28px;font-weight:700;margin-bottom:12px}
 .att{border-left:5px solid #e01e1a;background:#fdf3f2;padding:12px 16px;margin-bottom:12px}.att li{margin:6px 0}
 .grid2{border-collapse:collapse;margin:0 auto}.grid2 th,.grid2 td{padding:12px 28px;text-align:center;border:1px solid #ddd}.grid2 td b{font-size:30px}.grid2 .s{color:#888;font-size:14px}
+.seg2{display:inline-flex;gap:6px}.seg2 span{padding:6px 14px;border:1px solid #999;border-radius:6px;background:#fff}.seg2 .on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.flag{display:block;margin-top:8px;border-left:4px solid #e01e1a;background:#fdf3f2;padding:6px 10px;font-size:14px}
 </style></head><body>
 
 <div class="screen" id="draft">
@@ -51,30 +53,30 @@ th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0
 <div class="steps"><span class="on">Draft</span> ─ Review ─ Send</div>
 <div class="body"><h1>Draft</h1>
 <div class="card">
- <div class="row"><div class="k">Question</div><div style="grid-column:2/4"><div class="input">How many <span class="hl">CRE loans</span> have a <span class="hl">flood rating of E or worse</span> <span class="hl">by 2050</span>?</div>
+ <div class="row"><div class="k">Question</div><div style="grid-column:2/4"><div class="input">For the <span class="hl">stress test</span>, how many <span class="hl">CRE loans</span> have a <span class="hl">flood rating of E or worse</span>?</div>
   <div class="qx">Try: <span>How many CRE loans have a flood rating of E or worse by 2050?</span><span>What's our total expected climate loss by 2050?</span><span>How much of our 2024 and 2025 lending went into high subsidence areas?</span></div></div></div>
- <div class="row"><div class="k">Asked by</div><div class="input">Credit committee ▾</div><div class="src">+ Add person</div></div>
+ <div class="row"><div class="k">Asked by</div><div class="input">PRA / stress test ▾</div><div class="src">+ Add person</div></div>
  <div class="row"><div class="k">Data</div><div style="grid-column:2/4">Spectra export, 30 Jun 2026 <span class="src" style="margin:0 18px 0 6px">Refresh from Spectra</span> Loan book, 30 Sep 2026 <span class="src" style="margin-left:6px">Upload new</span></div></div>
 </div>
-<div class="card out"><div class="kn" style="font-size:52px">3 loans · £5.4m</div><div class="ks" style="margin-top:8px">of 144 · of £351.8m balance</div></div>
+<div class="card out"><table class="grid2"><tr><th></th><th>2030</th><th>2050</th></tr>
+  <tr><th>Central</th><td><b>4</b> loans<div class="s">£6.2m</div></td><td><b>4</b> loans<div class="s">£7.1m</div></td></tr>
+  <tr><th>Severe</th><td><b>4</b> loans<div class="s">£6.2m</div></td><td><b>8</b> loans<div class="s">£17.0m</div></td></tr></table>
+ <div class="ks" style="margin-top:10px;font-size:16px">of 235 CRE loans · £580.3m balance</div></div>
 <div class="cols2">
  <div class="card">
   <div class="ctl"><div class="k">Count</div><div><span class="chip">CRE loans</span><span class="chip">Flood rating E or worse</span><span class="src2">From the question</span></div></div>
-  <div class="ctl"><div class="k">Scenario</div><div><span class="seg"><span>Low</span><span class="on">Central</span><span>Severe</span></span><span class="mini">Sarah's default for committees</span></div></div>
-  <div class="ctl"><div class="k">Horizon</div><div><span class="seg"><span>2030</span><span class="on">2050</span></span><span class="mini">From the question</span></div></div>
-  <div class="ctl"><div class="k">Excludes</div><div><span class="chip">Loans in default<i>×</i></span><span class="chip">Redeemed since the export<i>×</i></span><span class="chip">Maturing before 2030<i>×</i></span><br><span class="input" style="display:inline-block;margin-top:8px;padding:5px 10px;color:#999;min-width:300px">+ Add exclusion, e.g. loans in arrears</span></div></div>
+  <div class="ctl"><div class="k">Scenarios</div><div><span class="seg2"><span>Low</span><span class="on">Central</span><span class="on">Severe</span></span><span class="src2">Sarah's standard for stress tests</span></div></div>
+  <div class="ctl"><div class="k">Horizons</div><div><span class="seg2"><span class="on">2030</span><span class="on">2050</span></span><span class="src2">Sarah's standard for stress tests</span></div></div>
+  <div class="ctl"><div class="k">Excludes</div><div><span class="chip">Loans in default<i>×</i></span><span class="chip">Redeemed since the export<i>×</i></span><br><span class="input" style="display:inline-block;margin-top:8px;padding:5px 10px;color:#999;min-width:300px">+ Add exclusion, e.g. loans in arrears</span>
+   <span class="flag"><b>Changed from Sarah's standard:</b> loans maturing before 2030 are included. Reason: <span class="input" style="display:inline-block;padding:2px 8px">The stress test covers the whole book</span></span></div></div>
   <div class="ctl"><div class="k">Method</div><div>Worst rating per loan · current balances <span class="src" style="margin-left:6px">Change</span></div></div>
  </div>
- <div class="card"><div class="lbl">The 3 loans</div><table>
-  <tr><th>Loan</th><th>Property</th><th>Region</th><th style="text-align:right">Balance</th><th style="text-align:right">Rating</th></tr>
-  <tr><td>L101880</td><td>Hotel</td><td>Yorkshire</td><td class="r">£3.1m</td><td class="r">E</td></tr>
-  <tr><td>L101854</td><td>Mixed use</td><td>North West</td><td class="r">£1.2m</td><td class="r">E</td></tr>
-  <tr><td>L100322</td><td>Hotel</td><td>East of England</td><td class="r">£1.1m</td><td class="r">E</td></tr></table>
+ <div class="card"><div class="lbl">The 8 loans in the worst case (severe, 2050)</div><table><tr><th>Loan</th><th>Property</th><th>Region</th><th style="text-align:right">Balance</th><th style="text-align:right">Rating</th></tr><tr><td>L100410</td><td>Mixed use</td><td>South East</td><td class="r">£4.8m</td><td class="r">E</td></tr><tr><td>L100126</td><td>Warehouse</td><td>South West</td><td class="r">£3.6m</td><td class="r">E</td></tr><tr><td>L101880</td><td>Hotel</td><td>Yorkshire</td><td class="r">£3.1m</td><td class="r">E</td></tr><tr><td>L101936</td><td>Warehouse</td><td>South West</td><td class="r">£1.8m</td><td class="r">E</td></tr><tr><td>L101854</td><td>Mixed use</td><td>North West</td><td class="r">£1.2m</td><td class="r">E</td></tr><tr><td>L100322</td><td>Hotel</td><td>East of England</td><td class="r">£1.1m</td><td class="r">F</td></tr><tr><td>L101321</td><td>Office</td><td>East Midlands</td><td class="r">£0.8m</td><td class="r">E</td></tr><tr><td>L101934</td><td>Hotel</td><td>Yorkshire</td><td class="r">£0.5m</td><td class="r">E</td></tr></table>
   <div class="lbl" style="margin-top:16px">Not counted</div>
   <div><span class="src">2 loans</span> are in the Spectra export but not in the loan book.</div>
-  <div><span class="src">1 loan</span> has no flood rating for 2050.</div></div>
+  <div><span class="src">1 loan</span> has no flood rating.</div></div>
 </div>
-<div class="card"><div class="lbl">Note to Sarah (optional)</div><div class="input" style="color:#999">Add a note</div></div>
+<div class="card"><div class="lbl">Note to Sarah (optional)</div><div class="input">Needed for the ICAAP pack on Friday.</div></div>
 </div>
 <div class="foot"><span class="btn">Cancel</span><span class="btn p">Send draft to Sarah →</span></div></div>
 <div class="screen" id="review">
@@ -102,10 +104,14 @@ th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0
 <div class="body"><h1>Send the answer</h1>
 <div class="q"><span class="tag" style="color:#2a7a3a;border-color:#2a7a3a">Approved by Sarah · 14:10</span></div>
 <div class="card">
- <div class="row"><div class="k">To</div><div class="input" style="grid-column:2/4">Credit committee</div></div>
- <div class="row"><div class="k">Subject</div><div class="input" style="grid-column:2/4">Re: CRE loans with a flood rating of E or worse by 2050</div></div>
- <div class="input" style="margin-top:10px;line-height:1.7">Hi all,<br><br>3 of our 144 commercial real estate loans (£5.4m of £351.8m balance) have a flood rating of E or worse by 2050 under the central climate scenario. Under the severe scenario it's 5 loans (£9.6m).<br><br>The loans and how they were counted are in the attached file.<br><br>Approved by Sarah Okafor, Head of Climate Risk.</div>
- <div style="margin-top:10px">Attached: <b>CRE flood E or worse 2050.xlsx</b></div></div>
+ <div class="row"><div class="k">To</div><div class="input" style="grid-column:2/4">PRA / stress test team</div></div>
+ <div class="row"><div class="k">Subject</div><div class="input" style="grid-column:2/4">Re: CRE loans with a flood rating of E or worse, stress test</div></div>
+ <div class="input" style="margin-top:10px;line-height:1.7">Hi all,<br><br>CRE loans with a flood rating of E or worse, out of 235 (£580.3m balance):<br>
+ <table style="width:auto;margin:6px 0 6px 0"><tr><th style="padding-right:30px"></th><th style="padding-right:30px">2030</th><th>2050</th></tr>
+ <tr><td style="padding-right:30px">Central</td><td style="padding-right:30px">4 loans, £6.2m</td><td>4 loans, £7.1m</td></tr>
+ <tr><td style="padding-right:30px">Severe</td><td style="padding-right:30px">4 loans, £6.2m</td><td>8 loans, £17.0m</td></tr></table>
+ This includes loans maturing before 2030, as the stress test covers the whole book. The loans and how they were counted are in the attached file.<br><br>Approved by Sarah Okafor, Head of Climate Risk.</div>
+ <div style="margin-top:10px">Attached: <b>CRE flood E or worse stress test.xlsx</b></div></div>
 </div>
-<div class="foot"><span class="btn">← Back</span><span class="btn p">Send</span></div></div>
+<div class="foot"><span></span><span class="btn p">Send</span></div></div>
 </body></html>
