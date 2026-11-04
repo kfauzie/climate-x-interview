@@ -36,7 +36,7 @@ Two or three ideas that are genuinely different from each other. For each:
   - The product suggests the scenario, year and loans; the analyst confirms.
   - ...
   Use a real request from the interview notes if available, with real numbers calculated from the data.
-- **AI vs code:** what AI does (interpreting messy input), and what code does (every number). Where a person checks.
+- **AI vs code vs human:** decide who does each step based on what each does best. AI for flexibility (messy input, free text, interpretation), code for fixed logic (every number, rules, checks), and people for judgement and approval. Keep people in control: what AI and code should be visible and editable, and a person checks before anything goes out.
 - **Success criteria:** how we'll know it works: a target, what mustn't get worse, what the people who approve it need to see, and test cases with known answers
 - **Assumptions:** any belief that, if wrong, would make the solution fail
 
