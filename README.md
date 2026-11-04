@@ -9,7 +9,7 @@ How I go from a customer's data and a short interview to a working first version
 | [`pm-1-data-discovery`](.claude/commands/pm-1-data-discovery.md) | What the data is, what to trust, which choices change the answer |
 | [`pm-2-discovery-interview`](.claude/commands/pm-2-discovery-interview.md) | Finding the problem behind the ask, in 10 minutes |
 | [`pm-3-problem-to-solution-concept`](.claude/commands/pm-3-problem-to-solution-concept.md) | The problem, two or three solution ideas, and the recommended one's workflow end to end |
-| [`pm-4-solution-design`](.claude/commands/pm-4-solution-design.md) | Medium-fidelity screens, one per workflow step, reviewed live. Design principles |
+| [`pm-4-solution-design`](.claude/commands/pm-4-solution-design.md) | Screens in Climate X's brand, one per workflow step, reviewed live. Design principles |
 | [`pm-5-build`](.claude/commands/pm-5-build.md) | The working first version (MVP): one HTML file, built a screen at a time, numbers by code |
 | [`pm-6-mvp-review`](.claude/commands/pm-6-mvp-review.md) | Testing the working version with the people who'd use and approve it |
 
