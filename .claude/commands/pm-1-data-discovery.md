@@ -1,31 +1,32 @@
 ---
 name: pm-1-data-discovery
-description: Look at a customer's data before and during discovery to find two or three findings worth putting in front of them, and turn each into an interview question. Two modes: Initial review (before the interview) and Answer (test a claim or answer one question).
+description: Look at a customer's data before and during discovery to find the findings worth putting in front of them, and turn each into an interview question. Two modes: Initial review (before the interview) and Answer (test a claim or answer one question).
 ---
 
 # Data discovery
 
-The goal is better questions for the customer, not a full analysis. The data's job is to give questions that couldn't be asked without it. People talk more when they react to their own numbers than to hypotheticals.
+The goal is to give the PM questions they couldn't ask without the data. People talk more when they react to their own numbers than to hypotheticals.
 
 Before starting, read climate-x-products, climate-x-company and climate-x-role.
 
 ## Ground rules
 - Every number is calculated by running code, never estimated by reading the file. Keep the code so each number can be traced.
 - Mark anything guessed (meanings, units, intent) as a guess.
-- Plain language. No jargon.
+- Plain, specific words. Use the customer's own name for their organisation, not a category ("[Company]", not "the company"). Say "mortgage application" or "loan application", never just "application".
+- Say "the output", not "the number": there isn't always a number.
+- Stay generic: look for patterns, not for a known story.
 - Don't over-analyse. Data quality is a sanity check, not the task.
-- Stay generic: look for patterns, not for any specific story.
 
 ## Initial review (before the interview)
 About a minute. Find what to ask, not everything.
 
 1. **Understand the file.** What one row is, how many rows, the key columns (identifiers, descriptors, risk measures), the dimensions packed into column names (hazards, scenarios, years), and anything ambiguous (units, yearly or cumulative, what a blank means). Guess which product it came from and what decisions it likely feeds, marked as a guess.
 2. **Look for three kinds of finding:**
-   - **What's changed:** recent vs older records, this period vs last, by count and by value.
-   - **What's concentrated:** one hazard, area, segment or asset carrying most of the risk or value.
-   - **What's missing or odd:** gaps, duplicates, stale or unscored records, and what the data can't answer. Treat each oddity as a clue to a past mistake or a manual workaround.
-   For each, check whether the scenario or year choice changes the picture materially.
-3. **Pick the two or three findings most likely to matter to the customer.** Prefer findings that are large, surprising, or that the customer could act on, and that test the ask: findings the ask would fix, and findings it wouldn't reach.
+   - **What's changed:** recent vs older records, by count and by value.
+   - **What's concentrated:** one hazard, area, segment or asset carrying most of it.
+   - **What's missing or odd:** gaps, duplicates, stale or unscored records, and what the data can't answer. Treat oddities as clues to past mistakes or workarounds.
+   For each, check whether the scenario or year choice changes the picture.
+3. **Report 2 to 5 findings.** Only as many as are real; never pad. If nothing is relevant to the customer's need, say so.
 
 ## Answer (after the interview, or any time)
 Test a claim the customer made, or answer one question. One at a time.
@@ -40,9 +41,12 @@ Test a claim the customer made, or answer one question. One at a time.
 - If cx.load raises ShapeError, the file doesn't fit; analyse by hand
 
 ## Output (one page, for the PM to react to)
-1. **Findings (three at most).** Each as a headline in plain words with one number and what it's compared against. E.g. "Recent records are riskier: 17% rated E–G, against 12% before."
-2. **Why it might matter.** One line per finding, labelled as a guess.
-3. **The question it becomes.** One per finding, tied to what the customer asked for, so the answer tells you whether the ask solves what the data shows. In the form: "The data shows X. Does that match what you see? How would [the ask] have changed that?" Keep it open: no hint of the answer you expect.
-4. **Checked, nothing found.** One line, so gaps aren't mistaken for things skipped.
-5. **Follow-ups to ask me.** Two or three ways to dig further (e.g. split by area, rerun under the severe scenario, compare by value instead of count).
-6. **The data in two lines.** Rows and what one row is; key columns; hazards, scenarios and years. Then whether it's usable, in one line.
+1. **Findings.** Each a plain-words headline with one number and what it's compared against.
+2. **Why it might matter.** One line each, labelled as a guess.
+3. **The question it becomes.** It names the problem, never the requested solution or who would use it. One question per line:
+   - "The data shows X. Does that match what you see?"
+   - "What do you do about it?"
+4. **Clarifications to confirm.** Ambiguities such as which scenario or year, units, what a blank means.
+5. **Checked, nothing found.** One line.
+6. **Follow-ups the PM can ask Claude Code.** Two or three ways to dig further.
+7. **The data in two lines,** and whether it's usable in one line.
