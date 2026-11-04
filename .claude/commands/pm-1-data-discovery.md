@@ -15,7 +15,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role.
 - Plain language
 - Don't over-analyse. Data quality is a sanity check, not the task
 
-## Initial review (before the interview)
+## Initial review (before the customer interview)
 1 minute max. A quick read to find what to ask, not a full analysis.
 
 1. **Who uses this, and for what?** Using climate-x-products, guess which product it came from and which decisions it likely feeds (e.g. a bank's Spectra export: stress tests, provisions, lending or pricing; Adapt: which resilience work to fund). Mark it as a guess to confirm with the customer.
@@ -33,7 +33,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role.
    - From step 4, what stands out → "Most of the risk sits in X. Does that match what you see? Does it change anything?"
    - From step 4, what it can't answer → "Do you ever get asked about Y? How do you answer it today?"
 
-## Answer (after the interview, or any time)
+## Answer (after the customer interview, or any time)
 Test a claim the customer made, or answer one question. One at a time.
 
 1. The claim or question in data terms, with anything ambiguous flagged
@@ -47,6 +47,6 @@ Test a claim the customer made, or answer one question. One at a time.
 - If cx.load raises ShapeError, the file doesn't fit; analyse by hand
 
 ## Output
-- Questions for the customer: only those whose answer could change the product. As many as that is, often one to three, sometimes none. A table: the question in plain words | why ask (the finding, with its number) | how the answer would change the product
+- Questions for the customer: only those whose answer could change the product. Test each one: if they answered one way or the other, would what we build, its defaults or its scope be different? If not, drop it. Often one, sometimes none. A table: the question in plain words | why ask (the finding, with its number) | how the answer would change the product
 - The data in two lines: rows and what one row is; the key columns; which hazards, scenarios and years
 - Whether it's usable, in one line

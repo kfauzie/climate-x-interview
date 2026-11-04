@@ -27,7 +27,7 @@ X is what they asked for. Fill it in from the case context, or as the user provi
 5. **Trust and success.** How would you know it's working? What would you need to see to trust it, and who signs it off?
 6. **Close.** Recap in three points, biggest problem first. Anything I missed? Can I email you short questions?
 
-On top of these, add any follow-up or clarification questions from pm-1-data-discovery, using judgement on which matter most.
+Add the questions from pm-1-data-discovery into the flow where they fit naturally (e.g. into the last example). They're only there because the answer could change the product, so they're asked, not optional.
 
 ## Save
 Save to runs/run-N/discovery-questions.md and publish it as a Notion page under 2nd round prep, titled "Run N: discovery questions (customer)", with an empty Notes section at the end.
