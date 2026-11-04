@@ -12,7 +12,7 @@ Facts from climate-x.com (November 2026). Company, models and regulation: `clima
 ## Spectra
 *How much could my assets lose, under which scenario, and when?*
 
-- **What it does:** search an address or upload up to 100k. Returns A–G ratings with accuracy, probability and severity, Expected Annual Loss in £ and %, climate value at risk, and a portfolio score. 11 hazards; CMIP6 SSP scenarios; flood defences can be toggled. Web app, CSV, PDF reports and an API.
+- **What it does:** search an address or upload up to 100k. Returns A–G ratings with confidence, probability and severity, Expected Annual Loss in £ and %, climate value at risk, and a portfolio score. 11 hazards (a recent press release says 12); CMIP6 SSP scenarios; 2020 to 2100; flood defences can be toggled. Web app, CSV, PDF reports and an API.
 - **Who buys it:** banks (stress tests, capital planning, provisions, lending decisions), real estate, insurers, private equity, and partners such as Mitie and Nfq. The day-to-day user is a risk analyst, not a climate expert.
 - **Example:** a Tier 1 bank ran it across about 0.5m properties to size a provision.
 
@@ -23,9 +23,14 @@ Facts from climate-x.com (November 2026). Company, models and regulation: `clima
   - **Vulnerability:** how much damage the hazard does to that kind of asset, depending on type (building, infrastructure), use (residential, commercial, office) and properties (age, materials).
 - **Expected Annual Loss (EAL):** the average damage per year, adding up all possible events weighted by their probability. Shown in £, and as % of the asset's value. Example: an EAL of 0.5% on a £1m building means about £5,000 a year on average.
 - **Climate projections (CMIP6 SSPs):** CMIP6 is the global set of climate models behind the latest IPCC report. SSPs (Shared Socioeconomic Pathways) are emissions scenarios: SSP1 low, SSP2 middle of the road, SSP3 high, SSP5 very high. Spectra offers SSP1, 2, 3 and 5, plus the older CMIP5 RCPs (2.6, 4.5, 6.0, 8.5). Climate X picks the best-performing models for each hazard and downscales them to asset level.
-- **Data:** remote sensing, public databases and machine learning for loss modelling.
+- **Hazards:** river, surface and coastal flooding; subsidence; landslide and coastal erosion; wildfire; North Atlantic storms; tropical cyclones; storm surge; extreme heat; drought. A recent press release says 12, so the list may have grown.
+- **Time horizons:** 2020 to 2100, in 5-year steps to 2050, then every 10 years.
+- **Detail behind each score:** confidence, probability and severity, e.g. flood depth in metres or subsidence in centimetres.
+- **Flood defences:** defended or undefended flood, which can be toggled per scenario.
+- **Coverage:** resolution up to 30 metres, about 85% of world GDP, and unit-level data for flats.
+- **Data:** remote sensing, public databases and machine learning for loss modelling. Flood models come from Fathom, a known flood modelling firm (worth knowing if a customer raises data quality).
 - **Trust:** validated by replaying past events against real-world losses; confidence scores per hazard; methodology and regional accuracy included with every report; works within the PRA's Model Risk Management framework.
-- **To check:** how the A–G bands are set, and the exact list of 11 hazards.
+- **To check:** how the A–G bands are set.
 
 ### Infrastructure Screener (Spectra module)
 - **What it does:** for sites that span more than a point: solar and wind farms, power lines, pipelines, water networks, roads and rail. Draw or upload the footprint; it screens 11 hazards down to each part of the site and produces a report where every number traces back to source.
