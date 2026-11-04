@@ -5,7 +5,8 @@
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
 **On Notion (2nd round prep)**
-- Discovery questions v3 (current): https://app.notion.com/p/40e8f31ef05f8145b55cdde0fe8edc41
+- Discovery questions v4 (current): https://app.notion.com/p/40e8f31ef05f815f9dafcc2ff5b02503
+- Discovery questions v3: https://app.notion.com/p/40e8f31ef05f8145b55cdde0fe8edc41
 - Discovery questions v2: https://app.notion.com/p/40e8f31ef05f819e9d1ee2d8a4e0c209
 - Discovery questions v1 and call notes: https://app.notion.com/p/40e8f31ef05f8129964ec33de404a680
 
