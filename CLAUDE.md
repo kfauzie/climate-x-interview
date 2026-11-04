@@ -10,7 +10,7 @@ Used over several **runs**. Each run brings its own data, customer and interview
 - Work only in the active run's folder; read its `RUN.md` first. Never open or cite another run
 - Nothing carries over between runs: numbers, findings, defaults, customer context. New data is profiled from scratch
 - Skills hold general knowledge only. Run-specific findings go in the run's `RUN.md`
-- Runs are trials with dummy data. When feedback changes a skill, write the general rule, never the case: no names, numbers, field values or the specific mistake from a run. If an example is needed, use a placeholder
+- Runs are trials with dummy data. When feedback changes a skill, turn it into a general principle: the reason behind the feedback, so the skill builds a way of thinking that works for any customer, data or product. Never the case itself: no names, numbers, field values or the specific mistake from a run. If an example is needed, use a placeholder
 - Documents I read or annotate (questions, interview notes, solution concept, review) live in Notion only; the repo holds data, code, screen images and `RUN.md` with the links
 - Unsure which run something belongs to → ask
 - Everything I show gets screen-shared to someone following along: lead with the point, tables and short lines over paragraphs, no detail that doesn't change a decision
