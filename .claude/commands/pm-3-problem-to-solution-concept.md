@@ -5,7 +5,7 @@ description: "Turn the discovery notes and data findings into a solution concept
 
 # Problem to solution concept
 
-Start from the problem, not the feature request. Recommend the simplest thing that solves it.
+Start from the problem. Recommend the simplest thing that solves it.
 
 ## Inputs
 - Read climate-x-products, climate-x-company and climate-x-role for background.
@@ -14,6 +14,9 @@ Start from the problem, not the feature request. Recommend the simplest thing th
 
 ## Output
 Save to runs/run-N/solution-concept.md and publish it as a Notion page under 2nd round prep, titled "Run N: solution concept (customer)". Show it in chat first. It will be shared on screen, so keep it short.
+
+## 0. Check for gaps first
+Before writing anything, list what's missing or unclear in the notes that could change which idea is recommended or how it works. If there's anything, show me the questions for the customer and wait. Leave out nice-to-know detail.
 
 ## 1. The problem
 - **What they asked for**, in their words
@@ -36,11 +39,12 @@ Two or three ideas that are genuinely different from each other. For each:
   - The product suggests the scenario, year and loans; the analyst confirms.
   - ...
   Use a real request from the interview notes if available, with real numbers calculated from the data.
-- **AI vs code vs human:** decide who does each step based on what each does best. AI for flexibility (messy input, free text, interpretation), code for fixed logic (every number, rules, checks), and people for judgement and approval. Keep people in control: what AI and code should be visible and editable, and a person checks before anything goes out.
+- **What AI, code and people do:** decide who does each step based on what each does best. AI for flexibility (messy input, free text, interpretation), code for fixed logic (every number, rules, checks), and people for judgement and approval. Keep people in control: what AI and code do is visible and editable, and a person checks before anything goes out.
 - **Success criteria:** how we'll know it works: a target, what mustn't get worse, what the people who approve it need to see, and test cases with known answers
 - **Assumptions:** any belief that, if wrong, would make the solution fail
 
 ## Rules
 - No claim without evidence: a quote or a calculated number
+- Only ask the customer what could change the solution. Leave out nice-to-know detail.
 - Say how, not that: never "seamless" or "met by design"
 - Plain words a stranger could follow
