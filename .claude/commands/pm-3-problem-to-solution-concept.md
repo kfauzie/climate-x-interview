@@ -13,7 +13,7 @@ Start from the problem. Recommend the simplest thing that solves it.
 - Any answers from pm-1-data-discovery. Don't re-analyse the data.
 
 ## Output
-Save to runs/run-N/solution-concept.md and publish it as a Notion page under 2nd round prep, titled "Run N: solution concept (customer)". Show it in chat first. It will be shared on screen, so keep it short.
+Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: solution concept (customer)". Give me the link and add it to `RUN.md`. Show it in chat first. It will be shared on screen, so keep it short.
 
 ## 0. Check for gaps first
 Before writing anything, check the notes for gaps big enough to change which idea is recommended or the main workflow (e.g. who the user is, what the job is). Only then, show me the questions for the customer and wait. Detail choices (defaults, settings, methodology options) don't stop the work: make a sensible assumption, state it, and move on. It's a first prototype.
