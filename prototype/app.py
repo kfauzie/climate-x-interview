@@ -8,6 +8,7 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel
+from typing import Optional
 
 from .engine import Book, Choices, compute, defaults_for, departures, source_rows, AUDIENCE_DEFAULTS
 from .interpret import interpret
@@ -35,7 +36,7 @@ class ComputeIn(BaseModel):
     sources: dict
     question_years: list = []
     reasons: dict = {}
-    parent_id: str | None = None
+    parent_id: Optional[str] = None
     preview: bool = False
 
 
