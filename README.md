@@ -33,7 +33,6 @@ pip install -q -r requirements.txt && python3 -m ipykernel install --user
 ## Open a run's prototype
 From any folder inside the repo:
 ```bash
-"$(git rev-parse --show-toplevel)/tools/open_run.sh" 3
+"$(git rev-parse --show-toplevel)/tools/open_run.sh"
 ```
-It gets the latest version, picks a free port and opens the browser. Control+C stops it.
-
+It opens the active run (the one named in `CLAUDE.md`); add a number for another run, e.g. `… open_run.sh 2`. It gets the latest version first, which needs you logged in to GitHub (`gh auth status` to check, `gh auth login` to log in); if it can't, it says so and opens what's on the Mac. It picks a free port and opens the browser. Control+C stops it.
