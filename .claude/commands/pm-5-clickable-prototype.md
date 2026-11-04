@@ -29,7 +29,7 @@ Input: `solution-design.md` (agreed screens, checks, test set). Output: `runs/ru
 
 ## After the prototype
 - **Test with users** (`pm-6-prototype-review`): they think aloud while I watch. Feedback goes back into the file it changes (a screen's content, inputs or checks → `solution-design.md`, its look → the prototype), logged as a round in `clickable-prototype.md`
-- **Hand-off:** the solution design plus the prototype are the spec. Rebuild with real components, one PR per screen with tests, behind a feature flag; an engineer reviews; check in staging
+- **Hand-off:** I turn the approved prototype into the PR myself, with tests: that PR is the spec. One PR per screen, behind a feature flag. The engineer reviews it and hardens it for production (sign-in, storage, monitoring); check in staging
 - **Release and measure** against targets agreed in advance; iterate if it misses, scale if it hits
 
 ## Under time pressure
