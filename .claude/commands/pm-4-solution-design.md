@@ -5,9 +5,9 @@ description: "Turn the solution concept into medium-fidelity screens, one per wo
 
 # Solution design
 
-Before starting, read climate-x-products, climate-x-company and climate-x-role. Start from the workflow in solution-concept.md.
+Before starting, read climate-x-products, climate-x-company and climate-x-role. Start from the workflow in the solution concept (the Notion page linked in `RUN.md`).
 
-Output: the screen images, saved in runs/run-N/.
+Output: the screen images, saved in runs/run-N/design/.
 
 ## Principles
 1. **Know the user.** Put yourself in their shoes. They're intelligent and expert in their domain, but not technical. Use their own terms from the interview notes; don't invent labels. No technical or AI terms on screen.
