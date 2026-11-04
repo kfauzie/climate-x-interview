@@ -20,7 +20,7 @@ Match the agreed screens from pm-4-solution-design exactly. Don't add new elemen
 ## Check before showing me
 - Run the test cases from the solution concept once, at the end.
 - Ask: can a first-time user tell in five seconds what each screen is for and what to do next? Are the numbers right?
-- No browser walkthroughs or screenshots unless I ask.
+- After each change, run the tests and a quick headless check (about 10 seconds): the page loads, nothing covers it, the main flow clicks through end to end, no errors on the page. No screenshots or visual walkthroughs unless I ask.
 
 ## Later, only if I ask
 - Branch and PR with screenshots, how to run it and test results
