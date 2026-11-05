@@ -7,6 +7,10 @@ description: "Context on Climate X's products: Spectra (physical risk as financi
 
 Facts from climate-x.com (November 2026). Company, models and regulation: `climate-x-company`.
 
+**Why it matters:** Climate X helps companies make better commercial decisions, such as where to invest, what to lend against, or which adaptation measures to fund. The decision comes first, so every product should be decision-grade: an output someone can act on and defend. That holds across Spectra, Adapt and Carta.
+
+**Value:** customers save research time and avoid paying for expensive consultants.
+
 **How they connect:** Carta finds a company's assets → Spectra prices their risk → Adapt shows what to do and the return → Adaptation Finance lets a bank lend for it.
 
 ## Spectra
