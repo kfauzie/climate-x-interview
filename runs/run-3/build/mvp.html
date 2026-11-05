@@ -54,6 +54,24 @@ select.pick{font:inherit;font-size:18px;font-weight:600;border:0;border-bottom:2
 #ov .plane{animation:fly 1s ease-in forwards}@keyframes fly{0%{transform:translate(-160px,30px) rotate(-8deg);opacity:0}20%{opacity:1}100%{transform:translate(160px,-30px) rotate(-18deg);opacity:0}}
 @media (prefers-reduced-motion:reduce){#ov .plane{animation:none}}
 @media (max-width:760px){.facts,.cols,.sum{grid-template-columns:1fr}.hdr2 .u,.hdr2 .j{font-size:20px}}
+/* Colour: serious B2B with restrained brand accents. Red only for the main action; soft tints for status and highlights */
+:root{--red:#e01e1a;--redtint:#fdecea;--redink:#a3201c;--green:#1f6b32;--greentint:#e9f5ec;--blue:#1f5fa8;--bluetint:#eaf1fb;--amber:#8a5a00;--ambertint:#fff4dc}
+th{background:#f4f6f8}th:first-child{border-top-left-radius:8px}th:last-child{border-top-right-radius:8px}
+.card .lbl{color:#1f5fa8}
+tr.sel td{background:var(--bluetint)}tr.sel td:first-child{box-shadow:inset 4px 0 0 var(--blue)}tr.click:hover td{background:#f1f5fb}
+.rec{border:1px solid #b9dcc3 !important;border-left:6px solid var(--green) !important;background:var(--greentint)}
+.fact{border-left:3px solid #d6e2f2;padding-left:12px}
+.need{color:var(--redink)}.clear{color:var(--green)}
+.sum>div:nth-child(2){background:var(--greentint);border-color:#cfe8d6}.sum>div:nth-child(3){background:var(--redtint);border-color:#f6cdca}.sum>div:nth-child(4){background:var(--bluetint);border-color:#d6e2f2}
+.before{color:var(--redink)}.after{color:var(--green)}
+.step.done{background:#dbe7f5;color:#1f5fa8}
+.rule{background:var(--bluetint);border-color:#d6e2f2}
+.fix{background:var(--bluetint);border-color:#d6e2f2}
+@media print{
+ .hdr2,.steps,.foot,.warn,.top,#ov{display:none !important}
+ body,.screen{background:#fff !important}.screen{min-height:0}.screen>.body{padding:0;max-width:none}
+ .doc{border:0;box-shadow:none;margin:0;padding:0}tr.click .chev{display:none}
+}
 </style></head><body>
 <div id="app"></div>
 <div id="ov" class="hidden"></div>
@@ -201,7 +219,7 @@ function vScreen() {
    <div class="card"><div class="lbl">The rule</div>
     <div style="font-size:18px">A site needs a plan if any hazard is rated ${sel('band', [['D', 'D or worse'], ['E', 'E or worse'], ['F', 'F or worse']])} under ${sel('scenario', [['severe', 'the severe scenario'], ['central', "today's policies"]])} by ${sel('year', [['2030', '2030'], ['2050', '2050']])}</div>
     <div style="margin-top:8px"><span class="tag ${isDefaultRule() ? 't-adapt' : 't-chg'}">${isDefaultRule() ? 'Default' : 'Changed from the default'}</span> <span class="sub" style="font-size:13px">A to G are Spectra's seven bands, G the worst. Severe = very high emissions (SSP5-8.5); today's policies = SSP2-4.5.</span></div></div>
-   <div class="card" style="text-align:center;padding:26px"><div style="font-size:52px;font-weight:700" id="headline">${need.length} need a plan · ${clear.length} don't</div>
+   <div class="card" style="text-align:center;padding:26px"><div style="font-size:52px;font-weight:700" id="headline"><span class="need">${need.length} need a plan</span> · <span class="clear">${clear.length} don't</span></div>
     <div class="sub" style="margin-top:6px">Under ${S.rule.scenario === 'severe' ? "today's policies" : 'the severe scenario'} instead, ${alt} would need a plan</div></div>
    <div class="cols">
     <div class="card"><div class="lbl">${need.length} sites that need a plan</div><table class="small"><tr><th>Site</th><th>Worst rating</th><th>For</th></tr>${list(need, 'need')}</table></div>
@@ -246,7 +264,7 @@ function vPlan() {
   return `<div class="screen" id="s-plan">${ribbon('decide which measure is worth paying for at each site')}${steps(2)}<div class="body">
    <div class="top"><div><h1>${label(s)} site</h1><div class="sub">Needs a plan: ${fl} rated ${w.r} by ${S.rule.year} under ${SCEN_TEXT[S.rule.scenario]}. A to G are Spectra's seven bands, G the worst.</div></div>
     <div class="sub" style="white-space:nowrap">Site ${S.i + 1} of ${list.length} · ${locOk(s) ? (s.location_type === 'point' ? '<span class="tag t-ok">✓ Location confirmed</span>' : '<span class="tag t-ok">✓ Scored over the site outline</span>') : '<span class="tag t-warn">Confirm location</span>'}</div></div>
-   ${rec ? `<div class="card" style="border:2px solid #343a40;margin-top:14px"><div style="font-size:24px;font-weight:700" id="rec">Recommended: ${rec.name.toLowerCase()}. ${money(rec.cost)}, pays back in ${years(rec.payback)}.</div>
+   ${rec ? `<div class="card rec" style="margin-top:14px"><div style="font-size:24px;font-weight:700" id="rec">Recommended: ${rec.name.toLowerCase()}. ${money(rec.cost)}, pays back in ${years(rec.payback)}.</div>
     <div class="sub" style="margin-top:4px">It avoids ${money(rec.avoided)} of the ${money(before30)} expected ${fl} loss a year by 2030, ${rec.payback <= PAYBACK_LIMIT ? `the biggest saving of the measures that pay back within ${PAYBACK_LIMIT} years` : 'the quickest payback available'}.</div></div>` : `<div class="note">No standard measure for this hazard and site type. Ask an engineer.</div>`}
    <div class="card"><div class="facts">
     <div class="fact"><div class="n">${money(totalLoss(s, S.rule.scenario, '2030'))}</div><div class="s">expected loss a year by 2030, all hazards, ${SCEN_TEXT[S.rule.scenario]}</div><div class="src3">From Spectra, September 2026</div></div>
@@ -282,7 +300,7 @@ function vDoc() {
    ${pend.length && !sent ? `<div class="warn"><span>${pend.length} ${pend.length === 1 ? 'site needs its' : 'sites need their'} location confirmed before sending. Their plans stay drafts until then.</span><button class="link" id="to-loc" style="font-style:normal">Confirm locations</button></div>` : ''}
    <div class="doc">
     <h2>Northwind Renewables · Climate resilience across ${S.sites.length} sites</h2><div class="sub">Prepared for the Facility A refinancing · ${new Date().toLocaleDateString('en-GB', {month: 'long', year: 'numeric'})} · Updated yearly</div>
-    <div style="text-align:center;margin:26px 0 8px"><div style="font-size:52px;font-weight:700;line-height:1.1" id="doc-headline">${money(t.before)} → ${money(t.after)} a year</div>
+    <div style="text-align:center;margin:26px 0 8px"><div style="font-size:52px;font-weight:700;line-height:1.1" id="doc-headline"><span class="before">${money(t.before)}</span> → <span class="after">${money(t.after)}</span> a year</div>
      <div style="font-size:17px;color:#6c757d;margin-top:6px">Expected loss across the ${list.length} sites, before and after the plans · ${SCEN_TEXT[S.rule.scenario]}, ${S.rule.year}</div></div>
     <div class="sum"><div><div class="n">${S.sites.length}</div><div class="s">sites checked</div></div><div><div class="n">${clear.length}</div><div class="s">need no action</div></div><div><div class="n">${list.length}</div><div class="s">have a plan</div></div><div><div class="n">${alsoOther}</div><div class="s">of the ${list.length} would need one under ${SCEN_TEXT[other]} too</div></div></div>
     <h3>How we chose these sites</h3>
