@@ -53,19 +53,59 @@ a{color:var(--blue);text-decoration:none}.foot{font-size:12px;color:var(--mute);
 .stack div{height:100%}.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px}
 .legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;background:var(--c)}
 .moves td{font-size:13px}
+.flag{background:#fde8ea;color:#b4232f;font-size:11px;padding:2px 6px;border-radius:4px;font-weight:600;margin-left:6px}
+.t-ans{background:#e7f6ee;color:#1c7a4f}.t-assume{background:#fff4e0;color:var(--amber)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}.kv td:first-child{color:var(--mute);width:42%}
+.note{background:#fff4e0;border-left:3px solid #e0a100;padding:10px 14px;border-radius:4px;font-size:13px;margin-top:12px}
+.ok{background:var(--green-bg);border-left:3px solid var(--jade);padding:10px 14px;border-radius:4px;font-size:13px;margin-top:12px}
+.drop{border:2px dashed #c7cdd4;border-radius:8px;padding:18px;text-align:center;color:var(--mute);font-size:13px;margin-top:10px}
+.mail{border:1px solid var(--line);border-radius:8px;padding:18px 20px;font-size:14px;line-height:1.55;background:#fff}
+.chg td.old{color:var(--mute);text-decoration:line-through}.up{color:#1c7a4f;font-weight:600}
+.map{height:150px;border-radius:8px;background:linear-gradient(135deg,#dbe8f5,#c2d8ee 60%,#e9eef3);position:relative;font-size:12px;color:var(--blue)}
+.pin{position:absolute;left:55%;top:40%;background:var(--red);color:#fff;border-radius:12px;padding:3px 8px;font-size:11px}
 </style></head><body>
 
+<div class="screen" data-screen="1-setup">
+  <div class="ribbon"><span class="ic">👤</span><span><b>User:</b> Head of Sustainability, CX Capital</span><span><b>Job to be done:</b> get the deal team to act on climate risk before IC</span></div>
+  <div class="steps"><div class="step on">1. Set up the deal</div><div class="step ">2. The brief</div><div class="step ">3. Check a site</div><div class="step ">4. Send to the deal team</div><div class="step ">5. Update with answers</div></div>
+  <div class="app"><div class="logo">CLIMATE <span>X</span> &nbsp;<span style="color:var(--g6);font-weight:400">Spectra</span></div><div class="crumb">Deals in diligence / Project Meridian / Set up the deal</div></div>
+  <div class="deals"><span style="color:var(--mute);margin-right:4px">Deals in diligence (3):</span>
+    <div class="deal on"><span class="dot" style="background:#e0a100"></span>Project Meridian · IC in 4 weeks</div>
+    <div class="deal"><span class="dot" style="background:var(--jade)"></span>Project Atlas · IC in 6 weeks</div>
+    <div class="deal"><span class="dot" style="background:#adb5bd"></span>Project Kestrel · not started</div>
+  </div>
+<div class="wrap" style="grid-template-columns:1fr 400px">
+ <div class="panel">
+  <h1>Set up the brief for Project Meridian</h1>
+  <div style="font-size:22px;font-weight:700;color:var(--g7);margin:4px 0 4px">22 of 22 sites found in Spectra ✓</div>
+  <div class="hint">Matched from the site list the deal team shared. Check the deal details below; they turn £ a year into £ over the hold and a share of the price.</div>
+  <table class="kv" style="margin-top:16px">
+   <tr><td>EV (price of the whole company, incl. debt)</td><td><b>£480m</b> <span class="tag t-deal">From deal record</span> <a href="#">Edit</a></td></tr>
+   <tr><td>Hold period</td><td><b>7 years, 2026–2032</b> <span class="tag t-deal">From deal record</span> <a href="#">Edit</a></td></tr>
+   <tr><td>IC date</td><td><b>3 Dec 2026</b> (in 4 weeks) <span class="tag t-deal">From deal record</span></td></tr>
+   <tr><td>Flood defences</td><td><b>Undefended</b> <span class="tag t-pref">Your team's preference</span> <a href="#">Change</a></td></tr>
+   <tr><td>Climate scenario</td><td><b>Middle (SSP2-4.5)</b> <span class="tag t-def">Default</span> <a href="#">Change</a></td></tr>
+  </table>
+  <div class="note"><b>Warning: 3 sites have no street address</b> (1 in Hong Kong, 2 in Brazil). They're placed by map coordinates. <a href="#">Check them</a> or carry on; together they're under 1% of the risk.</div>
+ </div>
+ <div>
+  <div class="panel"><h1>Sites by country</h1>
+   <table><tr><td>United Kingdom, Singapore, United States</td><td class="n">3 each</td></tr><tr><td>Australia, South Africa, Brazil</td><td class="n">2 each</td></tr><tr><td>9 other countries</td><td class="n">1 each</td></tr></table>
+   <div class="foot">Offices, car parks, retail, homes, a factory and a transport site.</div></div>
+  <div class="btn primary">Create the brief</div>
+ </div>
+</div>
+</div>
 <div class="screen" data-screen="2-brief">
   <div class="ribbon"><span class="ic">👤</span><span><b>User:</b> Head of Sustainability, CX Capital</span><span><b>Job to be done:</b> get the deal team to act on climate risk before IC</span></div>
-  <div class="steps"><div class="step done">✓ 1. Set up the deal</div><div class="step on">2. The brief</div><div class="step">3. Check a site</div><div class="step">4. Send to the deal team</div></div>
+  <div class="steps"><div class="step done">✓ 1. Set up the deal</div><div class="step on">2. The brief</div><div class="step ">3. Check a site</div><div class="step ">4. Send to the deal team</div><div class="step ">5. Update with answers</div></div>
   <div class="app"><div class="logo">CLIMATE <span>X</span> &nbsp;<span style="color:var(--g6);font-weight:400">Spectra</span></div><div class="crumb">Deals in diligence / Project Meridian / Deal climate brief · Draft</div></div>
   <div class="deals"><span style="color:var(--mute);margin-right:4px">Deals in diligence (3):</span>
     <div class="deal on"><span class="dot" style="background:#e0a100"></span>Project Meridian · IC in 4 weeks</div>
     <div class="deal"><span class="dot" style="background:var(--jade)"></span>Project Atlas · IC in 6 weeks</div>
     <div class="deal"><span class="dot" style="background:#adb5bd"></span>Project Kestrel · not started</div>
   </div>
-
-  <div class="wrap">
+<div class="wrap">
     <div>
       <div class="panel">
         <h1>Project Meridian · Meridian Group · 22 sites in 15 countries</h1>
@@ -92,16 +132,25 @@ a{color:var(--blue);text-decoration:none}.foot{font-size:12px;color:var(--mute);
           <tr><td>Tokyo retail<div class="grade">Grade A: 0.4% of rebuild cost</div></td><td>Subsidence</td><td class="n">£1.2m</td><td class="n">£8m</td><td class="n">9%</td><td><a href="#">Why ›</a></td></tr>
           <tr><td>19 other sites</td><td>Mixed</td><td class="n">£0.8m</td><td class="n">£5m</td><td class="n">6%</td><td><a href="#">Show ›</a></td></tr>
         </table>
-        <div style="font-size:13px;font-weight:600;margin-top:18px">Assumptions that move it</div>
-        <table class="moves">
-          <tr><td>Flood defences at the Singapore office</td><td class="n"><b>−£63m</b> if defended (to £29m, 6% of EV)</td></tr>
-          <tr><td>Hold period</td><td class="n">about £13m per year more or less</td></tr>
-          <tr><td>Climate scenario</td><td class="n">under £1m before 2033</td></tr>
-        </table>
         <div class="foot">Spectra v2, building damage only (not lost rent or downtime). <a href="#">How it's calculated ›</a></div>
       </div>
+    
+      <div class="panel" style="margin-top:20px">
+        <h1>Assumptions behind the £92m</h1>
+        <div class="hint" style="margin:-4px 0 10px">Every assumption, where it comes from, and how far the headline moves if it changes. Biggest first.</div>
+        <table>
+          <tr><th>Assumption</th><th>Used now</th><th>Source</th><th class="n">If it changes, £92m moves to</th></tr>
+          <tr><td><b>Flood defences</b><span class="flag">Biggest</span></td><td>None at any site</td><td><span class="tag t-pref">Your team's preference</span></td><td class="n"><b>£29m</b> if the Singapore office is defended (−£63m)</td></tr>
+          <tr><td><b>Who pays for damage</b><span class="flag">Biggest</span></td><td>Meridian pays for all of it</td><td><span class="tag t-assume">Assumed, not in the data</span></td><td class="n">down to <b>£23m</b> if the Singapore office is leased and the landlord pays (−£69m)</td></tr>
+          <tr><td><b>Flood insurance</b><span class="flag">Big</span></td><td>None deducted</td><td><span class="tag t-assume">Assumed, not in the data</span></td><td class="n">lower by the insured share; unknown until the policy is seen</td></tr>
+          <tr><td>Hold period</td><td>7 years, 2026–2032</td><td><span class="tag t-deal">From deal record</span></td><td class="n">about ±£13m per year (5 years: £66m)</td></tr>
+          <tr><td>Rebuild cost per site</td><td>Spectra estimate (£2.55bn in total)</td><td><span class="tag t-def">Spectra</span></td><td class="n">moves in proportion: 10% higher cost, about £101m</td></tr>
+          <tr><td>Climate scenario</td><td>Middle (SSP2-4.5)</td><td><span class="tag t-def">Default</span></td><td class="n">under £1m before 2033 (very high: £92.5m)</td></tr>
+          <tr><td>EV</td><td>£480m</td><td><span class="tag t-deal">From deal record</span></td><td class="n">changes the 19%, not the £92m</td></tr>
+          <tr><td>What counts as damage</td><td>Buildings only, not lost rent or downtime</td><td><span class="tag t-def">Spectra method</span></td><td class="n">would go up; not modelled here</td></tr>
+        </table>
+      </div>
     </div>
-
     <div>
       <div class="next">
         <h1>Recommended next steps · before IC</h1>
@@ -128,5 +177,125 @@ a{color:var(--blue);text-decoration:none}.foot{font-size:12px;color:var(--mute);
       <div class="btn secondary">Download PDF</div>
     </div>
   </div>
+
+</div>
+<div class="screen" data-screen="3-site">
+  <div class="ribbon"><span class="ic">👤</span><span><b>User:</b> Head of Sustainability, CX Capital</span><span><b>Job to be done:</b> get the deal team to act on climate risk before IC</span></div>
+  <div class="steps"><div class="step done">✓ 1. Set up the deal</div><div class="step done">✓ 2. The brief</div><div class="step on">3. Check a site</div><div class="step ">4. Send to the deal team</div><div class="step ">5. Update with answers</div></div>
+  <div class="app"><div class="logo">CLIMATE <span>X</span> &nbsp;<span style="color:var(--g6);font-weight:400">Spectra</span></div><div class="crumb">Deals in diligence / Project Meridian / Deal climate brief / Singapore office</div></div>
+  <div class="deals"><span style="color:var(--mute);margin-right:4px">Deals in diligence (3):</span>
+    <div class="deal on"><span class="dot" style="background:#e0a100"></span>Project Meridian · IC in 4 weeks</div>
+    <div class="deal"><span class="dot" style="background:var(--jade)"></span>Project Atlas · IC in 6 weeks</div>
+    <div class="deal"><span class="dot" style="background:#adb5bd"></span>Project Kestrel · not started</div>
+  </div>
+<div class="wrap">
+ <div>
+  <div class="panel">
+   <h1>Singapore office · Marina Boulevard · one of Meridian's 22 sites</h1>
+   <div class="big">£9.9m <small>average annual loss (AAL), 75% of Meridian's total</small></div>
+   <div class="sub">£69m over the 7-year hold · <b>£0.8m a year if defended</b> (coastal flood removed)</div>
+   <div class="why"><b>Why:</b> the model floods the site with sea water up to <b>1.84m deep</b> (range 1.78–1.90m) because it treats the coast as <b>undefended</b>. The tower is large: £1.4bn to rebuild, 35 floors, so even a small share of damage is a big £ figure.</div>
+   <div class="grid2" style="margin-top:16px">
+    <table><tr><th>Hazard at this site</th><th>Grade</th><th class="n">AAL a year</th></tr>
+     <tr><td>Coastal flood</td><td>F</td><td class="n"><b>£9.1m</b></td></tr>
+     <tr><td>Hail</td><td>E</td><td class="n">£0.6m</td></tr>
+     <tr><td>Surface water flood</td><td>E</td><td class="n">£0.2m</td></tr>
+     <tr><td>8 other hazards</td><td>A</td><td class="n">£0</td></tr></table>
+    <div><div class="map"><span style="position:absolute;left:10px;top:8px">Marina Bay, Singapore</span><span class="pin">Marina Boulevard</span></div>
+     <div class="hint">Why the overall grade is A: grades rank damage as a share of rebuild cost (0.7% a year here), not in £.</div></div>
+   </div>
+  </div>
+  <div class="panel" style="margin-top:20px"><h1>What would change this number</h1>
+   <table><tr><th>If…</th><th class="n">AAL a year</th><th class="n">Over the hold</th></tr>
+    <tr><td>Flood defences protect the site</td><td class="n">£0.8m</td><td class="n">£6m</td></tr>
+    <tr><td>Meridian leases it and the landlord pays for damage</td><td class="n">£0</td><td class="n">£0</td></tr>
+    <tr><td>Flood insurance covers it</td><td class="n" colspan="2">depends on the policy: upload it in step 5</td></tr></table>
+   <div class="foot">How Spectra models coastal flood: sea level, storm surge and the ground height at the site, checked against past floods. <a href="#">Method and accuracy ›</a></div>
+  </div>
+ </div>
+ <div>
+  <div class="next"><h1>Questions for the deal team</h1><ul>
+   <li><b>Is Marina Boulevard protected by flood defences?</b> Type, height, who maintains them</li>
+   <li>Does Meridian own or lease the office, and which floors?</li>
+   <li>Is it insured for flood? Please share the policy</li></ul></div>
+  <div class="btn primary">Add questions to the brief</div>
+  <div class="btn secondary">Back to the brief</div>
+ </div>
+</div>
+</div>
+<div class="screen" data-screen="4-send">
+  <div class="ribbon"><span class="ic">👤</span><span><b>User:</b> Head of Sustainability, CX Capital</span><span><b>Job to be done:</b> get the deal team to act on climate risk before IC</span></div>
+  <div class="steps"><div class="step done">✓ 1. Set up the deal</div><div class="step done">✓ 2. The brief</div><div class="step done">✓ 3. Check a site</div><div class="step on">4. Send to the deal team</div><div class="step ">5. Update with answers</div></div>
+  <div class="app"><div class="logo">CLIMATE <span>X</span> &nbsp;<span style="color:var(--g6);font-weight:400">Spectra</span></div><div class="crumb">Deals in diligence / Project Meridian / Send to the deal team</div></div>
+  <div class="deals"><span style="color:var(--mute);margin-right:4px">Deals in diligence (3):</span>
+    <div class="deal on"><span class="dot" style="background:#e0a100"></span>Project Meridian · IC in 4 weeks</div>
+    <div class="deal"><span class="dot" style="background:var(--jade)"></span>Project Atlas · IC in 6 weeks</div>
+    <div class="deal"><span class="dot" style="background:#adb5bd"></span>Project Kestrel · not started</div>
+  </div>
+<div class="wrap">
+ <div>
+  <div class="panel"><h1>Message to the deal team · drafted for you, edit before sending</h1>
+   <table class="kv"><tr><td>To</td><td>Meridian deal lead; Meridian deal team</td></tr><tr><td>Subject</td><td>Project Meridian: climate risk for IC, one site to check</td></tr></table>
+   <div class="mail" style="margin-top:12px">
+    <b>Amber: check before IC.</b> Meridian's buildings face about <b>£92m of climate damage over the 7-year hold (19% of the £480m EV)</b>.<br><br>
+    75% comes from one site, the Singapore office on Marina Boulevard, from coastal flooding. That figure assumes no flood defences. If the site is defended it falls to <b>£29m (6% of EV)</b>.<br><br>
+    Before IC, could you confirm three things about the Singapore office:<br>
+    1. Its flood defences &nbsp; 2. Owned or leased, and which floors &nbsp; 3. Its flood insurance (please share the policy)<br><br>
+    The one-page brief is attached, with every number and the assumption behind it.
+   </div>
+   <div class="hint">Wording drafted from the brief's numbers. Every number in it comes from the brief.</div>
+  </div>
+ </div>
+ <div>
+  <div class="panel"><h1>What gets sent</h1>
+   <table class="kv"><tr><td>Attachment</td><td>Meridian climate brief.pdf (1 page)</td></tr>
+    <tr><td>Status</td><td><span class="rag" style="padding:2px 6px">⚠ Amber</span> <a href="#">Change</a></td></tr>
+    <tr><td>Open questions</td><td>3, tracked in step 5</td></tr></table>
+   <div class="ok">✓ Every number matches the brief. No question is left without an owner.</div>
+  </div>
+  <div class="btn primary">Send to the deal team</div>
+  <div class="btn secondary">Back to the brief</div>
+ </div>
+</div>
+</div>
+<div class="screen" data-screen="5-answers">
+  <div class="ribbon"><span class="ic">👤</span><span><b>User:</b> Head of Sustainability, CX Capital</span><span><b>Job to be done:</b> get the deal team to act on climate risk before IC</span></div>
+  <div class="steps"><div class="step done">✓ 1. Set up the deal</div><div class="step done">✓ 2. The brief</div><div class="step done">✓ 3. Check a site</div><div class="step done">✓ 4. Send to the deal team</div><div class="step on">5. Update with answers</div></div>
+  <div class="app"><div class="logo">CLIMATE <span>X</span> &nbsp;<span style="color:var(--g6);font-weight:400">Spectra</span></div><div class="crumb">Deals in diligence / Project Meridian / Answers from the deal team</div></div>
+  <div class="deals"><span style="color:var(--mute);margin-right:4px">Deals in diligence (3):</span>
+    <div class="deal on"><span class="dot" style="background:#e0a100"></span>Project Meridian · IC in 4 weeks</div>
+    <div class="deal"><span class="dot" style="background:var(--jade)"></span>Project Atlas · IC in 6 weeks</div>
+    <div class="deal"><span class="dot" style="background:#adb5bd"></span>Project Kestrel · not started</div>
+  </div>
+<div class="wrap">
+ <div>
+  <div class="panel"><h1>Answers from the deal team · 1 of 3 answered</h1>
+   <table><tr><th>Question</th><th>Answer</th><th>Status</th></tr>
+    <tr><td>Is Marina Boulevard protected by flood defences?</td><td>—</td><td><span class="tag t-assume">Waiting</span></td></tr>
+    <tr><td>Does Meridian own or lease the office?</td><td>—</td><td><span class="tag t-assume">Waiting</span></td></tr>
+    <tr><td><b>Is it insured for flood?</b></td><td>SG_office_flood_policy.pdf</td><td><span class="tag t-ans">✓ Answered, check below</span></td></tr></table>
+   <div class="drop">Drop a document here and pick the question it answers · PDF, Word or Excel</div>
+  </div>
+  <div class="panel" style="margin-top:20px"><h1>What the policy says · read from the document, check before applying</h1>
+   <table class="kv"><tr><td>Covers flood</td><td><b>Yes</b>, including coastal flood <a href="#">page 4 ›</a></td></tr>
+    <tr><td>Limit per event</td><td><b>£50m</b> <a href="#">page 6 ›</a></td></tr>
+    <tr><td>Excess Meridian pays per event</td><td><b>£1m</b> <a href="#">page 6 ›</a></td></tr>
+    <tr><td>Valid until</td><td><b>31 Mar 2028</b>: covers 2 of the 7 hold years <a href="#">page 1 ›</a></td></tr></table>
+   <div class="note"><b>Warning:</b> the policy ends in March 2028. After that the brief assumes no insurance unless you change it.</div>
+  </div>
+ </div>
+ <div>
+  <div class="panel"><h1>What changes if you apply it</h1>
+   <table class="chg"><tr><th>Number</th><th class="n">Before</th><th class="n">After</th></tr>
+    <tr><td>Damage over the hold</td><td class="n old">£92m</td><td class="n up">£77m</td></tr>
+    <tr><td>Share of EV</td><td class="n old">19%</td><td class="n up">16%</td></tr>
+    <tr><td>Singapore office, over the hold</td><td class="n old">£69m</td><td class="n up">£54m</td></tr>
+    <tr><td>Status</td><td class="n">Amber</td><td class="n">Amber</td></tr></table>
+   <div class="hint" style="margin-top:10px"><b>Why:</b> the insurer pays coastal flood damage above the £1m excess until March 2028, so Meridian bears less in 2026–2027. From April 2028 nothing changes.</div>
+  </div>
+  <div class="btn primary">Apply and update the brief</div>
+  <div class="btn secondary">Not this question: pick another</div>
+ </div>
+</div>
 </div>
 </body></html>
