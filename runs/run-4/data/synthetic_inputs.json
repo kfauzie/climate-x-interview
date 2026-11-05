@@ -1,0 +1,82 @@
+{
+ "label": "SYNTHETIC for the prototype: not real data",
+ "deal": {
+  "name": "Project Meridian",
+  "company": "Meridian Group",
+  "ev": 480000000,
+  "hold_years": 7,
+  "hold_start": 2026,
+  "ic_date": "3 Dec 2026"
+ },
+ "ebitda_by_site": {
+  "1740500331": 12000000,
+  "1740500600": 1420000.0,
+  "1740500727": 1410000.0,
+  "1740500744": 490000.0,
+  "1740500779": 4080000.0,
+  "1740501107": 2540000.0,
+  "1740501151": 3360000.0,
+  "1740501298": 6520000.0,
+  "1740501927": 2220000.0,
+  "1741271198": 1790000.0,
+  "1763663920": 1000000.0,
+  "1765285138": 3580000.0,
+  "1772801990": 540000.0,
+  "1774275406": 460000.0,
+  "1774275721": 2360000.0,
+  "1774276360": 530000.0,
+  "1774276509": 1900000.0,
+  "1774276621": 2560000.0,
+  "1774277010": 2610000.0,
+  "1774278030": 6370000.0,
+  "1781080278": 1730000.0,
+  "1782226193": 530000.0
+ },
+ "past_deals_aal_pct_ebitda": [
+  0.4,
+  0.9,
+  1.2,
+  1.8,
+  2.3,
+  2.9,
+  3.4,
+  4.1,
+  5.6,
+  7.2,
+  11.5
+ ],
+ "premium": {
+  "loading_low": 1.5,
+  "loading_high": 2.0,
+  "after_claim_low": 1.25,
+  "after_claim_high": 2.0
+ },
+ "example_policy": {
+  "file": "SG_office_flood_policy.pdf",
+  "site": "1740500331",
+  "hazard": "Coastal Flood",
+  "covers_flood": true,
+  "limit_per_event": 50000000,
+  "excess_per_event": 1000000,
+  "valid_until": "31 Mar 2028",
+  "last_covered_year": 2027,
+  "pages": {
+   "covers": 4,
+   "limit": 6,
+   "excess": 6,
+   "valid": 1
+  }
+ },
+ "other_deals": [
+  {
+   "name": "Project Atlas",
+   "status": "IC in 6 weeks",
+   "dot": "green"
+  },
+  {
+   "name": "Project Kestrel",
+   "status": "not started",
+   "dot": "grey"
+  }
+ ]
+}

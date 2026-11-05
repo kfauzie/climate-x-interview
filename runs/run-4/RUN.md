@@ -1,6 +1,8 @@
 # Run 4
 
-**Status:** interview done, solution concept ready; next: solution design (pm-4)
+**Status:** prototype built (`build/mvp.html`; open with `tools/open_run.sh`); next: MVP review (pm-6)
+**Synthetic for the prototype (labelled on screen):** EBITDA by site, CX Capital's past assessments, the example insurance policy, premium rules of thumb, other deals (`notebooks/synthetic_inputs.py` → `data/synthetic_inputs.json`)
+**Checks:** `node build/test_mvp.js` (known answers), `node build/check_mvp.js` (headless click-through); design images from the build: `node build/capture_screens.js`
 **Dataset:** `data/Climate X Sample Data.xlsx` (Spectra v2 export, 22 Meridian Group sites, 4 scenarios × 12 years)
 **Context:** `notes/CX_Capital_context.md` (customer brief, an illustrative composite: CX Capital and Meridian are fictional); brand guideline now a skill: `climate-x-brand`
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)

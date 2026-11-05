@@ -1,0 +1,24 @@
+// Known answers from the solution concept (data: notebooks/concept_numbers.py). Run: node test_mvp.js
+const fs = require('fs'), path = require('path');
+const html = fs.readFileSync(path.join(__dirname, 'mvp.html'), 'utf8');
+const code = html.split('<script id="calc">')[1].split('</script>')[0];
+const m = { exports: {} }; new Function('module', code)(m); const C = m.exports;
+const D = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/sites.json')));
+const S = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/synthetic_inputs.json')));
+const base = { scen: 'ssp245', start: 2026, years: 7, defended: false, insurance: null };
+const o = x => Object.assign({}, base, x);
+let fail = 0; const eq = (name, got, want, tol = 0.05e6) => { const ok = Math.abs(got - want) <= tol; if (!ok) fail++; console.log(`${ok ? 'PASS' : 'FAIL'} ${name}: ${(got / 1e6).toFixed(2)}m (want ${(want / 1e6).toFixed(1)}m)`); };
+eq('7-year hold, middle scenario', C.brief(D, o()).total, 92.3e6);
+eq('Singapore defended (coastal removed)', C.brief(D, o({ defended: true })).total, 29.0e6);
+eq('5-year hold', C.brief(D, o({ years: 5 })).total, 65.9e6);
+eq('10-year hold', C.brief(D, o({ years: 10 })).total, 132.1e6);
+eq('very high scenario SSP5-8.5', C.brief(D, o({ scen: 'ssp585' })).total, 92.5e6);
+const b = C.brief(D, o());
+const ok1 = b.bySite[0].site.city === 'Singapore' && Math.abs(b.bySite[0].share - 0.75) < 0.01; if (!ok1) fail++;
+console.log(`${ok1 ? 'PASS' : 'FAIL'} top site is Singapore office, 75%: ${(b.bySite[0].share * 100).toFixed(1)}%`);
+const r = C.ragStatus(b.total, 480e6); if (r !== 'Amber') fail++; console.log(`${r === 'Amber' ? 'PASS' : 'FAIL'} status Amber (19% of EV): ${r}`);
+const sumSites = b.bySite.reduce((a, x) => a + x.hold, 0), sumHaz = Object.values(b.byHazard).reduce((a, x) => a + x, 0);
+const ok2 = Math.abs(sumSites - b.total) < 1 && Math.abs(sumHaz - b.total) < 1; if (!ok2) fail++; console.log(`${ok2 ? 'PASS' : 'FAIL'} sites and hazards add up to the total`);
+const P = S.example_policy, ins = C.brief(D, o({ insurance: { site: P.site, hazard: P.hazard, excess: P.excess_per_event, lastYear: P.last_covered_year } })).total;
+const ok3 = ins < b.total && ins > b.total - 2 * 9.2e6; if (!ok3) fail++; console.log(`${ok3 ? 'PASS' : 'FAIL'} insurance lowers 2026-27 only: ${(ins / 1e6).toFixed(1)}m`);
+console.log(fail ? `${fail} FAILED` : 'All tests pass'); process.exit(fail ? 1 : 0);

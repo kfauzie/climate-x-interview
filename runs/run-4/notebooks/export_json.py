@@ -13,11 +13,13 @@ for aid, g in d.groupby('Asset ID', sort=False):
         hz = {}
         for h in H:
             loss = r.get(h+' Loss')
-            hz[h] = {'grade': nz(r[h+' Score']), 'loss': nz(loss) if loss is not None else None}
+            sev = [c for c in d.columns if c.startswith(h+' Severity Value')]
+            hz[h] = {'grade': nz(r[h+' Score']), 'loss': nz(loss) if loss is not None else None,
+                     'sev': (nz(r[sev[0]]) if sev else None)}
         s['risk'].setdefault(r.Scenario, {})[str(r.Year)] = {'grade': r['Physical Risk Score'], 'loss': int(r['Total Building Loss']),
                                                              'loss_pct': float(r['Total Loss Percentage']), 'hazards': hz}
     sites.append(s)
 meta = {'scenarios': sorted(d.Scenario.unique().tolist()), 'years': sorted(int(y) for y in d.Year.unique()),
-        'hazards': H, 'currency': 'GBP', 'flood_defences': 'Undefended', 'source': 'Spectra v2 export'}
+        'hazards': H, 'severity_units': {h: [c for c in d.columns if c.startswith(h+' Severity Value')][0].split('(',1)[1].rstrip(')') for h in H if any(c.startswith(h+' Severity Value') for c in d.columns)}, 'currency': 'GBP', 'flood_defences': 'Undefended', 'source': 'Spectra v2 export'}
 json.dump({'meta': meta, 'sites': sites}, open('data/sites.json','w'), separators=(',',':'))
 print(len(sites), 'sites;', meta['scenarios'], len(meta['years']), 'years')
