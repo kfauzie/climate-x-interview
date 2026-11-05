@@ -1,4 +1,4 @@
-"""Build and execute the run 1 Profile notebook (pm-data-discovery, Profile mode).
+"""Build and execute the run 1 Profile notebook (pm-1-data-discovery, Profile mode).
 
 Run from the repo root:  python3 runs/run-1/notebooks/build_profile.py
 """
@@ -12,7 +12,7 @@ C = []
 md = lambda s: C.append(nbf.v4.new_markdown_cell(s))
 code = lambda s: C.append(nbf.v4.new_code_cell(s))
 
-md("""# Run 1 · Profile (pm-data-discovery)
+md("""# Run 1 · Profile (pm-1-data-discovery)
 **Customer (from `RUN.md`):** Sarah Okafor, Head of Climate Risk at a large PRA-regulated UK bank (mortgages plus commercial lending including CRE). Three analysts; reports to the CRO; receives Spectra outputs quarterly for about 18 months.
 **Mode:** Profile, before discovery. Patterns are framed as questions, not conclusions. Every number below comes from a code cell.""")
 
@@ -216,7 +216,7 @@ md("""## 7. Product implications (requirements, solution-neutral)
 - **Normalise postcodes before any join,** and report records that don't match""")
 
 md("""## 8. Discovery questions
-In `../discovery-questions.md`, built with the `pm-discovery-interview` skill (15-minute budget) and published to Notion. Each data-informed question is tagged with the finding above that it comes from.""")
+In the run 1 discovery questions on Notion (linked in `../RUN.md`), built with the `pm-2-discovery-interview` skill (15-minute budget) and published to Notion. Each data-informed question is tagged with the finding above that it comes from.""")
 
 nb.cells = C
 nb.metadata['kernelspec'] = {'name': 'python3', 'display_name': 'Python 3', 'language': 'python'}

@@ -2,13 +2,19 @@
 
 **Status:** practice run. The data is synthetic, not real Climate X data
 **Dataset:** `data/spectra_portfolio_export.csv` (Spectra-style UK loan portfolio export)
-**Interview notes:** `notes/interview.md` (from Notion), `notes/sarah-followup.md` (her example questions, a sent-back case, defaults), `notes/mock-feedback.md`
-**Solution:** `solution.md` (recommended: answer with its method)
-**Design:** `design.md` (user flow agreed)
-**Test:** `notebooks/spectra_test.ipynb` (built by `notebooks/build_test.py`), chart `notebooks/test_cre_flood_by_scenario.png`
-**Discovery questions:** `discovery-questions.md` (customised for Sarah and this dataset, 15-min version)
-**Notion questions:** https://app.notion.com/p/40b8f31ef05f8114908bd8ada551932c (take call notes here)
-**Analysis:** `notebooks/spectra_profile.ipynb` (Profile mode, built by `notebooks/build_profile.py`) and `notebooks/region_abs_vs_rate.png`
+**Analysis:** `notebooks/spectra_profile.ipynb` and `notebooks/spectra_test.ipynb`
+
+**On Notion (2nd round prep)**
+- Discovery questions and call notes (current): https://app.notion.com/p/40e8f31ef05f8168becfe438435d0266
+- Discovery questions and notes from the first call: https://app.notion.com/p/40b8f31ef05f8114908bd8ada551932c
+- Solution concept: https://app.notion.com/p/40e8f31ef05f816983a9e4d46a223671
+- MVP review questions (current): https://app.notion.com/p/40e8f31ef05f81f8bf5ec81d351d23d4
+- MVP review script (older): https://app.notion.com/p/40b8f31ef05f814e815fc95807769b0b
+
+**In the repo**
+- Screens: `design/`
+- Build (MVP): `build/mvp.html` (one file; open it from a local server in `runs/run-1/` so it can read `data/`). Older FastAPI version: `prototype/`, PR https://github.com/kfauzie/climate-x-interview/pull/1
+- Other notes: `notes/sarah-followup.md` (her email: example questions, a sent-back case, defaults), `notes/mock-feedback.md`
 
 Everything below applies to **run 1 only**. Do not carry it into any other run.
 

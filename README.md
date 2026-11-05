@@ -23,7 +23,7 @@ How I go from a customer's data and a short interview to a working first version
 ## How a run works
 data → profile → discovery questions → interview → problem → solution concept → solution design (medium fidelity) → build (MVP, PR) → review
 
-Each run lives in [`runs/`](runs/); run 1 is practice on synthetic Spectra-style data. [`tools/cxlens.py`](tools/cxlens.py) does the number crunching; every figure comes from code. Rules and workflow for Claude: [`CLAUDE.md`](CLAUDE.md).
+Each run lives in [`runs/`](runs/); run 1 is practice on synthetic Spectra-style data. [`tools/cxlens.py`](tools/cxlens.py) does the number crunching; every figure comes from code. Run 1's prototype is in [`prototype/`](prototype/). Rules and workflow for Claude: [`CLAUDE.md`](CLAUDE.md).
 
 ## Setup
 ```bash

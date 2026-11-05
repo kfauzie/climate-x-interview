@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Climate answers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e01e1a;--red-h:#a11b14;--ink:#343a40;--mid:#6c757d;--soft:#9aa0a6;--line:#e3e5e8;--bg:#f9f9fa;--panel:#fff;--sel:#fdecea;--warn:#fff6e0;--warnline:#e6c46a;--ok:#2f7a45}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e9ecef;--mid:#adb5bd;--soft:#868e96;--line:#3a3f45;--bg:#1d2024;--panel:#272b30;--sel:#4a2422;--warn:#3d3420;--warnline:#8a7130}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Graphik,Inter,Helvetica,Arial,sans-serif}
+button,select,textarea,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.ribbon{background:#343a40;color:#fff;padding:16px 28px;font-size:20px;font-weight:600}
+.ribbon .sep{color:#adb5bd;margin:0 10px;font-weight:400}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 28px 12px}
+.steps{display:flex;gap:10px;align-items:center;color:var(--soft);font-size:14px;margin-bottom:6px}
+.steps b{color:var(--ink)}.steps i{width:24px;height:1px;background:var(--line);display:inline-block}
+h1{font-size:28px;font-weight:600;margin:4px 0 16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:14px}
+.lbl{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mid);margin-bottom:10px}
+.row{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:8px 0}
+.row+.row{border-top:1px solid var(--line)}
+.k{color:var(--mid)}
+textarea,select,input[type=text]{width:100%;border:1px solid #c8ccd0;border-radius:8px;padding:9px 12px;background:var(--panel)}
+textarea{resize:vertical;min-height:44px}
+.ex{font-size:14px;color:var(--mid);margin-top:6px}.ex button{background:none;border:0;color:var(--red);padding:0 6px;cursor:pointer;text-decoration:underline}
+.out{text-align:center;padding:26px 20px}
+.big{font-size:54px;font-weight:700;line-height:1.1;letter-spacing:-.01em}
+.ctx{font-size:20px;color:var(--soft);margin-top:6px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.seg{display:inline-flex;border:1px solid #c8ccd0;border-radius:999px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:none;padding:7px 16px;cursor:pointer}.seg button+button{border-left:1px solid #c8ccd0}
+.seg button[aria-pressed=true]{background:var(--red);color:#fff}
+.tag{font-size:13px;color:var(--soft);margin-left:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid #c8ccd0;border-radius:999px;padding:4px 12px;margin:2px 6px 2px 0;background:var(--panel)}
+.chip button{border:0;background:none;color:var(--mid);cursor:pointer;padding:0 0 0 2px;font-size:16px;line-height:1}
+.add{border:0;background:none;color:var(--red);cursor:pointer;text-decoration:underline;padding:0}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-weight:500;color:var(--mid);font-size:13px;padding:6px 0}
+td{padding:8px 0;border-top:1px solid var(--line)}.r{text-align:right}
+.rate{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:600;color:#fff;background:#b3261e}
+.alert{background:#fdecea;border:1px solid var(--red);color:#7d1410;border-radius:10px;padding:10px 14px;margin-bottom:12px}
+.info{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:12px}
+.flag{border-left:4px solid var(--red);background:#fdf3f2;color:#5c1310;padding:8px 12px;margin-top:8px;border-radius:0 8px 8px 0}
+.flag input{margin-top:6px}
+mark{background:#fde3e1;color:inherit;border-radius:3px;padding:0 2px}
+.src{font-size:13px;color:var(--soft);display:block;margin-top:4px}
+.qx button{border:1px solid #c8ccd0;background:var(--panel);border-radius:999px;padding:3px 12px;margin:6px 6px 0 0;cursor:pointer;font-size:14px}
+.grid{border-collapse:collapse;margin:0 auto;width:auto}.grid th,.grid td{border:1px solid var(--line);padding:12px 30px;text-align:center}.grid td b{font-size:32px}.grid .s{color:var(--soft);font-size:14px}
+.sarah{background:var(--panel)}.hello{font-size:30px;font-weight:700;margin:6px 0 4px}
+.att{border-left:5px solid var(--red);background:#fdf3f2;color:#3a1110;border-radius:0 10px 10px 0;padding:12px 18px;margin:14px 0}.att li{margin:6px 0}
+.linkbtn{border:0;background:none;color:var(--red);cursor:pointer;text-decoration:underline;padding:0;font:inherit}
+.alert button{margin-left:8px}
+.err{border-color:var(--red)}
+.foot{background:var(--panel);border-top:1px solid var(--line);padding:14px 28px;margin-top:8px}
+.foot .in{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.btn{border-radius:999px;padding:10px 22px;border:1px solid #c8ccd0;background:var(--panel);cursor:pointer;font-weight:500}
+.btn.p{background:var(--red);border-color:var(--red);color:#fff}.btn.p:hover{background:var(--red-h)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.ok{display:inline-block;border:1px solid var(--ok);color:var(--ok);border-radius:999px;padding:2px 12px;font-size:14px}
+.mail{white-space:pre-wrap;line-height:1.7;min-height:330px}
+a{color:var(--red)}
+.muted{color:var(--mid)}
+.demo{background:#fff8e1;color:#5a4a00;font-size:14px;padding:8px 28px}
+@media (max-width:760px){.cols{grid-template-columns:1fr}.row{grid-template-columns:1fr;gap:4px}.big{font-size:40px}.ribbon{font-size:17px}.wrap{padding:14px 16px 12px}.foot{padding:12px 16px}}
+</style></head>
+<body>
+<div id="app"></div>
+<script>
+async function api(path, body) {
+  if (window.mockApi) return window.mockApi(path, body);
+  const r = await fetch(path, body ? {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)} : {});
+  const j = await r.json(); if (!r.ok) throw new Error(j.detail || 'Something went wrong'); return j;
+}
+const EXAMPLES = ['For the stress test, how many CRE loans have a flood rating of E or worse?', 'How many CRE loans have a flood rating of E or worse by 2050?',
+  "What's our total expected climate loss by 2050?", 'How much of our 2024 and 2025 lending went into high subsidence areas?'];
+let ASKERS = [['Credit committee','committee'],['Risk committee','committee'],['PRA / stress test','pra'],['CRO','other'],['Mortgage pricing','other'],['Treasury','other'],['Investor relations','other']];
+const AUD_LABEL = {committee:'committees', pra:'stress tests', other:'other requests'};
+const SCEN = [['low','Low'],['central','Central'],['severe','Severe']];
+const S = {view:'draft', question:'', asker:'PRA / stress test', interp:null, choices:null, sources:{}, reasons:{}, rec:null, note:'', comment:'',
+  error:'', info:'', sentBack:'', mail:'', open:{}, exText:''};
+const $ = s => document.querySelector(s);
+const esc = t => String(t ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money = x => x == null ? '' : x >= 1e9 ? `£${(x/1e9).toFixed(1)}bn` : x >= 1e6 ? `£${(x/1e6).toFixed(1)}m` : x >= 1e3 ? `£${Math.round(x/1e3)}k` : `£${Math.round(x)}`;
+const fmtDate = d => new Date(d).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'});
+const audience = () => (ASKERS.find(a => a[0] === S.asker) || [0,'other'])[1];
+const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const cap = t => t ? t[0].toUpperCase() + t.slice(1) : t;
+const scenName = k => ({low:'low', central:'central', severe:'severe'}[k] || k);
+
+// ---------- data flow ----------
+let qTimer, lastQ = '';
+function onQuestion(v) { S.question = v; clearTimeout(qTimer); qTimer = setTimeout(() => { if (S.question.trim() !== lastQ) interpretNow(); }, 500); }
+async function interpretNow() {
+  lastQ = S.question.trim(); S.error = ''; S.info = ''; S.rec = null; S.interp = null; S.reasons = {};
+  if (S.question.trim().split(/\s+/).length < 3) return render();
+  try {
+    S.interp = await api('/api/interpret', {question:S.question, audience:audience(), asker:S.asker});
+    S.choices = JSON.parse(JSON.stringify(S.interp.choices)); S.sources = {...S.interp.sources};
+    await preview();
+  } catch (e) { S.error = e.message; render(); }
+}
+async function preview() {
+  try {
+    S.rec = await api('/api/compute', {question:S.question, audience:audience(), asker:S.asker, choices:S.choices, sources:S.sources,
+      question_years:S.interp.question_years, reasons:S.reasons, preview:true});
+    S.error = '';
+  } catch (e) { S.error = e.message; }
+  render();
+}
+function setChoice(field, value) { S.choices[field] = value; S.sources[field] = 'analyst'; preview(); }
+function toggleMulti(field, v) {
+  const cur = S.choices[field].slice(); const i = cur.indexOf(v);
+  if (i >= 0) { if (cur.length === 1) return; cur.splice(i, 1); } else cur.push(v);
+  setChoice(field, field === 'years' ? cur.sort() : SCEN.map(s => s[0]).filter(s => cur.includes(s)));
+}
+function removeEx(k) { const ex = {...S.choices.exclusions}; ex[k] = k === 'maturing_before' ? null : false; setChoice('exclusions', ex); }
+async function addEx() {
+  const t = S.exText.trim(); if (!t) return;
+  try { const r = await api('/api/exclusion', {text:t}); S.exText = ''; S.info = ''; setChoice('exclusions', {...S.choices.exclusions, [r.key]: r.value}); }
+  catch (e) { S.info = e.message; render(); }
+}
+function addPerson() {
+  const n = prompt('Who asked? e.g. Head of Treasury'); if (!n || !n.trim()) return;
+  ASKERS.push([n.trim(), /committee/i.test(n) ? 'committee' : /pra|stress/i.test(n) ? 'pra' : 'other']); S.asker = n.trim(); interpretNow();
+}
+
+// ---------- pieces ----------
+const isCount = c => c.measure === 'count';
+function val(c, g) {
+  const d = g.detail || {};
+  if (c.measure === 'count') return [`${d.n}`, ` ${c.unit === 'properties' ? 'properties' : 'loans'}`, money(d.balance)];
+  if (c.measure === 'share') return [money(d.balance), '', `${(d.share*100).toFixed(1)}% of new lending`];
+  if (c.measure === 'rise') return [`${g.value.toFixed(2)}×`, '', g.year];
+  return [money(d.loss), '', 'annual damage'];
+}
+function plain(c, g) { const [a, b, s] = val(c, g); return `${a}${b}${s ? ', ' + s : ''}`; }
+function answer(res, c) {
+  const g = res.grid, d = g[0].detail || {};
+  const ctx = c.measure === 'count' ? `of ${d.of_n} ${loanWord(c)} · ${money(d.of_balance)} balance` : c.measure === 'share' ? `of ${money(d.of_balance)} new lending` : c.measure === 'loss' ? 'annual expected damage to properties' : '';
+  if (g.length === 1) { const [a, b, s] = val(c, g[0]); return `<div class="panel out"><div class="big" aria-live="polite">${esc(a + b)}${s && c.measure !== 'loss' ? ' · ' + esc(s) : ''}</div><div class="ctx">${esc(ctx)}</div></div>`; }
+  const ys = [...new Set(g.map(x => x.year))], ss = [...new Set(g.map(x => x.scenario))];
+  const cell = (s, y) => { const x = g.find(q => q.scenario === s && q.year === y); if (!x) return '<td></td>'; const [a, b, t] = val(c, x); return `<td><b>${esc(a)}</b>${esc(b)}<div class="s">${esc(t)}</div></td>`; };
+  return `<div class="panel out"><table class="grid" aria-live="polite"><tr><th></th>${ys.map(y => `<th>${y}</th>`).join('')}</tr>
+    ${ss.map(s => `<tr><th>${cap(scenName(s))}</th>${ys.map(y => cell(s, y)).join('')}</tr>`).join('')}</table><div class="ctx">${esc(ctx)}</div></div>`;
+}
+const loanWord = c => c.loan_type === 'Commercial real estate' ? 'CRE loans' : c.loan_type === 'Residential mortgage' ? 'mortgages' : 'loans';
+function countChips(c) {
+  const out = [cap(loanWord(c))];
+  const hz = (c.hazards || []).length ? c.hazards.map(cap).join(', ') : 'All hazards';
+  out.push(c.rating_min ? `${hz} rating ${c.rating_min}${c.rating_max && c.rating_max !== 'G' ? '–' + c.rating_max : ' or worse'}` : hz);
+  if (c.originated) out.push(`Lent in ${c.originated.join(' and ')}`);
+  return out.map(t => `<span class="chip">${esc(t)}</span>`).join('');
+}
+const srcLabel = f => S.sources[f] === 'question' ? 'From the question' : S.sources[f] === 'analyst' ? 'Changed by you' : `Sarah's standard for ${AUD_LABEL[audience()]}`;
+function departureFlag(field, what) {
+  const d = (S.rec.departures || []).find(x => x.field === field); if (!d) return '';
+  return `<div class="flag"><b>Changed from Sarah's standard:</b> ${esc(what)}. Reason (shown to Sarah):
+    <input type="text" id="r-${field}" value="${esc(S.reasons[field] || '')}" placeholder="Why this differs" oninput="S.reasons['${field}']=this.value"></div>`;
+}
+function exWhat() {
+  const d = (S.rec.defaults || {}).exclusions || {}, c = S.choices.exclusions || {}, out = [];
+  if (d.in_default && !c.in_default) out.push('loans in default are included');
+  if (d.redeemed && !c.redeemed) out.push('loans redeemed since the export are included');
+  if (d.maturing_before && !c.maturing_before) out.push(`loans maturing before ${d.maturing_before} are included`);
+  if (c.maturing_before && c.maturing_before !== d.maturing_before) out.push(`loans maturing before ${c.maturing_before} are left out`);
+  return out.join('; ') || 'exclusions differ';
+}
+function controls() {
+  const c = S.choices, res = S.rec.result;
+  const multi = (field, opts) => `<span class="seg" role="group">${opts.map(([k, l]) => `<button aria-pressed="${c[field].includes(k)}" onclick="toggleMulti('${field}','${k}')">${l}</button>`).join('')}</span>`;
+  const years = (window._meta && window._meta.years) || ['2030','2050'];
+  const ex = c.exclusions || {};
+  const chips = [['in_default','Loans in default'],['redeemed','Redeemed since the export'],['maturing_before', `Maturing before ${ex.maturing_before}`]]
+    .filter(([k]) => ex[k]).map(([k, l]) => `<span class="chip">${esc(l)}<button aria-label="Remove ${esc(l)}" onclick="removeEx('${k}')">×</button></span>`).join('');
+  return `<div class="panel">
+    <div class="row"><div class="k">${isCount(c) ? 'Count' : 'Covers'}</div><div>${countChips(c)}<span class="src">From the question</span></div></div>
+    <div class="row"><div class="k">Scenarios</div><div>${multi('scenarios', SCEN)}<span class="src">${srcLabel('scenarios')}</span>${departureFlag('scenarios', `scenarios are ${c.scenarios.map(scenName).join(' and ')}`)}</div></div>
+    <div class="row"><div class="k">Horizons</div><div>${c.measure === 'rise' ? esc(c.years.join(' → ')) : multi('years', years.map(y => [y, y]))}<span class="src">${srcLabel('years')}</span>${departureFlag('years', `horizons are ${c.years.join(' and ')}`)}</div></div>
+    <div class="row"><div class="k">Excludes</div><div>${chips || '<span class="muted">Nothing</span>'}
+      <div style="display:flex;gap:8px;margin-top:8px"><input type="text" id="exin" placeholder="+ Add exclusion, e.g. maturing before 2035" value="${esc(S.exText)}" oninput="S.exText=this.value" onkeydown="if(event.key==='Enter')addEx()"><button class="btn" onclick="addEx()">Add</button></div>
+      ${S.info ? `<div class="alert" style="margin:8px 0 0">${esc(S.info)}</div>` : ''}${departureFlag('exclusions', exWhat())}</div></div>
+    <div class="row"><div class="k">Method</div><div>Count per ${c.unit === 'properties' ? 'property' : 'loan'} · worst rating · current balances
+      ${isCount(c) ? `<button class="linkbtn" style="margin-left:6px" onclick="setChoice('unit','${c.unit === 'properties' ? 'loans' : 'properties'}')">Count per ${c.unit === 'properties' ? 'loan' : 'property'} instead</button>` : ''}
+      ${departureFlag('unit', `counted per ${c.unit === 'properties' ? 'property' : 'loan'}`)}</div></div>
+  </div>`;
+}
+function evidence(res) {
+  const c = S.choices;
+  if (res.rows) {
+    const cell = res.rows_cell, many = res.grid.length > 1;
+    const title = `The ${res.rows_total} loan${res.rows_total === 1 ? '' : 's'}${many ? ` in the worst case (${scenName(cell.scenario)}, ${cell.year})` : ''}`;
+    const nc = res.not_counted || {unmatched:[], unscored:[]}, cnt = res.counts || {};
+    const list = (k, rows) => S.open[k] ? `<table style="margin:6px 0 10px">${rows.map(r => `<tr><td>${esc(r.loan_id)}</td><td>${esc(r.property_type || r.loan_type || '')}</td><td>${esc(r.region || '')}</td><td class="r">${money(r.balance_gbp)}</td></tr>`).join('')}</table>` : '';
+    return `<div class="panel"><div class="lbl">${esc(title)}</div>
+      ${res.rows.length ? `<table><tr><th>Loan</th><th>Property</th><th>Region</th><th class="r">Balance</th><th class="r">Rating</th></tr>
+      ${res.rows.map(r => `<tr><td>${esc(r.loan_id)}</td><td>${esc(r.property_type)}</td><td>${esc(r.region.replace(' and the Humber',''))}</td><td class="r">${money(r.balance)}</td><td class="r"><span class="rate">${esc(r.rating)}</span></td></tr>`).join('')}</table>
+      ${res.rows_total > res.rows.length ? `<p class="muted">Showing the ${res.rows.length} largest. All ${res.rows_total} are in the file.</p>` : ''}` : '<p class="muted">No loans match. Try another scenario or horizon, or remove an exclusion.</p>'}
+      ${cnt.unmatched || cnt.unscored ? `<div class="lbl" style="margin-top:16px">Not counted</div>` : ''}
+      ${cnt.unmatched ? `<div><button class="linkbtn" onclick="S.open.u=!S.open.u;render()">${cnt.unmatched} loan${cnt.unmatched === 1 ? '' : 's'}</button> ${cnt.unmatched === 1 ? 'is' : 'are'} in the Spectra export but not in the loan book.</div>${list('u', nc.unmatched)}` : ''}
+      ${cnt.unscored ? `<div><button class="linkbtn" onclick="S.open.s=!S.open.s;render()">${cnt.unscored} loan${cnt.unscored === 1 ? '' : 's'}</button> ${cnt.unscored === 1 ? 'has' : 'have'} no ${(c.hazards || [])[0] || ''} rating.</div>${list('s', nc.unscored)}` : ''}</div>`;
+  }
+  const dr = res.drivers || {};
+  const tbl = (t, o) => `<table><tr><th>${t}</th><th class="r">Damage</th></tr>${Object.entries(o).sort((a,b) => b[1]-a[1]).slice(0,5).map(([k,v]) => `<tr><td>${esc(cap(k))}</td><td class="r">${money(v)}</td></tr>`).join('')}</table>`;
+  return `<div class="panel"><div class="lbl">Where it comes from</div>${dr.by_hazard ? tbl('Hazard', dr.by_hazard) : ''}${dr.by_region ? '<div style="height:12px"></div>' + tbl('Region', dr.by_region) : ''}</div>`;
+}
+function highlighted() {
+  let h = esc(S.question);
+  (S.interp.matched || []).sort((a, b) => b.length - a.length).forEach(m => { const e = esc(m); if (h.includes(e) && !h.includes('<mark>' + e)) h = h.replace(e, `<mark>${e}</mark>`); });
+  return h;
+}
+const meta = () => window._meta ? `Spectra export, ${fmtDate(window._meta.export_as_at)}` : '';
+const meta2 = () => window._meta ? `Loan book, ${fmtDate(window._meta.book_as_at)}` : '';
+function failed(res) { return res.checks.filter(c => !c.ok); }
+function ribbon(user, job) { return `${window.demoNote ? `<div class="demo">${esc(window.demoNote)}</div>` : ''}<div class="ribbon">User: ${user}<span class="sep">·</span>Job to be done: ${job}</div>`; }
+const steps = step => `<div class="steps" aria-label="Steps">${['Draft','Review','Send'].map(s => s === step ? `<b>${s}</b>` : s).join('<i></i>')}</div>`;
+function effectText(e) {
+  const c = S.choices;
+  return e.cells.map(x => { const g = {value:x.standard, detail:null, year:x.year};
+    const v = c.measure === 'count' ? `${x.standard} ${c.unit === 'properties' ? 'properties' : 'loans'}, not ${x.value}` : c.measure === 'rise' ? `${(+x.standard).toFixed(2)}×, not ${x.value.toFixed(2)}×` : `${money(x.standard)}, not ${money(x.value)}`;
+    return `${scenName(x.scenario)} ${x.year} would be ${v}`; }).join('; ');
+}
+function howText() {
+  const c = S.choices, ex = c.exclusions || {}, out = [];
+  out.push(`${c.scenarios.map(scenName).map(cap).join(' and ')}, ${c.years.join(' and ')}. Count per ${c.unit === 'properties' ? 'property' : 'loan'}, worst rating, current balances.`);
+  const exs = [ex.in_default && 'loans in default', ex.redeemed && 'loans redeemed since the export', ex.maturing_before && `loans maturing before ${ex.maturing_before}`].filter(Boolean);
+  if (exs.length) out.push(`Excludes ${exs.join(', ')}.`);
+  out.push(`Data: ${meta()}; ${meta2()}.`);
+  return out.join(' ');
+}
+
+// ---------- screens ----------
+function draftView() {
+  const res = S.rec && S.rec.result, flags = (S.interp && S.interp.flags || []).filter(f => ['out_of_scope','not_in_data','split'].includes(f.kind));
+  let h = ribbon('Analyst', 'turn the question into the right calculation') + `<div class="wrap">${steps('Draft')}<h1>Draft</h1>`;
+  if (S.sentBack) h += `<div class="alert"><b>Sent back by Sarah:</b> ${esc(S.sentBack)}</div>`;
+  h += `<div class="panel">
+    <div class="row"><div class="k"><label for="q">Question</label></div><div><textarea id="q" rows="2" oninput="onQuestion(this.value)" placeholder="Paste the question as it was asked">${esc(S.question)}</textarea>
+      ${S.interp && S.interp.matched && S.interp.matched.length ? `<div class="src">Read as: ${highlighted()}</div>` : ''}
+      <div class="qx">${EXAMPLES.map((e, i) => `<button onclick="useExample(${i})">${esc(e)}</button>`).join('')}</div></div></div>
+    <div class="row"><div class="k"><label for="asker">Asked by</label></div><div style="display:flex;gap:12px;align-items:center"><select id="asker" style="max-width:420px" onchange="S.asker=this.value;interpretNow()">${ASKERS.map(([a]) => `<option ${a===S.asker?'selected':''}>${esc(a)}</option>`).join('')}</select><button class="linkbtn" onclick="addPerson()">+ Add person</button></div></div>
+    <div class="row"><div class="k">Data</div><div>${meta()} <button class="linkbtn" style="margin:0 18px 0 6px" onclick="S.error='';S.info2='This is the latest Spectra export.';render()">Refresh from Spectra</button>
+      ${meta2()} <button class="linkbtn" style="margin-left:6px" onclick="S.info2='Uploading a new loan book isn\\'t in this prototype: it uses the synthetic loan book.';render()">Upload new</button>
+      ${S.info2 ? `<div class="src">${esc(S.info2)}</div>` : ''}</div></div></div>`;
+  flags.forEach(f => h += `<div class="alert">${esc(f.text)}</div>`);
+  if (S.error) h += `<div class="alert">${esc(S.error)}</div>`;
+  if (res) {
+    h += answer(res, S.choices);
+    failed(res).forEach(c => h += `<div class="alert">${esc(c.detail)}.</div>`);
+    h += `<div class="cols">${controls()}${evidence(res)}</div>
+      <div class="panel"><div class="lbl"><label for="note">Note to Sarah${failed(res).length ? ' (needed: explain the warning)' : ' (optional)'}</label></div><textarea id="note" rows="2" oninput="S.note=this.value">${esc(S.note)}</textarea></div>`;
+  } else if (!S.error && !flags.length) h += `<div class="panel muted">Paste a question, or pick one above, to see the draft.</div>`;
+  h += `</div><div class="foot"><div class="in"><button class="btn" onclick="reset()">Cancel</button><button class="btn p" ${res ? '' : 'disabled'} onclick="sendToSarah()">Send draft to Sarah →</button></div></div>`;
+  return h;
+}
+function reviewView() {
+  const res = S.rec.result, deps = S.rec.departures || [], fl = failed(res);
+  const what = {scenarios: () => `scenarios are ${S.choices.scenarios.map(scenName).join(' and ')}`, years: () => `horizons are ${S.choices.years.join(' and ')}`,
+    exclusions: exWhat, unit: () => `counted per ${S.choices.unit === 'properties' ? 'property' : 'loan'}`};
+  const items = deps.map(d => { const e = (S.rec.effects || []).find(x => x.field === d.field);
+      return `<li><b>Changed from your standard:</b> ${esc((what[d.field] || (() => d.field))())}. Analyst's reason: “${esc(S.rec.reasons[d.field] || '')}”.${e && e.cells.length ? ' With your standard, ' + esc(effectText(e)) + '.' : ' The answer is the same with your standard.'}</li>`; })
+    .concat(fl.map(c => `<li><b>Warning:</b> ${esc(c.detail)}.</li>`))
+    .concat(S.note ? [`<li><b>Analyst's note:</b> “${esc(S.note)}”</li>`] : []);
+  return ribbon('Sarah', 'approve the answer or send it back') + `<div class="wrap sarah">
+    <div class="hello">Sarah, here's the answer to review</div>
+    <div class="muted" style="font-size:17px">“${esc(S.question)}” · ${esc(S.asker)} · from an analyst</div>
+    ${items.length ? `<div class="att"><div class="lbl" style="color:#8a1410">Needs your attention</div><ul style="margin:0;padding-left:20px">${items.join('')}</ul></div>` : `<div class="info" style="margin-top:14px">Nothing needs your attention: your standard was used and every check passed.</div>`}
+    ${S.error ? `<div class="alert">${esc(S.error)}</div>` : ''}
+    ${answer(res, S.choices)}
+    <div class="cols"><div class="panel"><div class="lbl">How it was calculated</div>${esc(howText())} <button class="linkbtn" onclick="S.open.l=!S.open.l;render()">${S.open.l ? 'Hide' : 'See'} the loans</button></div>
+    <div class="panel"><div class="lbl"><label for="cm">Comment (needed to send back)</label></div><textarea id="cm" rows="3" oninput="S.comment=this.value">${esc(S.comment)}</textarea></div></div>
+    ${S.open.l ? evidence(res) : ''}
+    </div><div class="foot"><div class="in"><button class="btn" onclick="sendBack()">Send back</button><button class="btn p" onclick="approve()">Approve</button></div></div>`;
+}
+function mailText() {
+  const res = S.rec.result, c = S.choices, g = res.grid, d = g[0].detail || {};
+  const what = `${cap(loanWord(c))} with a ${countChips(c).replace(/<[^>]+>/g, '|').split('|').filter(Boolean)[1] || ''}`.replace('rating', 'rating of');
+  let body;
+  if (g.length === 1) body = `${cap(res.headline.replace(/ \((central|severe|low-emissions)\)$/, ' under the $1 scenario'))}.`;
+  else {
+    const ys = [...new Set(g.map(x => x.year))], ss = [...new Set(g.map(x => x.scenario))];
+    body = `${what}${c.measure === 'count' ? `, out of ${d.of_n} (${money(d.of_balance)} balance)` : ''}:\n\n` +
+      `            ${ys.join('              ')}\n` + ss.map(s => `${cap(scenName(s)).padEnd(10)}  ${ys.map(y => plain(c, g.find(x => x.scenario === s && x.year === y)).padEnd(16)).join('')}`).join('\n');
+  }
+  const why = (S.rec.departures || []).map(x => S.rec.reasons[x.field]).filter(Boolean);
+  return `Hi all,\n\n${body}\n\n${why.length ? `Note: ${why.join('; ')}.\n\n` : ''}The loans and how they were counted are in the attached file.\n\nApproved by Sarah Okafor, Head of Climate Risk.`;
+}
+function sendView() {
+  if (!S.mail) S.mail = mailText();
+  return ribbon('Analyst', 'send the approved answer to whoever asked') + `<div class="wrap">${steps('Send')}<h1>Send the answer</h1>
+    <p><span class="ok">Approved by Sarah · ${new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}</span></p>
+    <div class="panel"><div class="row"><div class="k">To</div><div><input type="text" value="${esc(S.asker)}"></div></div>
+    <div class="row"><div class="k">Subject</div><div><input type="text" value="${esc('Re: ' + S.question.replace(/\?$/, ''))}"></div></div>
+    <textarea class="mail" style="margin-top:10px;font-family:inherit" aria-label="Reply" oninput="S.mail=this.value">${esc(S.mail)}</textarea>
+    <p style="margin:10px 0 0">Attached: ${window.mockApi ? '<b>answer.xlsx</b>' : `<a href="/api/answers/${S.rec.id}/export.xlsx"><b>answer.xlsx</b></a>`}</p></div>
+    </div><div class="foot"><div class="in"><span></span><button class="btn p" onclick="sendIt()">Send</button></div></div>`;
+}
+function sentView() {
+  return ribbon('Analyst', 'send the approved answer to whoever asked') + `<div class="wrap">${steps('Send')}<h1>Sent</h1>
+    <div class="panel">Sent to ${esc(S.asker)} and logged: who asked, who built it, Sarah's approval, the data dates.</div>
+    </div><div class="foot"><div class="in"><span></span><button class="btn p" onclick="reset()">New question</button></div></div>`;
+}
+
+// ---------- actions ----------
+function useExample(i) { S.question = EXAMPLES[i]; if (i === 0) S.asker = 'PRA / stress test'; else if (i === 1) S.asker = 'Credit committee'; interpretNow(); }
+function reset() { Object.assign(S, {view:'draft', question:'', interp:null, choices:null, sources:{}, reasons:{}, rec:null, note:'', comment:'', error:'', info:'', info2:'', sentBack:'', mail:'', open:{}, exText:''}); lastQ = ''; render(); }
+async function sendToSarah() {
+  try {
+    const missing = (S.rec.departures || []).filter(d => !(S.reasons[d.field] || '').trim());
+    if (missing.length) { S.error = "Give a reason for each change from Sarah's standard."; return render(); }
+    if (failed(S.rec.result).length && !S.note.trim()) { S.error = 'Add a note to Sarah explaining the warning, or fix it first.'; return render(); }
+    S.rec = await api('/api/compute', {question:S.question, audience:audience(), asker:S.asker, choices:S.choices, sources:S.sources, question_years:S.interp.question_years, reasons:S.reasons});
+    S.rec = await api(`/api/answers/${S.rec.id}/submit`, {comment:S.note});
+    S.view = 'review'; S.error = ''; S.sentBack = ''; S.comment = ''; S.open = {}; render(); scrollTo(0,0);
+  } catch (e) { S.error = e.message; render(); }
+}
+async function sendBack() {
+  if (!S.comment.trim()) { S.error = 'Add a comment so the analyst knows what to change.'; return render(); }
+  try { await api(`/api/answers/${S.rec.id}/review`, {decision:'send_back', comment:S.comment}); S.sentBack = S.comment; S.view = 'draft'; S.error = ''; await preview(); scrollTo(0,0); }
+  catch (e) { S.error = e.message; render(); }
+}
+async function approve() {
+  try { S.rec = await api(`/api/answers/${S.rec.id}/review`, {decision:'approve', comment:S.comment}); S.view = 'send'; S.error = ''; render(); scrollTo(0,0); }
+  catch (e) { S.error = e.message; render(); }
+}
+async function sendIt() { try { await api(`/api/answers/${S.rec.id}/send`, {}); S.view = 'sent'; render(); } catch (e) { alert(e.message); } }
+function render() {
+  const a = document.activeElement, id = a && a.id, st = a && a.selectionStart, en = a && a.selectionEnd;
+  $('#app').innerHTML = {draft:draftView, review:reviewView, send:sendView, sent:sentView}[S.view]();
+  if (id && $('#' + id)) { const e = $('#' + id); e.focus(); if (st != null && e.setSelectionRange) try { e.setSelectionRange(st, en); } catch (_) {} }
+}
+(async () => { window._meta = await api('/api/meta'); render(); })();
+</script>
+</body></html>
