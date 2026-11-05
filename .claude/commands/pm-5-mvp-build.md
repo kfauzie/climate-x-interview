@@ -1,6 +1,6 @@
 ---
 name: pm-5-mvp-build
-description: "Turn the agreed screens into a working first version, fast: one HTML file, numbers calculated by code, AI only for interpreting input. Use when building or changing the prototype."
+description: "Turn the agreed screens into a working first version, fast: one HTML file, numbers calculated by code. Use when building or changing the prototype."
 ---
 
 # Build: the working first version
@@ -10,17 +10,16 @@ Input: the agreed screens from pm-4-solution-design and the solution concept (wo
 ## How to build
 - One plain HTML file with inline JS and CSS. No framework, no build step.
 - Build all the agreed screens in one go, so the whole flow can be tried end to end. After that, change one thing at a time: edit, never regenerate the whole file.
-- Code calculates every number. AI only reads messy input and suggests choices; the user confirms them. Keep the two separate.
+- Follow the split between AI, code and people from the solution concept. Every number is calculated by code.
 - Use the data provided directly. If there's no real data, use a small synthetic file, clearly labelled.
 - Each change after the first build should take about two minutes. If it will take longer, tell me first and suggest a smaller step.
 
 ## Look
-Match the agreed screens from pm-4-solution-design exactly. Don't add new elements. Exports (PDF, print) show only the document: no ribbon, step bar or buttons. Screens fill the window; the step bar is clickable navigation that looks and works the same on every screen, with a small animation when the step changes.
+Match the agreed screens from pm-4-solution-design exactly. Don't add new elements. Add a small animation when the step changes. Exports also leave out buttons.
 
 ## Check before showing me
-- Run the test cases from the solution concept once, at the end.
+- After each change: run the tests from the solution concept, if there are any, and a quick headless check (about 10 seconds): the page loads, the main flow clicks through, no errors. No screenshots unless I ask.
 - Ask: can a first-time user tell in five seconds what each screen is for and what to do next? Are the numbers right?
-- After each change, run the tests and a quick headless check (about 10 seconds): the page loads, nothing covers it, the main flow clicks through end to end, no errors on the page. No screenshots or visual walkthroughs unless I ask.
 
 ## Later, only if I ask
 - Branch and PR with screenshots, how to run it and test results
