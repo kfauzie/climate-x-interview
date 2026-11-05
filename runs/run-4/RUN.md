@@ -80,6 +80,9 @@ Code: `notebooks/initial_review.py`. Unless stated: 2030, middle scenario (SSP2-
 - Express each site's loss as a share of an assumed value or EBITDA, once the deal team gives one
 - Show what changes at exit (2033) for a buyer looking to 2050 or 2100
 
+## For the solution (pm-3 onwards)
+- Design around the deal's money: compare loss with **EV (£480m; equity £165m, ~£315m debt)** and add it up over the **hold period (7 years, ~2026–2033)**; show the exit view (risk from 2033 on) separately
+
 ## Data structure for later steps (structure only, no design decided)
 - **Dimensions:** 22 sites × 4 scenarios (SSP1-2.6, SSP2-4.5, SSP3-7.0, SSP5-8.5) × 12 years (2020, 2025, 2030 … 2050, 2060 … 2100). Hold-period years: 2026–2032 fall between 2025, 2030 and 2035 (interpolate)
 - **Per site (fixed):** ID, address, city, country, lat/lon, use, type, age, floors, replacement cost (£), floor area
