@@ -1,6 +1,6 @@
 ---
 name: climate-x-brand
-description: "Climate X's brand guideline (as given by Climate X): voice, what to avoid, product one-liners, personas and their triggers, sector terms (AAL vs EAL), regional nuances, colours, fonts and logo, and a copy checklist. Use for any screen, prototype or customer-facing copy."
+description: "Climate X's brand guideline (as given by Climate X): voice, what to avoid, product one-liners, personas and their triggers, sector terms (AAL vs EAL), regional nuances, colours, fonts and logo, and a copy checklist. The one place for anything Climate X–specific about look and voice; other skills point here. Use for any screen, prototype or customer-facing copy."
 ---
 
 
@@ -101,3 +101,11 @@ Climate X communicates **precision, resilience, urgency, and analytical depth**.
 - [ ] Correct hazard/loss terminology (AAL vs EAL)?
 - [ ] No "black box" or "ESG waffle" language?
 - [ ] Logo and colors match background?
+
+---
+
+## 6. Applying it to product screens
+- **Colour roles:** Tech Red for the main action and the X; X Grey 6 for text, X Grey 7 for headings; off-white #f9f9fa background, white panels; Jade Green only for positive or done states
+- **Font:** Graphik; Arial where Graphik isn't available (e.g. prototypes)
+- **Grades and scores always say what they mean** in £ or plain words (no black-box scores)
+- **Loss term:** AAL for asset management, private equity and real estate investors; EAL for banking

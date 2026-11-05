@@ -1,6 +1,6 @@
 ---
 name: climate-x-company
-description: "Climate X the company: snapshot, mission and values, how its risk models work, the regulation its customers face (PRA SS5/25), who it sells to, partners, what it argues publicly, competitors, and brand. Facts from climate-x.com and press, with sources. Use for company, market, regulatory or competitive context. Products are in climate-x-products."
+description: "Climate X the company: snapshot, mission and values, how its risk models work, the regulation its customers face (PRA SS5/25), who it sells to, partners, what it argues publicly and competitors. Facts from climate-x.com and press, with sources. Use for company, market, regulatory or competitive context. Products are in climate-x-products; brand, voice and visual identity in climate-x-brand."
 ---
 
 # Climate X
