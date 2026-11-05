@@ -20,12 +20,9 @@ I'm a Principal PM at Climate X, owning a product area end to end: from a custom
 ## Communication guide
 For anything the customer or a reader sees: questions, screens, documents, findings.
 
-- **Plain, specific words.** Use the customer's own name for their organisation ("[Company]", not "the company"). Say "mortgage application" or "loan application", never just "application".
-- **Say "the output", not "the number":** there isn't always a number.
-- **Be specific:** name the scenarios (and what each means), the years and the hazards, and say which scenario and year each output uses. Never "two scenarios".
-- **Explain any unfamiliar term** in a few words the first time it appears (a unit, an asset type, a measure). Use a plain phrase instead if one works.
-- **Name the thing.** Say exactly what you mean, as they'd see it: name the actual items and rules, not a category word. No vague labels such as "high", "significant" or "at risk": give the measure and the threshold (e.g. "rated [band] or worse", "[n]% of [what]"). Never use words that only make sense after our own work ("the defaults", "the choices", "this", "the method").
-- **Explain only what's new to them.** Don't explain what they're expert in (risk, regulation, their own process). Do explain our terms and our assumptions, in a few words, once.
+- **Be as specific as possible.** Name the exact thing as they'd see it, not a category word or shorthand from our notes ("the defaults", "this", "the method"). For example: the customer's own name for their organisation ("[Company]", not "the company"); "mortgage application" or "loan application", not "application"; which scenarios (and what each means), years and hazards an output uses, not "two scenarios". No vague labels such as "high" or "at risk": give the measure and the threshold ("rated [band] or worse", "[n]% of [what]").
+- **Don't over-generalise either.** Use the precise word when there is one: "the number" when it is a number, "the output" only when it isn't.
+- **Explain only what's new to them.** Our terms, units, asset types, measures and assumptions get a few words the first time they appear, or a plain phrase instead. Don't explain what they're expert in (risk, regulation, their own process).
 - **Read it as them.** Before showing it: would someone who hasn't seen our notes understand every noun on first reading?
 
 ## How to work with me
