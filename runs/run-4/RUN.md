@@ -82,6 +82,7 @@ Code: `notebooks/initial_review.py`. Unless stated: 2030, middle scenario (SSP2-
 
 ## For the solution (pm-3 onwards)
 - Design around the deal's money: compare loss with **EV (£480m; equity £165m, ~£315m debt)** and add it up over the **hold period (7 years, ~2026–2033)**; show the exit view (risk from 2033 on) separately
+- Hold period as an input (prefilled 7 years from 2026, editable), answer updates instantly. For Meridian it mainly scales the total (5y ~£66m, 7y ~£92m, 10y ~£132m, middle scenario: yearly loss is flat before 2050). Inputs that move the answer more: who bears the Singapore loss (owned/leased/insured), flood defences on/off, the exit view. Scenario: default middle, worst case one click away
 
 ## Data structure for later steps (structure only, no design decided)
 - **Dimensions:** 22 sites × 4 scenarios (SSP1-2.6, SSP2-4.5, SSP3-7.0, SSP5-8.5) × 12 years (2020, 2025, 2030 … 2050, 2060 … 2100). Hold-period years: 2026–2032 fall between 2025, 2030 and 2035 (interpolate)
