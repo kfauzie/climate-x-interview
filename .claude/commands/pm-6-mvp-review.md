@@ -7,7 +7,7 @@ description: "Generate quick follow-up questions to confirm the working version 
 
 The goal is to confirm the solution works for the customer, not to sell it.
 
-Before starting, read climate-x-products, climate-x-company and climate-x-role. Follow the communication guide in climate-x-role for everything you write. Use the solution concept (problem, workflow, assumptions), from the Notion page linked in `RUN.md`, fetched fresh every time, and the working version.
+Before starting, read climate-x-products, climate-x-company, climate-x-role and climate-x-brand. Follow the communication guide in climate-x-role for everything you write. Use the solution concept (problem, workflow, assumptions), from the Notion page linked in `RUN.md`, fetched fresh every time, and the working version.
 
 ## Plan the evaluation first
 Before writing question 3, work out what the AI part needs to be tested on:
@@ -22,7 +22,7 @@ Then ask for exactly that.
 Three questions, plus one optional, in this order. Each specific to this case.
 
 1. **Does it solve the problem?** Whether the team could have used it for their last real request (one request, not all of them), e.g. "Could your team have used this for the last question you got?"
-2. **Trust and sign-off.** What the approver needs before an answer goes out, e.g. "What would you need to see before you'd approve an answer from this and send it out?"
+2. **Trust and sign-off.** What the approver needs before an answer goes out, e.g. "What would you need to see before you'd approve an answer from this and send it out?" Name what the approver's persona in climate-x-brand typically needs (e.g. proven methodology) only as a follow-up, after they answer.
 3. **Real examples for testing.** Ask for the sample the evaluation needs, in their terms, naming the tricky cases specifically, e.g. "Could you send us 20 or so recent [requests], with the answers your team sent? Please include a few unusual ones, like a scenario or year you rarely use, or ones where the right answer wasn't obvious and your team had to make a judgement call. We'd use them to test it."
 4. **Defaults (optional, last).** Whether the choices it made for them are the ones their team would make, marked *(Optional)*, naming each default, not a list of categories, e.g. "By default, it [does A], [leaves out B] and [assumes C]. Would your team use the same defaults?"
 

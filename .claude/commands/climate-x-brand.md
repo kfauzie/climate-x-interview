@@ -1,6 +1,6 @@
 ---
 name: climate-x-brand
-description: "Climate X's brand guideline (as given by Climate X): voice, what to avoid, product one-liners, personas and their triggers, sector terms (AAL vs EAL), regional nuances, colours, fonts and logo, and a copy checklist. The one place for anything Climate X–specific about look and voice; other skills point here. Use for any screen, prototype or customer-facing copy."
+description: "Climate X's brand and market guide (as given by Climate X): who Climate X sells to (personas, their common pain points and what makes them say yes), messaging, voice, what to avoid, product one-liners, personas and their triggers, sector terms (AAL vs EAL), regional nuances, colours, fonts and logo, and a copy checklist. The one place for anything Climate X–specific about look, voice and personas; other skills point here. Use for discovery, solution concepts, screens, prototypes and customer-facing copy."
 ---
 
 

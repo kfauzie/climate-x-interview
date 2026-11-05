@@ -7,7 +7,7 @@ description: "Prepare and run a 10-minute customer discovery interview: a few op
 
 The job is to find the real problem behind what the customer asks for.
 
-Before starting, read climate-x-products, climate-x-company and climate-x-role. Follow the communication guide in climate-x-role for everything you write.
+Before starting, read climate-x-products, climate-x-company, climate-x-role and climate-x-brand. Follow the communication guide in climate-x-role for everything you write.
 
 ## Principles
 - **Problem, not solution.** Questions name the problem, never the requested solution. Don't assume who the user is or what gets built. If they ask for a feature, ask what it would let them do.
@@ -15,6 +15,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role. 
 - **The customer's language** (e.g. risk appetite, stress test, provisions).
 - **Open questions.** No hint of the answer you expect and no belief built in.
 - **One question per line,** so they get asked one at a time.
+- **Personas and common pain points as things to listen for.** Guess which persona in climate-x-brand the customer and the user are, and which of the common pain points could be behind the ask. Use that to choose follow-ups and to notice them when they come up; never build them into a question. What the customer says beats the persona.
 
 
 ## The output: a guide for a curiosity-led call, not a script

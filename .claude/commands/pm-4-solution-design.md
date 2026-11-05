@@ -5,13 +5,13 @@ description: "Turn the solution concept into screens in Climate X's brand, one p
 
 # Solution design
 
-Before starting, read climate-x-products, climate-x-company, climate-x-role and climate-x-brand (Climate X's brand guideline). Follow the communication guide in climate-x-role for everything you write. Start from the workflow in the solution concept (the Notion page linked in `RUN.md`; fetch it fresh every time, since I may have edited it).
+Before starting, read climate-x-products, climate-x-company, climate-x-role and climate-x-brand. Follow the communication guide in climate-x-role for everything you write. Start from the workflow in the solution concept (the Notion page linked in `RUN.md`; fetch it fresh every time, since I may have edited it).
 
 Output: the screen images, saved in runs/run-N/design/.
 
 ## Principles
 1. **Decision first.** The product exists to help someone make a commercial decision. If a screen has a recommended decision, it's at the top, with the reason right under it.
-2. **Know the user.** They're intelligent and expert in their domain, but not technical. Use their own terms from the interview notes; don't invent labels. No technical or AI terms on screen. Labels use roles, not people's names, so it works for any team.
+2. **Know the user.** Start from the matching persona in climate-x-brand (what they want, what makes them trust it), then adjust to the interview notes. The screen should answer the persona's "yes" trigger at a glance. They're intelligent and expert in their domain, but not technical. Use their own terms from the interview notes; don't invent labels. No technical or AI terms on screen. Labels use roles, not people's names, so it works for any team.
 3. **One step per screen.** Each screen does exactly one step of the workflow. When the next step belongs to someone else, make the hand-over clear.
 4. **Show only what matters.** Sensible defaults, labelled "Default", and a few clear options. Each fact appears once. Every input earns its place: it changes the answer or who gets it.
 5. **Information hierarchy and progressive disclosure.** The key information is big and up front. Detail sits lower and smaller, or appears only when asked.
