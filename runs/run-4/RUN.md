@@ -76,3 +76,11 @@ Code: `notebooks/initial_review.py`. Unless stated: 2030, middle scenario (SSP2-
 - Rerun findings 1 and 3 with Singapore defended (excluding coastal flood) to see how much the answer depends on it
 - Express each site's loss as a share of an assumed value or EBITDA, once the deal team gives one
 - Show what changes at exit (2033) for a buyer looking to 2050 or 2100
+
+## Data structure for later steps (structure only, no design decided)
+- **Dimensions:** 22 sites × 4 scenarios (SSP1-2.6, SSP2-4.5, SSP3-7.0, SSP5-8.5) × 12 years (2020, 2025, 2030 … 2050, 2060 … 2100). Hold-period years: 2026–2032 fall between 2025, 2030 and 2035 (interpolate)
+- **Per site (fixed):** ID, address, city, country, lat/lon, use, type, age, floors, replacement cost (£), floor area
+- **Per site × scenario × year:** overall grade A–G, total £ loss a year, loss % of replacement cost; for each of 11 hazards a grade and (9 of them) a £ loss. Heat and drought have grades but no £ loss. A blank grade = £0 (guess: not modelled)
+- **Not in the data, would come from the deal team:** hold period, value or EBITDA per site, ownership/lease, flood defences
+- **Ready to use:** `data/sites.json` (made by `notebooks/export_json.py`): `{meta, sites:[{id, city, …, risk:{ssp245:{"2030":{grade, loss, loss_pct, hazards:{"Coastal Flood":{grade, loss}}}}}}]}`
+- **Build kit (pre-installed):** `build/vendor/` Leaflet 1.9.4 and Chart.js 4.4.1 (local, works offline); `build/shoot.js <page> <outdir>` screenshots each `[data-screen]` and hides `.no-export`; Playwright and Chromium checked (about 3s a run)
