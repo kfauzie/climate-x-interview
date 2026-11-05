@@ -15,7 +15,7 @@ Input: the agreed screens from pm-4-solution-design and the solution concept (wo
 - Each change after the first build should take about two minutes. If it will take longer, tell me first and suggest a smaller step.
 
 ## Look
-Match the agreed screens from pm-4-solution-design exactly. Don't add new elements.
+Match the agreed screens from pm-4-solution-design exactly. Don't add new elements. Screens fill the window; the step bar is clickable navigation that looks and works the same on every screen, with a small animation when the step changes.
 
 ## Check before showing me
 - Run the test cases from the solution concept once, at the end.

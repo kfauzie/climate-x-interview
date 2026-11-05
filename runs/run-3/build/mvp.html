@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Site resilience plans</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#e8e8e8;font:15px/1.45 Graphik,Helvetica,Arial,sans-serif;color:#343a40}
+body{background:#f9f9fa}.screen{min-height:100vh;display:flex;flex-direction:column;background:#f9f9fa}.screen>.body{flex:1;width:100%;max-width:1280px;margin:0 auto}
+.hdr2{background:#1f5fa8;color:#fff;padding:20px 28px;display:flex;align-items:center;gap:16px}
+.hdr2 .ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;flex:none}
+.hdr2 .u,.hdr2 .j{font-size:26px;font-weight:700}.hdr2 .j{margin-top:4px}
+.steps{display:flex;padding:14px 24px 0;max-width:1280px;width:100%;margin:0 auto}
+.step{flex:1;position:relative;border:0;background:#e3e5e8;color:#5a6168;font:inherit;font-size:14px;font-weight:600;padding:12px 10px 12px 30px;cursor:pointer;
+ clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%,16px 50%);margin-right:-10px;transition:background .25s,color .25s,transform .2s}
+.step:first-child{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%);padding-left:18px}
+.step:hover{background:#d3d7db;transform:translateX(3px)}.step.done{background:#cfd6de;color:#343a40}
+.step.on{background:#343a40;color:#fff;animation:stepin .45s ease-out}.step .n{opacity:.7;margin-right:6px}
+@keyframes stepin{from{transform:translateX(-8px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.step{transition:none}.step.on{animation:none}}
+.body{padding:10px 24px 20px}.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+h1{font-size:24px;margin:6px 0 2px}.sub{color:#6c757d}
+.card{background:#fff;border:1px solid #e3e5e8;border-radius:12px;padding:16px 18px;margin-top:12px}
+.lbl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#6c757d;margin-bottom:8px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.fact .n{font-size:22px;font-weight:700}.fact .s{font-size:13px;color:#6c757d}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px}
+.t-adapt{background:#eef0f2;color:#5a6168}.t-ok{background:#e6f3e9;color:#1f6b32}.t-warn{background:#fff1d6;color:#8a5a00}.t-chg{background:#fff1d6;color:#8a5a00}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-weight:500;color:#6c757d;font-size:13px;padding:8px 10px;border-bottom:1px solid #e3e5e8}
+td{padding:12px 10px;border-bottom:1px solid #eef0f2;vertical-align:middle}td.r,th.r{text-align:right}
+.small td,.small th{padding:9px 8px;font-size:14px}
+tr.sel td{background:#f6f8fb}tr.sel td:first-child{box-shadow:inset 4px 0 0 #343a40}
+tr.click td{cursor:pointer}tr.click:hover td{background:#f6f8fb}.chev{color:#9aa0a6;font-size:20px;text-align:right;width:20px}
+.big{font-size:20px;font-weight:700}.src3{font-size:12px;color:#8a9097;font-weight:400;margin-top:2px}.bench{font-size:12px;color:#5b2d91;margin-top:3px}
+.link{text-decoration:underline;font-size:14px;cursor:pointer;background:none;border:0;padding:0;font-family:inherit;color:inherit}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.note{border-left:4px solid #c9a227;background:#fff8e6;color:#6b4a00;font-style:italic;padding:8px 12px;font-size:14px;margin-top:10px}
+.warn{border-left:4px solid #c9a227;background:#fff8e6;color:#6b4a00;padding:10px 14px;font-size:14px;display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.bar{height:10px;border-radius:5px;background:#eef0f2;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:#343a40}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:#fff;border-top:1px solid #e3e5e8}
+.btn{display:inline-block;padding:9px 18px;border:1px solid #c8ccd0;background:#fff;border-radius:999px;font:inherit;color:inherit;cursor:pointer}
+.btn.p{background:#e01e1a;border-color:#e01e1a;color:#fff}.btn:disabled{opacity:.45;cursor:not-allowed}
+select.pick{font:inherit;font-size:18px;font-weight:600;border:0;border-bottom:2px solid #343a40;background:none;padding:0 2px;color:inherit;cursor:pointer}
+.doc{background:#fff;border:1px solid #d9dce0;border-radius:6px;padding:28px 32px;box-shadow:0 2px 10px rgba(0,0,0,.05);margin-top:12px}
+.doc h2{font-size:22px;margin:0 0 4px}.doc h3{font-size:15px;margin:22px 0 8px;text-transform:uppercase;letter-spacing:.05em;color:#6c757d;font-weight:600}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}.sum>div{border:1px solid #eef0f2;border-radius:10px;padding:12px}.sum .n{font-size:24px;font-weight:700}.sum .s{font-size:13px;color:#6c757d}
+.rule{border:1px solid #e3e5e8;border-radius:10px;padding:12px 14px;background:#f9f9fa}
+.kv td{padding:7px 0}.kv td:first-child{color:#6c757d;width:44%}
+.input{border:1px solid #c8ccd0;border-radius:8px;padding:7px 10px;font:inherit}
+.hidden{display:none}
+#ov{position:fixed;inset:0;background:rgba(31,40,51,.55);display:flex;align-items:center;justify-content:center;z-index:50}#ov.hidden{display:none}
+#ov .box{background:#fff;border-radius:16px;padding:34px 44px;min-width:380px;text-align:center}#ov .bigt{font-size:26px;font-weight:700;margin-top:8px}
+#ov .plane{animation:fly 1s ease-in forwards}@keyframes fly{0%{transform:translate(-160px,30px) rotate(-8deg);opacity:0}20%{opacity:1}100%{transform:translate(160px,-30px) rotate(-18deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){#ov .plane{animation:none}}
+@media (max-width:760px){.facts,.cols,.sum{grid-template-columns:1fr}.hdr2 .u,.hdr2 .j{font-size:20px}}
+</style></head><body>
+<div id="app"></div>
+<div id="ov" class="hidden"></div>
+<input type="file" id="pick" accept=".csv" class="hidden">
+
+<!-- ============ Calculations: plain functions, no DOM ============ -->
+<script id="calc">
+const HAZARDS = ['flood_river', 'flood_surface', 'extreme_heat', 'wildfire', 'windstorm'];
+const HAZARD_NAME = {flood_river: 'river flood', flood_surface: 'surface water flood', extreme_heat: 'extreme heat', wildfire: 'wildfire', windstorm: 'windstorm'};
+const SCEN = {severe: 'ssp585', central: 'ssp245'};
+const SCEN_TEXT = {severe: 'the severe scenario (very high emissions)', central: "today's policies"};
+const BANDS = 'ABCDEFG';
+const DEFAULT_RULE = {band: 'E', scenario: 'severe', year: '2050'};
+const PAYBACK_LIMIT = 5;   // years: the recommendation prefers the biggest saving that pays back within this
+
+// SYNTHETIC placeholder for Adapt's measure library until Adapt is connected:
+// cost as a share of site value, and the share of that hazard's expected loss the measure removes.
+const ADAPT_MEASURES_SYNTHETIC = [
+  {hazard: 'flood_river', type: 'battery', name: 'Flood barrier around the battery compound', costShare: 0.008, cut: 0.60},
+  {hazard: 'flood_river', type: 'battery', name: 'Raise the battery units above flood level', costShare: 0.013, cut: 0.75},
+  {hazard: 'flood_river', type: 'battery', name: 'Improve site drainage', costShare: 0.003, cut: 0.15},
+  {hazard: 'flood_river', type: 'solar', name: 'Raise inverters and switchgear', costShare: 0.006, cut: 0.50},
+  {hazard: 'flood_river', type: 'solar', name: 'Improve site drainage', costShare: 0.003, cut: 0.20},
+  {hazard: 'flood_river', type: 'wind', name: 'Raise substation equipment', costShare: 0.004, cut: 0.50},
+  {hazard: 'flood_surface', type: '*', name: 'Improve site drainage', costShare: 0.003, cut: 0.45},
+  {hazard: 'extreme_heat', type: 'solar', name: 'Heat-tolerant inverters', costShare: 0.007, cut: 0.55},
+  {hazard: 'extreme_heat', type: 'solar', name: 'Shade and ventilate inverter housings', costShare: 0.003, cut: 0.25},
+  {hazard: 'extreme_heat', type: 'battery', name: 'Upgrade battery cooling', costShare: 0.005, cut: 0.60},
+  {hazard: 'extreme_heat', type: 'wind', name: 'Upgrade turbine cooling', costShare: 0.003, cut: 0.40},
+  {hazard: 'wildfire', type: '*', name: 'Firebreak and vegetation clearance', costShare: 0.002, cut: 0.50},
+  {hazard: 'windstorm', type: 'wind', name: 'Strengthen turbines for high winds', costShare: 0.004, cut: 0.40},
+  {hazard: 'windstorm', type: 'solar', name: 'Stronger panel mountings', costShare: 0.003, cut: 0.45},
+  {hazard: 'windstorm', type: 'battery', name: 'Secure battery enclosures', costShare: 0.002, cut: 0.40},
+];
+
+function parseCsv(text) {
+  const lines = text.trim().split(/\r?\n/), h = lines[0].split(',');
+  return lines.slice(1).map(l => { const v = l.split(','), o = {}; h.forEach((k, i) => o[k] = v[i]); return o; });
+}
+const rating = (s, h, scen, year) => s[`${h}_${SCEN[scen]}_${year}_rating`] || null;          // blank = not scored
+const loss = (s, h, scen, year) => +(s[`${h}_${SCEN[scen]}_${year}_loss_gbp`] || 0);           // blank counts as £0
+const totalLoss = (s, scen, year) => HAZARDS.reduce((t, h) => t + loss(s, h, scen, year), 0);
+const atOrWorse = (r, band) => r !== null && BANDS.indexOf(r) >= BANDS.indexOf(band);
+
+// The screening rule: which hazards trip it at this site
+function flagged(s, rule) { return HAZARDS.filter(h => atOrWorse(rating(s, h, rule.scenario, rule.year), rule.band)); }
+function worst(s, scen, year) {
+  let best = null;
+  for (const h of HAZARDS) { const r = rating(s, h, scen, year); if (r && (!best || BANDS.indexOf(r) > BANDS.indexOf(best.r))) best = {r, h}; }
+  return best;
+}
+function screen(sites, rule) {
+  const need = sites.filter(s => flagged(s, rule).length), clear = sites.filter(s => !flagged(s, rule).length);
+  return {need, clear};
+}
+
+// Measures for one site: for each flagged hazard, the matching measures, valued on the 2030 loss under the rule's scenario
+function measures(s, rule) {
+  const out = [];
+  for (const h of flagged(s, rule)) for (const m of ADAPT_MEASURES_SYNTHETIC) {
+    if (m.hazard !== h || (m.type !== '*' && m.type !== s.asset_type)) continue;
+    const cost = Math.round(+s.asset_value_gbp * m.costShare / 1e4) * 1e4;
+    const avoided = Math.round(loss(s, h, rule.scenario, '2030') * m.cut / 100) * 100;
+    const avoided2050 = Math.round(loss(s, h, rule.scenario, rule.year) * m.cut / 100) * 100;
+    out.push({id: `${h}|${m.name}`, name: m.name, hazard: h, cost, avoided, avoided2050, payback: avoided > 0 ? cost / avoided : Infinity});
+  }
+  return out;
+}
+// Recommended: the biggest saving that pays back within the limit; otherwise the quickest payback
+function recommend(ms) {
+  if (!ms.length) return null;
+  const ok = ms.filter(m => m.payback <= PAYBACK_LIMIT).sort((a, b) => b.avoided - a.avoided);
+  return ok[0] || [...ms].sort((a, b) => a.payback - b.payback)[0];
+}
+// Expected loss a year before and after the chosen measures, for the bank document (rule's scenario and year)
+function bankTotals(need, rule, chosenFor) {
+  let before = 0, after = 0;
+  for (const s of need) { const b = totalLoss(s, rule.scenario, rule.year); const m = chosenFor(s); before += b; after += b - (m ? m.avoided2050 : 0); }
+  return {before, after};
+}
+const money = x => x >= 1e6 ? `£${(x / 1e6).toFixed(2)}m` : `£${Math.round(x).toLocaleString('en-GB')}`;
+const years = x => !isFinite(x) ? '—' : x < 1.05 && x > 0.95 ? 'about 1 year' : `about ${x.toFixed(1)} years`;
+if (typeof module !== 'undefined') module.exports = {parseCsv, screen, flagged, worst, measures, recommend, bankTotals, totalLoss, DEFAULT_RULE, ADAPT_MEASURES_SYNTHETIC};
+</script>
+
+<!-- ============ Screens ============ -->
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const cap = s => s[0].toUpperCase() + s.slice(1);
+const ICON = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>';
+const STEPS = ['Screen sites', 'Check locations', 'Plan each site', 'Bank document'];
+const S = {sites: null, error: null, screen: 'screen', rule: {...DEFAULT_RULE}, located: {}, chosen: {}, quotes: {}, i: 0, open: {}, sent: null};
+
+function ribbon(job) { return `<div class="hdr2"><span class="ic">${ICON}</span><div><div class="u">User: Head of Asset Management</div><div class="j">Job to be done: ${job}</div></div></div>`; }
+const STEP_SCREEN = ['screen', 'locations', 'plan', 'doc'];
+function steps(n) { return `<nav class="steps">${STEPS.map((s, i) => `<button class="step ${i === n ? 'on' : i < n ? 'done' : ''}" data-step="${i}"><span class="n">${i + 1}</span>${s}</button>`).join('')}</nav>`; }
+const label = s => `${s.site_id} · ${s.region} ${s.asset_type}`;
+const need = () => screen(S.sites, S.rule).need;
+const points = () => need().filter(s => s.location_type === 'point');
+const isDefaultRule = () => Object.keys(DEFAULT_RULE).every(k => S.rule[k] === DEFAULT_RULE[k]);
+const chosenFor = s => { const ms = measures(s, S.rule); return ms.find(m => m.id === S.chosen[s.site_id]) || recommend(ms); };
+const locOk = s => s.location_type !== 'point' || S.located[s.site_id];
+
+async function load() {
+  try { S.sites = parseCsv(await (await fetch('../data/northwind_renewables_spectra_infra_2026-09.csv')).text()); if (!S.sites[0].site_id) throw 0; }
+  catch (e) { S.error = true; }
+  render();
+}
+
+function render() {
+  const app = $('app');
+  if (!S.sites) {
+    app.innerHTML = `<div class="screen">${ribbon('find which sites need a plan, with a reason the bank accepts')}<div class="body"><h1>${S.error ? 'Choose the Spectra export' : 'Reading your sites…'}</h1>${S.error ? '<button class="btn p" id="choose">Choose the file</button>' : ''}</div></div>`;
+    if (S.error) $('choose').onclick = () => { const p = $('pick'); p.onchange = () => p.files[0].text().then(t => { S.sites = parseCsv(t); render(); }); p.click(); };
+    return;
+  }
+  app.innerHTML = ({screen: vScreen, locations: vLocations, plan: vPlan, doc: vDoc})[S.screen]();
+  window.scrollTo(0, 0);
+}
+
+// ---- 1. Screen sites
+function vScreen() {
+  const {need, clear} = screen(S.sites, S.rule), alt = screen(S.sites, {...S.rule, scenario: S.rule.scenario === 'severe' ? 'central' : 'severe'}).need.length;
+  const row = s => { const w = worst(s, S.rule.scenario, S.rule.year); return `<tr><td>${label(s)}</td><td><b>${w ? w.r : '—'}</b></td><td>${w ? cap(HAZARD_NAME[w.h]) : 'Not scored'}</td></tr>`; };
+  const list = (arr, key) => { const sorted = [...arr].sort((a, b) => BANDS.indexOf((worst(b, S.rule.scenario, S.rule.year) || {r: 'A'}).r) - BANDS.indexOf((worst(a, S.rule.scenario, S.rule.year) || {r: 'A'}).r));
+    const shown = S.open[key] ? sorted : sorted.slice(0, 5);
+    return shown.map(row).join('') + (arr.length > 5 ? `<tr><td colspan="3"><button class="link" data-open="${key}">${S.open[key] ? 'Show fewer' : `Show all ${arr.length}`}</button></td></tr>` : ''); };
+  const sel = (k, opts) => `<select class="pick" data-rule="${k}">${opts.map(([v, t]) => `<option value="${v}" ${S.rule[k] === v ? 'selected' : ''}>${t}</option>`).join('')}</select>`;
+  return `<div class="screen" id="s-screen">${ribbon('find which sites need a plan, with a reason the bank accepts')}${steps(0)}<div class="body">
+   <h1>Which of your ${S.sites.length} sites need a plan?</h1><div class="sub">Climate figures from Spectra, September 2026</div>
+   <div class="card"><div class="lbl">The rule</div>
+    <div style="font-size:18px">A site needs a plan if any hazard is rated ${sel('band', [['D', 'D or worse'], ['E', 'E or worse'], ['F', 'F or worse']])} under ${sel('scenario', [['severe', 'the severe scenario'], ['central', "today's policies"]])} by ${sel('year', [['2030', '2030'], ['2050', '2050']])}</div>
+    <div style="margin-top:8px"><span class="tag ${isDefaultRule() ? 't-adapt' : 't-chg'}">${isDefaultRule() ? 'Default' : 'Changed from the default'}</span> <span class="sub" style="font-size:13px">A to G are Spectra's seven bands, G the worst. Severe = very high emissions (SSP5-8.5); today's policies = SSP2-4.5.</span></div></div>
+   <div class="card" style="text-align:center;padding:26px"><div style="font-size:52px;font-weight:700" id="headline">${need.length} need a plan · ${clear.length} don't</div>
+    <div class="sub" style="margin-top:6px">Under ${S.rule.scenario === 'severe' ? "today's policies" : 'the severe scenario'} instead, ${alt} would need a plan</div></div>
+   <div class="cols">
+    <div class="card"><div class="lbl">${need.length} sites that need a plan</div><table class="small"><tr><th>Site</th><th>Worst rating</th><th>For</th></tr>${list(need, 'need')}</table></div>
+    <div class="card"><div class="lbl">${clear.length} sites that don't</div><table class="small"><tr><th>Site</th><th>Worst rating</th><th>For</th></tr>${list(clear, 'clear')}</table></div>
+   </div></div>
+   <div class="foot"><span></span><button class="btn p" id="go-loc" ${need.length ? '' : 'disabled'}>Check the ${need.length} sites' locations →</button></div></div>`;
+}
+
+// ---- 2. Check locations
+function vLocations() {
+  const pts = points(), n = need().length;
+  const rows = pts.map(s => { const w = worst(s, S.rule.scenario, S.rule.year), st = S.located[s.site_id];
+    return `<tr><td><b>${label(s)}</b><div class="src3">${(+s.capacity_mw).toFixed(0)} MW · rated ${w.r} for ${HAZARD_NAME[w.h]}</div></td><td>Single point</td><td class="r">${st ? `<span class="tag t-ok">✓ ${st === 'right' ? 'Confirmed' : 'Corrected, to be re-scored'}</span> <button class="link" data-undo="${s.site_id}">Undo</button>` : `<button class="btn" data-loc="${s.site_id}|right">Point is right</button> &nbsp;<button class="btn" data-loc="${s.site_id}|corrected">Correct it</button>`}</td></tr>`; }).join('');
+  return `<div class="screen" id="s-locations">${ribbon('make sure each plan is for the right place')}${steps(1)}<div class="body">
+   <h1>${pts.length ? `${pts.length} sites are scored at a single point` : 'Every site is scored over its full outline'}</h1>
+   <div class="sub">${pts.length ? `The other ${n - pts.length} sites that need a plan are scored over their full outline. A single point can miss part of the site, so confirm or correct each one.` : 'Nothing to check.'}</div>
+   ${pts.length ? `<div class="card"><table><tr><th>Site</th><th>Scored at</th><th></th></tr>${rows}</table><div class="note">Not sure? The site's operations contractor holds the drawings showing where the equipment sits.</div></div>` : ''}
+  </div><div class="foot"><button class="btn" id="back">← Back</button><button class="btn p" id="go-plan">Plan the ${n} sites →</button></div></div>`;
+}
+
+// ---- 3. Plan each site
+function vPlan() {
+  const list = need(), s = list[S.i], ms = measures(s, S.rule).sort((a, b) => b.avoided - a.avoided), rec = recommend(ms);
+  const pick = ms.find(m => m.id === S.chosen[s.site_id]) || rec, w = worst(s, S.rule.scenario, S.rule.year);
+  const fl = flagged(s, S.rule).map(h => HAZARD_NAME[h]).join(', ');
+  const before30 = flagged(s, S.rule).reduce((t, h) => t + +(s[`${h}_${SCEN_C(S.rule.scenario)}_2030_loss_gbp`] || 0), 0);
+  const q = S.quotes[s.site_id] || {};
+  const order = rec ? [rec, ...ms.filter(m => m !== rec)] : ms;
+  const row = m => `<tr class="${m === pick ? 'sel' : ''} click" data-pick="${esc(m.id)}"><td>${m === rec ? '<span class="tag t-ok" style="margin-right:8px">Recommended</span>' : ''}${m === pick ? `<b>${m.name}</b>` : m.name}${q[m.id] ? `<div class="bench">Your consultant quoted ${money(q[m.id])}</div>` : ''}</td>
+     <td class="r"><span class="${m === pick ? 'big' : ''}">${money(m.cost)}</span><div class="src3">Adapt cost estimate</div></td>
+     <td class="r"><span class="${m === pick ? 'big' : ''}">${money(m.avoided)}</span><div class="src3">Spectra expected loss, before vs after</div></td>
+     <td class="r ${m === pick ? 'big' : ''}">${years(m.payback)}</td></tr>`;
+  // similar sites: other sites in this plan with the same type and main hazard, and what was chosen there
+  const sim = list.filter(o => o !== s && o.asset_type === s.asset_type && flagged(o, S.rule)[0] === flagged(s, S.rule)[0] && S.chosen[o.site_id]);
+  const counts = {}; sim.forEach(o => { const n = S.chosen[o.site_id].split('|')[1]; counts[n] = (counts[n] || 0) + 1; });
+  const simHtml = sim.length ? Object.entries(counts).map(([n, c]) => `<div style="margin-top:10px">${n} · ${c} ${c === 1 ? 'site' : 'sites'}<div class="bar"><i style="width:${Math.round(100 * c / sim.length)}%"></i></div></div>`).join('') : '<div class="sub">No similar sites planned yet. This fills in as you choose measures.</div>';
+  return `<div class="screen" id="s-plan">${ribbon('decide which measure is worth paying for at each site')}${steps(2)}<div class="body">
+   <div class="top"><div><h1>${label(s)} site</h1><div class="sub">Needs a plan: ${fl} rated ${w.r} by ${S.rule.year} under ${SCEN_TEXT[S.rule.scenario]}. A to G are Spectra's seven bands, G the worst.</div></div>
+    <div class="sub" style="white-space:nowrap">Site ${S.i + 1} of ${list.length} · ${locOk(s) ? (s.location_type === 'point' ? '<span class="tag t-ok">✓ Location confirmed</span>' : '<span class="tag t-ok">✓ Scored over the site outline</span>') : '<span class="tag t-warn">Confirm location</span>'}</div></div>
+   ${rec ? `<div class="card" style="border:2px solid #343a40;margin-top:14px"><div style="font-size:24px;font-weight:700" id="rec">Recommended: ${rec.name.toLowerCase()}. ${money(rec.cost)}, pays back in ${years(rec.payback)}.</div>
+    <div class="sub" style="margin-top:4px">It avoids ${money(rec.avoided)} of the ${money(before30)} expected ${fl} loss a year by 2030, ${rec.payback <= PAYBACK_LIMIT ? `the biggest saving of the measures that pay back within ${PAYBACK_LIMIT} years` : 'the quickest payback available'}.</div></div>` : `<div class="note">No standard measure for this hazard and site type. Ask an engineer.</div>`}
+   <div class="card"><div class="facts">
+    <div class="fact"><div class="n">${money(totalLoss(s, S.rule.scenario, '2030'))}</div><div class="s">expected loss a year by 2030, all hazards, ${SCEN_TEXT[S.rule.scenario]}</div><div class="src3">From Spectra, September 2026</div></div>
+    <div class="fact"><div class="n">${money(totalLoss(s, S.rule.scenario, '2050'))}</div><div class="s">a year by 2050, same scenario</div><div class="src3">From Spectra, September 2026</div></div>
+    <div class="fact"><div class="n">${money(totalLoss(s, S.rule.scenario === 'severe' ? 'central' : 'severe', '2050'))}</div><div class="s">a year by 2050, ${SCEN_TEXT[S.rule.scenario === 'severe' ? 'central' : 'severe']}</div><div class="src3">From Spectra, September 2026</div></div>
+    <div class="fact"><div class="n">${money(+s.asset_value_gbp)}</div><div class="s">site value · ${(+s.capacity_mw).toFixed(0)} MW ${s.asset_type === 'battery' ? 'battery storage' : s.asset_type === 'solar' ? 'solar farm' : 'wind farm'}</div><div class="src3">From your site list</div></div>
+   </div></div>
+   <div class="card"><div class="lbl">All measures for this site · compared on 2030 expected loss, ${SCEN_TEXT[S.rule.scenario]}</div>
+    <table><tr><th>Measure</th><th class="r">Cost</th><th class="r">Loss avoided a year</th><th class="r">Pays back in</th></tr>${order.map(row).join('')}
+     <tr class="${!pick || S.chosen[s.site_id] === 'none' ? 'sel' : ''} click" data-pick="none"><td>No action</td><td class="r">£0</td><td class="r">£0</td><td class="r">—</td></tr></table>
+    <div style="margin-top:12px;display:flex;gap:24px;flex-wrap:wrap;align-items:center">${S.open.quote ? `<select class="input" id="q-m">${ms.map(m => `<option value="${esc(m.id)}">${m.name}</option>`).join('')}</select><input class="input" id="q-v" placeholder="Quoted £" inputmode="numeric" style="width:130px"><button class="btn" id="q-add">Add</button>` : `<button class="link" id="q-open">+ Add your consultant's quote to compare</button>`}<button class="link" id="how">Show how loss avoided is worked out</button></div>
+    ${S.open.how ? `<div class="note" style="font-style:normal">Loss avoided = the hazard's expected loss a year by 2030 from Spectra, before the measure, minus the expected loss after it. Costs and the share of loss each measure removes come from Adapt. Payback = cost ÷ loss avoided a year.</div>` : ''}
+   </div>
+   <div class="card"><div class="lbl">What similar sites chose</div><div>${s.asset_type} sites in this plan rated for ${HAZARD_NAME[flagged(s, S.rule)[0]]}</div>${simHtml}</div>
+  </div><div class="foot"><button class="btn" id="prev">← ${S.i ? 'Previous site' : 'Back to locations'}</button><button class="btn p" id="use">${S.chosen[s.site_id] === 'none' ? 'No action here' : S.chosen[s.site_id] && pick !== rec ? 'Use this measure' : 'Use the recommended measure'}, ${S.i + 1 < list.length ? 'next site' : 'see the bank document'} →</button></div></div>`;
+}
+function SCEN_C(k) { return SCEN[k]; }
+
+// ---- 4. Bank document
+function vDoc() {
+  const list = need(), {clear} = screen(S.sites, S.rule), pend = list.filter(s => !locOk(s));
+  const chosen = s => S.chosen[s.site_id] === 'none' ? null : chosenFor(s);
+  const t = bankTotals(list, S.rule, chosen), other = S.rule.scenario === 'severe' ? 'central' : 'severe';
+  const alsoOther = list.filter(s => flagged(s, {...S.rule, scenario: other}).length).length;
+  const rows = [...list].sort((a, b) => totalLoss(b, S.rule.scenario, S.rule.year) - totalLoss(a, S.rule.scenario, S.rule.year)).map(s => {
+    const m = chosen(s), b = totalLoss(s, S.rule.scenario, S.rule.year), a = b - (m ? m.avoided2050 : 0), draft = !locOk(s);
+    const fl = flagged(s, S.rule).map(h => HAZARD_NAME[h]).join(', ');
+    return `<tr class="click" data-site="${s.site_id}"><td>${label(s)}${draft ? ' <span class="tag t-warn">Confirm location</span>' : ''}</td><td>${cap(fl)}${flagged(s, {...S.rule, scenario: other}).length ? `<div class="src3">also under ${SCEN_TEXT[other]}</div>` : ''}</td>
+     <td>${m ? (draft ? `<span style="font-style:italic;color:#6b4a00">${m.name}</span><div class="src3">Draft until the location is confirmed</div>` : m.name) : 'No action'}</td><td class="r">${m ? money(m.cost) : '£0'}</td><td class="r">${money(b)} → ${money(a)}</td><td class="chev">›</td></tr>`; }).join('');
+  const sent = S.sent;
+  return `<div class="screen" id="s-doc">${ribbon('show the bank climate risk is managed across every site')}${steps(3)}<div class="body">
+   <div class="top"><div><h1>${sent ? '✓ Sent to the bank\'s credit team' : 'Your document for the bank\'s credit team'}</h1><div class="sub">${sent ? `Sent ${sent.toLocaleString('en-GB', {day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'})}. Run it again next year with the new Spectra results.` : 'This is what the bank receives. Climate figures come from Spectra results dated September 2026.'}</div></div></div>
+   ${pend.length && !sent ? `<div class="warn"><span>${pend.length} ${pend.length === 1 ? 'site needs its' : 'sites need their'} location confirmed before sending. Their plans stay drafts until then.</span><button class="link" id="to-loc" style="font-style:normal">Confirm locations</button></div>` : ''}
+   <div class="doc">
+    <h2>Northwind Renewables · Climate resilience across ${S.sites.length} sites</h2><div class="sub">Prepared for the Facility A refinancing · ${new Date().toLocaleDateString('en-GB', {month: 'long', year: 'numeric'})} · Updated yearly</div>
+    <div style="text-align:center;margin:26px 0 8px"><div style="font-size:52px;font-weight:700;line-height:1.1" id="doc-headline">${money(t.before)} → ${money(t.after)} a year</div>
+     <div style="font-size:17px;color:#6c757d;margin-top:6px">Expected loss across the ${list.length} sites, before and after the plans · ${SCEN_TEXT[S.rule.scenario]}, ${S.rule.year}</div></div>
+    <div class="sum"><div><div class="n">${S.sites.length}</div><div class="s">sites checked</div></div><div><div class="n">${clear.length}</div><div class="s">need no action</div></div><div><div class="n">${list.length}</div><div class="s">have a plan</div></div><div><div class="n">${alsoOther}</div><div class="s">of the ${list.length} would need one under ${SCEN_TEXT[other]} too</div></div></div>
+    <h3>How we chose these sites</h3>
+    <div class="rule">A site gets a plan if Spectra rates any of its hazards ${S.rule.band} or worse (A to G, G the worst) by ${S.rule.year} under ${SCEN_TEXT[S.rule.scenario]}. Under ${SCEN_TEXT[other]}, ${screen(S.sites, {...S.rule, scenario: other}).need.length} sites would qualify.</div>
+    <h3>The ${list.length} sites with a plan</h3>
+    <table class="small"><tr><th>Site</th><th>Rated ${S.rule.band}–G for</th><th>Recommended measure</th><th class="r">Cost</th><th class="r">Expected loss a year, ${S.rule.year}</th><th></th></tr>${rows}</table>
+    <div style="margin-top:10px"><button class="link" data-open="doc-clear">${S.open['doc-clear'] ? 'Hide' : 'Show'} the ${clear.length} sites that need no action, with each one's worst rating</button></div>
+    ${S.open['doc-clear'] ? `<table class="small" style="margin-top:8px"><tr><th>Site</th><th>Worst rating</th><th>For</th></tr>${clear.map(s => { const w = worst(s, S.rule.scenario, S.rule.year); return `<tr><td>${label(s)}</td><td>${w ? w.r : '—'}</td><td>${w ? cap(HAZARD_NAME[w.h]) : 'Not scored'}</td></tr>`; }).join('')}</table>` : ''}
+    <h3>Method and sources</h3>
+    <table class="kv"><tr><td>Climate ratings and expected loss</td><td>Spectra Infrastructure Screener, September 2026</td></tr><tr><td>Scenarios</td><td>Today's policies (SSP2-4.5) and very high emissions (SSP5-8.5)</td></tr>
+     <tr><td>Measure costs</td><td>Adapt estimates; consultant quotes shown alongside where Northwind has them</td></tr><tr><td>Site locations</td><td>${list.length - pend.length} of ${list.length} confirmed by Northwind${pend.length ? `, ${pend.length} pending` : ''}</td></tr></table>
+   </div></div>
+   <div class="foot"><button class="btn" id="back-plan">← Back to plans</button><span><button class="btn" id="pdf">Download PDF</button> &nbsp; <button class="btn p" id="send" ${pend.length || sent ? 'disabled' : ''}>${sent ? '✓ Sent' : 'Send to the bank\'s credit team'}</button></span></div></div>`;
+}
+
+// ---- interactions (one delegated handler)
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+document.addEventListener('change', e => { const k = e.target.dataset.rule; if (k) { S.rule[k] = e.target.value; S.chosen = {}; S.i = 0; render(); } });
+document.addEventListener('click', async e => {
+  const t = e.target.closest('button, tr.click'); if (!t) return;
+  const go = scr => { S.screen = scr; S.open = {}; render(); };
+  if (t.dataset.step !== undefined) { const scr = STEP_SCREEN[+t.dataset.step]; if (scr === 'plan' && S.i >= need().length) S.i = 0; if (scr === 'plan' && !need().length) return; return go(scr); }
+  if (t.dataset.open) { S.open[t.dataset.open] = !S.open[t.dataset.open]; return render(); }
+  if (t.dataset.loc) { const [id, v] = t.dataset.loc.split('|'); S.located[id] = v; return render(); }
+  if (t.dataset.undo) { delete S.located[t.dataset.undo]; return render(); }
+  if (t.dataset.pick) { S.chosen[need()[S.i].site_id] = t.dataset.pick; return render(); }
+  if (t.dataset.site) { S.i = need().findIndex(s => s.site_id === t.dataset.site); return go('plan'); }
+  switch (t.id) {
+    case 'go-loc': return go('locations');
+    case 'back': return go('screen');
+    case 'go-plan': S.i = 0; return go('plan');
+    case 'to-loc': return go('locations');
+    case 'prev': if (S.i) { S.i--; return render(); } return go('locations');
+    case 'use': { const s = need()[S.i]; if (!S.chosen[s.site_id]) { const r = recommend(measures(s, S.rule)); S.chosen[s.site_id] = r ? r.id : 'none'; }
+      if (S.i + 1 < need().length) { S.i++; return render(); } return go('doc'); }
+    case 'back-plan': S.i = need().length - 1; return go('plan');
+    case 'q-open': S.open.quote = true; return render();
+    case 'q-add': { const v = +$('q-v').value.replace(/[£,\s]/g, ''); if (v > 0) { const id = need()[S.i].site_id; (S.quotes[id] = S.quotes[id] || {})[$('q-m').value] = v; } S.open.quote = false; return render(); }
+    case 'how': S.open.how = !S.open.how; return render();
+    case 'pdf': return window.print();
+    case 'send': {
+      const ov = $('ov'); ov.innerHTML = '<div class="box"><svg class="plane" width="54" height="54" viewBox="0 0 24 24" fill="#fff" stroke="#e01e1a" stroke-width="1.6" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg><div class="bigt">Sent to the bank\'s credit team</div></div>';
+      ov.classList.remove('hidden'); await sleep(1100); ov.classList.add('hidden'); S.sent = new Date(); return render(); }
+  }
+});
+render(); load();
+</script>
+</body></html>
