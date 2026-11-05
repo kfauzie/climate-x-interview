@@ -35,7 +35,7 @@ tr.click td{cursor:pointer}tr.click:hover td{background:#f6f8fb}.chev{color:#9aa
 .bar{height:10px;border-radius:5px;background:#eef0f2;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:#343a40}
 .foot{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:#fff;border-top:1px solid #e3e5e8}
 .btn{display:inline-block;padding:9px 18px;border:1px solid #c8ccd0;background:#fff;border-radius:999px;font:inherit;color:inherit;cursor:pointer}
-.btn.p{background:#e01e1a;border-color:#e01e1a;color:#fff}.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.p{background:#e01e1a;border-color:#e01e1a;color:#fff}.btn.dark{background:#343a40;border-color:#343a40;color:#fff;font-weight:700}.btn:disabled{opacity:.45;cursor:not-allowed}
 select.pick{font:inherit;font-size:18px;font-weight:600;border:0;border-bottom:2px solid #343a40;background:none;padding:0 2px;color:inherit;cursor:pointer}
 .doc{background:#fff;border:1px solid #d9dce0;border-radius:6px;padding:28px 32px;box-shadow:0 2px 10px rgba(0,0,0,.05);margin-top:12px}
 .doc h2{font-size:22px;margin:0 0 4px}.doc h3{font-size:15px;margin:22px 0 8px;text-transform:uppercase;letter-spacing:.05em;color:#6c757d;font-weight:600}
@@ -196,7 +196,7 @@ function vScreen() {
 function vLocations() {
   const pts = points(), n = need().length;
   const rows = pts.map(s => { const w = worst(s, S.rule.scenario, S.rule.year), st = S.located[s.site_id];
-    return `<tr><td><b>${label(s)}</b><div class="src3">${(+s.capacity_mw).toFixed(0)} MW · rated ${w.r} for ${HAZARD_NAME[w.h]}</div></td><td>Single point</td><td class="r">${st ? `<span class="tag t-ok">✓ ${st === 'right' ? 'Confirmed' : 'Corrected, to be re-scored'}</span> <button class="link" data-undo="${s.site_id}">Undo</button>` : `<button class="btn" data-loc="${s.site_id}|right">Point is right</button> &nbsp;<button class="btn" data-loc="${s.site_id}|corrected">Correct it</button>`}</td></tr>`; }).join('');
+    return `<tr><td><b>${label(s)}</b><div class="src3">${(+s.capacity_mw).toFixed(0)} MW · rated ${w.r} for ${HAZARD_NAME[w.h]}</div></td><td>Single point</td><td class="r">${st ? `<span class="tag t-ok">✓ ${st === 'right' ? 'Confirmed' : 'Corrected, to be re-scored'}</span> <button class="link" data-undo="${s.site_id}">Undo</button>` : `<button class="btn dark" data-loc="${s.site_id}|right">Point is right</button> &nbsp;<button class="btn" data-loc="${s.site_id}|corrected">Correct it</button>`}</td></tr>`; }).join('');
   return `<div class="screen" id="s-locations">${ribbon('make sure each plan is for the right place')}${steps(1)}<div class="body">
    <h1>${pts.length ? `${pts.length} sites are scored at a single point` : 'Every site is scored over its full outline'}</h1>
    <div class="sub">${pts.length ? `The other ${n - pts.length} sites that need a plan are scored over their full outline. A single point can miss part of the site, so confirm or correct each one.` : 'Nothing to check.'}</div>
@@ -237,7 +237,7 @@ function vPlan() {
     <div style="margin-top:12px;display:flex;gap:24px;flex-wrap:wrap;align-items:center">${S.open.quote ? `<select class="input" id="q-m">${ms.map(m => `<option value="${esc(m.id)}">${m.name}</option>`).join('')}</select><input class="input" id="q-v" placeholder="Quoted £" inputmode="numeric" style="width:130px"><button class="btn" id="q-add">Add</button>` : `<button class="link" id="q-open">+ Add your consultant's quote to compare</button>`}<button class="link" id="how">Show how loss avoided is worked out</button></div>
     ${S.open.how ? `<div class="note" style="font-style:normal">Loss avoided = the hazard's expected loss a year by 2030 from Spectra, before the measure, minus the expected loss after it. Costs and the share of loss each measure removes come from Adapt. Payback = cost ÷ loss avoided a year.</div>` : ''}
    </div>
-   <div class="card"><div class="lbl">What similar sites chose</div><div>${s.asset_type} sites in this plan rated for ${HAZARD_NAME[flagged(s, S.rule)[0]]}</div>${simHtml}</div>
+   <div class="card"><div style="font-size:19px;font-weight:700">What similar sites chose</div><div style="font-size:13px;color:#8a9097;margin-top:2px">${cap(s.asset_type)} sites in this plan rated for ${HAZARD_NAME[flagged(s, S.rule)[0]]}</div>${simHtml}</div>
   </div><div class="foot"><button class="btn" id="prev">← ${S.i ? 'Previous site' : 'Back to locations'}</button><button class="btn p" id="use">${S.chosen[s.site_id] === 'none' ? 'No action here' : S.chosen[s.site_id] && pick !== rec ? 'Use this measure' : 'Use the recommended measure'}, ${S.i + 1 < list.length ? 'next site' : 'see the bank document'} →</button></div></div>`;
 }
 function SCEN_C(k) { return SCEN[k]; }
