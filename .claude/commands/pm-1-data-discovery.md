@@ -13,7 +13,7 @@ Before starting, read climate-x-products, climate-x-company and climate-x-role. 
 - Every number is calculated by running code, never estimated by reading the file. Keep the code so each number can be traced.
 - Mark anything guessed (meanings, units, intent) as a guess.
 - Stay generic: look for patterns, not for a known story.
-- Don't over-analyse. Data quality is a sanity check, not the task.
+- The data may not be perfect, and that's fine. Flag quality issues briefly; only dig in if a gap is big enough to change the findings.
 
 ## Initial review (before the interview)
 About a minute. Find what to ask, not everything.
@@ -21,7 +21,7 @@ About a minute. Find what to ask, not everything.
 1. **Understand the file.** What one row is, how many rows, the key columns (identifiers, descriptors, risk measures), the dimensions packed into column names (hazards, scenarios, years), and anything ambiguous (units, yearly or cumulative, what a blank means). Guess which product it came from and what decisions it likely feeds, marked as a guess.
 2. **Look for three kinds of finding:**
    - **What's changed:** recent vs older records, by count and by value.
-   - **What's concentrated:** one hazard, area, segment or asset carrying most of it.
+   - **What's concentrated:** whether a small share of assets, or one hazard, area or segment, carries most of the risk or loss. Check by value as well as count, since a few large assets can outweigh many small ones.
    - **What's missing or odd:** gaps, duplicates, stale or unscored records, and what the data can't answer. Treat oddities as clues to past mistakes or workarounds.
    For each, check whether the scenario or year choice changes the picture.
 3. **Report 2 to 5 findings.** Only as many as are real; never pad. If nothing is relevant to the customer's need, say so. A data gap is a finding only if it would change an answer; otherwise it goes in the data quality check.
