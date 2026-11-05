@@ -8,7 +8,8 @@
 **On Notion (2nd round prep)**
 - MVP review questions: https://app.notion.com/p/40f8f31ef05f811fb967f6ee1b77b366
 - Solution concept: https://app.notion.com/p/40e8f31ef05f81cbadd2e063c7c8018c
-- Discovery questions v3 (current, with call notes): https://app.notion.com/p/40e8f31ef05f819485c6de10d3e855be
+- Discovery questions v4 (current): https://app.notion.com/p/40f8f31ef05f8142a954dfb9c56b672d
+- Discovery questions v3 (with call notes): https://app.notion.com/p/40e8f31ef05f819485c6de10d3e855be
 - Discovery questions v2 (has a meeting notes block): https://app.notion.com/p/40e8f31ef05f81d1b5e8fcb7900a5853
 - Discovery questions v1: https://app.notion.com/p/40e8f31ef05f81658eb1c6a31ed1de35
 
