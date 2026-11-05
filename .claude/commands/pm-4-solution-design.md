@@ -5,7 +5,7 @@ description: "Turn the solution concept into screens in Climate X's brand, one p
 
 # Solution design
 
-Before starting, read climate-x-products, climate-x-company and climate-x-role. Follow the communication guide in climate-x-role for everything you write. Start from the workflow in the solution concept (the Notion page linked in `RUN.md`; fetch it fresh every time, since I may have edited it).
+Before starting, read climate-x-products, climate-x-company, climate-x-role and climate-x-brand (Climate X's brand guideline). Follow the communication guide in climate-x-role for everything you write. Start from the workflow in the solution concept (the Notion page linked in `RUN.md`; fetch it fresh every time, since I may have edited it).
 
 Output: the screen images, saved in runs/run-N/design/.
 
@@ -20,7 +20,8 @@ Output: the screen images, saved in runs/run-N/design/.
 8. **Make it enjoyable.** Serious, but with a little personality: friendly wording, a sense of progress, small moments of feedback.
 
 ## How to work
-- **Look:** clean, delightful B2B SaaS in Climate X's brand: font Graphik (Helvetica, Arial as fallbacks); red #e01e1a, charcoal #343a40, off-white #f9f9fa, white panels. Red only for the main action. Soft tints for status (green done, amber needs attention, blue selected or informational). Colour is never the only signal: a warning also says "Warning", a done state also shows a tick.
+- **Look:** clean, delightful B2B SaaS, following climate-x-brand for colours, fonts and logo: font Graphik (Arial as fallback); Tech Red #e72d41 for the main action and brand accents (e.g. the X); X Grey 6 #343a40 for text, X Grey 7 #212529 for headings; off-white #f9f9fa background, white panels; Jade Green #2bad72 used sparingly, for positive or done states. Soft tints for status (green done, amber needs attention, blue selected or informational). Colour is never the only signal: a warning also says "Warning", a done state also shows a tick.
+- **Voice on screen:** follow climate-x-brand: lead with the financial or business outcome, active verbs, specific hazards and numbers; no black-box scores (every grade or score explains what it means), no alarmist framing, no ESG platitudes. Use the loss term the customer's sector uses (climate-x-brand: AAL for asset management and investors, EAL for banking), and run the copy checklist before showing me.
 - **Layout details:** details in a table (label | value), not a paragraph. A line explaining a heading sits right under it, smaller and lighter. Hover explanations for assumptions and counts. Source tags on choices, one colour per kind. Notes and warnings look different from content.
 - **Actions:** one primary button per screen (filled); others secondary (outline). Links and buttons say what they do. Secondary actions (send back, cancel) stay out of the Back position.
 - **Borrow patterns:** for each step, find the closest comparable product and borrow what fits, and say which. E.g. Typeform or TurboTax for guided flows; Stripe for numbers with their source one click away; Linear for calm hierarchy.
