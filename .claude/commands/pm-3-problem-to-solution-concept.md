@@ -30,7 +30,7 @@ One bullet per person or team affected (time, waiting, rework, risk to decisions
 Two or three ideas that are genuinely different from each other. For each:
 - What it is, in one line
 - **User:** does it solve the problem? How much of the pain does it remove (all, most, or a little)? Does it lead to a better commercial decision (where to invest, lend or adapt)? How does it fit their day?
-- **Commercial:** does it fit Climate X's product strategy? Likely return: can we charge more, or does it help retention and renewal?
+- **Commercial benefit to Climate X:** lead with the type: new revenue (a feature or product charged separately), upsell (a higher price, or more sites or users on an existing product), or retention (protects renewal). Then why, and whether it fits Climate X's product strategy.
 - **Effort:** rough size across engineering (how much to build), science (any new models needed), data (e.g. asset data to collect), and rollout (e.g. onboarding).
 
 Mark user and commercial points as judgements unless backed by a quote or number.
