@@ -22,7 +22,7 @@ For anything the customer or a reader sees: questions, screens, documents, findi
 
 - **Be as specific as possible.** Name the exact thing as they'd see it, not a category word or shorthand from our notes ("the defaults", "this", "the method"). For example: the customer's own name for their organisation ("[Company]", not "the company"); "mortgage application" or "loan application", not "application"; which scenarios (and what each means), years and hazards an output uses, not "two scenarios". No vague labels such as "high" or "at risk": give the measure and the threshold ("rated [band] or worse", "[n]% of [what]").
 - **Don't over-generalise either.** Use the precise word when there is one: "the number" when it is a number, "the output" only when it isn't.
-- **Explain only what's new to them.** Our terms, units, asset types, measures and assumptions get a few words the first time they appear, or a plain phrase instead. Don't explain what they're expert in (risk, regulation, their own process).
+- **Explain briefly.** Terms, units, asset types, measures and assumptions get a few words the first time they appear, or a plain phrase instead. That includes terms the customer knows well: a short explanation helps anyone else following along. Keep it brief, never a lecture.
 - **Read it as them.** Before showing it: would someone who hasn't seen our notes understand every noun on first reading?
 
 ## How to work with me
