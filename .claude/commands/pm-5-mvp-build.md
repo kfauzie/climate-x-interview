@@ -10,7 +10,7 @@ Input: the agreed screens from pm-4-solution-design and the solution concept (wo
 ## How to build
 - One plain HTML file with inline JS and CSS. No framework, no build step.
 - Build all the agreed screens in one go, so the whole flow can be tried end to end. After that, change one thing at a time: edit, never regenerate the whole file.
-- Numbers, checks and labels are calculated by code, as plain functions kept separate from the AI part. AI only turns messy input into choices the user confirms; it never produces a number.
+- Code calculates every number. AI only reads messy input and suggests choices; the user confirms them. Keep the two separate.
 - Use the data provided directly. If there's no real data, use a small synthetic file, clearly labelled.
 - Each change after the first build should take about two minutes. If it will take longer, tell me first and suggest a smaller step.
 
