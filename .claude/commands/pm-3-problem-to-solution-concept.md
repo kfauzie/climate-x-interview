@@ -23,20 +23,18 @@ Before writing anything, check the notes for gaps big enough to change which ide
 - **The real problem**, based on the interview notes: [user] needs to [job] but today [workaround], which causes [impact]. Quote their words where possible.
 - **Evidence:** 3–5 bullets, each a quote from the interview notes or a number calculated from the data, saying where it came from
 - **Impact:** one line per person affected (time, waiting, rework, risk to decisions). Mark estimates
-- **Is it worth solving?** One line each, marked as a judgement:
-  - Is this need common across customers like this one?
-  - How big is it (money, time, deadline)?
-  - Does it fit Climate X's products and strategy?
 
 ## 2. Solution ideas
 Two or three ideas that are genuinely different from each other. For each:
 - What it is, in one line
-- How it solves the problem
-- User experience: how it fits their day
-- Implementation effort: rough size
+- **User:** does it solve the problem? How much of the pain does it remove (all, most, or a little)? Does it lead to a better commercial decision (where to invest, lend or adapt)? How does it fit their day?
+- **Commercial:** does it fit Climate X's product strategy? Likely return: can we charge more, or does it help retention and renewal?
+- **Effort:** rough size across engineering (how much to build), science (any new models needed), data (e.g. asset data to collect), and rollout (e.g. onboarding).
+
+Mark user and commercial points as judgements unless backed by a quote or number.
 
 ## 3. The recommended solution
-- **Recommendation:** which idea and why, in one sentence. Compared with the original ask: what it covers, what it doesn't, and what's for later.
+- **Recommendation:** which idea and why, in one or two sentences, weighing user, commercial and effort from section 2 and naming which tipped it. Compared with the original ask: what it covers, what it doesn't, and what's for later.
 - **Workflow, end to end:** bullets in the form "[who] does [what] with [what]", from the moment the request arrives to the answer being sent, including steps outside the product. For example:
   - The CRO emails the climate risk team a question.
   - The analyst pastes the question into the product.
@@ -44,7 +42,7 @@ Two or three ideas that are genuinely different from each other. For each:
   - ...
   Use a real request from the interview notes if available, with real numbers calculated from the data. Show it handles the range of requests and follow-ups, not just the example or the defaults. Every input has a reason: it changes the answer, or it's needed to send it.
 - **What AI, code and people do:** decide who does each step based on what each does best. AI for flexibility (messy input, free text, interpretation), code for fixed logic (every number, rules, checks), and people for judgement and approval. Keep people in control: what AI and code do is visible and editable, and a person checks before anything goes out.
-- **Success criteria:** how we'll know it works: a target, what mustn't get worse, what the people who approve it need to see, and test cases with known answers
+- **Success criteria:** how we'll know it works: a target, what mustn't get worse, the time or consultant cost it saves, what the people who approve it need to see, and test cases with known answers
 - **Assumptions:** any belief that, if wrong, would make the solution fail, each written as a question to ask in the MVP review
 
 ## Rules
@@ -52,4 +50,3 @@ Two or three ideas that are genuinely different from each other. For each:
 - For money decisions today (cost, payback), use the nearest year in the data, and show how it changes later; a far-off year alone suggests the problem can wait
 - Only ask the customer what could change which idea or the main workflow. Everything else is a stated assumption.
 - Say how, not that: never "seamless" or "met by design"
-- Plain words a stranger could follow
