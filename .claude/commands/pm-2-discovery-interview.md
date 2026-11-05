@@ -7,12 +7,12 @@ description: "Prepare and run a 10-minute customer discovery interview: a few op
 
 The job is to find the real problem behind what the customer asks for.
 
-Before starting, read climate-x-products, climate-x-company and climate-x-role.
+Before starting, read climate-x-products, climate-x-company and climate-x-role. Follow the communication guide in climate-x-role for everything you write.
 
 ## Principles
 - **Problem, not solution.** Questions name the problem, never the requested solution. Don't assume who the user is or what gets built. If they ask for a feature, ask what it would let them do.
-- **Be specific.** Ask about a real, recent example, not general habits. Name the scenarios (and what each means), the years and the hazards, and say which scenario and year every number uses
-- **Plain, specific words.** In the customer's language (e.g. risk appetite, stress test, provisions). Use the customer's own name for their organisation, not a category ("[Company]", not "the company"). Explain any term the reader may not know, in a few words, the first time it appears (a unit, an asset type, a measure). If a plain phrase works, use it instead (for example, say "mortgage application" or "loan application", instead of just "application"). At the same time do not overgeneralize (say "the output", not "the number" if there isn't a number)
+- **Be specific.** Ask about a real, recent example, not general habits.
+- **The customer's language** (e.g. risk appetite, stress test, provisions).
 - **Open questions.** No hint of the answer you expect and no belief built in.
 - **One question per line,** so they get asked one at a time.
 
