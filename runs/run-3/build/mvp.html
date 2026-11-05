@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Site resilience plans</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#e8e8e8;font:15px/1.45 Graphik,Helvetica,Arial,sans-serif;color:#343a40}
 body{background:#f9f9fa}.screen{min-height:100vh;display:flex;flex-direction:column;background:#f9f9fa}.screen>.body{flex:1;width:100%;max-width:1280px;margin:0 auto}
@@ -44,6 +46,9 @@ select.pick{font:inherit;font-size:18px;font-weight:600;border:0;border-bottom:2
 .kv td{padding:7px 0}.kv td:first-child{color:#6c757d;width:44%}
 .input{border:1px solid #c8ccd0;border-radius:8px;padding:7px 10px;font:inherit}
 .hidden{display:none}
+.tipw{position:relative;display:inline-block}.tip{display:none;position:absolute;left:0;top:22px;z-index:6;width:300px;background:#343a40;color:#fff;font-size:13px;line-height:1.4;padding:7px 11px;border-radius:6px;font-weight:400}.tipw:hover .tip,.tipw:focus-within .tip{display:block}
+.i{display:inline-block;width:16px;height:16px;border-radius:50%;border:1px solid #888;font-size:11px;text-align:center;line-height:15px;color:#666;margin-left:6px;cursor:help;font-style:normal}
+.fix{background:#f9f9fa;border:1px solid #e3e5e8;border-radius:10px;padding:14px;margin:4px 0 8px}#map{height:320px;border-radius:8px;border:1px solid #d9dce0;margin-top:10px}
 #ov{position:fixed;inset:0;background:rgba(31,40,51,.55);display:flex;align-items:center;justify-content:center;z-index:50}#ov.hidden{display:none}
 #ov .box{background:#fff;border-radius:16px;padding:34px 44px;min-width:380px;text-align:center}#ov .bigt{font-size:26px;font-weight:700;margin-top:8px}
 #ov .plane{animation:fly 1s ease-in forwards}@keyframes fly{0%{transform:translate(-160px,30px) rotate(-8deg);opacity:0}20%{opacity:1}100%{transform:translate(160px,-30px) rotate(-18deg);opacity:0}}
@@ -140,8 +145,12 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const cap = s => s[0].toUpperCase() + s.slice(1);
 const ICON = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>';
+// Approximate starting point for the map: the centre of each region (the export has no site coordinates)
+const REGION_CENTRE = {'Teesside': [54.57, -1.23], 'Scottish Borders': [55.55, -2.79], 'Essex': [51.76, 0.47], 'Lincolnshire': [53.10, -0.20], 'Somerset': [51.10, -2.95], 'Powys': [52.35, -3.40],
+  'Wiltshire': [51.33, -1.95], 'Cumbria': [54.58, -2.90], 'Norfolk': [52.65, 0.95], 'Humberside': [53.74, -0.33], 'Kent': [51.20, 0.75], 'Yorkshire': [53.95, -1.10],
+  'Galicia': [42.75, -8.00], 'Extremadura': [39.20, -6.15], 'Andalusia': [37.40, -4.80], 'Murcia': [38.00, -1.30], 'Castilla-La Mancha': [39.30, -3.00], 'Valencia': [39.45, -0.65], 'Aragon': [41.50, -0.90]};
 const STEPS = ['Screen sites', 'Check locations', 'Plan each site', 'Bank document'];
-const S = {sites: null, error: null, screen: 'screen', rule: {...DEFAULT_RULE}, located: {}, chosen: {}, quotes: {}, i: 0, open: {}, sent: null};
+const S = {fix: null, fixAt: {}, fixAddr: {}, rescoring: null, sites: null, error: null, screen: 'screen', rule: {...DEFAULT_RULE}, located: {}, chosen: {}, quotes: {}, i: 0, open: {}, sent: null};
 
 function ribbon(job) { return `<div class="hdr2"><span class="ic">${ICON}</span><div><div class="u">User: Head of Asset Management</div><div class="j">Job to be done: ${job}</div></div></div>`; }
 const STEP_SCREEN = ['screen', 'locations', 'plan', 'doc'];
@@ -167,7 +176,16 @@ function render() {
     return;
   }
   app.innerHTML = ({screen: vScreen, locations: vLocations, plan: vPlan, doc: vDoc})[S.screen]();
-  window.scrollTo(0, 0);
+  if (!S.keepScroll) window.scrollTo(0, 0); S.keepScroll = false;
+  if (S.fix && $('map')) {
+    const s = S.sites.find(x => x.site_id === S.fix), at = S.fixAt[S.fix] || REGION_CENTRE[s.region] || [54, -2];
+    if (window.L) {
+      const map = L.map('map').setView(at, 14); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '© OpenStreetMap'}).addTo(map);
+      const pin = L.marker(at, {draggable: true}).addTo(map);
+      const set = ll => { S.fixAt[S.fix] = [ll.lat, ll.lng]; $('fix-at').textContent = `Pin at ${ll.lat.toFixed(4)}, ${ll.lng.toFixed(4)}`; };
+      pin.on('dragend', () => set(pin.getLatLng())); map.on('click', e => { pin.setLatLng(e.latlng); set(e.latlng); });
+    } else $('map').outerHTML = '<div class="note">The map needs an internet connection. Type the address instead.</div>';
+  }
 }
 
 // ---- 1. Screen sites
@@ -196,11 +214,16 @@ function vScreen() {
 function vLocations() {
   const pts = points(), n = need().length;
   const rows = pts.map(s => { const w = worst(s, S.rule.scenario, S.rule.year), st = S.located[s.site_id];
-    return `<tr><td><b>${label(s)}</b><div class="src3">${(+s.capacity_mw).toFixed(0)} MW · rated ${w.r} for ${HAZARD_NAME[w.h]}</div></td><td>Single point</td><td class="r">${st ? `<span class="tag t-ok">✓ ${st === 'right' ? 'Confirmed' : 'Corrected, to be re-scored'}</span> <button class="link" data-undo="${s.site_id}">Undo</button>` : `<button class="btn dark" data-loc="${s.site_id}|right">Point is right</button> &nbsp;<button class="btn" data-loc="${s.site_id}|corrected">Correct it</button>`}</td></tr>`; }).join('');
+    const at = S.fixAt[s.site_id];
+    const status = S.rescoring === s.site_id ? '<span class="sub">Rescoring with Spectra…</span>' : st ? `<span class="tag t-ok">✓ ${st === 'right' ? 'Confirmed' : 'Location corrected and rescored'}</span> <button class="link" data-undo="${s.site_id}">Undo</button>` : S.fix === s.site_id ? '' : `<button class="btn dark" data-loc="${s.site_id}|right">Point is right</button> &nbsp;<button class="btn" data-fix="${s.site_id}">Correct it</button>`;
+    const fix = S.fix === s.site_id ? `<tr><td colspan="3"><div class="fix"><b>Move the pin to where the equipment sits, or type the address</b>
+      <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap"><input class="input" id="fix-addr" placeholder="Address or postcode of the site" style="flex:1;min-width:260px" value="${esc(S.fixAddr[s.site_id] || '')}"><button class="btn" id="fix-cancel">Cancel</button><button class="btn dark" id="fix-save">Save and rescore</button></div>
+      <div id="map"></div><div class="src3" id="fix-at">Pin at ${(at || REGION_CENTRE[s.region] || [0, 0]).map(x => x.toFixed(4)).join(', ')}</div></div></td></tr>` : '';
+    return `<tr><td><b>${label(s)}</b><div class="src3">${(+s.capacity_mw).toFixed(0)} MW · rated ${w.r} for ${HAZARD_NAME[w.h]}</div></td><td>One point on the map<span class="tipw"><i class="i" tabindex="0">i</i><span class="tip">We've placed this site at one point on the map, not its full outline. Check it's in the right place: if the point misses the equipment, the ratings can be wrong.</span></span></td><td class="r">${status}</td></tr>${fix}`; }).join('');
   return `<div class="screen" id="s-locations">${ribbon('make sure each plan is for the right place')}${steps(1)}<div class="body">
    <h1>${pts.length ? `${pts.length} sites are scored at a single point` : 'Every site is scored over its full outline'}</h1>
-   <div class="sub">${pts.length ? `The other ${n - pts.length} sites that need a plan are scored over their full outline. A single point can miss part of the site, so confirm or correct each one.` : 'Nothing to check.'}</div>
-   ${pts.length ? `<div class="card"><table><tr><th>Site</th><th>Scored at</th><th></th></tr>${rows}</table><div class="note">Not sure? The site's operations contractor holds the drawings showing where the equipment sits.</div></div>` : ''}
+   <div class="sub">${pts.length ? `The other ${n - pts.length} sites that need a plan are scored over their full outline. These are placed at one point on the map, which can miss where the equipment actually sits. Check each one is in the right place.` : 'Nothing to check.'}</div>
+   ${pts.length ? `<div class="card"><table><tr><th>Site</th><th>Placed on the map as</th><th></th></tr>${rows}</table><div class="note">Not sure? The site's operations contractor holds the drawings showing where the equipment sits.</div></div>` : ''}
   </div><div class="foot"><button class="btn" id="back">← Back</button><button class="btn p" id="go-plan">Plan the ${n} sites →</button></div></div>`;
 }
 
@@ -283,8 +306,9 @@ document.addEventListener('click', async e => {
   const go = scr => { S.screen = scr; S.open = {}; render(); };
   if (t.dataset.step !== undefined) { const scr = STEP_SCREEN[+t.dataset.step]; if (scr === 'plan' && S.i >= need().length) S.i = 0; if (scr === 'plan' && !need().length) return; return go(scr); }
   if (t.dataset.open) { S.open[t.dataset.open] = !S.open[t.dataset.open]; return render(); }
-  if (t.dataset.loc) { const [id, v] = t.dataset.loc.split('|'); S.located[id] = v; return render(); }
-  if (t.dataset.undo) { delete S.located[t.dataset.undo]; return render(); }
+  if (t.dataset.loc) { const [id, v] = t.dataset.loc.split('|'); S.located[id] = v; S.keepScroll = true; return render(); }
+  if (t.dataset.undo) { delete S.located[t.dataset.undo]; S.keepScroll = true; return render(); }
+  if (t.dataset.fix) { S.fix = t.dataset.fix; S.keepScroll = true; return render(); }
   if (t.dataset.pick) { S.chosen[need()[S.i].site_id] = t.dataset.pick; return render(); }
   if (t.dataset.site) { S.i = need().findIndex(s => s.site_id === t.dataset.site); return go('plan'); }
   switch (t.id) {
@@ -296,6 +320,9 @@ document.addEventListener('click', async e => {
     case 'use': { const s = need()[S.i]; if (!S.chosen[s.site_id]) { const r = recommend(measures(s, S.rule)); S.chosen[s.site_id] = r ? r.id : 'none'; }
       if (S.i + 1 < need().length) { S.i++; return render(); } return go('doc'); }
     case 'back-plan': S.i = need().length - 1; return go('plan');
+    case 'fix-cancel': S.fix = null; S.keepScroll = true; return render();
+    case 'fix-save': { const id = S.fix; S.fixAddr[id] = $('fix-addr').value.trim(); if (!S.fixAt[id] && !S.fixAddr[id]) { $('fix-addr').focus(); return; }
+      S.fix = null; S.rescoring = id; S.keepScroll = true; render(); await sleep(900); S.rescoring = null; S.located[id] = 'corrected'; S.keepScroll = true; return render(); }
     case 'q-open': S.open.quote = true; return render();
     case 'q-add': { const v = +$('q-v').value.replace(/[£,\s]/g, ''); if (v > 0) { const id = need()[S.i].site_id; (S.quotes[id] = S.quotes[id] || {})[$('q-m').value] = v; } S.open.quote = false; return render(); }
     case 'how': S.open.how = !S.open.how; return render();
