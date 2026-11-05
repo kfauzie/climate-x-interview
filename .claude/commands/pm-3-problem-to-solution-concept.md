@@ -13,7 +13,7 @@ Start from the problem. Recommend the simplest thing that solves it.
 - Any answers from pm-1-data-discovery. Don't re-analyse the data.
 
 ## Output
-Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: solution concept (customer)". Give me the link (no summary in chat) and add it to `RUN.md`. It will be shared on screen, so keep it short.
+Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: solution concept (customer)". Give me the link (no summary in chat) and add it to `RUN.md`. It will be shared on screen, so keep it short, and follow the document style in climate-x-role.
 
 ## 0. Check for gaps first
 Before writing anything, check the notes for gaps big enough to change which idea is recommended or the main workflow (e.g. who the user is, what the job is). Only then, show me the questions for the customer and wait. Detail choices (defaults, settings, methodology options) don't stop the work: make a sensible assumption, state it, and move on. It's a first prototype.
@@ -33,17 +33,27 @@ Two or three ideas that are genuinely different from each other. For each:
 
 Mark user and commercial points as judgements unless backed by a quote or number.
 
-## 3. The recommended solution
-- **Recommendation:** which idea and why, in one or two sentences, weighing user, commercial and effort from section 2 and naming which tipped it. Compared with the original ask: what it covers, what it doesn't, and what's for later.
-- **Workflow, end to end:** bullets in the form "[who] does [what] with [what]", from the moment the request arrives to the answer being sent, including steps outside the product. For example:
-  - The CRO emails the climate risk team a question.
-  - The analyst pastes the question into the product.
-  - The product suggests the scenario, year and loans; the analyst confirms.
-  - ...
-  Use a real request from the interview notes if available, with real numbers calculated from the data. Show it handles the range of requests and follow-ups, not just the example or the defaults. Every input has a reason: it changes the answer, or it's needed to send it.
-- **What AI, code and people do:** decide who does each step based on what each does best. AI for flexibility (messy input, free text, interpretation), code for fixed logic (every number, rules, checks), and people for judgement and approval. Keep people in control: what AI and code do is visible and editable, and a person checks before anything goes out.
-- **Success criteria:** how we'll know it works: a target, what mustn't get worse, the time or consultant cost it saves, what the people who approve it need to see, and test cases with known answers
-- **Assumptions:** any belief that, if wrong, would make the solution fail, each written as a question to ask in the MVP review
+## 3. The recommendation
+- **Which idea and why**, in one or two sentences, weighing user, commercial and effort from section 2 and naming which tipped it.
+- **Compared with the original ask:** what it covers, what it doesn't, and what's for later.
+
+## 4. Workflow, end to end
+Bullets in the form "[who] does [what] with [what]", from the moment the request arrives to the answer being sent, including steps outside the product. For example:
+- The CRO emails the climate risk team a question.
+- The analyst pastes the question into the product.
+- The product suggests the scenario, year and loans; the analyst confirms.
+- ...
+
+Use a real request from the interview notes if available, with real numbers calculated from the data. Show it handles the range of requests and follow-ups, not just the example or the defaults. Every input has a reason: it changes the answer, or it's needed to send it.
+
+## 5. What AI, code and people do
+Decide who does each step based on what each does best. AI for flexibility (messy input, free text, interpretation), code for fixed logic (every number, rules, checks), and people for judgement and approval. Keep people in control: what AI and code do is visible and editable, and a person checks before anything goes out.
+
+## 6. Success criteria
+How we'll know it works: a target, what mustn't get worse, the time or consultant cost it saves, what the people who approve it need to see, and test cases with known answers.
+
+## 7. Assumptions
+Any belief that, if wrong, would make the solution fail, each written as a question to ask in the MVP review.
 
 ## Rules
 - No claim without evidence: a quote or a calculated number

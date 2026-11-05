@@ -41,4 +41,4 @@ When the sample arrives, test it against the working version and check:
 - No overlap: value, method and sign-off questions easily ask the same thing. Keep one question per area and merge the rest
 
 ## Save
-Publish the questions as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: MVP review (customer)", with an empty Notes section at the end. Always give me the link to the new page, and add it to `RUN.md`.
+Publish the questions as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: MVP review (customer)", following the document style in climate-x-role, with an empty Notes section at the end. Always give me the link to the new page, and add it to `RUN.md`.

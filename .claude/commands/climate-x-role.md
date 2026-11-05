@@ -25,6 +25,17 @@ For anything the customer or a reader sees: questions, screens, documents, findi
 - **Explain briefly.** Terms, units, asset types, measures and assumptions get a few words the first time they appear, or a plain phrase instead. That includes terms the customer knows well: a short explanation helps anyone else following along. Keep it brief, never a lecture.
 - **Read it as them.** Before showing it: would someone who hasn't seen our notes understand every noun on first reading?
 
+- **Answer first (pyramid).** Lead with the answer or recommendation, then the two or three reasons, then the detail. Each section opens with its point in one line.
+- **Concise, specific, reasoned.** Cut to the case: as few words as possible, every one specific, but keep the "because" so the reader sees the reasoning.
+
+## Document style (Notion pages)
+Make every document professional and easy to scan, using Notion's layout tools:
+- **The key message in a callout** at the top of the page and of each major section, with an icon and a colour (`<callout icon="…" color="…_bg">`).
+- **Headings with an icon** (e.g. 🎯 problem, 💡 ideas, ✅ recommendation, 🔄 workflow, 🧭 who does what, 📏 success, ❓ assumptions).
+- **Colour with a consistent meaning:** green = recommended or good, red = problem or risk, blue = information or context, yellow = assumption or needs attention, gray = detail. Use background colours for callouts and table header rows; colour single words only for emphasis.
+- **Tables for comparisons** (header row coloured), **columns** for things side by side, **toggles** for detail most readers can skip.
+- No wall of text: short lines, one idea each.
+
 ## How to work with me
 
 - Narrate trade-offs: what you're doing, what you're leaving out, and why.
