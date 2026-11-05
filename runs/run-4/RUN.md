@@ -1,6 +1,6 @@
 # Run 4
 
-**Status:** prototype built (`build/mvp.html`; open with `tools/open_run.sh`); next: MVP review (pm-6)
+**Status:** prototype built (`build/mvp.html`; open with `tools/open_run.sh`); MVP review questions ready; next: the MVP review call
 **Synthetic for the prototype (labelled on screen):** EBITDA by site, CX Capital's past assessments, the example insurance policy, premium rules of thumb, other deals (`notebooks/synthetic_inputs.py` → `data/synthetic_inputs.json`)
 **Checks:** `node build/test_mvp.js` (known answers), `node build/check_mvp.js` (headless click-through); design images from the build: `node build/capture_screens.js`
 **Dataset:** `data/Climate X Sample Data.xlsx` (Spectra v2 export, 22 Meridian Group sites, 4 scenarios × 12 years)
@@ -10,6 +10,7 @@
 **On Notion (2nd round prep)**
 - Note: the interview recording caught only the interviewer's microphone (headphones), so the transcript holds the interviewer's summaries, not the customer's words
 - Discovery questions and interview notes: https://app.notion.com/p/40f8f31ef05f81ca90e3d909dfea71e8
+- MVP review: https://app.notion.com/p/40f8f31ef05f81bfac38d0222757e8bd
 - Solution concept v2 (adaptation-led, from PM recollection of the customer's answers): https://app.notion.com/p/40f8f31ef05f8195aa05dd2a5174a82e (numbers: `notebooks/concept_numbers.py`, `notebooks/premium_path.py`)
 
 Everything below applies to **run 4 only**. Do not carry it into any other run.
