@@ -8,6 +8,7 @@
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
 **On Notion (2nd round prep)**
+- Note: the interview recording caught only the interviewer's microphone (headphones), so the transcript holds the interviewer's summaries, not the customer's words
 - Discovery questions and interview notes: https://app.notion.com/p/40f8f31ef05f81ca90e3d909dfea71e8
 - Solution concept: https://app.notion.com/p/40f8f31ef05f8195aa05dd2a5174a82e (numbers: `notebooks/concept_numbers.py`)
 
