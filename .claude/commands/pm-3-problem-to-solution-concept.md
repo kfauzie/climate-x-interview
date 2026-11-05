@@ -8,7 +8,7 @@ description: "Turn the discovery notes and data findings into a solution concept
 Start from the problem. Recommend the simplest thing that solves it.
 
 ## Inputs
-- Read climate-x-products, climate-x-company and climate-x-role for background. Follow the communication guide in climate-x-role for everything you write.
+- Read climate-x-products, climate-x-company, climate-x-role and climate-x-brand for background. Use the personas in climate-x-brand to understand the user and the buyer; the interview notes win where they differ. Follow the communication guide in climate-x-role for everything you write.
 - The interview notes: the Notes section of the Notion page "Run N: discovery questions (customer)" under 2nd round prep. Quote from the transcript, not the AI summary, which can get details wrong.
 - Any answers from pm-1-data-discovery. Don't re-analyse the data.
 
@@ -29,7 +29,7 @@ One bullet per person or team affected (time, waiting, rework, risk to decisions
 ## 3. Solution ideas
 Two or three ideas that are genuinely different from each other. For each:
 - What it is, in one line
-- **User:** does it solve the problem? How much of the pain does it remove (all, most, or a little)? Does it lead to a better commercial decision (where to invest, lend or adapt)? How does it fit their day?
+- **User:** does it solve the problem? How much of the pain does it remove (all, most, or a little)? Does it lead to a better commercial decision (where to invest, lend or adapt)? How does it fit their day? Which of the user's and buyer's "yes" triggers in climate-x-brand does it hit (e.g. transparency, speed to value, quantified ROI)?
 - **Commercial benefit to Climate X:** lead with the type: new revenue (a feature or product charged separately), upsell (a higher price, or more sites or users on an existing product), or retention (protects renewal). Then why, and whether it fits Climate X's product strategy.
 - **Effort:** rough size across engineering (how much to build), science (any new models needed), data (e.g. asset data to collect), and rollout (e.g. onboarding).
 
