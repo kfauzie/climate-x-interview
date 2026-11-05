@@ -22,5 +22,9 @@ out = {
                      'pages': {'covers': 4, 'limit': 6, 'excess': 6, 'valid': 1}},
   'other_deals': [{'name': 'Project Atlas', 'status': 'IC in 6 weeks', 'dot': 'green'}, {'name': 'Project Kestrel', 'status': 'not started', 'dot': 'grey'}],
 }
+out['premium'].update({'yearly_rise': 0.05, 'after_claim': 0.5, 'claim_year': 2028})   # assumed: market trend, one claim
+out['defences'] = {sg: {'status': 'Suggested from public sources · to verify', 'items': [
+  {'what': 'Marina Barrage (dam across the mouth of Marina Channel)', 'who': "PUB, Singapore's national water agency", 'standard': 'Design standard: to verify with PUB'},
+  {'what': 'Coastal protection along Marina Bay', 'who': 'Singapore government (long-term coastal protection programme)', 'standard': 'Protection level at this site: to verify'}]}}
 json.dump(out, open('data/synthetic_inputs.json', 'w'), indent=1)
 print('EBITDA total', sum(ebitda.values()), 'SG', ebitda[sg])

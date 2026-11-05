@@ -86,6 +86,13 @@ details>summary{cursor:pointer;list-style:none;color:var(--blue);font-size:13px;
 details.panel>summary{color:inherit;margin:0}details.qs ul{margin-top:8px}
 .radio{display:block;font-weight:400!important;padding:5px 0;cursor:pointer}
 .deal.off{opacity:.55;cursor:not-allowed}
+.num{cursor:pointer;border-bottom:1px dotted #adb5bd}.num sup{font-size:10px;color:var(--blue);margin-left:2px}
+.drawer{position:fixed;right:0;top:0;bottom:0;width:420px;background:#fff;box-shadow:-8px 0 24px rgba(0,0,0,.12);padding:24px;transform:translateX(100%);transition:transform .25s;z-index:20;overflow:auto}.drawer.open{transform:none;visibility:visible}.drawer{visibility:hidden}
+.kpis span.num{font-size:inherit;color:inherit}.big small{display:inline-block;max-width:560px;vertical-align:baseline}
+.casebar{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.pbars{display:flex;gap:10px;align-items:flex-end;height:96px;margin:6px 0}.pbars>div{flex:1;text-align:center;font-size:11px;color:var(--mute)}
+.pb{background:#f2b8bf;border-radius:3px 3px 0 0;display:flex;align-items:flex-end}.pb>div{width:100%;background:var(--red);border-radius:3px 3px 0 0}
+.terms p{margin:8px 0;font-size:14px;line-height:1.45}.terms [contenteditable]{outline:none}
 @media print{.frame,.btn,.deals,.no-print{display:none!important}.screen{display:none!important}#s2{display:block!important}.wrap{grid-template-columns:1fr!important}}
 </style></head><body>
 <div class="frame">
@@ -150,7 +157,11 @@ function benchmark(pct, past){ const all = past.concat([pct]).sort((a,b)=>a-b); 
   const median = sorted.length%2 ? sorted[(sorted.length-1)/2] : (sorted[sorted.length/2-1]+sorted[sorted.length/2])/2;
   return {rank: all.indexOf(pct)+1, of: all.length, median, higherThan: past.filter(x=>x<pct).length}; }
 function siteEbitdaPct(annual, ebitda){ return ebitda ? annual/ebitda : null; }
-if (typeof module !== 'undefined') module.exports = {interp, hazardLoss, siteYearLoss, brief, ragStatus, premium, benchmark, siteEbitdaPct, HAZ_DAMAGE};
+// premiums each year: AAL × loading, rising by yearly_rise from the first hold year (assumptions, not data)
+function premiumPath(aalByYear, p, startYear){ const low=[], high=[];
+  aalByYear.forEach((a,i)=>{ const g=Math.pow(1+p.yearly_rise,i); low.push(a*p.loading_low*g); high.push(a*p.loading_high*g); });
+  return {low, high, total:[low.reduce((x,y)=>x+y,0), high.reduce((x,y)=>x+y,0)]}; }
+if (typeof module !== 'undefined') module.exports = {interp, hazardLoss, siteYearLoss, brief, ragStatus, premium, premiumPath, benchmark, siteEbitdaPct, HAZ_DAMAGE};
 </script>
 
 <script>
@@ -162,11 +173,10 @@ const CITY = {'Milano':'Milan','Minato City':'Tokyo','Warszawa':'Warsaw','Ciudad
 // who-pays presets: the default plus ready-made alternatives; free text is matched to these (see parseAssumption)
 const PRESETS = [
   {id:'all', label:'Meridian pays for all of it', def:true},
-  {id:'defended', label:'The top site is protected by flood defences'},
   {id:'leased', label:'The top site is leased: the landlord pays for damage'},
   {id:'insured', label:'The top site is insured for flood (example policy)'},
 ];
-let D, S, st = {step:1, scen:'ssp245', years:7, defended:false, preset:'all', docs:{}, siteId:null, sent:false, ev:null, freeText:'', freeResult:null};
+let D, S, st = {step:1, scen:'ssp245', years:7, defended:true, preset:'all', docs:{}, siteId:null, sent:false, ev:null, freeText:'', freeResult:null};
 const M = v => { const a=Math.abs(v); return (v<0?'−':'')+'£'+(a>=1e9?(a/1e9).toFixed(2)+'bn':a>=1e6?(a/1e6).toFixed(a>=1e7?0:1).replace(/\.0$/,'')+'m':a>=1e3?Math.round(a/1e3)+'k':Math.round(a)); };
 const M1 = v => '£'+(v/1e6).toFixed(1)+'m';
 const pct = (v,d=0) => (v*100).toFixed(d)+'%';
@@ -179,7 +189,6 @@ function baseOpts(o={}){ // what the brief uses: controls + documents attached t
 }
 function opts(o={}){ // adds the chosen who-pays preset
   const t = topId(), x = baseOpts();
-  if (st.preset==='defended') x.defended = true;
   if (st.preset==='leased') x.leasedOut = [t];
   if (st.preset==='insured') x.insurance = x.insurance.concat([policyFor(t)]);
   return Object.assign(x, o);
@@ -191,9 +200,10 @@ const totE = () => Object.values(S.ebitda_by_site).reduce((a,c)=>a+c,0);
 function parseAssumption(t){
   t = t.toLowerCase(); const out = [];
   const y = t.match(/(\d+)\s*(-|\s)?year/); if (y && +y[1]>=3 && +y[1]<=10) out.push({k:'years', v:+y[1], txt:`Hold period ${y[1]} years`});
-  if (/defen|sea wall|flood wall|barrier/.test(t)) out.push({k:'preset', v:'defended', txt:PRESETS[1].label});
-  else if (/lease|landlord|rent/.test(t)) out.push({k:'preset', v:'leased', txt:PRESETS[2].label});
-  else if (/insur|policy|cover/.test(t)) out.push({k:'preset', v:'insured', txt:PRESETS[3].label});
+  if (/\bno (sea wall|flood wall|defen)|undefended|without defen/.test(t)) out.push({k:'defended', v:false, txt:'Undefended case'});
+  else if (/defen|sea wall|flood wall|barrier/.test(t)) out.push({k:'defended', v:true, txt:'Defended case'});
+  if (/lease|landlord|rent/.test(t)) out.push({k:'preset', v:'leased', txt:PRESETS[1].label});
+  else if (/insur|policy|cover/.test(t)) out.push({k:'preset', v:'insured', txt:PRESETS[2].label});
   if (/worst|very high|ssp5|8\.5/.test(t)) out.push({k:'scen', v:'ssp585', txt:'Very high scenario (SSP5-8.5)'});
   else if (/\bhigh\b|ssp3|7\.0/.test(t)) out.push({k:'scen', v:'ssp370', txt:'High scenario (SSP3-7.0)'});
   else if (/\blow\b|ssp1|2\.6/.test(t)) out.push({k:'scen', v:'ssp126', txt:'Low scenario (SSP1-2.6)'});
@@ -248,57 +258,90 @@ function s1(){
   </div></div>`;
 }
 
-// ---------- 2. The brief: the high-level answer ----------
+// ---------- "How it's calculated": one click from every number ----------
+function howText(key){
+  const sc = SCEN.find(x=>x[0]===st.scen), yrs = `${S.deal.hold_start}–${S.deal.hold_start+st.years-1}`, P = S.premium;
+  const caseTxt = st.defended ? 'Defended: coastal flood damage at sites with confirmed or suggested defences is removed (prototype approximation of Spectra\'s defended model).' : 'Undefended: no flood defences anywhere (Spectra\'s default).';
+  const common = `<tr><td>Scenario</td><td>${sc[1]} (${sc[2]})</td></tr><tr><td>Model</td><td>Spectra v2: hazard × building vulnerability × rebuild cost = average annual loss (AAL), per site and hazard. Projection years 2020–2100, values between them interpolated</td></tr><tr><td>Case</td><td>${caseTxt}</td></tr><tr><td>Who pays</td><td>${PRESETS.find(p=>p.id===st.preset).label}</td></tr>`;
+  const T = {
+    total: ['Expected damage over the hold', `Sum of each year's AAL across all ${D.sites.length} sites, ${yrs}.`],
+    ev: ['Share of EV', 'Expected damage over the hold ÷ EV from the deal record.'],
+    ebitda: ['Share of EBITDA', 'Average AAL a year ÷ total EBITDA by site (synthetic for this prototype).'],
+    premium: ['Insurance premiums over the hold', `Premium each year = AAL × ${P.loading_low}–${P.loading_high} (insurer's loading), rising ${pct(P.yearly_rise)} a year. Assumptions to check with a broker, not data.`],
+    site: ['Site figures', 'The same method for one site. Its overall grade ranks damage as a share of rebuild cost, not in £.'],
+  }[key] || ['Calculation',''];
+  return `<h1>How it's calculated · ${T[0]}</h1><div class="why" style="margin-top:0">${T[1]}</div><table class="kv" style="margin-top:8px">${common}</table>`;
+}
+function how(key){ const d = document.getElementById('howDrawer'); d.innerHTML = howText(key)+'<button class="btn secondary" style="margin-top:12px" onclick="this.parentNode.classList.remove(\'open\')">Close</button>'; d.classList.add('open'); }
+const N = (txt, key, id='') => `<span class="num" ${id?`id="${id}"`:''} onclick="how('${key}')" title="How it's calculated">${txt}<sup>ⓘ</sup></span>`;
+function premiumYears(b){ return b.years.map(y => brief(D, opts({start:y, years:1})).total); }
+function csvDownload(){
+  const d = brief(D,opts({defended:true})), u = brief(D,opts({defended:false})), P = S.premium;
+  const dy = premiumYears(d).map((v,i)=>[v,d.years[i]]), rows = [['Year','Expected damage, defended (£)','Expected damage, undefended (£)','Premium low, defended (£)','Premium high, defended (£)']];
+  d.years.forEach((y,i)=>{ const dd = brief(D,opts({defended:true,start:y,years:1})).total, uu = brief(D,opts({defended:false,start:y,years:1})).total, pp = premiumPath([dd], P, y);
+    rows.push([y, Math.round(dd), Math.round(uu), Math.round(pp.low[0]), Math.round(pp.high[0])]); });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([rows.map(r=>r.join(',')).join('\n')],{type:'text/csv'})); a.download = 'Meridian climate costs by year.csv'; a.click();
+}
+
+// ---------- 2. The brief: defended case at the centre, in deal terms ----------
 function s2(){
-  const b = brief(D,opts()), E = ev(), r = ragStatus(b.total,E), top = b.bySite[0], ts = top.site;
+  const b = brief(D,opts()), E = ev(), r = ragStatus(b.total,E);
+  const other = brief(D,opts({defended:!st.defended}));
+  // the site whose defences make the difference between the two cases
+  const swing = b.bySite.map(x=>({x, d:Math.abs(x.hold - other.bySite.find(y=>y.site.id===x.site.id).hold)})).sort((a,c)=>c.d-a.d)[0];
+  const ts = swing.x.site, und = (st.defended?other:b).bySite.find(y=>y.site.id===ts.id), undTotal = (st.defended?other:b).total;
+  const next = b.bySite.find(x=>x.site.id!==ts.id);
   const ePct = b.annual/totE(), bm = benchmark(ePct*100, S.past_deals_aal_pct_ebitda);
-  const def = brief(D,opts({defended:true})), lease = brief(D,opts({leasedOut:[ts.id]}));
-  const r30 = ts.risk[st.scen]['2030'], mh = top.mainHazard, sev = mh && r30.hazards[mh].sev;
+  const pp = premiumPath(premiumYears(b), S.premium, S.deal.hold_start);
   const yrs = `${S.deal.hold_start}–${S.deal.hold_start+st.years-1}`, scenName = SCEN.find(x=>x[0]===st.scen);
   const ragCls = {Amber:'',Red:'style="background:#fde8ea;color:#b4232f;border-color:#f5b5bd"',Green:'style="background:var(--green-bg);color:#1c7a4f;border-color:#a8dcc0"'}[r];
-  const preset = PRESETS.find(p=>p.id===st.preset);
-  const anyDoc = Object.values(st.docs).some(d=>d.applied);
+  const dv = S.defences[ts.id], maxP = Math.max(...pp.high);
   document.getElementById('s2').innerHTML = `<div class="wrap"><div>
    <div class="panel">
     <h1>${S.deal.name} · ${S.deal.company} · climate summary for IC</h1>
     <div class="top"><div style="flex:1">
-      <div class="big" id="headline">${M(b.total)} <small>expected climate damage to Meridian's buildings over the hold</small></div>
-      <div class="kpis"><div><b>${pct(b.total/E)}</b><span>of ${M(E)} EV</span></div><div><b>${pct(ePct)}</b><span>of EBITDA a year ${tag('synth')}</span></div><div><b>${bm.higherThan===S.past_deals_aal_pct_ebitda.length?'Highest':'#'+(S.past_deals_aal_pct_ebitda.length-bm.higherThan+1)}</b><span>of CX Capital's ${S.past_deals_aal_pct_ebitda.length} past deals ${tag('synth')}</span></div></div>
+      <div class="casebar"><div class="seg" style="width:340px"><div id="defOn" class="${st.defended?'on':''}" onclick="st.defended=true;render()">Defended case</div><div id="defOff" class="${st.defended?'':'on'}" onclick="st.defended=false;render()">Undefended case</div></div>
+       <span class="hint">${st.defended?`Undefended: ${M(other.total)}`:`Defended: ${M(other.total)}`}</span></div>
+      <div class="big" id="headline">${N(M(b.total),'total')} <small>expected climate damage to Meridian's buildings over the ${st.years}-year hold</small></div>
+      <div class="kpis"><div><b>${N(pct(b.total/E),'ev')}</b><span>of ${M(E)} EV</span></div><div><b>${N(M1(pp.total[0])+'–'+M1(pp.total[1]),'premium','premTotal')}</b><span>if insured instead: premiums over the hold</span></div><div><b>${N(pct(ePct),'ebitda')}</b><span>of EBITDA a year ${tag('synth')}</span></div></div>
      </div>
      <div><button class="rag" id="ragBtn" ${ragCls} onclick="document.getElementById('ragLegend').classList.toggle('open')">${r==='Green'?'✓':'⚠'} ${r.toUpperCase()}${r==='Amber'?': check before IC':''} ⓘ</button></div></div>
     <div id="ragLegend" class="collapse">${RAG_LEGEND}</div>
-    <div class="basis">Based on: <b>${st.years} years (${yrs})</b> · <b>${scenName[1]} scenario</b> · <b>${preset.label}</b>${st.defended?' · <b>flood defences assumed</b>':''}${anyDoc?' · <b>insurance document applied</b>':''} <a href="#" onclick="document.getElementById('assume').open=true;document.getElementById('assume').scrollIntoView({behavior:'smooth'});return false">Change ›</a></div>
+    <div class="basis">Based on: <b>${st.defended?'defences in place':'no flood defences'}</b> · <b>${st.years} years (${yrs})</b> · <b>${scenName[1]} scenario</b> · <b>${PRESETS.find(p=>p.id===st.preset).label}</b> <a href="#" onclick="document.getElementById('assume').open=true;document.getElementById('assume').scrollIntoView({behavior:'smooth'});return false">Change ›</a> · <a href="#" onclick="how('total');return false">How it's calculated ›</a></div>
    </div>
 
-   ${r!=='Green'?`<div class="panel issue" style="margin-top:20px">
-    <h1>Why ${r}: what we think the issue is</h1>
-    <div class="why" style="margin-top:0"><b>${pct(top.share)} of the ${M(b.total)} comes from one site: the ${name(ts)} (${ts.street||ts.country}).</b> Spectra models ${mh?mh.toLowerCase():'damage'}${sev?` up to ${sev}m deep`:''} there, ${st.defended||st.preset==='defended'?'with defences assumed':'<b>assuming no flood defences</b>'}. That is ${M1(top.annual)} a year, ${pct(top.annual/S.ebitda_by_site[ts.id])} of the site's EBITDA.</div>
-    <div class="why"><b>Why it may be lower:</b> the figure falls to ${M(def.total)} if the site is defended, and to ${M(lease.total)} if Meridian leases it and the landlord pays. <span class="hint">Our view: the waterfront location makes the flood plausible; whether Meridian bears the cost is the open question.</span></div>
-    <details class="qs"><summary>3 questions for the deal team about the ${name(ts)} ›</summary><ul>
-      <li>Is the ${name(ts)} on ${ts.street} protected by flood defences? Type, height, who maintains them</li>
-      <li>Does Meridian own or lease the ${name(ts)}, and which floors?</li>
-      <li>Is the ${name(ts)} insured for flood? Please share the policy, then attach it on the site page</li></ul></details>
-   </div>`:''}
+   <div class="panel issue" style="margin-top:20px">
+    <h1>The defences behind the ${st.defended?'defended':'undefended'} case · ${name(ts)}</h1>
+    <div class="why" style="margin-top:0"><b>The two cases differ by ${M(swing.d)} over the hold, all from one site: the ${name(ts)} (${ts.street}).</b> With no defences Spectra models coastal flood up to ${ts.risk[st.scen]['2030'].hazards['Coastal Flood'].sev}m deep there, ${pct(und.hold/undTotal)} of the undefended total. ${st.defended?'The defended case relies on the defences below.':'The defended case would rely on the defences below.'}</div>
+    ${dv?`<table style="margin-top:10px"><tr><th>Defence</th><th>Who provides it</th><th>Standard</th></tr>${dv.items.map(i=>`<tr><td>${i.what}</td><td>${i.who}</td><td><span class="tag t-assume">${i.standard}</span></td></tr>`).join('')}</table>
+     <div class="hint">${dv.status}. Read from public sources; confirm before relying on the defended case. ${tag('synth')}</div>`:''}
+   </div>
+
+   <div class="panel" style="margin-top:20px">
+    <h1>Insurance is a cost, not an exit</h1>
+    <div class="hint" style="margin:-4px 0 8px">Premiums each year if Meridian insures this risk (${st.defended?'defended':'undefended'} case). Assumed: insurers charge ${S.premium.loading_low}–${S.premium.loading_high}× expected loss, rising ${pct(S.premium.yearly_rise)} a year. ${tag('assume')}</div>
+    <div class="pbars">${b.years.map((y,i)=>`<div><div class="pb" style="height:${pp.high[i]/maxP*70}px"><div style="height:${pp.low[i]/pp.high[i]*100}%"></div></div><span>${y}</span></div>`).join('')}</div>
+    <div class="hint">${M1(pp.low[0])}–${M1(pp.high[0])} in ${S.deal.hold_start}, rising to ${M1(pp.low[pp.low.length-1])}–${M1(pp.high[pp.high.length-1])} by ${b.years[b.years.length-1]}. One claim could add about ${pct(S.premium.after_claim)} from the next renewal.</div>
+   </div>
 
    <div class="panel" style="margin-top:20px">
     <h1>Where it comes from</h1>
-    <table>${b.bySite.slice(0,3).map(x=>`<tr><td><b>${name(x.site)}</b> <span class="hint">${x.mainHazard||''}</span></td><td class="n">${M(x.hold)}</td><td class="n" style="width:70px">${pct(x.share)}</td><td style="width:110px"><a href="#" class="siteLink" onclick="st.siteId='${x.site.id}';go(3);return false">Site detail ›</a></td></tr>`).join('')}
+    <table>${b.bySite.slice(0,3).map(x=>`<tr><td><b>${name(x.site)}</b> <span class="hint">${x.mainHazard||''}</span></td><td class="n">${N(M(x.hold),'site')}</td><td class="n" style="width:70px">${pct(x.share)}</td><td style="width:110px"><a href="#" class="siteLink" onclick="st.siteId='${x.site.id}';go(3);return false">Site detail ›</a></td></tr>`).join('')}
      <tr><td>${b.bySite.length-3} other sites</td><td class="n">${M(b.bySite.slice(3).reduce((a,x)=>a+x.hold,0))}</td><td class="n">${pct(b.bySite.slice(3).reduce((a,x)=>a+x.share,0))}</td><td></td></tr></table>
-    <details><summary>How ${M(b.total)} adds up ›</summary><div class="recon">Spectra's average annual loss (AAL, "Total Building Loss" in the export) is the damage to expect in an average year, weighting every possible event by its chance. For Meridian it's about <b>${M1(b.annual)} a year</b>; adding each year of the hold, ${yrs}, gives <b>${M(b.total)}</b>. Building damage only, not lost rent or downtime.</div></details>
    </div>
 
-   <details class="panel" id="assume" style="margin-top:20px"><summary><h1 style="display:inline">Assumptions behind the number ›</h1> <span class="hint">who pays, defences, rebuild cost, scenario</span></summary>
+   <details class="panel" id="assume" style="margin-top:20px"><summary><h1 style="display:inline">Assumptions behind the number ›</h1> <span class="hint">who pays, rebuild cost, EV, thresholds</span></summary>
     <div class="ctl" style="margin-top:14px"><label>Who pays for damage</label>
-     ${PRESETS.map(p=>`<label class="radio"><input type="radio" name="preset" value="${p.id}" ${st.preset===p.id?'checked':''} onchange="st.preset='${p.id}';render()"> ${p.label} ${p.def?tag('def'):''} <span class="hint">→ ${M(brief(D,Object.assign(baseOpts(), p.id==='defended'?{defended:true}:p.id==='leased'?{leasedOut:[ts.id]}:p.id==='insured'?{insurance:baseOpts().insurance.concat([policyFor(ts.id)])}:{})).total)}</span></label>`).join('')}
+     ${PRESETS.map(p=>`<label class="radio"><input type="radio" name="preset" value="${p.id}" ${st.preset===p.id?'checked':''} onchange="st.preset='${p.id}';render()"> ${p.label} ${p.def?tag('def'):''} <span class="hint">→ ${M(brief(D,Object.assign(baseOpts(), p.id==='leased'?{leasedOut:[ts.id]}:p.id==='insured'?{insurance:baseOpts().insurance.concat([policyFor(ts.id)])}:{})).total)}</span></label>`).join('')}
     </div>
     <div class="ctl"><label>Or describe another assumption</label>
-     <div class="field"><input id="freeText" style="width:100%;border:0;font:inherit" placeholder='e.g. "the Singapore office has a sea wall and we hold for 5 years"' value="${st.freeText.replace(/"/g,'&quot;')}"></div>
+     <div class="field"><input id="freeText" style="width:100%;border:0;font:inherit" placeholder='e.g. "no sea wall and we hold for 5 years"' value="${st.freeText.replace(/"/g,'&quot;')}"></div>
      <button class="btn secondary" style="width:auto;padding:6px 14px;display:inline-block" id="interpret" onclick="st.freeText=document.getElementById('freeText').value;st.freeResult=parseAssumption(st.freeText);render();document.getElementById('assume').open=true">Interpret</button>
-     ${st.freeResult?(st.freeResult.length?`<div class="ok">Understood as: <b>${st.freeResult.map(x=>x.txt).join(' · ')}</b>. <a href="#" id="applyFree" onclick="st.freeResult.forEach(x=>st[x.k]=x.v);st.freeResult=null;render();return false">Apply</a></div>`:`<div class="note">Warning: can't model this yet. The closest options are the ones above, or the hold period and scenario.</div>`):''}</div>
+     ${st.freeResult?(st.freeResult.length?`<div class="ok">Understood as: <b>${st.freeResult.map(x=>x.txt).join(' · ')}</b>. <a href="#" id="applyFree" onclick="st.freeResult.forEach(x=>st[x.k]=x.v);st.freeResult=null;render();return false">Apply</a></div>`:`<div class="note">Warning: can't model this yet. The closest options are the ones above, the case, the hold period and the scenario.</div>`):''}</div>
     <table style="margin-top:10px"><tr><th>Other assumptions</th><th>Used now</th><th>Source</th><th class="n">If it changes</th></tr>
      <tr><td>Rebuild cost per site</td><td>Spectra estimate (${M(D.sites.reduce((a,s)=>a+s.replacement_cost,0))})</td><td>${tag('spectra')}</td><td class="n">10% higher: ${M(brief(D,opts({costFactor:1.1})).total)}</td></tr>
+     <tr><td>Premium loading and rise</td><td>${S.premium.loading_low}–${S.premium.loading_high}×, +${pct(S.premium.yearly_rise)} a year</td><td>${tag('assume')}</td><td class="n">a broker quote replaces it</td></tr>
      <tr><td>EV</td><td>${M(E)}</td><td>${tag('deal')}</td><td class="n">changes the %, not the £</td></tr>
-     <tr><td>EBITDA by site</td><td>${M(totE())}</td><td>${tag('synth')}</td><td class="n">changes the % of EBITDA</td></tr>
      <tr><td>Status thresholds</td><td>5% and 25% of EV</td><td>${tag('def')}</td><td class="n">changes the colour, not the £</td></tr></table>
    </details>
   </div><div>
@@ -308,45 +351,51 @@ function s2(){
     <div class="ctl"><label>Climate scenario ${st.scen==='ssp245'?tag('def'):''}</label>
      <div class="seg">${SCEN.map(x=>`<div class="${x[0]===st.scen?'on':''}" onclick="st.scen='${x[0]}';render()">${x[1]}</div>`).join('')}</div>
      <div class="hint">${scenName[2]}.</div></div>
-    <div class="ctl"><label>Flood defences ${tag('pref')}</label>
-     <div class="seg"><div id="defOff" class="${st.defended?'':'on'}" onclick="st.defended=false;render()">Undefended</div><div id="defOn" class="${st.defended?'on':''}" onclick="st.defended=true;render()">Defended</div></div>
-     ${st.defended?'<div class="warn">Warning: assumes the defences exist and are kept up over the hold.</div>':''}</div>
    </div>
-   <div class="next"><h1>Recommended next steps · before IC</h1><ul>
-     <li><b>${name(ts)}:</b> confirm flood defences, ownership and insurance. Moves the answer by up to ${M(Math.abs(lease.total-b.total))}</li>
-     <li><b>${name(b.bySite[1].site)}:</b> add ${(b.bySite[1].mainHazard||'').toLowerCase()} to the 100-day plan</li></ul></div>
+   <div class="next terms"><h1>In deal terms · drafted, edit before sending</h1>
+    <div contenteditable="true">
+     <p><b>Price:</b> cost to carry the risk over the hold: ${M(b.total)} expected damage if Meridian bears it, or ${M1(pp.total[0])}–${M1(pp.total[1])} in premiums if insured.</p>
+     <p><b>Condition before closing:</b> confirm the ${name(ts)}'s flood defences (${dv?dv.items.map(i=>i.what.split(' (')[0]).join(', '):'type and standard'}) and its flood cover.</p>
+     <p><b>100-day plan:</b> resilience measures at the ${name(ts)} (Adapt shows cost and return) and the insurance renewal; ${(next.mainHazard||'').toLowerCase()} at the ${name(next.site)}.</p>
+    </div></div>
    <button class="btn primary" id="toSend" onclick="go(4)">Review and send to deal team</button>
+   <button class="btn secondary" id="csv" onclick="csvDownload()">Download yearly costs for your model</button>
    <button class="btn secondary" onclick="window.print()">Download PDF</button>
-  </div></div>`;
+  </div></div>
+  <div id="howDrawer" class="drawer"></div>`;
 }
 
-// ---------- 3. Site detail: everything about one site, including its documents ----------
+// ---------- 3. Site detail ----------
 function s3(){
   if (!st.siteId) st.siteId = topId();
   const b = brief(D,opts()), x = b.bySite.find(y=>y.site.id===st.siteId), s = x.site, r30 = s.risk[st.scen]['2030'];
-  const def = brief(D,opts({defended:true})).bySite.find(y=>y.site.id===s.id);
+  const other = brief(D,opts({defended:!st.defended})).bySite.find(y=>y.site.id===s.id);
   const hz = Object.entries(x.byHazard).filter(h=>h[1]>0).sort((a,c)=>c[1]-a[1]);
-  const main = x.mainHazard, sev = main && r30.hazards[main].sev, eb = S.ebitda_by_site[s.id], prem = premium(x.annual, S.premium);
+  const main = x.mainHazard, sev = main && r30.hazards[main].sev, eb = S.ebitda_by_site[s.id];
+  const yearly = x.site && b.years.map(y => brief({sites:[s]}, opts({start:y,years:1})).total), pp = premiumPath(yearly, S.premium, S.deal.hold_start);
   const dist = (a,c)=>{const R=6371,t=Math.PI/180,dl=(c.lat-a.lat)*t,dn=(c.lon-a.lon)*t;const h=Math.sin(dl/2)**2+Math.cos(a.lat*t)*Math.cos(c.lat*t)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(h));};
   const near = D.sites.filter(o=>o.id!==s.id).map(o=>({o,km:dist(s,o)})).sort((a,c)=>a.km-c.km)[0];
   const nearH = main ? near.o.risk[st.scen]['2030'].hazards[main] : {grade:'—',loss:0};
-  const doc = st.docs[s.id], P = S.example_policy;
+  const doc = st.docs[s.id], P = S.example_policy, dv = S.defences[s.id];
   const without = brief(D,Object.assign(opts(),{insurance:opts().insurance.filter(i=>i.site!==s.id)}));
   const withDoc = brief(D,Object.assign(opts(),{insurance:opts().insurance.filter(i=>i.site!==s.id).concat([policyFor(s.id)])}));
   const sWithout = without.bySite.find(y=>y.site.id===s.id), sWith = withDoc.bySite.find(y=>y.site.id===s.id);
   document.getElementById('s3').innerHTML = `<div class="wrap"><div>
    <div class="panel"><h1>${name(s)} · ${s.street||s.country} · one of Meridian's ${D.sites.length} sites</h1>
-    <div class="big">${M1(x.annual)} <small>average annual loss (AAL) · ${pct(x.share)} of Meridian's total</small></div>
-    <div class="kpis"><div><b>${M(x.hold)}</b><span>over the ${st.years}-year hold</span></div><div><b>${pct(x.annual/eb)}</b><span>of the site's ${M(eb)} EBITDA ${tag('synth')}</span></div><div><b>${M1(def.annual)}</b><span>a year if defended</span></div></div>
-    <div class="why"><b>Why:</b> ${main && /Flood/.test(main)?`the model floods the site up to <b>${sev}m deep</b>${st.defended?'':', treating it as <b>undefended</b>'}.`:`${main?main.toLowerCase():'no hazard'} is the main hazard here.`} The building costs ${M(s.replacement_cost)} to rebuild${s.floors?` (${s.floors} floors)`:''}, so a small share of damage is a big £ figure. Its overall grade is ${r30.grade} because grades rank damage as a share of rebuild cost (${pct(r30.loss_pct,1)} a year), not in £.</div>
+    <div class="casebar"><div class="seg" style="width:340px"><div class="${st.defended?'on':''}" onclick="st.defended=true;render()">Defended case</div><div class="${st.defended?'':'on'}" onclick="st.defended=false;render()">Undefended case</div></div><span class="hint">${st.defended?'Undefended':'Defended'}: ${M1(other.annual)} a year</span></div>
+    <div class="big">${N(M1(x.annual),'site')} <small>average annual loss (AAL) · ${pct(x.share)} of Meridian's total</small></div>
+    <div class="kpis"><div><b>${M(x.hold)}</b><span>over the ${st.years}-year hold</span></div><div><b>${pct(x.annual/eb)}</b><span>of the site's ${M(eb)} EBITDA ${tag('synth')}</span></div><div><b>${N(M1(pp.total[0])+'–'+M1(pp.total[1]),'premium')}</b><span>premiums over the hold if insured</span></div></div>
+    <div class="why"><b>Why:</b> ${main && /Flood/.test(main)?`${st.defended?'with defences in place, the remaining damage is mainly '+main.toLowerCase()+'.':`with no defences the model floods the site up to <b>${sev}m deep</b>.`}`:`${main?main.toLowerCase():'no hazard'} is the main hazard here.`} The building costs ${M(s.replacement_cost)} to rebuild${s.floors?` (${s.floors} floors)`:''}. Its overall grade is ${r30.grade} because grades rank damage as a share of rebuild cost (${pct(r30.loss_pct,1)} a year), not in £.</div>
     <table style="margin-top:12px"><tr><th>Hazard</th><th>Grade</th><th class="n">AAL a year</th></tr>
      ${hz.map(([h,v])=>`<tr><td>${h}</td><td>${r30.hazards[h].grade||'—'}</td><td class="n">${M1(v/st.years)}</td></tr>`).join('')}</table>
    </div>
-   <details class="panel" style="margin-top:20px"><summary><h1 style="display:inline">More detail ›</h1> <span class="hint">asset or area, insurance cost, what would change it</span></summary>
+   ${dv?`<div class="panel issue" style="margin-top:20px"><h1>Flood defences at this site</h1>
+    <table><tr><th>Defence</th><th>Who provides it</th><th>Standard</th></tr>${dv.items.map(i=>`<tr><td>${i.what}</td><td>${i.who}</td><td><span class="tag t-assume">${i.standard}</span></td></tr>`).join('')}</table>
+    <div class="hint">${dv.status}. Attach a defence survey or PUB letter to confirm. ${tag('synth')}</div></div>`:''}
+   <details class="panel" style="margin-top:20px"><summary><h1 style="display:inline">More detail ›</h1> <span class="hint">asset or area, what would change it</span></summary>
     <table class="kv" style="margin-top:12px">
      <tr><td>Asset or area?</td><td>Nearest Meridian site: ${name(near.o)}, ${near.km.toFixed(1)}km away: ${main?main.toLowerCase():''} grade ${nearH.grade||'—'}, ${M(nearH.loss||0)} a year. The risk is this building's spot, not the whole area.</td></tr>
-     <tr><td>If Meridian insures it</td><td>Premium about <b>${M1(prem.low)}–${M1(prem.high)} a year</b>; <b>${M1(prem.claimLow)}–${M1(prem.claimHigh)}</b> after one claim, or cover withdrawn ${tag('assume')}<div class="hint">Rule of thumb: insurers charge ${S.premium.loading_low}–${S.premium.loading_high}× expected loss. If the real premium is far lower, the insurer doesn't see this risk: ask why.</div></td></tr>
-     <tr><td>If defended</td><td>${M1(def.annual)} a year, ${M(def.hold)} over the hold</td></tr>
+     <tr><td>${st.defended?'If undefended':'If defended'}</td><td>${M1(other.annual)} a year, ${M(other.hold)} over the hold</td></tr>
      <tr><td>If leased and the landlord pays</td><td>£0 to Meridian</td></tr></table>
    </details>
   </div><div>
@@ -357,17 +406,18 @@ function s3(){
      <table class="chg" style="margin-top:10px"><tr><th>This site, over the hold</th><th class="n">Before</th><th class="n">After</th></tr>
       <tr><td>Damage Meridian bears</td><td class="n old">${M(sWithout.hold)}</td><td class="n up" id="siteAfter">${M(sWith.hold)}</td></tr>
       <tr><td>Deal total</td><td class="n old">${M(without.total)}</td><td class="n up">${M(withDoc.total)}</td></tr></table>
-     <div class="hint"><b>Why:</b> the insurer pays above the ${M(P.excess_per_event)} excess until ${P.valid_until}; after that nothing changes. Assumes at most one flood a year.</div>
+     <div class="hint"><b>Why:</b> the insurer pays above the ${M(P.excess_per_event)} excess until ${P.valid_until}; the premium is still a cost. Assumes at most one flood a year.</div>
      ${doc.applied?'':`<button class="btn primary" id="applyDoc" onclick="st.docs['${s.id}'].applied=true;render()">Apply to this site</button>`}`
-    :`<label class="drop" style="display:block;cursor:pointer">Attach a document for this site: insurance policy, lease, flood defence survey<input type="file" style="display:none" onchange="st.docs['${s.id}']={applied:false};render()"></label>
+    :`<label class="drop" style="display:block;cursor:pointer">Attach a document for this site: defence survey, insurance policy, lease<input type="file" style="display:none" onchange="st.docs['${s.id}']={applied:false};render()"></label>
      <div class="hint" style="margin-top:8px">Prototype: <a href="#" id="example" onclick="st.docs['${s.id}']={applied:false};render();return false">attach the example policy</a> (synthetic)</div>`}
    </div>
    <details class="next qs" style="margin-top:20px"><summary><b>Questions for the deal team about the ${name(s)} ›</b></summary><ul>
-    <li>Is the ${name(s)} protected by flood defences? Type, height, who maintains them</li>
+    <li>Which flood defences protect the ${name(s)}, and to what standard?</li>
     <li>Does Meridian own or lease it, and which floors?</li>
-    <li>Is it insured for flood? Please share the policy</li></ul></details>
+    <li>Is it insured for flood, and what is the premium today?</li></ul></details>
    <button class="btn secondary" onclick="go(2)">Back to the brief</button>
-  </div></div>`;
+  </div></div>
+  <div id="howDrawer" class="drawer"></div>`;
 }
 
 function s4(){

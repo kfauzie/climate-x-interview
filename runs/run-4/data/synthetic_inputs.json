@@ -49,7 +49,10 @@
   "loading_low": 1.5,
   "loading_high": 2.0,
   "after_claim_low": 1.25,
-  "after_claim_high": 2.0
+  "after_claim_high": 2.0,
+  "yearly_rise": 0.05,
+  "after_claim": 0.5,
+  "claim_year": 2028
  },
  "example_policy": {
   "file": "SG_office_flood_policy.pdf",
@@ -78,5 +81,22 @@
    "status": "not started",
    "dot": "grey"
   }
- ]
+ ],
+ "defences": {
+  "1740500331": {
+   "status": "Suggested from public sources \u00b7 to verify",
+   "items": [
+    {
+     "what": "Marina Barrage (dam across the mouth of Marina Channel)",
+     "who": "PUB, Singapore's national water agency",
+     "standard": "Design standard: to verify with PUB"
+    },
+    {
+     "what": "Coastal protection along Marina Bay",
+     "who": "Singapore government (long-term coastal protection programme)",
+     "standard": "Protection level at this site: to verify"
+    }
+   ]
+  }
+ }
 }

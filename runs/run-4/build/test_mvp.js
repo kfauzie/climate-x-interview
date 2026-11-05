@@ -21,4 +21,8 @@ const sumSites = b.bySite.reduce((a, x) => a + x.hold, 0), sumHaz = Object.value
 const ok2 = Math.abs(sumSites - b.total) < 1 && Math.abs(sumHaz - b.total) < 1; if (!ok2) fail++; console.log(`${ok2 ? 'PASS' : 'FAIL'} sites and hazards add up to the total`);
 const P = S.example_policy, ins = C.brief(D, o({ insurance: { site: P.site, hazard: P.hazard, excess: P.excess_per_event, lastYear: P.last_covered_year } })).total;
 const ok3 = ins < b.total && ins > b.total - 2 * 9.2e6; if (!ok3) fail++; console.log(`${ok3 ? 'PASS' : 'FAIL'} insurance lowers 2026-27 only: ${(ins / 1e6).toFixed(1)}m`);
+const P2 = S.premium, yearly = def => b.years.map(y => C.brief(D, o({ defended: def, start: y, years: 1 })).total);
+const pd = C.premiumPath(yearly(true), P2, 2026), pu = C.premiumPath(yearly(false), P2, 2026);
+eq('premiums over the hold, defended, low', pd.total[0], 50.6e6); eq('premiums, defended, high', pd.total[1], 67.4e6);
+eq('premiums, undefended, low', pu.total[0], 161.1e6); eq('premiums, undefended, high', pu.total[1], 214.8e6);
 console.log(fail ? `${fail} FAILED` : 'All tests pass'); process.exit(fail ? 1 : 0);
