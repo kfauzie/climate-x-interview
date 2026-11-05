@@ -81,6 +81,8 @@ Code: `notebooks/initial_review.py`. Unless stated: 2030, middle scenario (SSP2-
 - Show what changes at exit (2033) for a buyer looking to 2050 or 2100
 
 ## For the solution (pm-3 onwards)
+- **The customer is the Head of Sustainability (he).** Solve his biggest problem (guess: his team's work doesn't change deals; 11 of 60 deals, none changed). The deal team is his audience, not our customer
+- **One push, simple and elegant:** one click in Spectra gives him a one-page deal-ready summary to send: £ over the hold against EV, the one site that drives it, what to check before IC, a RAG status. Minimal inputs (EV, hold period, prefilled); everything else a stated assumption. Better outcome for him: the deal team asks for it and acts on it (credibility without authority)
 - Design around the deal's money: compare loss with **EV (£480m; equity £165m, ~£315m debt)** and add it up over the **hold period (7 years, ~2026–2033)**; show the exit view (risk from 2033 on) separately
 - Hold period as an input (prefilled 7 years from 2026, editable), answer updates instantly. For Meridian it mainly scales the total (5y ~£66m, 7y ~£92m, 10y ~£132m, middle scenario: yearly loss is flat before 2050). Inputs that move the answer more: who bears the Singapore loss (owned/leased/insured), flood defences on/off, the exit view. Scenario: default middle, worst case one click away
 
