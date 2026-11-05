@@ -35,6 +35,8 @@ Make every document professional and easy to scan, using Notion's layout tools:
 - **Colour with a consistent meaning:** green = recommended or good, red = problem or risk, blue = information or context, yellow = assumption or needs attention, gray = detail. Use background colours for callouts and table header rows; colour single words only for emphasis.
 - **Tables for comparisons** (header row coloured), **columns** for things side by side, **toggles** for detail most readers can skip.
 - No wall of text: short lines, one idea each.
+- **End every page with a feedback section:** a heading "💬 Your feedback" and an empty yellow callout for my notes. I may also comment inline (select text, then Comment).
+- **Before revising or re-running on a page,** read both: the feedback section and the inline comments (fetch with discussions, then read the comments). Say which feedback you acted on.
 
 ## How to work with me
 
