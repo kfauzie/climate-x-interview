@@ -3,11 +3,18 @@
 <title>Site resilience plans</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#e8e8e8;font:15px/1.45 Graphik,Helvetica,Arial,sans-serif;color:#343a40}
-.screen{max-width:1100px;margin:30px auto;background:#f9f9fa;border:1px solid #e3e5e8;border-radius:14px;overflow:hidden}
+body{background:#f9f9fa}.screen{min-height:100vh;display:flex;flex-direction:column;background:#f9f9fa}.screen>.body{flex:1;width:100%;max-width:1280px;margin:0 auto}
 .hdr2{background:#1f5fa8;color:#fff;padding:20px 28px;display:flex;align-items:center;gap:16px}
 .hdr2 .ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;flex:none}
 .hdr2 .u,.hdr2 .j{font-size:26px;font-weight:700}.hdr2 .j{margin-top:4px}
-.steps{padding:14px 24px 0;color:#999;font-size:13px}.steps .on{color:#343a40;font-weight:600}
+.steps{display:flex;padding:14px 24px 0;max-width:1280px;width:100%;margin:0 auto}
+.step{flex:1;position:relative;border:0;background:#e3e5e8;color:#5a6168;font:inherit;font-size:14px;font-weight:600;padding:12px 10px 12px 30px;cursor:pointer;
+ clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%,16px 50%);margin-right:-10px;transition:background .25s,color .25s,transform .2s}
+.step:first-child{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%);padding-left:18px}
+.step:hover{background:#d3d7db;transform:translateX(3px)}.step.done{background:#cfd6de;color:#343a40}
+.step.on{background:#343a40;color:#fff;animation:stepin .45s ease-out}.step .n{opacity:.7;margin-right:6px}
+@keyframes stepin{from{transform:translateX(-8px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.step{transition:none}.step.on{animation:none}}
 .body{padding:10px 24px 20px}.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 h1{font-size:24px;margin:6px 0 2px}.sub{color:#6c757d}
 .card{background:#fff;border:1px solid #e3e5e8;border-radius:12px;padding:16px 18px;margin-top:12px}
@@ -137,7 +144,8 @@ const STEPS = ['Screen sites', 'Check locations', 'Plan each site', 'Bank docume
 const S = {sites: null, error: null, screen: 'screen', rule: {...DEFAULT_RULE}, located: {}, chosen: {}, quotes: {}, i: 0, open: {}, sent: null};
 
 function ribbon(job) { return `<div class="hdr2"><span class="ic">${ICON}</span><div><div class="u">User: Head of Asset Management</div><div class="j">Job to be done: ${job}</div></div></div>`; }
-function steps(n) { return `<div class="steps">${STEPS.map((s, i) => i === n ? `<span class="on">${s}</span>` : s).join(' ─ ')}</div>`; }
+const STEP_SCREEN = ['screen', 'locations', 'plan', 'doc'];
+function steps(n) { return `<nav class="steps">${STEPS.map((s, i) => `<button class="step ${i === n ? 'on' : i < n ? 'done' : ''}" data-step="${i}"><span class="n">${i + 1}</span>${s}</button>`).join('')}</nav>`; }
 const label = s => `${s.site_id} · ${s.region} ${s.asset_type}`;
 const need = () => screen(S.sites, S.rule).need;
 const points = () => need().filter(s => s.location_type === 'point');
@@ -273,6 +281,7 @@ document.addEventListener('change', e => { const k = e.target.dataset.rule; if (
 document.addEventListener('click', async e => {
   const t = e.target.closest('button, tr.click'); if (!t) return;
   const go = scr => { S.screen = scr; S.open = {}; render(); };
+  if (t.dataset.step !== undefined) { const scr = STEP_SCREEN[+t.dataset.step]; if (scr === 'plan' && S.i >= need().length) S.i = 0; if (scr === 'plan' && !need().length) return; return go(scr); }
   if (t.dataset.open) { S.open[t.dataset.open] = !S.open[t.dataset.open]; return render(); }
   if (t.dataset.loc) { const [id, v] = t.dataset.loc.split('|'); S.located[id] = v; return render(); }
   if (t.dataset.undo) { delete S.located[t.dataset.undo]; return render(); }

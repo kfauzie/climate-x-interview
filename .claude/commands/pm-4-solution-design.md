@@ -23,6 +23,7 @@ Output: the screen images, saved in runs/run-N/design/.
 - For each step, find the closest comparable product, then think about its patterns and borrow the ones that fit. Say which product and pattern you're borrowing. For example: Typeform or TurboTax for guided, one-question-at-a-time flows; Stripe for financial numbers with their source one click away; Linear for calm, clear hierarchy.
 - Don't calculate anything for these static screens, and never check numbers against the data in this step. Use realistic placeholder numbers, and don't report data mismatches when showing screens. The real numbers are calculated with code in pm-5-mvp-build.
 - Show only what a real user would see. No design notes on screen. The only exception is a ribbon at the top: large, in blue (not the brand red) so it reads as a label, with an icon for the user, "User: [role]" on top and "Job to be done: [job]" underneath, both lines equally large. Name the specific role, not a generic one.
+- Every screen fills the whole window and has the same step bar at the top: chevron-shaped steps, one per workflow step, the current one highlighted, each clickable to jump to that screen.
 - One screen first, the most important one. Get feedback before making the rest.
 - If a screen takes more than a few minutes, it's too detailed.
 - Before showing me, walk the flow once as the user and fix anything confusing.

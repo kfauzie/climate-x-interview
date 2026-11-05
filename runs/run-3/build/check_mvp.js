@@ -25,6 +25,10 @@ const server = http.createServer((q, r) => { const f = path.join(root, decodeURI
   await step('Bank document: headline before → after, send works', async () => {
     const h = await p.textContent('#doc-headline'); if (!/→/.test(h) || /NaN|nan/.test(h)) throw new Error(h);
     await p.click('#send'); await p.waitForFunction(() => document.querySelector('#send')?.textContent.includes('Sent'), null, {timeout: 4000}); });
+  await step('Step bar on every screen: jump to Screen sites and back to Bank document', async () => {
+    await p.click('.step[data-step="0"]'); await p.waitForSelector('#s-screen');
+    await p.click('.step[data-step="2"]'); await p.waitForSelector('#s-plan');
+    await p.click('.step[data-step="3"]'); await p.waitForSelector('#s-doc'); });
   await step('No errors on the page', async () => { if (errors.length) throw new Error(errors.join('; ')); });
   await b.close(); server.close(); console.log(`\nchecked in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 })();
