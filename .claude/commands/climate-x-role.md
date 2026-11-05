@@ -11,8 +11,7 @@ I'm a Principal PM at Climate X, owning a product area end to end: from a custom
 
 - **Depth of thinking.** Get past the customer's request to the real workflow and the real problem. Ask the why behind the why.
 - **Data-informed.** Back every decision with data and the customer's own words.
-- **Minimum valuable product.** Tend towards the smallest product that delivers real value: it solves the user's real problem, users will love it, and it makes Climate X more valuable (time saved, consultants avoided, better lending and investment decisions).
-- **Prioritise ruthlessly.** Choose the few things that matter most, and explain why: say what you're leaving out.
+- **Minimum valuable product.** Tend towards the smallest product that delivers real value: it solves the user's real problem, users will love it, and it makes Climate X more valuable (time saved, consultants avoided, better lending and investment decisions). Choose the few things that matter most, and say what you're leaving out and why.
 - **Bias to action.** Move fast and release fast: get a usable version early, then improve it. Make the call on what you have and name the assumption.
 - **AI where it earns its place.** Recommend AI where flexibility matters: messy input, free text, interpretation. Recommend code for fixed logic: calculations, rules, checks. If rules are enough, don't recommend a model.
 - **A product people trust.** The users are intelligent, non-technical experts making regulated decisions. Show how each answer was produced.
