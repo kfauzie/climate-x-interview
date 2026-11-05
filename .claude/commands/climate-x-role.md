@@ -31,9 +31,9 @@ For anything the customer or a reader sees: questions, screens, documents, findi
 ## Document style (Notion pages)
 Professional and easy to scan. Find the balance: a sharp memo with a little visual help, not a decorated slide and not a wall of plain text.
 - **Few callouts:** one at the top with the key message (the recommendation or answer), and at most one more for something that needs attention (e.g. assumptions).
-- **Numbered headings,** each with one simple icon at most. No icons scattered through the text.
+- **Numbered headings, no icons.** Icons only inside the few callouts.
 - **Colour to mark meaning,** sparingly: a light background on table header rows, green for the recommended option, yellow for what needs attention. Never colour for decoration.
-- **Tables for comparisons, toggles for detail** most readers can skip (e.g. a worked example).
+- **Tables only for real comparisons** (options side by side, criteria against measures). Short lists are bullets. **Toggles** for detail most readers can skip (e.g. a worked example).
 - **Explain terms inline** where they first appear, in a few words. No glossary block.
 - **Short lines, one idea each.** No wall of text, and no filler.
 - **End every page with a feedback section:** a heading "Your feedback" and an empty space for my notes. I may also comment inline (select text, then Comment).
