@@ -5,7 +5,7 @@ description: "Turn the solution concept into screens in Climate X's brand, one p
 
 # Solution design
 
-Before starting, read climate-x-products, climate-x-company and climate-x-role. Follow the communication guide in climate-x-role for everything you write. Start from the workflow in the solution concept (the Notion page linked in `RUN.md`).
+Before starting, read climate-x-products, climate-x-company and climate-x-role. Follow the communication guide in climate-x-role for everything you write. Start from the workflow in the solution concept (the Notion page linked in `RUN.md`; fetch it fresh every time, since I may have edited it).
 
 Output: the screen images, saved in runs/run-N/design/.
 
