@@ -26,7 +26,7 @@ Three questions, plus one optional, in this order. Each specific to this case.
 3. **Real examples for testing.** Ask for the sample the evaluation needs, in their terms, naming the tricky cases specifically, e.g. "Could you send us 20 or so recent [requests], with the answers your team sent? Please include a few unusual ones, like a scenario or year you rarely use, or ones where the right answer wasn't obvious and your team had to make a judgement call. We'd use them to test it."
 4. **Defaults (optional, last).** Whether the choices it made for them are the ones their team would make, marked *(Optional)*, naming each default, not a list of categories, e.g. "By default, it [does A], [leaves out B] and [assumes C]. Would your team use the same defaults?"
 
-Only add another question for an assumption if it would change the main workflow.
+**Assumptions from the solution concept.** pm-3 writes each assumption as a question for this review. Go through them: keep each one whose answer could change the solution, as a question after question 3, in its wording from the concept. Drop the rest, and say in chat which you dropped and why. Don't add assumption questions that aren't in the concept.
 
 ## Check the sample yourself, don't ask
 When the sample arrives, test it against the working version and check:
