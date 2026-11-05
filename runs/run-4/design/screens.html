@@ -41,12 +41,29 @@ td{padding:10px 6px;border-bottom:1px solid var(--line)}td.n{text-align:right;fo
 .primary{background:var(--red);color:#fff}.secondary{border:1px solid var(--g6);color:var(--g6);background:#fff}
 a{color:var(--blue);text-decoration:none}.foot{font-size:12px;color:var(--mute);margin-top:14px}
 .grade{font-size:12px;color:var(--mute)}
+.deals{display:flex;gap:8px;padding:12px 32px;background:#fff;border-bottom:1px solid var(--line);align-items:center;font-size:13px}
+.deal{border:1px solid var(--line);border-radius:6px;padding:7px 12px;background:#fff;cursor:pointer}
+.deal.on{border-color:var(--g7);box-shadow:inset 0 -3px 0 var(--red);font-weight:600;color:var(--g7)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.next{background:#eaf2fd;border:1px solid #c7dbf7;border-radius:10px;padding:18px 22px;margin-top:20px}
+.next h1{color:var(--blue)}.next li{margin:8px 0;font-size:14px;line-height:1.4}.next ul{list-style:none;padding:0;margin:0}
+.next li:before{content:"☐  ";color:var(--blue)}
+.recon{margin-top:14px;font-size:13px;background:#f4f5f7;border-radius:6px;padding:10px 12px;line-height:1.5}
+.stack{display:flex;height:22px;border-radius:4px;overflow:hidden;margin:8px 0 6px}
+.stack div{height:100%}.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px}
+.legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;background:var(--c)}
+.moves td{font-size:13px}
 </style></head><body>
 
 <div class="screen" data-screen="2-brief">
   <div class="ribbon"><span class="ic">👤</span><span><b>User:</b> Head of Sustainability, CX Capital</span><span><b>Job to be done:</b> get the deal team to act on climate risk before IC</span></div>
   <div class="steps"><div class="step done">✓ 1. Set up the deal</div><div class="step on">2. The brief</div><div class="step">3. Check a site</div><div class="step">4. Send to the deal team</div></div>
-  <div class="app"><div class="logo">CLIMATE <span>X</span> &nbsp;<span style="color:var(--g6);font-weight:400">Spectra</span></div><div class="crumb">Deals / Project Meridian / Deal climate brief · Draft</div></div>
+  <div class="app"><div class="logo">CLIMATE <span>X</span> &nbsp;<span style="color:var(--g6);font-weight:400">Spectra</span></div><div class="crumb">Deals in diligence / Project Meridian / Deal climate brief · Draft</div></div>
+  <div class="deals"><span style="color:var(--mute);margin-right:4px">Deals in diligence (3):</span>
+    <div class="deal on"><span class="dot" style="background:#e0a100"></span>Project Meridian · IC in 4 weeks</div>
+    <div class="deal"><span class="dot" style="background:var(--jade)"></span>Project Atlas · IC in 6 weeks</div>
+    <div class="deal"><span class="dot" style="background:#adb5bd"></span>Project Kestrel · not started</div>
+  </div>
 
   <div class="wrap">
     <div>
@@ -54,41 +71,55 @@ a{color:var(--blue);text-decoration:none}.foot{font-size:12px;color:var(--mute);
         <h1>Project Meridian · Meridian Group · 22 sites in 15 countries</h1>
         <div class="top">
           <div style="flex:1">
-            <div class="big">£92m <small>expected climate damage to buildings over the 7-year hold</small></div>
-            <div class="sub"><b>19% of the £480m EV</b> · average annual loss (AAL) about £13m a year, 2026–2032</div>
+            <div class="big">£92m <small>expected climate damage to Meridian's buildings over the 7-year hold</small></div>
+            <div class="sub"><b>19% of Meridian's £480m EV</b> · 2026–2032 · middle scenario · no flood defences</div>
           </div>
-          <div class="rag">⚠ AMBER<br><span style="font-weight:400">One site decides it</span></div>
+          <div class="rag">⚠ AMBER: check before IC<br><span style="font-weight:400">The Singapore office could<br>change the price</span></div>
         </div>
-        <div class="why"><b>Why:</b> 75% comes from one site, the Singapore office (Marina Boulevard): coastal flood up to 1.8m deep, <b>assuming no flood defences</b>. With defences, the total is <b>£29m (6% of EV)</b>.</div>
-        <div class="act"><b>Before IC:</b> confirm Marina Boulevard's flood defences, whether Meridian owns or leases it, and its flood insurance. That one check moves the answer by £63m.</div>
-        <div class="compare">
-          <span>No flood defences</span><div class="bar cur" style="width:100%"></div><b class="n">£92m · 19%</b>
-          <span>With flood defences</span><div class="bar" style="width:31%"></div><span>£29m · 6%</span>
-        </div>
+        <div class="recon"><b>How £92m adds up:</b> Spectra's average annual loss (AAL, also shown as "Total Building Loss" in the export) is the damage to expect in an average year, weighting every possible event by its chance. For Meridian it's about <b>£13.2m a year</b>. Add up each year of the hold, 2026 to 2032: £13.2m × 7 years ≈ <b>£92m</b>. <a href="#">See year by year ›</a></div>
       </div>
 
       <div class="panel" style="margin-top:20px">
-        <h1>What drives it</h1>
+        <h1>What drives the £92m</h1>
+        <div style="font-size:13px;font-weight:600;margin-top:4px">By hazard</div>
+        <div class="stack"><div style="width:69%;background:#1d5fbf"></div><div style="width:12%;background:#6ea0e6"></div><div style="width:11%;background:#8a6d3b"></div><div style="width:5%;background:#adb5bd"></div><div style="width:3%;background:#dee2e6"></div></div>
+        <div class="legend"><span style="--c:#1d5fbf">Coastal flood £63m (69%)</span><span style="--c:#6ea0e6">River flood £11m (12%)</span><span style="--c:#8a6d3b">Subsidence £11m (11%)</span><span style="--c:#adb5bd">Hail £4m (5%)</span><span style="--c:#dee2e6">Other £3m (3%)</span></div>
+        <div style="font-size:13px;font-weight:600;margin-top:18px">By site</div>
         <table>
           <tr><th>Site</th><th>Main hazard</th><th class="n">AAL a year</th><th class="n">Over the hold</th><th class="n">Share</th><th></th></tr>
-          <tr><td><b>Singapore office</b>, Marina Boulevard<div class="grade">Overall grade A: damage is 0.7% of its £1.4bn rebuild cost a year</div></td><td>Coastal flood</td><td class="n">£9.9m</td><td class="n">£69m</td><td class="n"><b>75%</b></td><td><a href="#">Why this number ›</a></td></tr>
+          <tr><td><b>Singapore office</b>, Marina Boulevard<div class="grade">Grade A overall: damage is 0.7% of its £1.4bn rebuild cost a year</div></td><td>Coastal flood, 1.8m deep</td><td class="n">£9.9m</td><td class="n">£69m</td><td class="n"><b>75%</b></td><td><a href="#">Why this number ›</a></td></tr>
           <tr><td>Milan car park<div class="grade">Grade B: 3.2% of rebuild cost</div></td><td>River flood</td><td class="n">£1.4m</td><td class="n">£10m</td><td class="n">10%</td><td><a href="#">Why ›</a></td></tr>
           <tr><td>Tokyo retail<div class="grade">Grade A: 0.4% of rebuild cost</div></td><td>Subsidence</td><td class="n">£1.2m</td><td class="n">£8m</td><td class="n">9%</td><td><a href="#">Why ›</a></td></tr>
           <tr><td>19 other sites</td><td>Mixed</td><td class="n">£0.8m</td><td class="n">£5m</td><td class="n">6%</td><td><a href="#">Show ›</a></td></tr>
         </table>
-        <div class="foot">Spectra v2, building damage only (not lost rent or downtime). Middle climate scenario SSP2-4.5. <a href="#">How it's calculated ›</a></div>
+        <div style="font-size:13px;font-weight:600;margin-top:18px">Assumptions that move it</div>
+        <table class="moves">
+          <tr><td>Flood defences at the Singapore office</td><td class="n"><b>−£63m</b> if defended (to £29m, 6% of EV)</td></tr>
+          <tr><td>Hold period</td><td class="n">about £13m per year more or less</td></tr>
+          <tr><td>Climate scenario</td><td class="n">under £1m before 2033</td></tr>
+        </table>
+        <div class="foot">Spectra v2, building damage only (not lost rent or downtime). <a href="#">How it's calculated ›</a></div>
       </div>
     </div>
 
     <div>
-      <div class="panel">
+      <div class="next">
+        <h1>Recommended next steps · before IC</h1>
+        <ul>
+          <li><b>Confirm the Singapore office's flood defences</b> (Marina Boulevard): type, height, who maintains them. Moves the answer by £63m</li>
+          <li>Confirm whether Meridian owns or leases the Singapore office, and which floors</li>
+          <li>Confirm flood insurance on the Singapore office</li>
+          <li>Add Milan car park river flood to the 100-day plan</li>
+        </ul>
+      </div>
+      <div class="panel" style="margin-top:20px">
         <h1>Try other assumptions</h1>
         <div class="hint" style="margin:-4px 0 14px">The headline updates as you change these.</div>
+        <div class="ctl"><label>Flood defences <span class="tag t-pref">Your team's preference</span></label>
+          <div class="seg"><div class="on">Undefended · £92m</div><div>Defended · £29m</div></div>
+          <div class="warn">Warning: Defended assumes the defences exist and are kept up over the hold. Confirm before relying on it.</div></div>
         <div class="ctl"><label>Hold period <span class="tag t-deal">From deal record</span></label><div class="field"><span>7 years · 2026–2032</span><span>▾</span></div></div>
         <div class="ctl"><label>EV <span class="tag t-deal">From deal record</span></label><div class="field"><span>£480m</span><span>✎</span></div></div>
-        <div class="ctl"><label>Flood defences <span class="tag t-pref">Your team's preference</span></label>
-          <div class="seg"><div class="on">Undefended</div><div>Defended</div></div>
-          <div class="warn">Defended assumes the defences are kept up over the hold.</div></div>
         <div class="ctl"><label>Climate scenario <span class="tag t-def">Default</span></label>
           <div class="seg"><div>Low</div><div class="on">Middle</div><div>High</div><div>Very high</div></div>
           <div class="hint">Middle (SSP2-4.5): the path the world is roughly on. Scenarios barely differ before 2050.</div></div>
