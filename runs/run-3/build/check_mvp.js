@@ -6,6 +6,7 @@ const server = http.createServer((q, r) => { const f = path.join(root, decodeURI
 (async () => {
   const t0 = Date.now(); await new Promise(r => server.listen(0, r));
   const b = await chromium.launch(), p = await b.newPage(), errors = []; p.on('pageerror', e => errors.push(e.message));
+  await p.route(/cdnjs|openstreetmap/, r => r.abort());   // no internet needed: the address field works without the map
   const step = async (name, f) => { try { await f(); console.log('ok  ', name); } catch (e) { console.log('FAIL', name, '-', e.message.split('\n')[0]); process.exitCode = 1; } };
   await p.goto(`http://localhost:${server.address().port}/build/mvp.html`);
   await step('Screen sites loads: 24 need a plan, 38 don\'t; nothing covering it', async () => {
@@ -16,7 +17,9 @@ const server = http.createServer((q, r) => { const f = path.join(root, decodeURI
     await p.selectOption('[data-rule="scenario"]', 'severe'); await p.waitForFunction(() => document.querySelector('#headline').textContent.startsWith('24 need')); });
   await step('Check locations: 4 single-point sites, all confirmed', async () => {
     await p.click('#go-loc'); await p.waitForSelector('#s-locations');
-    for (let k = 0; k < 4; k++) await p.click('[data-loc$="|right"] >> nth=0');
+    await p.click('[data-fix] >> nth=0'); await p.fill('#fix-addr', 'Site address'); await p.click('#fix-save');
+    await p.waitForFunction(() => document.body.textContent.includes('Location corrected and rescored'), null, {timeout: 4000});
+    for (let k = 0; k < 3; k++) await p.click('[data-loc$="|right"] >> nth=0');
     if (await p.locator('[data-loc]').count()) throw new Error('unconfirmed left'); });
   await step('Plan each site: a recommendation shows; walk through all 24', async () => {
     await p.click('#go-plan'); await p.waitForSelector('#rec');
