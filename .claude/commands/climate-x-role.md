@@ -29,10 +29,10 @@ For anything the customer or a reader sees: questions, screens, documents, findi
 - **Concise, specific, reasoned.** Cut to the case: as few words as possible, every one specific, but keep the "because" so the reader sees the reasoning.
 
 ## Document style (Notion pages)
-Professional and easy to scan, with restraint: it should read like a sharp memo, not a decorated slide.
-- **One callout at the top** with the key message (the recommendation or answer). No other callouts unless something truly needs a warning.
-- **Plain numbered headings.** No emoji or icons on headings.
-- **Colour only to mark meaning,** sparingly: e.g. the recommended option in a comparison table. Never colour for decoration.
+Professional and easy to scan. Find the balance: a sharp memo with a little visual help, not a decorated slide and not a wall of plain text.
+- **Few callouts:** one at the top with the key message (the recommendation or answer), and at most one more for something that needs attention (e.g. assumptions).
+- **Numbered headings,** each with one simple icon at most. No icons scattered through the text.
+- **Colour to mark meaning,** sparingly: a light background on table header rows, green for the recommended option, yellow for what needs attention. Never colour for decoration.
 - **Tables for comparisons, toggles for detail** most readers can skip (e.g. a worked example).
 - **Explain terms inline** where they first appear, in a few words. No glossary block.
 - **Short lines, one idea each.** No wall of text, and no filler.
