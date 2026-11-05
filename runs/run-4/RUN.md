@@ -2,7 +2,7 @@
 
 **Status:** initial review done; next: discovery questions (pm-2)
 **Dataset:** `data/Climate X Sample Data.xlsx` (Spectra v2 export, 22 Meridian Group sites, 4 scenarios × 12 years)
-**Context:** `notes/CX_Capital_context.md` (customer brief, an illustrative composite: CX Capital and Meridian are fictional), `notes/CX_brand_guidelines.md` (brand and voice)
+**Context:** `notes/CX_Capital_context.md` (customer brief, an illustrative composite: CX Capital and Meridian are fictional); brand guideline now a skill: `climate-x-brand`
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
 
 Everything below applies to **run 4 only**. Do not carry it into any other run.

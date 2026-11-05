@@ -1,7 +1,8 @@
 ---
-name: cx-brand-voice
-description: "Climate X Corporate Identity, Brand Voice, and Market Messaging. Use this skill whenever creating, reviewing, or checking ANY Climate X branded material, design asset, or written copy (internal or external). This includes presentations, reports, emails, social media (LinkedIn), blogs, whitepapers, ads, or landing pages. It provides the 'Source of Truth' for company facts, product descriptions (Carta, Spectra, Adapt), target personas (Asset Management, Banking), and brand-voice standards. Trigger whenever the user asks about Climate X colors, fonts, logos, messaging, products, or how to write/design for a specific audience. It ensures all outputs are expert, confident, and commercial while avoiding ESG platitudes or alarmist framing."
+name: climate-x-brand
+description: "Climate X's brand guideline (as given by Climate X): voice, what to avoid, product one-liners, personas and their triggers, sector terms (AAL vs EAL), regional nuances, colours, fonts and logo, and a copy checklist. Use for any screen, prototype or customer-facing copy."
 ---
+
 
 # Climate X Master Brand & Messaging Guide
 
@@ -59,12 +60,6 @@ Climate X communicates **precision, resilience, urgency, and analytical depth**.
 - **The Head of Sustainability:** Wants credibility and speed to compliance. Trigger: "Equip your team to lead."
 - **The Portfolio Manager:** Wants to price risk into valuations faster. Trigger: "Price physical risk into investments."
 - **The CRO:** Wants proven methodology and IT/Model Risk compliance. Trigger: "Audit-grade insights."
-
-These are the generic defaults. For a vertical with its own dedicated ICP skill, use that
-skill's persona detail instead — it takes precedence over the generic hook above for that
-vertical. Currently: Private Equity has its own personas and messaging pillars in
-`cx-icp-alignment` (`references/pe.md`), with a further deep-dive on the PE Head of
-Sustainability/ESG persona in `cx-sustainability-pe-persona`.
 
 ### 3.2 Sector Specifics
 - **Asset Management:** Use **AAL** (Average Annual Loss). Focus: ROI, due diligence, and competitive advantage.
