@@ -1,9 +1,12 @@
 # Run 4
 
-**Status:** initial review done; next: discovery questions (pm-2)
+**Status:** discovery questions ready; next: the interview (notes in the Notion page)
 **Dataset:** `data/Climate X Sample Data.xlsx` (Spectra v2 export, 22 Meridian Group sites, 4 scenarios × 12 years)
 **Context:** `notes/CX_Capital_context.md` (customer brief, an illustrative composite: CX Capital and Meridian are fictional); brand guideline now a skill: `climate-x-brand`
 **Analysis:** `notebooks/initial_review.py` (every number below comes from it)
+
+**On Notion (2nd round prep)**
+- Discovery questions v1: https://app.notion.com/p/40f8f31ef05f81ca90e3d909dfea71e8 (hypothesis-driven; every hypothesis cites its source file)
 
 Everything below applies to **run 4 only**. Do not carry it into any other run.
 
