@@ -7,9 +7,9 @@ const srv = http.createServer((q, r) => { const f = path.join(root, decodeURICom
   await new Promise(ok => srv.listen(0, ok)); const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: scale });
   await p.goto(`http://localhost:${srv.address().port}/build/mvp.html`); await p.waitForSelector('body[data-ready="1"]');
-  const names = ['1-setup', '2-brief', '3-site', '4-send', '5-answers'];
-  for (let i = 1; i <= 5; i++) {
-    await p.evaluate(n => { if (n === 5) st.policyShown = true; go(n); }, i); await p.waitForTimeout(450);
+  const names = ['1-setup', '2-brief', '3-site', '4-send'];
+  for (let i = 1; i <= 4; i++) {
+    await p.evaluate(n => { go(n); }, i); await p.waitForTimeout(450);
     await p.screenshot({ path: path.join(root, 'design', names[i - 1] + '.png'), fullPage: true });
   }
   console.log('saved', names.length, 'screens'); await b.close(); srv.close();
