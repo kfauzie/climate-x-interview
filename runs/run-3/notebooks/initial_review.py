@@ -51,3 +51,7 @@ print('E-G sites under severe by country/type:', d[sb].groupby(['country', 'asse
 print('E-G value share, central:', f'{d.asset_value_gbp[bad].sum()/d.asset_value_gbp.sum():.0%}', '| severe:', f'{d.asset_value_gbp[sb].sum()/d.asset_value_gbp.sum():.0%}')
 print('E-G sites (central) by facility, value:', d[bad].groupby('debt_facility').asset_value_gbp.sum().div(1e6).round(0).to_dict())
 print('8 E-G sites share of total loss (central 2050):', f'{d.L[bad].sum()/d.L.sum():.0%}')
+
+print('\n# UK expected loss a year, central 2050, all hazards and wildfire only (blank = £0)')
+uk = d[d.country == 'UK']
+print(f"£{uk[[f'{h}_ssp245_2050_loss_gbp' for h in H]].fillna(0).sum().sum()/1e6:.1f}m total, wildfire £{uk.wildfire_ssp245_2050_loss_gbp.fillna(0).sum()/1e6:.2f}m")
