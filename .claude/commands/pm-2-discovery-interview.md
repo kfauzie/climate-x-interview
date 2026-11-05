@@ -34,4 +34,4 @@ X is what they asked for. Fill it in from the case context. No padding: every li
 **Last, an empty Notes section** for the call.
 
 ## Save
-Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: discovery questions (customer)". Highlight the recap so it isn't missed. Always give me the link to the new page, and add it to `RUN.md`.
+Publish it as a Notion page under 2nd round prep (https://app.notion.com/p/4088f31ef05f80108cfdcc4ced27f94f), titled "Run N: discovery questions (customer)", following the document style in climate-x-role. Highlight the recap so it isn't missed. Always give me the link to the new page, and add it to `RUN.md`.
