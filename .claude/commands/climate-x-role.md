@@ -29,13 +29,14 @@ For anything the customer or a reader sees: questions, screens, documents, findi
 - **Concise, specific, reasoned.** Cut to the case: as few words as possible, every one specific, but keep the "because" so the reader sees the reasoning.
 
 ## Document style (Notion pages)
-Make every document professional and easy to scan, using Notion's layout tools:
-- **The key message in a callout** at the top of the page and of each major section, with an icon and a colour (`<callout icon="…" color="…_bg">`).
-- **Headings with an icon** (e.g. 🎯 problem, 💡 ideas, ✅ recommendation, 🔄 workflow, 🧭 who does what, 📏 success, ❓ assumptions).
-- **Colour with a consistent meaning:** green = recommended or good, red = problem or risk, blue = information or context, yellow = assumption or needs attention, gray = detail. Use background colours for callouts and table header rows; colour single words only for emphasis.
-- **Tables for comparisons** (header row coloured), **columns** for things side by side, **toggles** for detail most readers can skip.
-- No wall of text: short lines, one idea each.
-- **End every page with a feedback section:** a heading "💬 Your feedback" and an empty yellow callout for my notes. I may also comment inline (select text, then Comment).
+Professional and easy to scan, with restraint: it should read like a sharp memo, not a decorated slide.
+- **One callout at the top** with the key message (the recommendation or answer). No other callouts unless something truly needs a warning.
+- **Plain numbered headings.** No emoji or icons on headings.
+- **Colour only to mark meaning,** sparingly: e.g. the recommended option in a comparison table. Never colour for decoration.
+- **Tables for comparisons, toggles for detail** most readers can skip (e.g. a worked example).
+- **Explain terms inline** where they first appear, in a few words. No glossary block.
+- **Short lines, one idea each.** No wall of text, and no filler.
+- **End every page with a feedback section:** a heading "Your feedback" and an empty space for my notes. I may also comment inline (select text, then Comment).
 - **Before revising or re-running on a page,** read both: the feedback section and the inline comments (fetch with discussions, then read the comments). Say which feedback you acted on.
 
 ## How to work with me
