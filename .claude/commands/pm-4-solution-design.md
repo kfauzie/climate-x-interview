@@ -5,12 +5,12 @@ description: "Turn the solution concept into screens in Climate X's brand, one p
 
 # Solution design
 
-Before starting, read climate-x-products, climate-x-company and climate-x-role. Start from the workflow in the solution concept (the Notion page linked in `RUN.md`).
+Before starting, read climate-x-products, climate-x-company and climate-x-role. Follow the communication guide in climate-x-role for everything you write. Start from the workflow in the solution concept (the Notion page linked in `RUN.md`).
 
 Output: the screen images, saved in runs/run-N/design/.
 
 ## Principles
-1. **Know the user.** Put yourself in their shoes. They're intelligent and expert in their domain, but not technical. Use their own terms from the interview notes; don't invent labels. No technical or AI terms on screen. Explain domain terms wherever they appear, in a few words. Labels use roles, not people's names ("Send for approval", not "Send to [name]"), so it works for any team; greeting the signed-in user by name is fine.
+1. **Know the user.** Put yourself in their shoes. They're intelligent and expert in their domain, but not technical. Use their own terms from the interview notes; don't invent labels. No technical or AI terms on screen. Labels use roles, not people's names ("Send for approval", not "Send to [name]"), so it works for any team; greeting the signed-in user by name is fine.
 2. **One step per screen.** Each screen does exactly one step of the workflow. When the next step belongs to someone else, make the hand-over clear: a short transition naming the next user and what they do.
 3. **Show only what matters.** Sensible defaults wherever possible, labelled "Default", and a few clear options. Each fact appears once. Every input earns its place: it changes the answer or who gets it. Keep secondary actions (send back, cancel) out of the spot where users expect Back.
 4. **Information hierarchy and progressive disclosure.** The key information is big and up front. Detail sits lower and smaller, or appears only when the user asks for it. Details go in a table, one fact per row (label | value), never a paragraph. Buttons side by side never look the same: one is primary (filled), the rest secondary (outline). A line that explains a heading sits right under it, smaller and lighter. Links and buttons say exactly what they open or do ("Show the rise by hazard", not "See where it comes from").

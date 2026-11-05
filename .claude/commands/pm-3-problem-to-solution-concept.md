@@ -8,7 +8,7 @@ description: "Turn the discovery notes and data findings into a solution concept
 Start from the problem. Recommend the simplest thing that solves it.
 
 ## Inputs
-- Read climate-x-products, climate-x-company and climate-x-role for background.
+- Read climate-x-products, climate-x-company and climate-x-role for background. Follow the communication guide in climate-x-role for everything you write.
 - The interview notes: the Notes section of the Notion page "Run N: discovery questions (customer)" under 2nd round prep. Quote from the transcript, not the AI summary, which can get details wrong.
 - Any answers from pm-1-data-discovery. Don't re-analyse the data.
 
@@ -52,4 +52,4 @@ Two or three ideas that are genuinely different from each other. For each:
 - For money decisions today (cost, payback), use the nearest year in the data, and show how it changes later; a far-off year alone suggests the problem can wait
 - Only ask the customer what could change which idea or the main workflow. Everything else is a stated assumption.
 - Say how, not that: never "seamless" or "met by design"
-- Plain words a stranger could follow. Explain any domain term the first time it appears (e.g. what a climate scenario means)
+- Plain words a stranger could follow

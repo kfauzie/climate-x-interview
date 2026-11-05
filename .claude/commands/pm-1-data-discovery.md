@@ -7,15 +7,11 @@ description: "Look at a customer's data before and during discovery to find the 
 
 The goal is to give the PM questions they couldn't ask without the data. People talk more when they react to their own numbers than to hypotheticals.
 
-Before starting, read climate-x-products, climate-x-company and climate-x-role.
+Before starting, read climate-x-products, climate-x-company and climate-x-role. Follow the communication guide in climate-x-role for everything you write.
 
 ## Ground rules
 - Every number is calculated by running code, never estimated by reading the file. Keep the code so each number can be traced.
 - Mark anything guessed (meanings, units, intent) as a guess.
-- Plain, specific words. Use the customer's own name for their organisation, not a category ("[Company]", not "the company"). Say "mortgage application" or "loan application", never just "application".
-- Say "the output", not "the number": there isn't always a number.
-- Be specific every time: name the scenarios (and what each means), the years and the hazards, and say which scenario and year every number uses. Never "two scenarios".
-- Explain any term the reader may not know, in a few words, the first time it appears (a unit, an asset type, a measure). If a plain phrase works, use it instead.
 - Stay generic: look for patterns, not for a known story.
 - Don't over-analyse. Data quality is a sanity check, not the task.
 

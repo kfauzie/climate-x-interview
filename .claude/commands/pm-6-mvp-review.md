@@ -7,7 +7,7 @@ description: "Generate quick follow-up questions to confirm the working version 
 
 The goal is to confirm the solution works for the customer, not to sell it.
 
-Before starting, read climate-x-products, climate-x-company and climate-x-role. Use the solution concept (problem, workflow, assumptions) and the working version.
+Before starting, read climate-x-products, climate-x-company and climate-x-role. Follow the communication guide in climate-x-role for everything you write. Use the solution concept (problem, workflow, assumptions) and the working version.
 
 ## Generate the questions
 Three questions, plus one optional, in this order. Each specific to this case.
@@ -26,7 +26,7 @@ When the sample arrives, test it against the working version and check:
 
 ## Rules
 - Open questions, with no hint of the answer you expect
-- Plain language, in the customer's own terms. Follow "Writing anything the customer sees" in climate-x-role: name the exact thing, no shorthand from our notes, explain only what's new to them
+- In the customer's own terms
 - Only ask what could change the solution
 - Short and easy to follow on first hearing: one idea per question
 - No overlap: value, method and sign-off questions easily ask the same thing. Keep one question per area and merge the rest

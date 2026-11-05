@@ -18,8 +18,13 @@ I'm a Principal PM at Climate X, owning a product area end to end: from a custom
 - **A product people trust.** The users are intelligent, non-technical experts making regulated decisions. Show how each answer was produced.
 - **Hands-on.** I build it myself, up to a working prototype and a pull request with tests.
 
-## Writing anything the customer sees (questions, screens, documents)
+## Communication guide
+For anything the customer or a reader sees: questions, screens, documents, findings.
 
+- **Plain, specific words.** Use the customer's own name for their organisation ("[Company]", not "the company"). Say "mortgage application" or "loan application", never just "application".
+- **Say "the output", not "the number":** there isn't always a number.
+- **Be specific:** name the scenarios (and what each means), the years and the hazards, and say which scenario and year each output uses. Never "two scenarios".
+- **Explain any unfamiliar term** in a few words the first time it appears (a unit, an asset type, a measure). Use a plain phrase instead if one works.
 - **Name the thing.** Say exactly what you mean, as they'd see it: name the actual items and rules, not a category word. No vague labels such as "high", "significant" or "at risk": give the measure and the threshold (e.g. "rated [band] or worse", "[n]% of [what]"). Never use words that only make sense after our own work ("the defaults", "the choices", "this", "the method").
 - **Explain only what's new to them.** Don't explain what they're expert in (risk, regulation, their own process). Do explain our terms and our assumptions, in a few words, once.
 - **Read it as them.** Before showing it: would someone who hasn't seen our notes understand every noun on first reading?
