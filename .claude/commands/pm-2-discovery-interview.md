@@ -27,7 +27,7 @@ X is what they asked for. Fill it in from the case context. No padding: every li
 - **User journey:** Walk me through the last time you [did the job behind the ask, in their words]: who did what, in which tool, how long it took. · Who would actually use X? · *\<Unexpected step → "How did you decide that last time?"\>*
   - Name the job, not our product or the data file; they come up in the answer if they matter.
   - If pm-1 found something whose answer could change what gets built, add one line here, stated plainly as an observation: "I noticed [finding in plain words, with a number]." Optionally follow with a short open prompt such as "What's behind that?". Leave it out if nothing is relevant.
-- **Pain points:** Where does most of the time go? · What makes <the pain point> painful? · *\<If something is suspiciously slow → "Why does that happen? It seems simple."\>* · *\<If the customer admits a potential error in their workflow → "What happens when that goes wrong?"\>*
+- **Pain points:** Where does most of the time go? · Is that the part that hurts most, or is something else worse? (the slowest step is often not the real pain) · What have you tried to fix it? · *\<If something is suspiciously slow → "Why does that happen? It seems simple."\>* · *\<If the customer admits a potential error in their workflow → "What happens when that goes wrong?"\>*
 - **Success criteria** (trust sits here): If this worked, how would you know? · What would the impact be: money, time, or better decisions? · What would you need to see to trust the output?
 - **Closing:** **\<Recap\>** three points, biggest problem first, in their words and with their numbers. · Anything I missed? · Can I email you short questions?
 
