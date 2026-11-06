@@ -93,6 +93,8 @@ details.panel>summary{color:inherit;margin:0}details.qs ul{margin-top:8px}
 .pbars{display:flex;gap:10px;align-items:flex-end;height:96px;margin:6px 0}.pbars>div{flex:1;text-align:center;font-size:11px;color:var(--mute)}
 .pb{background:#f2b8bf;border-radius:3px 3px 0 0;display:flex;align-items:flex-end}.pb>div{width:100%;background:var(--red);border-radius:3px 3px 0 0}
 .terms p{margin:8px 0;font-size:14px;line-height:1.45}.terms [contenteditable]{outline:none}
+.basis{display:flex;gap:18px;align-items:center;flex-wrap:wrap}select.inline{width:auto;border:1px solid var(--line);border-radius:5px;padding:3px 6px;font:inherit;font-size:13px;color:var(--g7);background:#fff;margin-left:4px}
+.links{text-align:center;margin-top:12px;font-size:13px}
 @media print{.frame,.btn,.deals,.no-print{display:none!important}.screen{display:none!important}#s2{display:block!important}.wrap{grid-template-columns:1fr!important}}
 </style></head><body>
 <div class="frame">
@@ -283,7 +285,7 @@ function csvDownload(){
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([rows.map(r=>r.join(',')).join('\n')],{type:'text/csv'})); a.download = 'Meridian climate costs by year.csv'; a.click();
 }
 
-// ---------- 2. The brief: defended case at the centre, in deal terms ----------
+// ---------- 2. The brief: one page. The answer, why, the defences, the deal terms ----------
 function s2(){
   const b = brief(D,opts()), E = ev(), r = ragStatus(b.total,E);
   const other = brief(D,opts({defended:!st.defended}));
@@ -291,7 +293,7 @@ function s2(){
   const swing = b.bySite.map(x=>({x, d:Math.abs(x.hold - other.bySite.find(y=>y.site.id===x.site.id).hold)})).sort((a,c)=>c.d-a.d)[0];
   const ts = swing.x.site, und = (st.defended?other:b).bySite.find(y=>y.site.id===ts.id), undTotal = (st.defended?other:b).total;
   const next = b.bySite.find(x=>x.site.id!==ts.id);
-  const ePct = b.annual/totE(), bm = benchmark(ePct*100, S.past_deals_aal_pct_ebitda);
+  const ePct = b.annual/totE();
   const pp = premiumPath(premiumYears(b), S.premium, S.deal.hold_start);
   const yrs = `${S.deal.hold_start}–${S.deal.hold_start+st.years-1}`, scenName = SCEN.find(x=>x[0]===st.scen);
   const ragCls = {Amber:'',Red:'style="background:#fde8ea;color:#b4232f;border-color:#f5b5bd"',Green:'style="background:var(--green-bg);color:#1c7a4f;border-color:#a8dcc0"'}[r];
@@ -303,55 +305,47 @@ function s2(){
       <div class="casebar"><div class="seg" style="width:340px"><div id="defOn" class="${st.defended?'on':''}" onclick="st.defended=true;render()">Defended case</div><div id="defOff" class="${st.defended?'':'on'}" onclick="st.defended=false;render()">Undefended case</div></div>
        <span class="hint">${st.defended?`Undefended: ${M(other.total)}`:`Defended: ${M(other.total)}`}</span></div>
       <div class="big" id="headline">${N(M(b.total),'total')} <small>expected climate damage to Meridian's buildings over the ${st.years}-year hold</small></div>
-      <div class="kpis"><div><b>${N(pct(b.total/E),'ev')}</b><span>of ${M(E)} EV</span></div><div><b>${N(M1(pp.total[0])+'–'+M1(pp.total[1]),'premium','premTotal')}</b><span>if insured instead: premiums over the hold</span></div><div><b>${N(pct(ePct),'ebitda')}</b><span>of EBITDA a year ${tag('synth')}</span></div></div>
+      <div class="kpis"><div><b>${N(pct(b.total/E),'ev')}</b><span>of ${M(E)} EV</span></div><div><b>${N(M1(pp.total[0])+'–'+M1(pp.total[1]),'premium','premTotal')}</b><span>in premiums if insured instead</span></div></div>
      </div>
      <div><button class="rag" id="ragBtn" ${ragCls} onclick="document.getElementById('ragLegend').classList.toggle('open')">${r==='Green'?'✓':'⚠'} ${r.toUpperCase()}${r==='Amber'?': check before IC':''} ⓘ</button></div></div>
     <div id="ragLegend" class="collapse">${RAG_LEGEND}</div>
-    <div class="basis">Based on: <b>${st.defended?'defences in place':'no flood defences'}</b> · <b>${st.years} years (${yrs})</b> · <b>${scenName[1]} scenario</b> · <b>${PRESETS.find(p=>p.id===st.preset).label}</b> <a href="#" onclick="document.getElementById('assume').open=true;document.getElementById('assume').scrollIntoView({behavior:'smooth'});return false">Change ›</a> · <a href="#" onclick="how('total');return false">How it's calculated ›</a></div>
+    <div class="basis">
+     <span>Hold <select id="hold" class="inline" onchange="st.years=+this.value;render()">${[3,4,5,6,7,8,9,10].map(y=>`<option value="${y}" ${y===st.years?'selected':''}>${y} years · ${S.deal.hold_start}–${S.deal.hold_start+y-1}</option>`).join('')}</select></span>
+     <span>Scenario <select id="scen" class="inline" onchange="st.scen=this.value;render()">${SCEN.map(x=>`<option value="${x[0]}" ${x[0]===st.scen?'selected':''}>${x[1]} (${x[2].split(':')[0]})</option>`).join('')}</select></span>
+     <span><b>${PRESETS.find(p=>p.id===st.preset).label}</b></span>
+     <a href="#" onclick="how('total');return false">How it's calculated ›</a>
+    </div>
    </div>
 
    <div class="panel issue" style="margin-top:20px">
-    <h1>The defences behind the ${st.defended?'defended':'undefended'} case · ${name(ts)}</h1>
-    <div class="why" style="margin-top:0"><b>The two cases differ by ${M(swing.d)} over the hold, all from one site: the ${name(ts)} (${ts.street}).</b> With no defences Spectra models coastal flood up to ${ts.risk[st.scen]['2030'].hazards['Coastal Flood'].sev}m deep there, ${pct(und.hold/undTotal)} of the undefended total. ${st.defended?'The defended case relies on the defences below.':'The defended case would rely on the defences below.'}</div>
+    <h1>Why: it depends on the defences at one site · ${name(ts)}</h1>
+    <div class="why" style="margin-top:0">The two cases differ by <b>${M(swing.d)}</b>, all from the ${name(ts)} (${ts.street}). With no defences Spectra models coastal flood up to ${ts.risk[st.scen]['2030'].hazards['Coastal Flood'].sev}m deep there, ${pct(und.hold/undTotal)} of the undefended total.</div>
     ${dv?`<table style="margin-top:10px"><tr><th>Defence</th><th>Who provides it</th><th>Standard</th></tr>${dv.items.map(i=>`<tr><td>${i.what}</td><td>${i.who}</td><td><span class="tag t-assume">${i.standard}</span></td></tr>`).join('')}</table>
-     <div class="hint">${dv.status}. Read from public sources; confirm before relying on the defended case. ${tag('synth')}</div>`:''}
+     <div class="hint">${dv.status}. ${tag('synth')} <a href="#" class="siteLink" onclick="st.siteId='${ts.id}';go(3);return false">Site detail and documents ›</a></div>`:''}
    </div>
 
-   <div class="panel" style="margin-top:20px">
-    <h1>Insurance is a cost, not an exit</h1>
-    <div class="hint" style="margin:-4px 0 8px">Premiums each year if Meridian insures this risk (${st.defended?'defended':'undefended'} case). Assumed: insurers charge ${S.premium.loading_low}–${S.premium.loading_high}× expected loss, rising ${pct(S.premium.yearly_rise)} a year. ${tag('assume')}</div>
+   <details class="panel" id="more" style="margin-top:20px"><summary><h1 style="display:inline">Full breakdown ›</h1> <span class="hint">premiums by year, sites, assumptions</span></summary>
+    <div style="margin-top:14px;font-weight:600;font-size:13px">Insurance premiums by year (${st.defended?'defended':'undefended'} case) ${tag('assume')}</div>
     <div class="pbars">${b.years.map((y,i)=>`<div><div class="pb" style="height:${pp.high[i]/maxP*70}px"><div style="height:${pp.low[i]/pp.high[i]*100}%"></div></div><span>${y}</span></div>`).join('')}</div>
-    <div class="hint">${M1(pp.low[0])}–${M1(pp.high[0])} in ${S.deal.hold_start}, rising to ${M1(pp.low[pp.low.length-1])}–${M1(pp.high[pp.high.length-1])} by ${b.years[b.years.length-1]}. One claim could add about ${pct(S.premium.after_claim)} from the next renewal.</div>
-   </div>
-
-   <div class="panel" style="margin-top:20px">
-    <h1>Where it comes from</h1>
-    <table>${b.bySite.slice(0,3).map(x=>`<tr><td><b>${name(x.site)}</b> <span class="hint">${x.mainHazard||''}</span></td><td class="n">${N(M(x.hold),'site')}</td><td class="n" style="width:70px">${pct(x.share)}</td><td style="width:110px"><a href="#" class="siteLink" onclick="st.siteId='${x.site.id}';go(3);return false">Site detail ›</a></td></tr>`).join('')}
+    <div class="hint">${M1(pp.low[0])}–${M1(pp.high[0])} in ${S.deal.hold_start}, rising to ${M1(pp.low[pp.low.length-1])}–${M1(pp.high[pp.high.length-1])} by ${b.years[b.years.length-1]}: insurers charge ${S.premium.loading_low}–${S.premium.loading_high}× expected loss, rising ${pct(S.premium.yearly_rise)} a year (assumed).</div>
+    <div style="margin-top:16px;font-weight:600;font-size:13px">Where it comes from</div>
+    <table>${b.bySite.slice(0,3).map(x=>`<tr><td><b>${name(x.site)}</b> <span class="hint">${x.mainHazard||''}</span></td><td class="n">${N(M(x.hold),'site')}</td><td class="n" style="width:70px">${pct(x.share)}</td><td style="width:110px"><a href="#" onclick="st.siteId='${x.site.id}';go(3);return false">Site detail ›</a></td></tr>`).join('')}
      <tr><td>${b.bySite.length-3} other sites</td><td class="n">${M(b.bySite.slice(3).reduce((a,x)=>a+x.hold,0))}</td><td class="n">${pct(b.bySite.slice(3).reduce((a,x)=>a+x.share,0))}</td><td></td></tr></table>
-   </div>
-
-   <details class="panel" id="assume" style="margin-top:20px"><summary><h1 style="display:inline">Assumptions behind the number ›</h1> <span class="hint">who pays, rebuild cost, EV, thresholds</span></summary>
-    <div class="ctl" style="margin-top:14px"><label>Who pays for damage</label>
-     ${PRESETS.map(p=>`<label class="radio"><input type="radio" name="preset" value="${p.id}" ${st.preset===p.id?'checked':''} onchange="st.preset='${p.id}';render()"> ${p.label} ${p.def?tag('def'):''} <span class="hint">→ ${M(brief(D,Object.assign(baseOpts(), p.id==='leased'?{leasedOut:[ts.id]}:p.id==='insured'?{insurance:baseOpts().insurance.concat([policyFor(ts.id)])}:{})).total)}</span></label>`).join('')}
-    </div>
-    <div class="ctl"><label>Or describe another assumption</label>
-     <div class="field"><input id="freeText" style="width:100%;border:0;font:inherit" placeholder='e.g. "no sea wall and we hold for 5 years"' value="${st.freeText.replace(/"/g,'&quot;')}"></div>
-     <button class="btn secondary" style="width:auto;padding:6px 14px;display:inline-block" id="interpret" onclick="st.freeText=document.getElementById('freeText').value;st.freeResult=parseAssumption(st.freeText);render();document.getElementById('assume').open=true">Interpret</button>
-     ${st.freeResult?(st.freeResult.length?`<div class="ok">Understood as: <b>${st.freeResult.map(x=>x.txt).join(' · ')}</b>. <a href="#" id="applyFree" onclick="st.freeResult.forEach(x=>st[x.k]=x.v);st.freeResult=null;render();return false">Apply</a></div>`:`<div class="note">Warning: can't model this yet. The closest options are the ones above, the case, the hold period and the scenario.</div>`):''}</div>
-    <table style="margin-top:10px"><tr><th>Other assumptions</th><th>Used now</th><th>Source</th><th class="n">If it changes</th></tr>
-     <tr><td>Rebuild cost per site</td><td>Spectra estimate (${M(D.sites.reduce((a,s)=>a+s.replacement_cost,0))})</td><td>${tag('spectra')}</td><td class="n">10% higher: ${M(brief(D,opts({costFactor:1.1})).total)}</td></tr>
-     <tr><td>Premium loading and rise</td><td>${S.premium.loading_low}–${S.premium.loading_high}×, +${pct(S.premium.yearly_rise)} a year</td><td>${tag('assume')}</td><td class="n">a broker quote replaces it</td></tr>
-     <tr><td>EV</td><td>${M(E)}</td><td>${tag('deal')}</td><td class="n">changes the %, not the £</td></tr>
-     <tr><td>Status thresholds</td><td>5% and 25% of EV</td><td>${tag('def')}</td><td class="n">changes the colour, not the £</td></tr></table>
+    <div class="hint" style="margin-top:8px">${pct(ePct)} of Meridian's EBITDA a year ${tag('synth')}</div>
+    <details id="assume" style="margin-top:10px"><summary>Change assumptions ›</summary>
+     <div class="ctl" style="margin-top:10px"><label>Who pays for damage</label>
+      ${PRESETS.map(p=>`<label class="radio"><input type="radio" name="preset" value="${p.id}" ${st.preset===p.id?'checked':''} onchange="st.preset='${p.id}';render()"> ${p.label} ${p.def?tag('def'):''} <span class="hint">→ ${M(brief(D,Object.assign(baseOpts(), p.id==='leased'?{leasedOut:[ts.id]}:p.id==='insured'?{insurance:baseOpts().insurance.concat([policyFor(ts.id)])}:{})).total)}</span></label>`).join('')}</div>
+     <div class="ctl"><label>Or describe another assumption</label>
+      <div class="field"><input id="freeText" style="width:100%;border:0;font:inherit" placeholder='e.g. "no sea wall and we hold for 5 years"' value="${st.freeText.replace(/"/g,'&quot;')}"></div>
+      <button class="btn secondary" style="width:auto;padding:6px 14px;display:inline-block" id="interpret" onclick="st.freeText=document.getElementById('freeText').value;st.freeResult=parseAssumption(st.freeText);st.openMore=true;render()">Interpret</button>
+      ${st.freeResult?(st.freeResult.length?`<div class="ok">Understood as: <b>${st.freeResult.map(x=>x.txt).join(' · ')}</b>. <a href="#" id="applyFree" onclick="st.freeResult.forEach(x=>st[x.k]=x.v);st.freeResult=null;render();return false">Apply</a></div>`:`<div class="note">Warning: can't model this yet. The closest options are the ones above, the case, the hold period and the scenario.</div>`):''}</div>
+     <table><tr><th>Other assumptions</th><th>Used now</th><th>Source</th></tr>
+      <tr><td>Rebuild cost per site</td><td>Spectra estimate (${M(D.sites.reduce((a,s)=>a+s.replacement_cost,0))})</td><td>${tag('spectra')}</td></tr>
+      <tr><td>Premium loading and rise</td><td>${S.premium.loading_low}–${S.premium.loading_high}×, +${pct(S.premium.yearly_rise)} a year</td><td>${tag('assume')}</td></tr>
+      <tr><td>Status thresholds</td><td>5% and 25% of EV</td><td>${tag('def')}</td></tr></table>
+    </details>
    </details>
   </div><div>
-   <div class="panel">
-    <h1>Horizon and scenario</h1>
-    <div class="ctl"><label>Hold period ${tag('deal')}</label><div class="field"><select id="hold" onchange="st.years=+this.value;render()">${[3,4,5,6,7,8,9,10].map(y=>`<option value="${y}" ${y===st.years?'selected':''}>${y} years · ${S.deal.hold_start}–${S.deal.hold_start+y-1}</option>`).join('')}</select><span>▾</span></div></div>
-    <div class="ctl"><label>Climate scenario ${st.scen==='ssp245'?tag('def'):''}</label>
-     <div class="seg">${SCEN.map(x=>`<div class="${x[0]===st.scen?'on':''}" onclick="st.scen='${x[0]}';render()">${x[1]}</div>`).join('')}</div>
-     <div class="hint">${scenName[2]}.</div></div>
-   </div>
    <div class="next terms"><h1>In deal terms · drafted, edit before sending</h1>
     <div contenteditable="true">
      <p><b>Price:</b> cost to carry the risk over the hold: ${M(b.total)} expected damage if Meridian bears it, or ${M1(pp.total[0])}–${M1(pp.total[1])} in premiums if insured.</p>
@@ -359,10 +353,10 @@ function s2(){
      <p><b>100-day plan:</b> resilience measures at the ${name(ts)} (Adapt shows cost and return) and the insurance renewal; ${(next.mainHazard||'').toLowerCase()} at the ${name(next.site)}.</p>
     </div></div>
    <button class="btn primary" id="toSend" onclick="go(4)">Review and send to deal team</button>
-   <button class="btn secondary" id="csv" onclick="csvDownload()">Download yearly costs for your model</button>
-   <button class="btn secondary" onclick="window.print()">Download PDF</button>
+   <div class="links"><a href="#" id="csv" onclick="csvDownload();return false">Yearly costs for your model (CSV)</a> · <a href="#" onclick="window.print();return false">PDF</a></div>
   </div></div>
   <div id="howDrawer" class="drawer"></div>`;
+  if (st.openMore || st.freeResult){ document.getElementById('more').open = true; document.getElementById('assume').open = true; st.openMore = false; }
 }
 
 // ---------- 3. Site detail ----------

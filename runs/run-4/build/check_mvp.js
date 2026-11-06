@@ -17,13 +17,15 @@ const srv = http.createServer((q, r) => { const f = path.join(root, decodeURICom
   await p.click('#ragBtn'); t('status legend opens', await p.isVisible('#ragLegend'));
   t('other deals marked unavailable', (await p.textContent('#deals')).includes('Not available in prototype'));
   t('deal terms drafted', (await p.textContent('.terms')).includes('Condition before closing'));
+  t('one page: breakdown closed by default', !(await p.evaluate(()=>document.getElementById('more').open)));
   const dl = p.waitForEvent('download'); await p.click('#csv'); t('yearly costs download', (await dl).suggestedFilename().endsWith('.csv'));
   await p.click('#defOff'); t('undefended → £92m', (await p.textContent('#headline')).startsWith('£92m'));
   await p.selectOption('#hold', '5'); t('5-year hold → £66m', (await p.textContent('#headline')).startsWith('£66m')); await p.selectOption('#hold', '7');
-  await p.evaluate(()=>{document.getElementById('assume').open=true}); await p.check('input[value="leased"]'); t('preset leased → £23m', (await p.textContent('#headline')).startsWith('£23m'));
-  await p.evaluate(()=>{document.getElementById('assume').open=true}); await p.check('input[value="all"]'); await p.evaluate(()=>{document.getElementById('assume').open=true});
+  const openAll = () => p.evaluate(()=>{document.getElementById('more').open=true;document.getElementById('assume').open=true});
+  await openAll(); await p.check('input[value="leased"]'); t('preset leased → £23m', (await p.textContent('#headline')).startsWith('£23m'));
+  await openAll(); await p.check('input[value="all"]'); await openAll();
   await p.fill('#freeText', 'there is a sea wall and we hold for 5 years'); await p.click('#interpret'); await p.click('#applyFree');
-  t('free text → defended + 5 years', (await p.textContent('.basis')).includes('defences in place') && (await p.textContent('.basis')).includes('5 years'));
+  t('free text → defended + 5 years', (await p.textContent('#headline')).startsWith('£21m') || ((await p.inputValue('#hold'))==='5' && await p.evaluate(()=>st.defended)));
   await p.evaluate(()=>{st.preset='all';st.years=7;st.defended=false;render()});
   await p.click('#s2 .siteLink'); t('3 site detail: Singapore office with defences', (await p.textContent('#s3')).includes('Flood defences at this site'));
   await p.click('#example'); await p.click('#applyDoc'); t('site document applied → site £53m', (await p.textContent('#siteAfter')).startsWith('£53m'));
